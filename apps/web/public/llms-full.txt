@@ -1,11 +1,11 @@
 # Sage Design Engine — Complete Component Reference
 # Version: 1.1.0 | React 18/19 | Next.js 15+ | Tailwind 3.4+ | framer-motion ^12
-# Components: 99 | Themes: 3 (Studio, Terra, Volt) | Blocks: 2
+# Components: 100 | Themes: 3 (Studio, Terra, Volt) | Blocks: 2
 # Last verified: 2026-02-16
 # Package: pnpm add @thesage/ui
 # MCP: npx @thesage/mcp
 
-> 99 components | 11 categories | 3 themes | TypeScript strict mode | MIT license
+> 100 components | 11 categories | 3 themes | TypeScript strict mode | MIT license
 
 ---
 
@@ -56,6 +56,20 @@ import { Calendar, DatePicker } from '@thesage/ui/dates'
 import { DataTable } from '@thesage/ui/tables'
 import { DragDrop } from '@thesage/ui/dnd'
 ```
+
+## EJECT (Full Customization)
+
+Copy any component's source into your project with imports rewritten:
+
+```bash
+npx @thesage/ui eject Button              # eject to src/components/ui/
+npx @thesage/ui eject Dialog --dir my/dir  # custom target
+npx @thesage/ui eject --list               # list all components
+```
+
+Ejected components keep working with SDE themes and CSS variables. Internal imports (`../../lib/utils`) are rewritten to package-level imports (`@thesage/ui/hooks`, `@thesage/ui/utils`). A `utils.ts` with `cn()` is auto-scaffolded alongside the ejected file.
+
+Also available via MCP tool `eject_component` (returns transformed source) and web UI (Eject button on every component page at thesage.dev).
 
 ## COMPLETE APP SHELL (copy-paste ready)
 
@@ -1133,7 +1147,7 @@ Example:
 
 ---
 
-## LAYOUT (17 components)
+## LAYOUT (18 components)
 Spatial organization and structural elements.
 
 ### Accordion
@@ -1193,6 +1207,24 @@ Example:
   <ResizableHandle />
   <ResizablePanel>Right panel</ResizablePanel>
 </ResizablePanelGroup>
+```
+
+### GlassSurface
+Import: `import { GlassSurface } from '@thesage/ui'`
+Liquid glass surface with backdrop blur, five thickness tiers, and 10-step tint scale.
+Props:
+  - active: boolean (default: true) — Whether the frosted glass effect is active
+  - position: 'top' | 'bottom' (default: 'top') — Shadow direction
+  - thickness: 'ultrathin' | 'thin' | 'medium' | 'thick' | 'ultrathick' (default: 'thin') — Glass opacity tier
+  - tint: 0-9 (default: 2) — Glass fill color for light mode (0 = white, 9 = black)
+  - darkTint: 0-9 — Glass fill color for dark mode (defaults to 9 - tint)
+  - children: ReactNode (required)
+
+Example:
+```tsx
+<GlassSurface thickness="medium" tint={2}>
+  <nav className="p-4">Navigation content</nav>
+</GlassSurface>
 ```
 
 ### Grid
@@ -1496,7 +1528,7 @@ All sizes are minified + brotli compressed, with all dependencies included.
 
 | Entrypoint | Import Path | Size | Limit |
 |------------|-------------|------|-------|
-| Core (all 99 components) | `@thesage/ui` | 146.4 KB | 450 KB |
+| Core (all 100 components) | `@thesage/ui` | 146.4 KB | 450 KB |
 | Tokens | `@thesage/ui/tokens` | 10.9 KB | 70 KB |
 | Forms (react-hook-form) | `@thesage/ui/forms` | 9.4 KB | 10 KB |
 | Utils | `@thesage/ui/utils` | 9.5 KB | 25 KB |
@@ -1513,7 +1545,7 @@ All sizes are minified + brotli compressed, with all dependencies included.
 
 # RECOMMENDED THIRD-PARTY PAIRINGS
 
-SDE covers 99 components. For gaps, these libraries integrate well with @thesage/ui styling and patterns:
+SDE covers 100 components. For gaps, these libraries integrate well with @thesage/ui styling and patterns:
 
 | Need | Library | Install | Notes |
 |------|---------|---------|-------|
@@ -1623,7 +1655,7 @@ SDE uses subpath exports to keep your bundle lean. Only import what you use:
 
 | Import | Size (min+brotli) | What's Included |
 |--------|-------------------|-----------------|
-| `@thesage/ui` | ~146 KB | All 99 base components |
+| `@thesage/ui` | ~146 KB | All 100 base components |
 | `@thesage/ui/hooks` | ~40 KB | useTheme, useMotionPreference, useForm |
 | `@thesage/ui/providers` | ~60 KB | ThemeProvider, TooltipProvider |
 | `@thesage/ui/tokens` | ~70 KB | Design tokens (re-exported from @thesage/tokens) |

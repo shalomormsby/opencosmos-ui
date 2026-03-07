@@ -11,7 +11,77 @@ import { useCustomizer, type ColorPalette } from '../lib/store/customizer';
 import { studioTokens, terraTokens, voltTokens, speedboatTokens, syntaxColors, codeColors } from '@thesage/tokens';
 import type { ThemeName, ColorMode } from '@thesage/tokens';
 
-// Theme token map
+// ── Type-safe token access ──────────────────────────────────────────────────
+
+interface ThemeTokenColors {
+  background: string;
+  backgroundSecondary: string;
+  backgroundTertiary: string;
+  foreground: string;
+  foregroundSecondary: string;
+  foregroundTertiary: string;
+  primary: string;
+  primaryForeground: string;
+  secondary: string;
+  secondaryForeground: string;
+  accent: string;
+  accentForeground: string;
+  border: string;
+  borderSubtle: string;
+  hover: string;
+  active: string;
+  linkHover: string;
+  linkHoverForeground: string;
+  success: string;
+  successForeground: string;
+  warning: string;
+  warningForeground: string;
+  error: string;
+  errorForeground: string;
+  info: string;
+  infoForeground: string;
+  glass: string;
+  glassBorder: string;
+  card?: string;
+  cardForeground?: string;
+  popover?: string;
+  popoverForeground?: string;
+  muted?: string;
+  mutedForeground?: string;
+  destructive?: string;
+  destructiveForeground?: string;
+  input?: string;
+  ring?: string;
+  surface?: string;
+  link?: string;
+  primaryHover?: string;
+  accentHover?: string;
+}
+
+interface ThemeTokenEffects {
+  blur: { sm: string; md: string; lg: string; xl: string };
+  shadow: { sm: string; md: string; lg: string; xl: string; '2xl': string };
+}
+
+interface InteractionTokens {
+  hover: { overlayColor: { light: string; dark: string }; opacity: number };
+  active: { scale: number };
+  focus: { ringWidth: string; ringOffset: string };
+  disabled: { opacity: number };
+}
+
+interface ThemeMotion {
+  getDuration: (intensity: number) => string;
+  ease: { default: string; in: string; out: string; spring: string };
+}
+
+interface ThemeModeTokens {
+  colors: ThemeTokenColors;
+  effects: ThemeTokenEffects;
+}
+
+// ── Theme token map ─────────────────────────────────────────────────────────
+
 const themeTokens = {
   studio: studioTokens,
   terra: terraTokens,
@@ -42,14 +112,31 @@ const fontFamilies: Record<ThemeName, Record<string, string>> = {
   },
 };
 
+// ── Helpers ─────────────────────────────────────────────────────────────────
+
+/** Extract raw pixel value from blur() CSS function */
+function extractBlurValue(blurFunction: string): string {
+  const match = blurFunction.match(/blur\(([^)]+)\)/);
+  return match ? match[1] : '8px';
+}
+
+// ── Token → CSS variable mapping ────────────────────────────────────────────
+
 /**
  * Convert theme tokens to CSS variables
  */
-function getThemeVars(theme: ThemeName, mode: ColorMode): Record<string, string> {
+function getThemeVars(theme: ThemeName, mode: ColorMode, motionIntensity: number): Record<string, string> {
   const tokens = themeTokens[theme];
-  const colors = tokens[mode]?.colors as any;
-  const effects = tokens[mode]?.effects as any;
-  const fonts = fontFamilies[theme] as any;
+  const modeTokens = tokens[mode] as ThemeModeTokens;
+  const colors = modeTokens?.colors;
+  const effects = modeTokens?.effects;
+  const fonts = fontFamilies[theme];
+  const motion = tokens.motion as ThemeMotion | undefined;
+  const interactions = (tokens as any).interactions as InteractionTokens | undefined;
+
+  // Compute motion duration from theme + user preference
+  const duration = motion?.getDuration?.(motionIntensity) || '300ms';
+  const durationMs = parseInt(duration) || 300;
 
   return {
     // Colors - Base
@@ -103,26 +190,49 @@ function getThemeVars(theme: ThemeName, mode: ColorMode): Record<string, string>
     '--color-destructive-foreground': colors?.destructiveForeground || '#ffffff',
     '--color-input': colors?.input || colors?.border || '#d4d4d4',
 
-    // Effects - Blur
+    // Effects - Blur (full function for style attributes)
     '--effect-blur-sm': effects?.blur?.sm || 'blur(4px)',
     '--effect-blur-md': effects?.blur?.md || 'blur(8px)',
     '--effect-blur-lg': effects?.blur?.lg || 'blur(16px)',
     '--effect-blur-xl': effects?.blur?.xl || effects?.blur?.lg || 'blur(24px)',
 
-    // Effects - Shadow
+    // Effects - Blur (raw values for Tailwind blur-*/backdrop-blur-* utilities)
+    '--blur-sm': extractBlurValue(effects?.blur?.sm || 'blur(4px)'),
+    '--blur-md': extractBlurValue(effects?.blur?.md || 'blur(8px)'),
+    '--blur-lg': extractBlurValue(effects?.blur?.lg || 'blur(16px)'),
+    '--blur-xl': extractBlurValue(effects?.blur?.xl || 'blur(24px)'),
+
+    // Effects - Shadow (complete set)
     '--effect-shadow-sm': effects?.shadow?.sm || '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
-    '--effect-shadow-md': effects?.shadow?.md || effects?.shadow?.sm || '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-    '--effect-shadow-lg': effects?.shadow?.lg || effects?.shadow?.md || effects?.shadow?.sm || '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+    '--effect-shadow-md': effects?.shadow?.md || '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+    '--effect-shadow-lg': effects?.shadow?.lg || '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+    '--effect-shadow-xl': effects?.shadow?.xl || '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
+    '--effect-shadow-2xl': effects?.shadow?.['2xl'] || '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+
+    // Interaction tokens (theme-aware)
+    '--color-interaction-overlay': interactions?.hover?.overlayColor?.[mode] || (mode === 'dark' ? '#ffffff' : '#000000'),
+    '--opacity-interaction-hover': String(interactions?.hover?.opacity ?? 0.08),
+    '--scale-interaction-active': String(interactions?.active?.scale ?? 0.98),
+    '--color-interaction-focus-ring': colors?.ring || colors?.primary || '#0a0a0a',
+    '--width-interaction-focus-ring': interactions?.focus?.ringWidth || '2px',
+    '--width-interaction-focus-offset': interactions?.focus?.ringOffset || '2px',
+    '--opacity-interaction-disabled': String(interactions?.disabled?.opacity ?? 0.5),
 
     // Typography - Font Families
     '--font-heading': fonts?.heading || (theme === 'terra' && fonts?.serif ? fonts.serif : fonts?.sans) || 'var(--font-studio-heading)',
     '--font-body': fonts?.body || fonts?.sans || 'var(--font-studio-body)',
     '--font-mono': fonts?.mono || 'var(--font-studio-mono)',
 
-    // Motion - These are accessed programmatically via tokens
-    // but we can set defaults for CSS animations
-    '--ease-default': tokens?.motion?.ease?.default || 'cubic-bezier(0.4, 0, 0.2, 1)',
-    '--ease-spring': tokens?.motion?.ease?.spring || tokens?.motion?.ease?.default || 'cubic-bezier(0.16, 1, 0.3, 1)',
+    // Motion - Easing (complete set)
+    '--ease-default': motion?.ease?.default || 'cubic-bezier(0.4, 0, 0.2, 1)',
+    '--ease-in': motion?.ease?.in || 'cubic-bezier(0.4, 0, 1, 1)',
+    '--ease-out': motion?.ease?.out || 'cubic-bezier(0, 0, 0.2, 1)',
+    '--ease-spring': motion?.ease?.spring || 'cubic-bezier(0.16, 1, 0.3, 1)',
+
+    // Motion - Duration (computed from theme + user motion preference)
+    '--duration-default': duration,
+    '--duration-fast': `${Math.max(0, Math.round(durationMs * 0.5))}ms`,
+    '--duration-slow': `${Math.min(1000, Math.round(durationMs * 1.5))}ms`,
 
     // Syntax Highlighting - Based on VS Code Dark+ theme
     '--syntax-comment': mode === 'light' ? syntaxColors.light.comment : syntaxColors.dark.comment,
@@ -162,7 +272,7 @@ function mergeCustomColorTokens(
     '--color-primary': customPalette.primary,
     '--color-primary-foreground': customPalette.primaryForeground,
 
-    // Apply color scale (for utilities like bg-primary/50)
+    // Apply color scale (for utilities like bg-primary-200)
     '--color-primary-50': customPalette.scale[50],
     '--color-primary-100': customPalette.scale[100],
     '--color-primary-200': customPalette.scale[200],
@@ -187,28 +297,20 @@ function mergeCustomColorTokens(
     }),
 
     // Apply ALL derived tokens from dependency graph
-    // This automatically updates:
-    // - Links (--color-link, --color-link-hover)
-    // - Focus rings (--color-ring)
-    // - Charts (--chart-1, --chart-2, --chart-3, --chart-4, --chart-5)
-    // - Buttons, badges, and any other dependent tokens
     ...customPalette.derivedTokens,
   };
 }
 
 /**
  * Validate theme tokens in development mode
- * Checks that all expected CSS variables are defined and have valid values
  */
 function validateThemeTokens(theme: ThemeName, mode: ColorMode): void {
-  // Only run in development (Next.js/Vite inject this at build time)
   // @ts-expect-error - process.env is injected by bundler
   if (typeof process !== 'undefined' && process.env?.NODE_ENV === 'production') return;
 
   const root = document.documentElement;
   const style = getComputedStyle(root);
 
-  // Core required tokens that must be defined
   const requiredTokens = [
     '--color-background',
     '--color-foreground',
@@ -230,7 +332,6 @@ function validateThemeTokens(theme: ThemeName, mode: ColorMode): void {
     if (!value) {
       missingTokens.push(token);
     } else if (token.startsWith('--color-') && !value.match(/^(#|rgb|hsl|var\()/)) {
-      // Color tokens should be hex, rgb, hsl, or CSS variable references
       invalidTokens.push(`${token} = "${value}"`);
     } else if (token.startsWith('--font-') && value === '') {
       invalidTokens.push(`${token} = empty`);
@@ -251,11 +352,12 @@ function validateThemeTokens(theme: ThemeName, mode: ColorMode): void {
     );
   }
 
-  // Log success in development
   if (missingTokens.length === 0 && invalidTokens.length === 0) {
     console.log(`[ThemeProvider] ✓ Theme validation passed for "${theme}" (${mode} mode)`);
   }
 }
+
+// ── Component ───────────────────────────────────────────────────────────────
 
 export interface ThemeProviderProps {
   children: React.ReactNode;
@@ -273,9 +375,8 @@ export interface ThemeProviderProps {
 
 export function ThemeProvider({ children, defaultTheme, defaultMode }: ThemeProviderProps) {
   const { theme, mode, setTheme, setMode } = useThemeStore();
-  // Use specific selector to get the exact palette for current theme/mode
-  // This fixes the issue where full object subscription might miss updates or cause hydration issues
   const customPalette = useCustomizer((state) => state.customColors?.[theme]?.[mode]);
+  const motionIntensity = useCustomizer((state) => state.motion);
 
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -284,11 +385,11 @@ export function ThemeProvider({ children, defaultTheme, defaultMode }: ThemeProv
   useEffect(() => {
     if (!defaultTheme && !defaultMode) return;
     const persisted = typeof window !== 'undefined' && localStorage.getItem('ecosystem-theme');
-    if (persisted) return; // Respect user's saved preference
+    if (persisted) return;
     if (defaultTheme) setTheme(defaultTheme);
     if (defaultMode) setMode(defaultMode);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only on mount
+  }, []);
 
   // Prevent hydration mismatch
   useEffect(() => {
@@ -299,25 +400,25 @@ export function ThemeProvider({ children, defaultTheme, defaultMode }: ThemeProv
   useEffect(() => {
     if (!mounted) return;
 
-    // Start transition
     setIsTransitioning(true);
 
-    // Apply theme vars to :root
     const root = document.documentElement;
 
-    // 1. Get base theme tokens
-    const baseTokens = getThemeVars(theme, mode);
+    // 1. Get base theme tokens (including motion-aware durations)
+    const baseTokens = getThemeVars(theme, mode, motionIntensity);
 
-    // 2. Custom palette is now derived directly from store selector
-
-    // DEBUG: Log the values to diagnose mismatch
-    console.log('[ThemeProvider] Update:', {
-      theme,
-      mode,
-      hasCustomPalette: !!customPalette,
-      customPrimary: customPalette?.primary,
-      timestamp: new Date().toISOString()
-    });
+    // 2. Debug logging (development only)
+    // @ts-expect-error - process.env is injected by bundler
+    if (typeof process !== 'undefined' && process.env?.NODE_ENV !== 'production') {
+      console.log('[ThemeProvider] Update:', {
+        theme,
+        mode,
+        motionIntensity,
+        hasCustomPalette: !!customPalette,
+        customPrimary: customPalette?.primary,
+        timestamp: new Date().toISOString()
+      });
+    }
 
     // 3. Merge tokens (custom overrides base)
     const finalTokens = customPalette
@@ -327,7 +428,7 @@ export function ThemeProvider({ children, defaultTheme, defaultMode }: ThemeProv
     // Apply transition class
     root.classList.add('theme-transitioning');
 
-    // Apply CSS variables IMMEDIATELY (no requestAnimationFrame delay)
+    // Apply CSS variables IMMEDIATELY
     Object.entries(finalTokens).forEach(([key, value]) => {
       root.style.setProperty(key, value);
     });
@@ -351,15 +452,10 @@ export function ThemeProvider({ children, defaultTheme, defaultMode }: ThemeProv
     const timeout = setTimeout(() => {
       root.classList.remove('theme-transitioning');
       setIsTransitioning(false);
-    }, 400); // 400ms = 300ms transition + 100ms buffer
+    }, 400);
 
     return () => clearTimeout(timeout);
-  }, [theme, mode, mounted, customPalette]);
-
-  // Don't render children until mounted (prevents flash)
-  if (!mounted) {
-    return null;
-  }
+  }, [theme, mode, mounted, customPalette, motionIntensity]);
 
   return <>{children}</>;
 }

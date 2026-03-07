@@ -205,8 +205,16 @@ export const studioTokens = {
   },
 
   /**
-   * Typography for Studio theme
+   * Interaction tokens for Studio theme
+   * Subtle, professional — minimal overlay, gentle scale
    */
+  interactions: {
+    hover: { overlayColor: { light: '#000000', dark: '#ffffff' }, opacity: 0.06 },
+    active: { scale: 0.98 },
+    focus: { ringWidth: '2px', ringOffset: '2px' },
+    disabled: { opacity: 0.5 },
+  },
+
   typography: {
     heading: {
       fontFamily: 'var(--font-geist-sans)',

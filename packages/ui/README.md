@@ -16,7 +16,7 @@ Components that feel alive. Themes with real personality. Motion your users cont
 
 ---
 
-**Sage Design Engine** is a component library and design system built on **Radix UI** primitives and **Tailwind CSS**. 99 accessible components across 11 functional categories, three distinct themes with runtime switching, and a user-controlled motion system — all wired through a 4-layer design token architecture.
+**Sage Design Engine** is a component library and design system built on **Radix UI** primitives and **Tailwind CSS**. 100 accessible components across 11 functional categories, three distinct themes with runtime switching, and a user-controlled motion system — all wired through a 4-layer design token architecture.
 
 ## Features
 
@@ -124,6 +124,20 @@ import { SortableList } from '@thesage/ui/dnd'
 | **Feedback** | Alert, Progress, Skeleton, Toast (Sonner) |
 | **Layout** | Accordion, Separator, ResizablePanels, Collapsible |
 | **Features** | Customizer, ThemeSwitcher |
+
+## Eject — full customization
+
+Need to deeply customize a component? Eject it into your project for full ownership:
+
+```bash
+npx @thesage/ui eject Button
+npx @thesage/ui eject Dialog --dir components/sage
+npx @thesage/ui eject --list  # see all available components
+```
+
+This copies the component source into your project with imports automatically rewritten. The ejected component still works with Sage themes and CSS variables — you just own the code now.
+
+You can also eject from [thesage.dev](https://thesage.dev) — every component page has an **Eject** button that lets you copy or download the source directly.
 
 ## Bundle size
 

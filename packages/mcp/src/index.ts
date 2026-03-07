@@ -34,6 +34,10 @@ import {
   Tool,
 } from '@modelcontextprotocol/sdk/types.js';
 
+import { readFileSync, existsSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
 import {
   COMPONENT_CATEGORIES,
   COMPONENT_REGISTRY,
@@ -44,6 +48,9 @@ import {
   getComponentCount,
   type ComponentMetadata,
 } from './registry.js';
+
+const __filename_ = typeof __filename !== 'undefined' ? __filename : fileURLToPath(import.meta.url);
+const __dirname_ = dirname(__filename_);
 
 // Server instance
 const server = new Server(
@@ -183,7 +190,7 @@ const TOOLS: Tool[] = [
   {
     name: 'eject_component',
     description:
-      "Copy a component's source code into your local project for full customization. Returns step-by-step instructions to eject the component with rewritten imports.",
+      "Eject a component's source code for full customization. Returns the actual transformed source code with imports rewritten — ready to save directly into the user's project.",
     inputSchema: {
       type: 'object',
       properties: {
@@ -556,49 +563,93 @@ function generateAuditChecklist(): string {
 }
 
 /**
- * Generate eject instructions for a component
+ * Transform internal imports to package-level imports for ejected components
  */
-function generateEjectInstructions(component: ComponentMetadata, targetDir: string): string {
-  const srcPath = `node_modules/@thesage/ui/src/components/${component.category}/${component.name}.tsx`;
+function transformImports(source: string): string {
+  return source
+    .replace(/from\s+['"]\.\.\/\.\.\/lib\/utils['"]/g, `from './utils'`)
+    .replace(/from\s+['"]\.\.\/\.\.\/lib\/[^'"]+['"]/g, `from '@thesage/ui/utils'`)
+    .replace(/from\s+['"]\.\.\/\.\.\/hooks\/[^'"]+['"]/g, `from '@thesage/ui/hooks'`)
+    .replace(/from\s+['"]\.\.\/[^.][^'"]*['"]/g, `from '@thesage/ui'`);
+}
+
+/**
+ * Resolve the @thesage/ui source directory.
+ * Tries monorepo path first, then node_modules.
+ */
+function resolveUiSourceDir(): string | null {
+  // Monorepo: packages/mcp/src → packages/ui/src
+  const monorepoPath = join(__dirname_, '..', '..', 'ui', 'src');
+  if (existsSync(join(monorepoPath, 'components'))) return monorepoPath;
+
+  // Monorepo (from dist): packages/mcp/dist → packages/ui/src
+  const monorepoPathDist = join(__dirname_, '..', '..', '..', 'ui', 'src');
+  if (existsSync(join(monorepoPathDist, 'components'))) return monorepoPathDist;
+
+  // npm: try to find @thesage/ui in node_modules
+  try {
+    const resolved = require.resolve('@thesage/ui/package.json');
+    const pkgDir = dirname(resolved);
+    const srcDir = join(pkgDir, 'src');
+    if (existsSync(join(srcDir, 'components'))) return srcDir;
+  } catch { /* not installed via npm */ }
+
+  return null;
+}
+
+/**
+ * Read component source and return transformed code ready for ejection
+ */
+function generateEjectSource(component: ComponentMetadata, targetDir: string): string {
+  const srcDir = resolveUiSourceDir();
+
+  if (!srcDir) {
+    return `Error: Could not locate @thesage/ui source files. Ensure the package is installed with source (v1.4.0+) or you are in the monorepo.`;
+  }
+
+  // Find the component file
+  const componentPath = join(srcDir, 'components', component.category, `${component.name}.tsx`);
+  if (!existsSync(componentPath)) {
+    return `Error: Source file not found at ${componentPath}`;
+  }
+
+  const rawSource = readFileSync(componentPath, 'utf-8');
+  const transformed = transformImports(rawSource);
+
+  // Extract external dependencies
+  const deps = new Set<string>();
+  const importRegex = /from\s+['"](@[^/'"]+\/[^'"]+|[^.@/'"][^'"]*)['"]/g;
+  let match;
+  while ((match = importRegex.exec(rawSource)) !== null) {
+    const pkg = match[1];
+    if (pkg.startsWith('@thesage/') || pkg === 'react') continue;
+    const pkgName = pkg.startsWith('@') ? pkg.split('/').slice(0, 2).join('/') : pkg.split('/')[0];
+    deps.add(pkgName);
+  }
+
   const destPath = `${targetDir}/${component.name}.tsx`;
 
-  return `## Eject: ${component.name}
+  let output = `## Eject: ${component.name}\n\n`;
+  output += `Save this file to \`${destPath}\`:\n\n`;
+  output += `\`\`\`tsx\n${transformed}\`\`\`\n\n`;
 
-**Step 1:** Copy the source file:
-\`\`\`bash
-mkdir -p ${targetDir}
-cp ${srcPath} ${destPath}
-\`\`\`
+  // cn() utility
+  const usesCn = rawSource.includes("from '../../lib/utils'") || rawSource.includes('from "../../lib/utils"');
+  if (usesCn) {
+    output += `### Required: \`${targetDir}/utils.ts\`\n\n`;
+    output += `\`\`\`ts\nimport { type ClassValue, clsx } from "clsx";\nimport { twMerge } from "tailwind-merge";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\n\`\`\`\n\n`;
+  }
 
-**Step 2:** Rewrite imports in the copied file:
-- Change \`from '../../lib/utils'\` → \`from '@/lib/utils'\`
-- Change \`from '../actions/Button'\` → \`from '@thesage/ui'\` (keep using package for non-ejected deps)
-- Change \`from '../../hooks/useMotionPreference'\` → \`from '@thesage/ui/hooks'\`
+  if (deps.size > 0) {
+    output += `### Dependencies\n\n`;
+    output += `\`\`\`bash\npnpm add ${[...deps].sort().join(' ')}\n\`\`\`\n\n`;
+  }
 
-**Step 3:** Update your app imports:
-\`\`\`tsx
-// Before:
-import { ${component.name} } from '@thesage/ui'
-// After:
-import { ${component.name} } from '@/${targetDir}/${component.name}'
-\`\`\`
+  output += `### Update imports\n\n`;
+  output += `\`\`\`tsx\n// Before:\nimport { ${component.name} } from '@thesage/ui'\n// After:\nimport { ${component.name} } from './${targetDir}/${component.name}'\n\`\`\`\n\n`;
+  output += `The ejected component still works with @thesage/ui themes and CSS variables. You now own it — modify freely.`;
 
-**Step 4:** Ensure \`cn()\` utility exists locally:
-\`\`\`tsx
-// src/lib/utils.ts
-import { clsx, type ClassValue } from 'clsx'
-import { twMerge } from 'tailwind-merge'
-export function cn(...inputs: ClassValue[]) { return twMerge(clsx(inputs)) }
-\`\`\`
-
-**Step 5:** Install clsx + tailwind-merge if not already present:
-\`\`\`bash
-pnpm add clsx tailwind-merge
-\`\`\`
-
-You now own this component. Modify it freely.
-
-**Note:** The ejected component still works with SDE themes and CSS variables. You get full control over the markup and styling while staying in the SDE ecosystem.`;
+  return output;
 }
 
 // ============================================================================
@@ -906,7 +957,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           content: [
             {
               type: 'text',
-              text: generateEjectInstructions(component, targetDir),
+              text: generateEjectSource(component, targetDir),
             },
           ],
         };

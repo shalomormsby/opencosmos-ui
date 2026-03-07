@@ -6,10 +6,11 @@ Enable AI assistants like Claude Desktop, Cursor, and VS Code to browse, search,
 
 ## Features
 
-- 🔍 **Browse all 89 components** across 7 core functional categories
+- 🔍 **Browse all 100 components** across 11 functional categories
 - 🔎 **Semantic search** by keywords, use cases, or functionality
 - 📖 **Detailed component info** including props, dependencies, and examples
 - 📦 **Installation instructions** with all required dependencies
+- ⏏️ **Eject components** — get transformed source code ready to paste into any project
 - 🤖 **AI-native** - Built specifically for LLM interaction
 
 ## Installation
@@ -75,14 +76,14 @@ Add to `.vscode/mcp.json`:
 
 ## Available Tools
 
-The MCP server provides four tools for AI interaction:
+The MCP server provides 8 tools for AI interaction:
 
 ### 1. `list_components`
 
 List all available components, optionally filtered by category.
 
 **Parameters:**
-- `category` (optional): Filter by `actions`, `forms`, `navigation`, `overlays`, `feedback`, `data-display`, or `layout`
+- `category` (optional): Filter by `actions`, `forms`, `navigation`, `overlays`, `feedback`, `data-display`, `layout`, `backgrounds`, `cursor`, `motion`, or `blocks`
 
 **Example AI prompts:**
 - "Show me all Sage Design Engine components"
@@ -125,6 +126,44 @@ Get installation instructions for a component.
 - "How do I add the DataTable to my project?"
 - "Show me how to install the ComboBox"
 
+### 5. `get_app_shell`
+
+Get a complete, ready-to-use app shell with ThemeProvider, Toaster, Tailwind config, and globals.css.
+
+**Parameters:**
+- `framework` (optional): `"nextjs"` or `"vite"` (default: `"vite"`)
+- `theme` (optional): `"studio"`, `"terra"`, or `"volt"` (default: `"studio"`)
+
+### 6. `get_examples`
+
+Get usage examples for a specific component.
+
+**Parameters:**
+- `name` (required): Component name
+
+### 7. `get_audit_checklist`
+
+Returns a post-generation checklist to verify correct SDE usage (providers, styling, accessibility, imports).
+
+### 8. `eject_component`
+
+Eject a component's source code for full customization. Returns the **actual transformed source code** with internal imports rewritten to package-level imports — ready to save directly into the user's project.
+
+**Parameters:**
+- `name` (required): Component name (e.g., `"Button"`, `"Dialog"`)
+- `targetDir` (optional): Target directory (default: `"src/components/ui"`)
+
+**What it returns:**
+- Transformed component source code (ready to save as `.tsx`)
+- `cn()` utility code if needed
+- List of npm dependencies to install
+- Import update instructions
+
+**Example AI prompts:**
+- "Eject the Button component so I can customize it"
+- "I need the Dialog source code in my project"
+- "Give me the Card component source for local modification"
+
 ## Component Categories
 
 The Sage Design Engine organizes components functionally (not atomically):
@@ -145,7 +184,7 @@ Once configured, you can interact with the server through your AI assistant:
 
 > "Show me all components in the Sage Design Engine"
 
-The AI will use `list_components` to display all 89 components organized by category.
+The AI will use `list_components` to display all 100 components organized by category.
 
 ### Search for Specific Functionality
 
@@ -180,11 +219,11 @@ The AI will use `install_component` to provide:
 
 The MCP server consists of:
 
-1. **Component Registry** (`src/registry.ts`) - Metadata for all 89 @thesage/ui components
-2. **MCP Server** (`src/index.ts`) - Model Context Protocol implementation
-3. **Tool Handlers** - Four tools for listing, searching, viewing, and installing
+1. **Component Registry** (`src/registry.ts`) - Metadata for all 100 @thesage/ui components
+2. **MCP Server** (`src/index.ts`) - Model Context Protocol implementation with 8 tools
+3. **Eject Engine** - Reads component source, transforms imports, returns ready-to-use code
 
-All data is statically defined - no network requests or external dependencies required.
+Registry data is statically defined. The eject tool reads source files from the monorepo or `node_modules`.
 
 ## Development
 

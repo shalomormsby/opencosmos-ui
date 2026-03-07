@@ -1,6 +1,6 @@
 # Sage Design Engine (SDE)
 
-> 99 accessible React components built on Radix UI + Tailwind CSS.
+> 100 accessible React components built on Radix UI + Tailwind CSS.
 > Three themes (Studio, Terra, Volt) with light/dark modes.
 > User-controlled motion system (0-10 scale).
 > TypeScript strict mode. MIT license.
@@ -35,6 +35,21 @@ import '@thesage/ui/globals.css'
 - Tools: list_components, search_components, get_component, install_component, get_app_shell, get_examples, get_audit_checklist, eject_component
 - Config: `{ "mcpServers": { "sds": { "command": "npx", "args": ["@thesage/mcp"] } } }`
 - Discovery: https://thesage.dev/.well-known/mcp-server.json
+
+## Eject (Full Customization)
+
+Copy any component's source into your project with imports rewritten:
+
+```bash
+npx @thesage/ui eject Button              # eject to src/components/ui/
+npx @thesage/ui eject Dialog --dir my/dir  # custom target
+npx @thesage/ui eject --list               # list all components
+```
+
+Also available via:
+- MCP tool: `eject_component` (returns transformed source code)
+- Web UI: Eject button on every component page at thesage.dev
+- API: `GET https://thesage.dev/api/eject/{ComponentName}` (JSON response)
 
 ## Resources
 - GitHub: https://github.com/shalomormsby/sage-design-engine

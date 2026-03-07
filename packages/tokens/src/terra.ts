@@ -165,22 +165,15 @@ export const terraTokens = {
     },
   },
 
+  /**
+   * Interaction tokens for Terra theme
+   * Warm, organic — earthy overlay tones, softer scale
+   */
   interactions: {
-    hover: {
-      overlayColor: 'var(--color-interaction-overlay)',
-      opacity: 'var(--opacity-interaction-hover)',
-    },
-    active: {
-      scale: 'var(--scale-interaction-active)',
-    },
-    focus: {
-      ringColor: 'var(--color-interaction-focus-ring)',
-      ringWidth: 'var(--width-interaction-focus-ring)',
-      ringOffset: 'var(--width-interaction-focus-offset)',
-    },
-    disabled: {
-      opacity: 'var(--opacity-interaction-disabled)',
-    },
+    hover: { overlayColor: { light: '#2d2823', dark: '#f5f1eb' }, opacity: 0.07 },
+    active: { scale: 0.97 },
+    focus: { ringWidth: '2px', ringOffset: '2px' },
+    disabled: { opacity: 0.5 },
   },
 
   typography: {

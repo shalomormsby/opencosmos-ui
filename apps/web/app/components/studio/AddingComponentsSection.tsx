@@ -40,6 +40,7 @@ export function AddingComponentsSection({ breadcrumbs, activeItemId }: AddingCom
             { id: 'components', label: 'Adding Components' },
             { id: 'modifying', label: 'Modifying' },
             { id: 'tokens', label: 'Adding Tokens' },
+            { id: 'ejecting', label: 'Ejecting' },
             { id: 'troubleshooting', label: 'Troubleshooting' },
           ].map((item) => (
             <a
@@ -413,6 +414,164 @@ export const colors: ColorTokens = {
                   </div>
                 </li>
               </ol>
+            </Card>
+          </section>
+        )}
+
+        {/* Ejecting */}
+        {currentView === 'ejecting' && (
+          <section>
+            <h2 className="text-2xl font-bold mb-4 text-[var(--color-text-primary)]">
+              Ejecting Components
+            </h2>
+
+            <Card className="p-6 mb-6">
+              <div className="mb-6 bg-[var(--color-surface)] p-4 rounded-md border border-[var(--color-border)]">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="w-5 h-5 text-[var(--color-primary)] mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold text-[var(--color-text-primary)] mb-1">When to Eject</h3>
+                    <p className="text-sm text-[var(--color-text-secondary)]">
+                      Ejecting copies a component's source code into your project so you can modify it freely. The ejected component still works with Sage themes and CSS variables — you just own the code. Only eject when you need deep customization beyond what props and CSS variables offer.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4">Three Ways to Eject</h3>
+
+              <div className="space-y-6">
+                {/* Method 1: CLI */}
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)] flex items-center gap-2">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[var(--color-primary)] text-[var(--color-primary-foreground)] flex items-center justify-center text-xs font-bold">1</span>
+                    CLI (Recommended)
+                  </h4>
+                  <p className="text-sm text-[var(--color-text-secondary)] mb-3">
+                    The fastest way to eject. Run from your project root:
+                  </p>
+                  <CollapsibleCodeBlock
+                    id="eject-cli-basic"
+                    code={`# Eject a single component
+npx @thesage/ui eject Button
+
+# Eject to a custom directory
+npx @thesage/ui eject Dialog --dir components/sage
+
+# List all available components
+npx @thesage/ui eject --list`}
+                    defaultCollapsed={false}
+                    showCopy={true}
+                  />
+                  <p className="text-xs text-[var(--color-text-muted)] mt-2">
+                    The CLI automatically transforms internal imports, scaffolds a <Code syntax="plain">utils.ts</Code> file with the <Code syntax="plain">cn()</Code> utility, and lists any npm dependencies you need to install.
+                  </p>
+                </div>
+
+                {/* Method 2: Web UI */}
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)] flex items-center gap-2">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[var(--color-primary)] text-[var(--color-primary-foreground)] flex items-center justify-center text-xs font-bold">2</span>
+                    Eject Button (This Site)
+                  </h4>
+                  <p className="text-sm text-[var(--color-text-secondary)] mb-3">
+                    Every component page on this site has an <strong>Eject</strong> button. Click it to view the transformed source code, then copy or download it directly into your project.
+                  </p>
+                </div>
+
+                {/* Method 3: MCP / AI */}
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)] flex items-center gap-2">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[var(--color-primary)] text-[var(--color-primary-foreground)] flex items-center justify-center text-xs font-bold">3</span>
+                    AI Assistant (MCP)
+                  </h4>
+                  <p className="text-sm text-[var(--color-text-secondary)] mb-3">
+                    If you have the <Code syntax="plain">@thesage/mcp</Code> server configured, ask your AI assistant to eject a component. It will return the full transformed source code ready to save.
+                  </p>
+                  <CollapsibleCodeBlock
+                    id="eject-mcp-prompt"
+                    code={`// Example prompts for your AI assistant:
+"Eject the Button component so I can customize it"
+"I need the Dialog source code in my project"
+"Give me the Card component source for local modification"`}
+                    defaultCollapsed={true}
+                    showCopy={false}
+                  />
+                </div>
+              </div>
+            </Card>
+
+            {/* What Happens When You Eject */}
+            <Card className="p-6 mb-6">
+              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4">What Happens When You Eject</h3>
+              <div className="space-y-4">
+                <div className="bg-[var(--color-surface)] p-4 rounded-md border border-[var(--color-border)]">
+                  <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-1">Import Transformation</p>
+                  <p className="text-xs text-[var(--color-text-secondary)] mb-2">
+                    Internal relative imports are automatically rewritten to use package-level imports:
+                  </p>
+                  <CollapsibleCodeBlock
+                    id="eject-transforms"
+                    code={`// Before (internal source):
+import { cn } from '../../lib/utils'
+import { useMotionPreference } from '../../hooks/use-motion-preference'
+import { Button } from '../actions/Button'
+
+// After (ejected):
+import { cn } from './utils'
+import { useMotionPreference } from '@thesage/ui/hooks'
+import { Button } from '@thesage/ui'`}
+                    defaultCollapsed={false}
+                    showCopy={false}
+                  />
+                </div>
+
+                <div className="bg-[var(--color-surface)] p-4 rounded-md border border-[var(--color-border)]">
+                  <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-1">cn() Utility</p>
+                  <p className="text-xs text-[var(--color-text-secondary)]">
+                    A <Code syntax="plain">utils.ts</Code> file is scaffolded alongside your ejected component containing the <Code syntax="plain">cn()</Code> utility (clsx + tailwind-merge). If the file already exists, it won't be overwritten.
+                  </p>
+                </div>
+
+                <div className="bg-[var(--color-surface)] p-4 rounded-md border border-[var(--color-border)]">
+                  <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-1">Theme Compatibility</p>
+                  <p className="text-xs text-[var(--color-text-secondary)]">
+                    Ejected components continue to use CSS variables (<Code syntax="plain">var(--color-primary)</Code>, etc.) and work with all three Sage themes (Studio, Terra, Volt) and light/dark modes — no additional configuration needed.
+                  </p>
+                </div>
+
+                <div className="bg-[var(--color-surface)] p-4 rounded-md border border-[var(--color-border)]">
+                  <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-1">Dependencies</p>
+                  <p className="text-xs text-[var(--color-text-secondary)]">
+                    External dependencies (Radix UI primitives, lucide-react, etc.) are listed after ejecting. Install them with the provided <Code syntax="plain">pnpm add</Code> command. You still need <Code syntax="plain">@thesage/ui</Code> installed for hooks, utilities, and any non-ejected sibling components.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Example */}
+            <Card className="p-6">
+              <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4">Example: Ejecting the Button</h3>
+              <CollapsibleCodeBlock
+                id="eject-example"
+                code={`$ npx @thesage/ui eject Button
+
+  Ejected Button successfully!
+
+  src/components/ui/Button.tsx
+  src/components/ui/utils.ts (cn utility)
+
+  Required dependencies:
+  pnpm add @radix-ui/react-slot class-variance-authority
+
+  Update your imports:
+  import { Button } from './src/components/ui/Button'
+
+  The ejected component still works with @thesage/ui themes and CSS variables.
+  You now own it — modify freely.`}
+                defaultCollapsed={false}
+                showCopy={false}
+              />
             </Card>
           </section>
         )}

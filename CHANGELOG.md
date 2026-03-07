@@ -1,6 +1,63 @@
 # Changelog
 
 
+## 2026-02-28
+
+**Added GlassSurface to Layout**
+- Registered GlassSurface component across all 6 discovery surfaces (library export, docs routing, Studio playground, AI/metadata, SEO, package metadata)
+- Five thickness tiers (ultrathin → ultrathick), 10-step tint scale, automatic dark mode inversion
+- Fixed CSS import path in globals.css (`../` → `./`)
+- Component count: 99 → 100
+
+## 2026-02-23
+
+### Design Token Strategy Improvement
+
+Comprehensive overhaul of the design token pipeline — themed interaction tokens, effect/motion CSS variable injection, Tailwind v4 migration, ThemeProvider type safety, and production bug fixes.
+
+#### Bug Fixes
+- **ThemeProvider:** Wrapped debug `console.log` in `process.env.NODE_ENV !== 'production'` guard — no longer ships to production builds
+- **ThemeProvider:** Removed `return null` SSR guard — children now render immediately with `globals.css` defaults, eliminating blank flash on first load
+
+#### Themed Interaction Tokens
+- **All 4 themes** now have concrete `interactions` objects with per-theme values:
+  - **Studio:** Subtle overlay (`#000/#fff`), opacity 0.06, scale 0.98
+  - **Terra:** Warm earthy overlay (`#2d2823/#f5f1eb`), opacity 0.07, scale 0.97
+  - **Volt:** Electric brand-tinted overlay (`#0066ff/#0099ff`), opacity 0.1, scale 0.96
+  - **Speedboat:** Professional overlay (`#000/#fff`), opacity 0.06, scale 0.98
+- **Terra:** Refactored from circular CSS variable references to concrete hex values
+
+#### Effect & Motion Token Injection
+- **ThemeProvider:** Now injects `--effect-shadow-xl`, `--effect-shadow-2xl` (previously missing)
+- **ThemeProvider:** Injects raw blur values (`--blur-sm/md/lg/xl`) for Tailwind `blur-*`/`backdrop-blur-*` utilities
+- **ThemeProvider:** Injects `--ease-in`, `--ease-out` alongside existing `--ease-default`/`--ease-spring`
+- **ThemeProvider:** Computes and injects `--duration-default`, `--duration-fast` (50%), `--duration-slow` (150%) from theme's `getDuration(motionIntensity)`
+- **ThemeProvider:** Subscribes to `motionIntensity` from Customizer store — duration CSS variables update reactively
+
+#### Type Safety
+- **ThemeProvider:** Removed all `as any` casts — replaced with typed interfaces (`ThemeTokenColors`, `ThemeTokenEffects`, `InteractionTokens`, `ThemeMotion`, `ThemeModeTokens`)
+
+#### Tailwind v4 Migration
+- **Created `packages/ui/src/theme.css`** — v4-native `@theme` block registering all colors, shadows, blurs, fonts, and border radii as Tailwind utilities
+- **Animation utilities** now use motion-preference-aware durations: `var(--duration-default)` instead of hardcoded `0.2s`
+- **Deleted `packages/ui/tailwind/index.js`** — v3 config replaced by `theme.css`
+- **Updated `apps/web/app/globals.css`** — replaced `@config` with `@import` of `theme.css` + `globals.css`, removed 120+ lines of duplicated CSS variables
+- **Updated `packages/ui/src/globals.css`** — v4 format (plain CSS instead of `@apply`), added blur/motion/shadow/interaction defaults, primary scale 50-900
+- **Package exports:** Added `"./theme.css": "./src/theme.css"` export to `@thesage/ui`
+
+#### Migration Guide
+Replace in your app's `globals.css`:
+```css
+/* Before */
+@config "../../../packages/ui/tailwind/index.js";
+
+/* After */
+@import "../../../packages/ui/src/theme.css";
+@import "../../../packages/ui/src/globals.css";
+```
+
+---
+
 ## 2026-02-22
 
 ### npm Trusted Publishing & Node 24
