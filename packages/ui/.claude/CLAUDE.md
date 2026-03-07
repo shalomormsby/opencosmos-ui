@@ -1,6 +1,6 @@
 # @thesage/ui — AI Context
 
-> 99 accessible React components | Radix UI + Tailwind CSS | 3 themes | TypeScript strict mode | MIT
+> 100 accessible React components | Radix UI + Tailwind CSS | 3 themes | TypeScript strict mode | MIT
 
 ## Install
 
@@ -211,9 +211,24 @@ For gaps SDE doesn't cover, these libraries integrate well:
 
 **Integration pattern:** Wrap in SDE Card/Dialog, use `cn()` for class merging, pull colors from CSS variables (`var(--color-primary)`) to stay theme-aware.
 
+## Eject (Full Customization)
+
+```bash
+npx @thesage/ui eject Button              # copies to src/components/ui/Button.tsx
+npx @thesage/ui eject Dialog --dir my/dir  # custom target
+npx @thesage/ui eject --list               # list all components
+```
+
+Imports are automatically rewritten:
+- `../../lib/utils` → `./utils` (auto-scaffolded)
+- `../../hooks/*` → `@thesage/ui/hooks`
+- `../category/*` → `@thesage/ui`
+
+Ejected components keep working with SDE themes and CSS variables. Also available via MCP tool `eject_component` and web UI at thesage.dev.
+
 ## Full API Reference
 
-For complete props, variants, and examples for all 99 components:
+For complete props, variants, and examples for all 100 components:
 - Web: https://thesage.dev/llms-full.txt
 - MCP Server: `npx @thesage/mcp` (tools: list_components, search_components, get_component)
 

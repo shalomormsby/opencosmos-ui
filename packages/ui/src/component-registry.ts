@@ -18,7 +18,7 @@
  * - Updating MCP server registry
  * - Version bumping and npm publishing
  *
- * Last Updated: 2026-02-15
+ * Last Updated: 2026-02-28
  */
 
 export const BRAND = {
@@ -37,7 +37,7 @@ export const COMPONENT_REGISTRY = {
   /**
    * Total count of all exported UI components from @thesage/ui
    */
-  totalCount: 96,
+  totalCount: 100,
 
   /**
    * Core categories following functional organization pattern
@@ -75,9 +75,9 @@ export const COMPONENT_REGISTRY = {
       examples: ['Card', 'Table', 'Badge', 'Avatar', 'Heading', 'Text', 'Code', 'Calendar', 'StatCard', 'Timeline', 'TreeView'],
     },
     layout: {
-      count: 17,
+      count: 18,
       description: 'Components for spatial organization',
-      examples: ['Accordion', 'Separator', 'Stack', 'Grid', 'Container', 'ScrollArea'],
+      examples: ['Accordion', 'Separator', 'Stack', 'Grid', 'Container', 'ScrollArea', 'GlassSurface'],
     },
   },
 
@@ -132,9 +132,9 @@ export const COMPONENT_COUNTS = {
  * Marketing-friendly descriptions
  */
 export const MARKETING_COPY = {
-  short: '96 production-ready components',
-  medium: '96 components across 7 core categories, plus specialty backgrounds and motion effects',
-  long: '96 thoughtfully designed components organized by function: actions, forms, navigation, overlays, feedback, data display, and layout—plus specialty components for backgrounds, cursor interactions, and animated effects.',
+  short: '100 production-ready components',
+  medium: '100 components across 7 core categories, plus specialty backgrounds and motion effects',
+  long: '100 thoughtfully designed components organized by function: actions, forms, navigation, overlays, feedback, data display, and layout—plus specialty components for backgrounds, cursor interactions, and animated effects.',
 } as const;
 
 /**

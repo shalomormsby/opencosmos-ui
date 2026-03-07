@@ -613,6 +613,15 @@ export const searchIndex: SearchResult[] = [
     keywords: ['calendar', 'date', 'select', 'time'],
   },
   {
+    id: 'glass-surface',
+    title: 'GlassSurface',
+    description: 'Liquid glass surface with five thickness tiers, 10-step tint scale, and automatic dark mode inversion',
+    type: 'component',
+    category: 'Layout',
+    path: '/docs/layout/glass-surface',
+    keywords: ['glass', 'frost', 'blur', 'backdrop', 'translucent', 'liquid', 'macos', 'surface', 'glassmorphism'],
+  },
+  {
     id: 'resizable',
     title: 'Resizable',
     description: 'Accessible resizable panel groups and layouts',

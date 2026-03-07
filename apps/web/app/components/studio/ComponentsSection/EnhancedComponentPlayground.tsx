@@ -6,7 +6,7 @@ import type { ComponentConfig } from '../../lib/component-registry';
 import { CodeSnippet } from './CodeSnippet';
 import { JsonLdMetadata } from '../../JsonLdMetadata';
 import { generateComponentMetadata } from '../../../lib/metadata-generator';
-import { Copy, Check, Package, Code as CodeIcon, Settings, Accessibility, Eye, Home, Search, User } from 'lucide-react';
+import { Copy, Check, Package, Code as CodeIcon, Settings, Accessibility, Eye, Home, Search, User, FileCode, X, Download } from 'lucide-react';
 
 interface ComponentPlaygroundProps {
   componentName: string;
@@ -22,6 +22,11 @@ export function EnhancedComponentPlayground({ componentName, config }: Component
   );
   const [copied, setCopied] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [ejectOpen, setEjectOpen] = useState(false);
+  const [ejectSource, setEjectSource] = useState('');
+  const [ejectDeps, setEjectDeps] = useState<string[]>([]);
+  const [ejectLoading, setEjectLoading] = useState(false);
+  const [ejectCopied, setEjectCopied] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -84,6 +89,39 @@ pnpm add @thesage/ui`;
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleEject = async () => {
+    setEjectLoading(true);
+    try {
+      const res = await fetch(`/api/eject/${componentName}`);
+      if (!res.ok) throw new Error('Failed to fetch source');
+      const data = await res.json();
+      setEjectSource(data.source);
+      setEjectDeps(data.dependencies || []);
+      setEjectOpen(true);
+    } catch {
+      setEjectSource('// Error: Could not load component source.');
+      setEjectOpen(true);
+    } finally {
+      setEjectLoading(false);
+    }
+  };
+
+  const copyEjectSource = async () => {
+    await navigator.clipboard.writeText(ejectSource);
+    setEjectCopied(true);
+    setTimeout(() => setEjectCopied(false), 2000);
+  };
+
+  const downloadEjectSource = () => {
+    const blob = new Blob([ejectSource], { type: 'text/typescript' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${componentName}.tsx`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="max-w-5xl mx-auto space-y-12">
       {/* JSON-LD Metadata */}
@@ -133,7 +171,13 @@ pnpm add @thesage/ui`;
           )}
         </div>
 
-        <Card hoverEffect={false} className="p-16 flex items-center justify-center min-h-[300px] bg-white dark:bg-black">
+        <Card hoverEffect={false} className={`flex items-center justify-center ${componentName === 'GlassSurface' ? 'p-4 min-h-[600px]' : 'p-16 min-h-[300px]'} bg-white dark:bg-black`}
+          style={componentName === 'GlassSurface' ? {
+            backgroundImage: 'url(/rainbow-ribbon-background.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          } : undefined}
+        >
           {!mounted ? (
             <div className="flex flex-col items-center gap-2 text-[var(--color-text-muted)]">
               <span className="animate-spin duration-1000">
@@ -141,6 +185,28 @@ pnpm add @thesage/ui`;
               </span>
               <span className="text-sm">Loading preview...</span>
             </div>
+          ) : componentName === 'GlassSurface' ? (
+            (() => {
+              const numericTint = Number(props.tint ?? 2) as 0|1|2|3|4|5|6|7|8|9;
+              return (
+                <Component
+                  {...props}
+                  tint={numericTint}
+                  darkTint={numericTint}
+                  className="w-full h-full rounded-2xl flex items-center justify-center"
+                  style={{ minHeight: '95%', width: '95%' }}
+                >
+                  <div className="p-8 text-center">
+                    <p className="text-lg font-semibold" style={{ color: numericTint > 4 ? 'rgba(255,255,255,0.9)' : 'rgba(0,0,0,0.8)' }}>
+                      Liquid Glass
+                    </p>
+                    <p className="text-sm mt-1" style={{ color: numericTint > 4 ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.5)' }}>
+                      {props.thickness ?? 'thin'} · tint {props.tint ?? 2}
+                    </p>
+                  </div>
+                </Component>
+              );
+            })()
           ) : componentName === 'Card' ? (
             <Component {...props} className="w-[350px]">
               <div className="p-6 space-y-4">
@@ -356,6 +422,81 @@ console.log(result); // 55`}
         </div>
       </div>
 
+      {/* Eject */}
+      <div className="space-y-4">
+        <div className="flex items-center gap-2 text-sm font-medium text-[var(--color-text-primary)]">
+          <FileCode className="w-4 h-4" />
+          <span>Eject</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={handleEject}
+            disabled={ejectLoading}
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-foreground)] hover:border-[var(--color-primary)] transition-colors disabled:opacity-50"
+          >
+            <FileCode className="w-4 h-4" />
+            {ejectLoading ? 'Loading...' : 'Get source code'}
+          </button>
+          <span className="text-xs text-[var(--color-text-muted)]">
+            Copy this component into your project for full customization
+          </span>
+        </div>
+      </div>
+
+      {/* Eject Modal */}
+      {ejectOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div className="fixed inset-0 bg-black/50" onClick={() => setEjectOpen(false)} />
+          <div className="relative z-10 w-full max-w-3xl max-h-[80vh] mx-4 bg-[var(--color-background)] border border-[var(--color-border)] rounded-xl shadow-2xl flex flex-col">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--color-border)]">
+              <div>
+                <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
+                  Eject {componentName}
+                </h3>
+                <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
+                  Save to <code className="font-mono">src/components/ui/{componentName}.tsx</code>
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={copyEjectSource}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-foreground)] hover:border-[var(--color-primary)] transition-colors"
+                >
+                  {ejectCopied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
+                  {ejectCopied ? 'Copied!' : 'Copy'}
+                </button>
+                <button
+                  onClick={downloadEjectSource}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-primary)] hover:text-[var(--color-primary-foreground)] hover:border-[var(--color-primary)] transition-colors"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  Download
+                </button>
+                <button
+                  onClick={() => setEjectOpen(false)}
+                  className="p-1.5 rounded-md hover:bg-[var(--color-surface)] transition-colors"
+                  aria-label="Close"
+                >
+                  <X className="w-4 h-4 text-[var(--color-text-muted)]" />
+                </button>
+              </div>
+            </div>
+            <div className="overflow-auto flex-1 p-0">
+              <pre className="p-6 text-sm font-mono leading-relaxed text-[var(--color-text-primary)] overflow-x-auto">
+                <code>{ejectSource}</code>
+              </pre>
+            </div>
+            {ejectDeps.length > 0 && (
+              <div className="px-6 py-3 border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+                <p className="text-xs text-[var(--color-text-muted)]">
+                  Dependencies: <code className="font-mono">pnpm add {ejectDeps.join(' ')}</code>
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Props API Table */}
       {Object.keys(config.props).length > 0 && (
         <div className="space-y-4">
@@ -426,7 +567,7 @@ console.log(result); // 55`}
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-[var(--color-text-primary)]">Examples</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className={`grid gap-6 ${componentName === 'GlassSurface' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5' : 'grid-cols-1 md:grid-cols-2'}`}>
             {config.examples.map((example, index) => (
               <Card key={index} className="overflow-hidden">
                 <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-surface)]">
@@ -434,9 +575,20 @@ console.log(result); // 55`}
                     {example.label}
                   </span>
                 </div>
-                <div className="p-8 flex items-center justify-center bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-background)]">
+                <div
+                  className={`flex items-center justify-center ${componentName === 'GlassSurface' ? 'p-4 min-h-[200px]' : 'p-8 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-background)]'}`}
+                  style={componentName === 'GlassSurface' ? {
+                    backgroundImage: 'url(/rainbow-ribbon-background.png)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  } : undefined}
+                >
                   {['Input', 'Textarea'].includes(componentName) ? (
                     <Component {...example.props} />
+                  ) : componentName === 'GlassSurface' ? (
+                    <Component {...example.props} className="w-full h-full rounded-xl flex items-center justify-center" style={{ minHeight: '160px' }}>
+                      {example.children}
+                    </Component>
                   ) : (
                     <Component {...example.props}>{example.children}</Component>
                   )}

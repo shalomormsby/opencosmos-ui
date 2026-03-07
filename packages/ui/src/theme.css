@@ -1,0 +1,158 @@
+/**
+ * Tailwind v4 Theme Extension
+ *
+ * Registers design token CSS variables as Tailwind utilities.
+ * Uses @theme (not @theme inline) to EXTEND Tailwind defaults,
+ * preserving classes like bg-black, text-white, etc.
+ *
+ * Import this in your app's globals.css:
+ *   @import "@thesage/ui/theme.css";
+ *
+ * See: packages/ui/src/globals.css for CSS variable defaults
+ * See: packages/ui/src/providers/ThemeProvider.tsx for runtime injection
+ */
+
+@theme {
+  /* ── Colors ─────────────────────────────────────────────────────── */
+  --color-background: var(--color-background);
+  --color-background-secondary: var(--color-background-secondary);
+  --color-background-tertiary: var(--color-background-tertiary);
+
+  --color-foreground: var(--color-foreground);
+  --color-foreground-secondary: var(--color-text-secondary);
+  --color-foreground-tertiary: var(--color-text-muted);
+
+  --color-primary: var(--color-primary);
+  --color-primary-foreground: var(--color-primary-foreground);
+
+  --color-secondary: var(--color-secondary);
+  --color-secondary-foreground: var(--color-secondary-foreground);
+
+  --color-accent: var(--color-accent);
+  --color-accent-foreground: var(--color-accent-foreground);
+
+  --color-destructive: var(--color-destructive);
+  --color-destructive-foreground: var(--color-destructive-foreground);
+
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-foreground);
+
+  --color-popover: var(--color-popover);
+  --color-popover-foreground: var(--color-popover-foreground);
+
+  --color-card: var(--color-card);
+  --color-card-foreground: var(--color-card-foreground);
+
+  --color-success: var(--color-success);
+  --color-success-foreground: var(--color-success-foreground);
+
+  --color-warning: var(--color-warning);
+  --color-warning-foreground: var(--color-warning-foreground);
+
+  --color-error: var(--color-error);
+  --color-error-foreground: var(--color-error-foreground);
+
+  --color-info: var(--color-info);
+  --color-info-foreground: var(--color-info-foreground);
+
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-input: var(--color-input);
+  --color-ring: var(--color-ring);
+
+  --color-glass: var(--color-glass);
+  --color-glass-border: var(--color-glass-border);
+
+  /* ── Primary Scale (populated by Customizer) ───────────────────── */
+  --color-primary-50: var(--color-primary-50);
+  --color-primary-100: var(--color-primary-100);
+  --color-primary-200: var(--color-primary-200);
+  --color-primary-300: var(--color-primary-300);
+  --color-primary-400: var(--color-primary-400);
+  --color-primary-500: var(--color-primary-500);
+  --color-primary-600: var(--color-primary-600);
+  --color-primary-700: var(--color-primary-700);
+  --color-primary-800: var(--color-primary-800);
+  --color-primary-900: var(--color-primary-900);
+
+  /* ── Shadows (theme-aware) ─────────────────────────────────────── */
+  --shadow-sm: var(--effect-shadow-sm);
+  --shadow-md: var(--effect-shadow-md);
+  --shadow-lg: var(--effect-shadow-lg);
+  --shadow-xl: var(--effect-shadow-xl);
+  --shadow-2xl: var(--effect-shadow-2xl);
+
+  /* ── Blur (raw values — enables blur-sm, backdrop-blur-sm, etc.) ─ */
+  --blur-sm: var(--blur-sm);
+  --blur-md: var(--blur-md);
+  --blur-lg: var(--blur-lg);
+  --blur-xl: var(--blur-xl);
+
+  /* ── Typography ─────────────────────────────────────────────────── */
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  /* ── Border Radius ──────────────────────────────────────────────── */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+/* ── Keyframes ──────────────────────────────────────────────────────── */
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@keyframes collapsible-down {
+  from { height: 0; }
+  to { height: var(--radix-collapsible-content-height); }
+}
+
+@keyframes collapsible-up {
+  from { height: var(--radix-collapsible-content-height); }
+  to { height: 0; }
+}
+
+/* ── Animation Utilities (motion-preference-aware durations) ────────── */
+
+@utility animate-accordion-down {
+  animation: accordion-down var(--duration-default, 0.2s) var(--ease-default, ease-out);
+}
+
+@utility animate-accordion-up {
+  animation: accordion-up var(--duration-default, 0.2s) var(--ease-default, ease-out);
+}
+
+@utility animate-collapsible-down {
+  animation: collapsible-down var(--duration-default, 0.2s) var(--ease-default, ease-out);
+}
+
+@utility animate-collapsible-up {
+  animation: collapsible-up var(--duration-default, 0.2s) var(--ease-default, ease-out);
+}
+
+/* ── Font Utilities ─────────────────────────────────────────────────── */
+
+@utility font-heading {
+  font-family: var(--font-heading);
+}
+
+@utility font-body {
+  font-family: var(--font-body);
+}
+
+@utility font-mono {
+  font-family: var(--font-mono);
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}

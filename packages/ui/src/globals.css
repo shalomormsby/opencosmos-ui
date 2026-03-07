@@ -1,16 +1,17 @@
-@layer base {
+/**
+ * Default CSS Variables — Studio Theme (Light/Dark)
+ *
+ * These values serve as fallback defaults and are overridden at runtime by ThemeProvider
+ * when a different theme is selected. ThemeProvider injects CSS variables dynamically
+ * based on the active theme (Studio, Terra, Volt, Speedboat) and color mode.
+ *
+ * See: packages/ui/src/providers/ThemeProvider.tsx
+ * See: packages/tokens/src/studio.ts, terra.ts, volt.ts, speedboat.ts
+ */
 
-  /**
-   * Default CSS Variables - Studio Theme (Light Mode)
-   *
-   * These values serve as fallback defaults and are overridden at runtime by ThemeProvider
-   * when a different theme is selected. The ThemeProvider injects CSS variables dynamically
-   * based on the active theme (Studio, Terra, or Volt) and color mode (light or dark).
-   *
-   * See: packages/ui/src/providers/ThemeProvider.tsx
-   * See: packages/tokens/src/studio.ts, terra.ts, volt.ts
-   */
+@layer base {
   :root {
+    /* ── Color Palette (Studio Light) ────────────────────────────── */
     --color-background: #ffffff;
     --color-background-secondary: #fafafa;
     --color-background-tertiary: #f5f5f5;
@@ -62,19 +63,54 @@
 
     --radius: 0.5rem;
 
-    /* Interaction Tokens */
+    /* ── Interaction Tokens ──────────────────────────────────────── */
     --color-interaction-overlay: #000000;
-    --opacity-interaction-hover: 0.08;
+    --opacity-interaction-hover: 0.06;
     --scale-interaction-active: 0.98;
-
     --color-interaction-focus-ring: var(--color-ring);
     --width-interaction-focus-ring: 2px;
     --width-interaction-focus-offset: 2px;
-
     --opacity-interaction-disabled: 0.5;
+
+    /* ── Effects — Blur (raw values for Tailwind utilities) ─────── */
+    --blur-sm: 4px;
+    --blur-md: 8px;
+    --blur-lg: 16px;
+    --blur-xl: 24px;
+
+    /* ── Effects — Shadow ─────────────────────────────────────────── */
+    --effect-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --effect-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --effect-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --effect-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --effect-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+    /* ── Motion — Easing ──────────────────────────────────────────── */
+    --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* ── Motion — Duration (overridden by ThemeProvider) ──────────── */
+    --duration-default: 200ms;
+    --duration-fast: 100ms;
+    --duration-slow: 300ms;
+
+    /* ── Primary Color Scale (populated by Customizer) ────────────── */
+    --color-primary-50: initial;
+    --color-primary-100: initial;
+    --color-primary-200: initial;
+    --color-primary-300: initial;
+    --color-primary-400: initial;
+    --color-primary-500: initial;
+    --color-primary-600: initial;
+    --color-primary-700: initial;
+    --color-primary-800: initial;
+    --color-primary-900: initial;
   }
 
   .dark {
+    /* ── Color Palette (Studio Dark) ─────────────────────────────── */
     --color-background: #000000;
     --color-background-secondary: #171717;
     --color-background-tertiary: #262626;
@@ -124,22 +160,28 @@
     --color-glass: rgba(0, 0, 0, 0.7);
     --color-glass-border: rgba(255, 255, 255, 0.1);
 
-    /* Interaction Tokens - Dark Mode (Brightening) */
+    /* ── Interaction Tokens — Dark Mode ──────────────────────────── */
     --color-interaction-overlay: #ffffff;
-    --opacity-interaction-hover: 0.08;
-
     --color-interaction-focus-ring: var(--color-ring);
+
+    /* ── Effects — Shadow (dark mode, heavier) ───────────────────── */
+    --effect-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --effect-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --effect-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+    --effect-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.7);
+    --effect-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
   }
 }
 
 @layer base {
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
   }
 
   * {
-    @apply border-border;
+    border-color: var(--color-border);
   }
 }
 
-@import '../components/layout/glass-surface.css';
+@import './components/layout/glass-surface.css';

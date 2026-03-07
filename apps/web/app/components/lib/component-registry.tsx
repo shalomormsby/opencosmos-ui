@@ -39,6 +39,7 @@ import {
   FileUpload,
   TreeView,
   NotificationCenter,
+  GlassSurface,
 } from '@thesage/ui';
 
 import { useForm } from "react-hook-form";
@@ -3158,6 +3159,87 @@ const [date, setDate] = useState<Date | undefined>(new Date())
       },
     ],
     sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/DatePicker.tsx',
+  },
+
+  GlassSurface: {
+    component: GlassSurface,
+    description: 'Liquid glass surface with backdrop blur, five thickness tiers (ultrathin → ultrathick), 10-step tint scale, and automatic dark mode inversion.',
+    props: {
+      active: {
+        type: 'boolean',
+        default: true,
+        description: 'Whether the frosted glass effect is active',
+      },
+      position: {
+        type: 'select',
+        options: ['top', 'bottom'] as const,
+        default: 'top',
+        description: 'Shadow direction: top casts downward, bottom casts upward',
+      },
+      thickness: {
+        type: 'select',
+        options: ['ultrathin', 'thin', 'medium', 'thick', 'ultrathick'] as const,
+        default: 'thin',
+        description: 'Glass opacity tier (ultrathin 28% → ultrathick 68%)',
+      },
+      tint: {
+        type: 'select',
+        options: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'] as const,
+        default: '2',
+        description: 'Glass fill color for light mode: 0 = white, 9 = black',
+      },
+    },
+    examples: [
+      {
+        label: 'Ultrathin (28%)',
+        props: { active: true, position: 'top', thickness: 'ultrathin', tint: 2, darkTint: 2 },
+        children: <div className="p-6 text-white font-medium text-center"><span className="text-sm">ultrathin</span></div>,
+      },
+      {
+        label: 'Thin (38%)',
+        props: { active: true, position: 'top', thickness: 'thin', tint: 2, darkTint: 2 },
+        children: <div className="p-6 text-white font-medium text-center"><span className="text-sm">thin</span></div>,
+      },
+      {
+        label: 'Medium (48%)',
+        props: { active: true, position: 'top', thickness: 'medium', tint: 3, darkTint: 3 },
+        children: <div className="p-6 text-white font-medium text-center"><span className="text-sm">medium</span></div>,
+      },
+      {
+        label: 'Thick (58%)',
+        props: { active: true, position: 'top', thickness: 'thick', tint: 4, darkTint: 4 },
+        children: <div className="p-6 text-white font-medium text-center"><span className="text-sm">thick</span></div>,
+      },
+      {
+        label: 'Ultrathick (68%)',
+        props: { active: true, position: 'top', thickness: 'ultrathick', tint: 5, darkTint: 5 },
+        children: <div className="p-6 text-white font-medium text-center"><span className="text-sm">ultrathick</span></div>,
+      },
+    ],
+    codeExamples: [
+      {
+        title: 'Basic Usage',
+        code: `import { GlassSurface } from "@thesage/ui"
+
+<GlassSurface thickness="medium" tint={2}>
+  <nav className="p-4">Navigation content</nav>
+</GlassSurface>`,
+        description: 'Frosted glass navigation bar',
+      },
+      {
+        title: 'Bottom Position',
+        code: `<GlassSurface position="bottom" thickness="thin">
+  <footer className="p-4">Footer content</footer>
+</GlassSurface>`,
+        description: 'Glass surface for bottom-positioned elements',
+      },
+    ],
+    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/layout/GlassSurface.tsx',
+    accessibilityNotes: [
+      'Glass effect is purely visual — content remains fully readable',
+      'No motion animations to reduce; effect is CSS-only (backdrop-filter)',
+      'Ensure sufficient contrast between text and glass background',
+    ],
   },
 
   // Phase 3 Batch 5 Components

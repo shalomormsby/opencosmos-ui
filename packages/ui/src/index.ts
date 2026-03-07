@@ -109,6 +109,7 @@ export * from './components/layout/ScrollArea';
 export * from './components/layout/Separator';
 export * from './components/layout/Sidebar';
 export * from './components/layout/Stack';
+export * from './components/layout/GlassSurface';
 
 // Backgrounds
 export * from './components/backgrounds/WarpBackground';

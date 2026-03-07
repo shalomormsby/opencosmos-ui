@@ -165,6 +165,17 @@ export const voltTokens = {
     },
   },
 
+  /**
+   * Interaction tokens for Volt theme
+   * Electric, brand-tinted — blue overlay, punchy scale
+   */
+  interactions: {
+    hover: { overlayColor: { light: '#0066ff', dark: '#0099ff' }, opacity: 0.1 },
+    active: { scale: 0.96 },
+    focus: { ringWidth: '2px', ringOffset: '2px' },
+    disabled: { opacity: 0.5 },
+  },
+
   typography: {
     heading: {
       fontFamily: 'var(--font-volt-sans)', // Space Grotesk

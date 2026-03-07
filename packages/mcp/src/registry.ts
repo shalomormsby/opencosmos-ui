@@ -1,7 +1,7 @@
 /**
  * Component Registry for Sage UI
  *
- * This registry contains metadata for all 99 components in @thesage/ui,
+ * This registry contains metadata for all 100 components in @thesage/ui,
  * organized into 7 core functional categories plus 4 specialty categories.
  *
  * Core Categories (7):
@@ -74,7 +74,7 @@ export const COMPONENT_CATEGORIES = {
   layout: {
     label: 'Layout',
     description: 'Spatial organization and structural elements',
-    count: 17,
+    count: 18,
   },
   backgrounds: {
     label: 'Backgrounds',
@@ -1072,6 +1072,30 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
       disabled: { type: 'boolean', default: 'false', description: 'Disable the date picker' },
     },
     example: `<DatePicker date={date} onDateChange={setDate} placeholder="Select date" />`,
+  },
+  'glass-surface': {
+    name: 'GlassSurface',
+    category: 'layout',
+    description: 'Liquid glass surface with backdrop blur, five thickness tiers (ultrathin → ultrathick), 10-step tint scale, and automatic dark mode inversion. Inspired by macOS 26 glass materials.',
+    keywords: ['glass', 'frost', 'blur', 'backdrop', 'translucent', 'liquid', 'glassmorphism', 'surface', 'macos'],
+    useCases: [
+      'Frosted glass navigation bars',
+      'Floating toolbars and panels',
+      'Header/footer overlays on content',
+      'Card surfaces with depth',
+    ],
+    dependencies: [],
+    props: {
+      active: { type: 'boolean', default: 'true', description: 'Whether the frosted glass effect is active (background + shadow)' },
+      position: { type: "'top' | 'bottom'", default: "'top'", description: "Shadow direction: 'top' casts downward, 'bottom' casts upward" },
+      thickness: { type: "'ultrathin' | 'thin' | 'medium' | 'thick' | 'ultrathick'", default: "'thin'", description: 'Glass opacity tier (ultrathin 28% → thin 38% → medium 48% → thick 58% → ultrathick 68%)' },
+      tint: { type: '0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9', default: '2', description: 'Glass fill color for light mode: 0 = white, 9 = black' },
+      darkTint: { type: '0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9', description: 'Glass fill color for dark mode. Defaults to 9 - tint (auto-invert)' },
+      className: { type: 'string', description: 'Additional CSS classes' },
+      style: { type: 'CSSProperties', description: 'Inline style overrides' },
+      children: { type: 'ReactNode', description: 'Content rendered inside the glass surface', required: true },
+    },
+    example: `<GlassSurface thickness="medium" tint={2}>\n  <nav className="p-4">Navigation content</nav>\n</GlassSurface>`,
   },
   resizable: {
     name: 'Resizable',

@@ -193,6 +193,7 @@ export const navigationTree: NavigationItem[] = [
           { id: 'carousel', label: 'Carousel', section: 'layout' },
           { id: 'collapsible', label: 'Collapsible', section: 'layout' },
           { id: 'date-picker', label: 'Date Picker', section: 'layout' },
+          { id: 'glass-surface', label: 'Glass Surface', section: 'layout' },
           { id: 'resizable', label: 'Resizable', section: 'layout' },
           { id: 'scroll-area', label: 'Scroll Area', section: 'layout' },
           { id: 'separator', label: 'Separator', section: 'layout' },

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.15 - 2026-03-07
+
+### Minor Changes
+
+- Added component eject feature across CLI, MCP, and web UI
+  - `npx @thesage/ui eject <Component>` CLI command — copies component source with transformed imports
+  - MCP `eject_component` tool now returns actual transformed source code (not manual instructions)
+  - "Eject" button on every component page at thesage.dev with copy-to-clipboard and download
+  - `/api/eject/[component]` API endpoint for programmatic access
+  - Component source files now included in published npm package (`src/` in `files`)
+
 ## 0.1.14 - 2026-02-22
 
 ### Patch Changes

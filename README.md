@@ -9,7 +9,7 @@
 
 ## Overview
 
-The Sage Design Engine is a production-ready design system that proves human-centered design through architecture, not just claims. With 99 carefully crafted components organized by functional purpose, three distinct themes with runtime switching, and a motion system that respects user accessibility needs, it's built for teams that prioritize developer experience, user agency, and code quality.
+The Sage Design Engine is a production-ready design system that proves human-centered design through architecture, not just claims. With 100 carefully crafted components organized by functional purpose, three distinct themes with runtime switching, and a motion system that respects user accessibility needs, it's built for teams that prioritize developer experience, user agency, and code quality.
 
 **What's included:**
 
@@ -80,7 +80,7 @@ export function MyComponent() {
 
 | Package | Description |
 |---------|-------------|
-| [`@thesage/ui`](https://www.npmjs.com/package/@thesage/ui) | 99 components, providers, hooks, theme system |
+| [`@thesage/ui`](https://www.npmjs.com/package/@thesage/ui) | 100 components, providers, hooks, theme system |
 | [`@thesage/tokens`](https://www.npmjs.com/package/@thesage/tokens) | Design tokens (colors, typography, spacing, motion) |
 | [`@thesage/mcp`](https://www.npmjs.com/package/@thesage/mcp) | MCP server for AI-assisted component discovery |
 
@@ -159,6 +159,25 @@ function AnimatedCard() {
 
 ---
 
+## Eject — Own Your Components
+
+Need to deeply customize a component? Eject it into your project:
+
+```bash
+npx @thesage/ui eject Button
+npx @thesage/ui eject Dialog --dir components/sage
+npx @thesage/ui eject --list
+```
+
+The CLI copies component source with imports automatically rewritten. Ejected components still work with Sage themes and CSS variables.
+
+Also available via:
+- **Web UI** — Eject button on every component page at [thesage.dev](https://thesage.dev)
+- **MCP** — `eject_component` tool returns transformed source for AI assistants
+- **API** — `GET /api/eject/{component}` returns JSON with source and dependencies
+
+---
+
 ## Sage Studio
 
 Interactive documentation at [thesage.dev](https://thesage.dev):
@@ -166,6 +185,7 @@ Interactive documentation at [thesage.dev](https://thesage.dev):
 - Component explorer with live prop controls
 - Token gallery across all themes
 - Copy-paste ready code examples
+- **Eject button** on every component page — copy or download source for full customization
 - Accessibility guidelines per component
 - AI discovery endpoints (`/.well-known/ai-plugin.json`, `/docs/api.json`)
 
@@ -211,7 +231,7 @@ pnpm release                      # Build and publish to NPM
 sage-design-engine/
 ├── packages/
 │   ├── ui/                    # @thesage/ui — Component library
-│   │   ├── src/components/    # 99 components by functional category
+│   │   ├── src/components/    # 100 components by functional category
 │   │   ├── src/hooks/         # useTheme, useMotionPreference
 │   │   ├── src/providers/     # ThemeProvider, TooltipProvider
 │   │   └── src/lib/           # Utilities, stores

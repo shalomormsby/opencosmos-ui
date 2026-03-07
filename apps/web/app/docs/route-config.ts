@@ -39,7 +39,7 @@ export const COMPONENT_CATEGORIES: Section[] = [
 
 /** Maps section → valid child items (for sections that have sub-pages) */
 export const SECTION_ITEMS: Record<string, string[]> = {
-  'adding-components': ['methodology', 'modifying', 'troubleshooting'],
+  'adding-components': ['methodology', 'modifying', 'ejecting', 'troubleshooting'],
   'mcp-server': ['installation', 'tools', 'usage', 'troubleshooting'],
   tokens: ['foundations', 'colors', 'typography', 'spacing', 'syntax', 'motion'],
   themes: ['palettes', 'customizer'],
@@ -61,7 +61,7 @@ export const SECTION_ITEMS: Record<string, string[]> = {
   ],
   layout: [
     'accordion', 'aspect-ratio', 'carousel', 'collapsible', 'date-picker',
-    'resizable', 'scroll-area', 'separator', 'sidebar',
+    'glass-surface', 'resizable', 'scroll-area', 'separator', 'sidebar',
   ],
   blocks: [
     'page-layout', 'primary-nav', 'secondary-nav', 'footer',
@@ -97,6 +97,7 @@ export const routeConfig: RouteConfig = {
     children: {
       methodology: { label: 'Methodology' },
       modifying: { label: 'Modifying Components' },
+      ejecting: { label: 'Ejecting Components' },
       troubleshooting: { label: 'Troubleshooting' },
     },
   },
@@ -217,6 +218,7 @@ export const routeConfig: RouteConfig = {
       carousel: { label: 'Carousel' },
       collapsible: { label: 'Collapsible' },
       'date-picker': { label: 'Date Picker' },
+      'glass-surface': { label: 'Glass Surface' },
       resizable: { label: 'Resizable' },
       'scroll-area': { label: 'Scroll Area' },
       separator: { label: 'Separator' },

@@ -206,6 +206,17 @@ export const speedboatTokens = {
   },
 
   /**
+   * Interaction tokens for Speedboat theme
+   * Professional, clean — matches Studio's subtle feel
+   */
+  interactions: {
+    hover: { overlayColor: { light: '#000000', dark: '#ffffff' }, opacity: 0.06 },
+    active: { scale: 0.98 },
+    focus: { ringWidth: '2px', ringOffset: '2px' },
+    disabled: { opacity: 0.5 },
+  },
+
+  /**
    * Typography for Speedboat theme
    * Montserrat headings + Roboto body — Moloco brand fonts
    */
