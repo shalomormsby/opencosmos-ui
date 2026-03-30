@@ -1,7 +1,7 @@
 'use client';
 
-import { Card, Code, CollapsibleCodeBlock } from '@thesage/ui';
-import { BRAND } from '@thesage/ui';
+import { Card, Code, CollapsibleCodeBlock } from '@opencosmos/ui';
+import { BRAND } from '@opencosmos/ui';
 import { Check, ShieldCheck } from 'lucide-react';
 
 export function BrandTab() {
@@ -19,7 +19,7 @@ export function BrandTab() {
                         </h3>
                         <p className="text-[var(--color-text-secondary)] mb-4">
                             The entire product identity is encapsulated in a single source-of-truth object.
-                            Instead of hardcoding "Sage Design Engine" or theme names across the codebase,
+                            Instead of hardcoding "OpenCosmos UI" or theme names across the codebase,
                             we consume the <code>BRAND</code> token. This enables a "Change once, ripple everywhere"
                             architecture for branding.
                         </p>
@@ -76,12 +76,12 @@ export function BrandTab() {
 
                     <CollapsibleCodeBlock
                         id="brand-token-usage"
-                        code={`import { BRAND } from '@thesage/ui';
+                        code={`import { BRAND } from '@opencosmos/ui';
 import { Metadata } from 'next';
 
 // 1. Use in Metadata
 export const metadata: Metadata = {
-  title: BRAND.productName, // "Sage Design Engine"
+  title: BRAND.productName, // "OpenCosmos UI"
   description: BRAND.mission,
 };
 

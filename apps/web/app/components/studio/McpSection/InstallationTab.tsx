@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Badge, CollapsibleCodeBlock } from '@thesage/ui';
+import { Card, Badge, CollapsibleCodeBlock } from '@opencosmos/ui';
 
 export function InstallationTab() {
     return (
@@ -26,11 +26,11 @@ export function InstallationTab() {
                         id="mcp-install"
                         title="Install Command"
                         language="bash"
-                        code={`pnpm add -D @thesage/mcp
+                        code={`pnpm add -D @opencosmos/mcp
 # or
-npm install --save-dev @thesage/mcp
+npm install --save-dev @opencosmos/mcp
 # or
-yarn add -D @thesage/mcp`}
+yarn add -D @opencosmos/mcp`}
                         defaultCollapsed={false}
                         showCopy={true}
                     />
@@ -62,7 +62,7 @@ yarn add -D @thesage/mcp`}
   "mcpServers": {
     "sds": {
       "command": "npx",
-      "args": ["@thesage/mcp"]
+      "args": ["@opencosmos/mcp"]
     }
   }
 }`}
@@ -93,7 +93,7 @@ yarn add -D @thesage/mcp`}
   "mcpServers": {
     "sds": {
       "command": "npx",
-      "args": ["@thesage/mcp"]
+      "args": ["@opencosmos/mcp"]
     }
   }
 }`}
@@ -121,7 +121,7 @@ yarn add -D @thesage/mcp`}
   "servers": {
     "sds": {
       "command": "npx",
-      "args": ["@thesage/mcp"]
+      "args": ["@opencosmos/mcp"]
     }
   }
 }`}
@@ -139,7 +139,7 @@ yarn add -D @thesage/mcp`}
                     Local Development Setup
                 </h2>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-6">
-                    If you're contributing to the Sage Design Engine or want to use the latest unreleased MCP server, follow these steps:
+                    If you're contributing to the OpenCosmos UI or want to use the latest unreleased MCP server, follow these steps:
                 </p>
 
                 {/* Step 1: Clone */}
@@ -151,7 +151,7 @@ yarn add -D @thesage/mcp`}
                         id="local-clone"
                         title="Clone Repository"
                         language="bash"
-                        code={`git clone https://github.com/shalomormsby/sage-design-engine.git
+                        code={`git clone https://github.com/shalomormsby/opencosmos-ui.git
 cd ecosystem`}
                         defaultCollapsed={false}
                         showCopy={true}
@@ -182,7 +182,7 @@ cd ecosystem`}
                         id="local-build"
                         title="Build Server"
                         language="bash"
-                        code={`pnpm build --filter @thesage/mcp`}
+                        code={`pnpm build --filter @opencosmos/mcp`}
                         defaultCollapsed={false}
                         showCopy={true}
                     />
@@ -271,7 +271,7 @@ cd ecosystem`}
                         Try asking your AI assistant:
                     </p>
                     <div className="p-3 bg-[var(--color-surface)] rounded border border-[var(--color-border)] text-sm">
-                        <code className="text-[var(--color-text-primary)]">"Show me all Sage Design Engine components"</code>
+                        <code className="text-[var(--color-text-primary)]">"Show me all OpenCosmos UI components"</code>
                     </div>
                     <p className="text-xs text-[var(--color-text-muted)] mt-2">
                         If it lists components, you're connected!
@@ -291,7 +291,7 @@ cd ecosystem`}
                         title="Rebuild Command"
                         language="bash"
                         code={`# Rebuild
-pnpm build --filter @thesage/mcp
+pnpm build --filter @opencosmos/mcp
 
 # Then restart your MCP client to pick up changes`}
                         defaultCollapsed={false}
@@ -304,7 +304,7 @@ pnpm build --filter @thesage/mcp
                         id="local-watch"
                         title="Watch Command"
                         language="bash"
-                        code={`pnpm dev --filter @thesage/mcp  # Rebuilds on file changes`}
+                        code={`pnpm dev --filter @opencosmos/mcp  # Rebuilds on file changes`}
                         defaultCollapsed={true}
                         showCopy={true}
                     />

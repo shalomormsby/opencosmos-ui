@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
-import { useTheme, AnimatedBeam, useMotionPreference } from '@thesage/ui';
+import { useTheme, AnimatedBeam, useMotionPreference } from '@opencosmos/ui';
 
 export function HeroAnimation() {
     const { shouldAnimate, scale } = useMotionPreference();

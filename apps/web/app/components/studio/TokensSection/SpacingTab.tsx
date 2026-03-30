@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Code } from '@thesage/ui';
+import { Card, Code } from '@opencosmos/ui';
 
 /**
  * SpacingTab Component

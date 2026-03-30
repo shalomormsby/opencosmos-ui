@@ -12,24 +12,24 @@ Quick reference for common commands when working with the Sage UI ecosystem mono
 ```bash
 pnpm build
 ```
-Turborepo automatically builds dependencies first (e.g., `@thesage/ui` before apps).
+Turborepo automatically builds dependencies first (e.g., `@opencosmos/ui` before apps).
 
 **Build specific package:**
 ```bash
-pnpm build --filter @thesage/ui
-pnpm build --filter @thesage/mcp
-pnpm build --filter @thesage/tokens
+pnpm build --filter @opencosmos/ui
+pnpm build --filter @opencosmos/mcp
+pnpm build --filter @opencosmos/tokens
 ```
 
 **Build with dependencies:**
 ```bash
-pnpm build --filter @thesage/ui...
+pnpm build --filter @opencosmos/ui...
 ```
 The `...` suffix builds the package and all its dependents.
 
 **Development mode (watch):**
 ```bash
-pnpm dev --filter @thesage/ui
+pnpm dev --filter @opencosmos/ui
 ```
 Automatically rebuilds on file changes.
 
@@ -39,7 +39,7 @@ Automatically rebuilds on file changes.
 
 ### Run Development Servers
 
-**Run Sage Studio (documentation site):**
+**Run OpenCosmos Studio (documentation site):**
 ```bash
 pnpm dev --filter web
 ```
@@ -89,7 +89,7 @@ pnpm typecheck
 
 **Check specific package:**
 ```bash
-pnpm typecheck --filter @thesage/ui
+pnpm typecheck --filter @opencosmos/ui
 pnpm typecheck --filter web
 ```
 
@@ -107,7 +107,7 @@ pnpm lint --fix
 
 **Lint specific package:**
 ```bash
-pnpm lint --filter @thesage/ui
+pnpm lint --filter @opencosmos/ui
 ```
 
 ---
@@ -150,17 +150,17 @@ pnpm install
 
 **Add dependency to specific package:**
 ```bash
-pnpm add <package-name> --filter @thesage/ui
+pnpm add <package-name> --filter @opencosmos/ui
 ```
 
 **Add dev dependency:**
 ```bash
-pnpm add -D <package-name> --filter @thesage/ui
+pnpm add -D <package-name> --filter @opencosmos/ui
 ```
 
 **Add peer dependency:**
 ```bash
-pnpm add <package-name> --save-peer --filter @thesage/ui
+pnpm add <package-name> --save-peer --filter @opencosmos/ui
 ```
 
 ### Update Dependencies
@@ -213,8 +213,8 @@ pnpm version major  # 0.0.5 → 1.0.0
 
 **Publish specific package:**
 ```bash
-pnpm publish --filter @thesage/ui
-pnpm publish --filter @thesage/mcp
+pnpm publish --filter @opencosmos/ui
+pnpm publish --filter @opencosmos/mcp
 ```
 
 ---
@@ -225,12 +225,12 @@ pnpm publish --filter @thesage/mcp
 
 **Build MCP server:**
 ```bash
-pnpm build --filter @thesage/mcp
+pnpm build --filter @opencosmos/mcp
 ```
 
 **Watch mode:**
 ```bash
-pnpm dev --filter @thesage/mcp
+pnpm dev --filter @opencosmos/mcp
 ```
 
 **Test local MCP server:**
@@ -239,7 +239,7 @@ node packages/sds-mcp-server/dist/index.js
 ```
 
 **Configure local MCP in Claude Desktop:**
-See [MCP Installation Guide](https://thesage.dev/docs#mcp-server/installation) for configuration details.
+See [MCP Installation Guide](https://opencosmos.ai/studio/docs#mcp-server/installation) for configuration details.
 
 ---
 
@@ -303,14 +303,14 @@ Generates `graph.html` visualizing the build dependency graph.
 
 ### Common Issues
 
-**"Cannot find module @thesage/ui"**
+**"Cannot find module @opencosmos/ui"**
 ```bash
-pnpm build --filter @thesage/ui
+pnpm build --filter @opencosmos/ui
 ```
 
 **TypeScript errors after pulling:**
 ```bash
-pnpm build --filter @thesage/ui  # Regenerate type definitions
+pnpm build --filter @opencosmos/ui  # Regenerate type definitions
 pnpm typecheck
 ```
 
@@ -338,24 +338,24 @@ pnpm build --filter web
 
 **Run command in package:**
 ```bash
---filter @thesage/ui
+--filter @opencosmos/ui
 --filter web
 --filter portfolio
 ```
 
 **Run in package and dependencies:**
 ```bash
---filter @thesage/ui...
+--filter @opencosmos/ui...
 ```
 
 **Run in package and dependents:**
 ```bash
---filter ...@thesage/ui
+--filter ...@opencosmos/ui
 ```
 
 **Run in multiple packages:**
 ```bash
---filter @thesage/ui --filter @thesage/tokens
+--filter @opencosmos/ui --filter @opencosmos/tokens
 ```
 
 **Run in all apps:**
@@ -376,7 +376,7 @@ pnpm build --filter web
 |------|---------|
 | Install deps | `pnpm install` |
 | Build all | `pnpm build` |
-| Build package | `pnpm build --filter @thesage/ui` |
+| Build package | `pnpm build --filter @opencosmos/ui` |
 | Dev mode | `pnpm dev --filter web` |
 | Type check | `pnpm typecheck` |
 | Lint | `pnpm lint` |
@@ -408,8 +408,8 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 - **Turborepo Docs:** https://turbo.build/repo/docs
 - **pnpm Workspace:** https://pnpm.io/workspaces
 - **Changesets:** https://github.com/changesets/changesets
-- **Sage Studio:** https://thesage.dev/
-- **GitHub:** https://github.com/shalomormsby/sage-design-engine
+- **OpenCosmos Studio:** https://opencosmos.ai/studio/
+- **GitHub:** https://github.com/shalomormsby/opencosmos-ui
 
 ---
 

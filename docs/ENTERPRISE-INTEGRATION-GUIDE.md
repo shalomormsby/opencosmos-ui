@@ -1,6 +1,6 @@
-# Sage Design Engine: Integration Guide
+# OpenCosmos UI: Integration Guide
 
-> **For teams integrating `@thesage/ui` into Next.js applications.**
+> **For teams integrating `@opencosmos/ui` into Next.js applications.**
 > **Last updated:** 2026-02-06
 
 ---
@@ -11,7 +11,7 @@
 
 ```bash
 # Core (required)
-pnpm add @thesage/ui framer-motion
+pnpm add @opencosmos/ui framer-motion
 
 # Optional — install only what you use
 pnpm add react-hook-form @hookform/resolvers zod         # Forms
@@ -34,10 +34,10 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     // Include the design system source for Tailwind class scanning
-    path.join(__dirname, './node_modules/@thesage/ui/src/**/*.{js,ts,jsx,tsx}'),
+    path.join(__dirname, './node_modules/@opencosmos/ui/src/**/*.{js,ts,jsx,tsx}'),
   ],
-  // The Tailwind preset is bundled within @thesage/ui
-  // See globals.css setup in documentation at thesage.dev
+  // The Tailwind preset is bundled within @opencosmos/ui
+  // See globals.css setup in documentation at opencosmos.ai/studio
 }
 
 export default config
@@ -74,7 +74,7 @@ The `ThemeProvider` injects all CSS variables at runtime. No manual variable def
 **app/layout.tsx:**
 
 ```tsx
-import { ThemeProvider } from '@thesage/ui'
+import { ThemeProvider } from '@opencosmos/ui'
 import './globals.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -95,7 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ### 5. Use Components
 
 ```tsx
-import { Button, Card, CardHeader, CardTitle, CardContent } from '@thesage/ui'
+import { Button, Card, CardHeader, CardTitle, CardContent } from '@opencosmos/ui'
 
 export default function Page() {
   return (
@@ -120,7 +120,7 @@ export default function Page() {
 Manages theme switching, dark mode, and CSS variable injection.
 
 ```tsx
-import { ThemeProvider } from '@thesage/ui'
+import { ThemeProvider } from '@opencosmos/ui'
 
 <ThemeProvider>
   {children}
@@ -139,7 +139,7 @@ import { ThemeProvider } from '@thesage/ui'
 ### Optional Providers
 
 ```tsx
-import { ThemeProvider, ToastProvider, TooltipProvider, CustomizerPanel } from '@thesage/ui'
+import { ThemeProvider, ToastProvider, TooltipProvider, CustomizerPanel } from '@opencosmos/ui'
 
 <ThemeProvider>
   <ToastProvider position="bottom-right">
@@ -162,7 +162,7 @@ import { ThemeProvider, ToastProvider, TooltipProvider, CustomizerPanel } from '
 ### Main Entry (Most Common)
 
 ```typescript
-import { Button, Card, Input, useTheme, cn } from '@thesage/ui'
+import { Button, Card, Input, useTheme, cn } from '@opencosmos/ui'
 ```
 
 The main entry exports all 48+ components, hooks, and utilities.
@@ -173,24 +173,24 @@ For features that require optional peer dependencies:
 
 ```typescript
 // Forms — requires react-hook-form, @hookform/resolvers, zod
-import { Form, FormField, FormItem, FormLabel } from '@thesage/ui/forms'
+import { Form, FormField, FormItem, FormLabel } from '@opencosmos/ui/forms'
 
 // Date pickers — requires date-fns, react-day-picker
-import { Calendar } from '@thesage/ui/dates'
-import { DatePicker } from '@thesage/ui/dates'
+import { Calendar } from '@opencosmos/ui/dates'
+import { DatePicker } from '@opencosmos/ui/dates'
 
 // Data tables — requires @tanstack/react-table
-import { DataTable } from '@thesage/ui/tables'
+import { DataTable } from '@opencosmos/ui/tables'
 
 // Drag and drop — requires @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities
-import { DragDrop } from '@thesage/ui/dnd'
+import { DragDrop } from '@opencosmos/ui/dnd'
 
 // Other subpaths (no extra deps needed)
-import { useMotionPreference, useTheme } from '@thesage/ui/hooks'
-import { ThemeProvider } from '@thesage/ui/providers'
-import { cn, parseCode } from '@thesage/ui/utils'
-import { spacing, typography } from '@thesage/ui/tokens'
-import { Renderer, Program, Mesh } from '@thesage/ui/webgl'
+import { useMotionPreference, useTheme } from '@opencosmos/ui/hooks'
+import { ThemeProvider } from '@opencosmos/ui/providers'
+import { cn, parseCode } from '@opencosmos/ui/utils'
+import { spacing, typography } from '@opencosmos/ui/tokens'
+import { Renderer, Program, Mesh } from '@opencosmos/ui/webgl'
 ```
 
 ---
@@ -260,7 +260,7 @@ ThemeProvider manages the `dark` class on `<html>`. Prefer using semantic tokens
 Every animation respects user preferences. Use the motion hook:
 
 ```tsx
-import { useMotionPreference } from '@thesage/ui/hooks'
+import { useMotionPreference } from '@opencosmos/ui/hooks'
 
 function AnimatedComponent() {
   const { shouldAnimate, scale } = useMotionPreference()
@@ -289,7 +289,7 @@ All sizes measured with brotli compression:
 
 | Entry | Size | Limit | Optional Deps |
 |-------|------|-------|---------------|
-| Core (`@thesage/ui`) | 146 KB | 450 KB | None |
+| Core (`@opencosmos/ui`) | 146 KB | 450 KB | None |
 | Hooks | 6 KB | 40 KB | None |
 | Providers | 8 KB | 60 KB | None |
 | Tokens | 11 KB | 70 KB | None |
@@ -319,20 +319,20 @@ Install only the peer deps needed for the subpath exports you use:
 
 | Subpath | Peer Dependencies |
 |---------|-------------------|
-| `@thesage/ui/forms` | `react-hook-form` ^7.70, `@hookform/resolvers` ^3.10, `zod` ^3.24 |
-| `@thesage/ui/dates` | `date-fns` ^4.1, `react-day-picker` ^9.13 |
-| `@thesage/ui/tables` | `@tanstack/react-table` ^8.21 |
-| `@thesage/ui/dnd` | `@dnd-kit/core` ^6.3, `@dnd-kit/sortable` ^10.0, `@dnd-kit/utilities` ^3.2 |
+| `@opencosmos/ui/forms` | `react-hook-form` ^7.70, `@hookform/resolvers` ^3.10, `zod` ^3.24 |
+| `@opencosmos/ui/dates` | `date-fns` ^4.1, `react-day-picker` ^9.13 |
+| `@opencosmos/ui/tables` | `@tanstack/react-table` ^8.21 |
+| `@opencosmos/ui/dnd` | `@dnd-kit/core` ^6.3, `@dnd-kit/sortable` ^10.0, `@dnd-kit/utilities` ^3.2 |
 
 ---
 
 ## Troubleshooting
 
-### "Cannot find module @thesage/ui"
+### "Cannot find module @opencosmos/ui"
 
 Rebuild the design system:
 ```bash
-pnpm build --filter @thesage/ui
+pnpm build --filter @opencosmos/ui
 ```
 
 ### Theme not applying / flash of unstyled content
@@ -348,7 +348,7 @@ Ensure `suppressHydrationWarning` is on `<html>` and `<body>`:
 Add the design system source to your `tailwind.config.ts` content paths:
 ```typescript
 content: [
-  path.join(__dirname, './node_modules/@thesage/ui/src/**/*.{js,ts,jsx,tsx}'),
+  path.join(__dirname, './node_modules/@opencosmos/ui/src/**/*.{js,ts,jsx,tsx}'),
   // ...
 ]
 ```
@@ -363,5 +363,5 @@ pnpm build
 ### TypeScript errors after updating
 
 ```bash
-pnpm build --filter @thesage/ui  # Regenerates .d.ts files
+pnpm build --filter @opencosmos/ui  # Regenerates .d.ts files
 ```

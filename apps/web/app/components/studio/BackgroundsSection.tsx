@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Backgrounds } from '@thesage/ui';
+import { Card, Backgrounds } from '@opencosmos/ui';
 import { useRouter } from 'next/navigation';
 const { WarpBackground, FaultyTerminal, OrbBackground } = Backgrounds;
 

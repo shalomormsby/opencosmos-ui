@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Button, FaultyTerminal, Typewriter, Footer, Header } from '@thesage/ui';
+import { Button, FaultyTerminal, Typewriter, Footer, Header } from '@opencosmos/ui';
 import Link from 'next/link';
 import { Github } from 'lucide-react';
 
@@ -20,7 +20,7 @@ export default function Error({
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden bg-black dark">
       <Header
-        logo={<span className="text-xl font-bold tracking-tight">Sage Design Engine</span>}
+        logo={<span className="text-xl font-bold tracking-tight">OpenCosmos UI</span>}
         navAlignment="right"
         navLinks={[
           { label: 'Documentation', href: '/docs' },
@@ -35,7 +35,7 @@ export default function Error({
             className="gap-2"
           >
             <a
-              href="https://github.com/shalomormsby/sage-design-engine"
+              href="https://github.com/shalomormsby/opencosmos-ui"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -122,7 +122,7 @@ export default function Error({
             <p className="text-sm text-[var(--color-text-muted)] pb-[75px] md:pb-[100px]">
               If this problem persists, please{' '}
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/issues"
+                href="https://github.com/shalomormsby/opencosmos-ui/issues"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--color-primary)] hover:underline"
@@ -139,15 +139,15 @@ export default function Error({
       <div className="relative z-10 w-full pointer-events-auto">
         <Footer
           className="bg-black/50 backdrop-blur-xs border-white/10"
-          copyright="© 2026 Sage Design Engine. All rights reserved."
+          copyright="© 2026 OpenCosmos UI. All rights reserved."
           sections={[
             {
               title: "Docs",
               links: [
                 { label: "Getting Started", href: "/docs/getting-started" },
-                { label: "Design Philosophy", href: "https://github.com/shalomormsby/sage-design-engine/blob/main/DESIGN-PHILOSOPHY.md", external: true },
-                { label: "README.md", href: "https://github.com/shalomormsby/sage-design-engine/blob/main/README.md", external: true },
-                { label: "AGENTS.md", href: "https://github.com/shalomormsby/sage-design-engine/blob/main/AGENTS.md", external: true }
+                { label: "Design Philosophy", href: "https://github.com/shalomormsby/opencosmos-ui/blob/main/DESIGN-PHILOSOPHY.md", external: true },
+                { label: "README.md", href: "https://github.com/shalomormsby/opencosmos-ui/blob/main/README.md", external: true },
+                { label: "AGENTS.md", href: "https://github.com/shalomormsby/opencosmos-ui/blob/main/AGENTS.md", external: true }
               ]
             },
             {

@@ -1,11 +1,11 @@
-# @thesage/ui — AI Context
+# @opencosmos/ui — AI Context
 
 > 100 accessible React components | Radix UI + Tailwind CSS | 3 themes | TypeScript strict mode | MIT
 
 ## Install
 
 ```bash
-pnpm add @thesage/ui
+pnpm add @opencosmos/ui
 ```
 
 ## Provider Hierarchy (Required)
@@ -13,9 +13,9 @@ pnpm add @thesage/ui
 Wrap your app root in this exact order:
 
 ```tsx
-import { ThemeProvider, TooltipProvider } from '@thesage/ui/providers'
-import { Toaster } from '@thesage/ui'
-import '@thesage/ui/globals.css'
+import { ThemeProvider, TooltipProvider } from '@opencosmos/ui/providers'
+import { Toaster } from '@opencosmos/ui'
+import '@opencosmos/ui/globals.css'
 
 export default function RootLayout({ children }) {
   return (
@@ -33,19 +33,19 @@ export default function RootLayout({ children }) {
 
 ```tsx
 // Main exports (most common)
-import { Button, Card, Input, Dialog, Badge } from '@thesage/ui'
+import { Button, Card, Input, Dialog, Badge } from '@opencosmos/ui'
 
 // Subpath exports
-import { useMotionPreference, useTheme } from '@thesage/ui/hooks'
-import { ThemeProvider, TooltipProvider } from '@thesage/ui/providers'
-import { cn } from '@thesage/ui/utils'
-import { spacing, typography } from '@thesage/ui/tokens'
+import { useMotionPreference, useTheme } from '@opencosmos/ui/hooks'
+import { ThemeProvider, TooltipProvider } from '@opencosmos/ui/providers'
+import { cn } from '@opencosmos/ui/utils'
+import { spacing, typography } from '@opencosmos/ui/tokens'
 
 // Heavy/optional features (require peer dependencies)
-import { Form, FormField, FormItem } from '@thesage/ui/forms'       // react-hook-form + zod
-import { Calendar, DatePicker } from '@thesage/ui/dates'             // date-fns + react-day-picker
-import { DataTable } from '@thesage/ui/tables'                       // @tanstack/react-table
-import { DragDrop } from '@thesage/ui/dnd'                           // @dnd-kit/*
+import { Form, FormField, FormItem } from '@opencosmos/ui/forms'       // react-hook-form + zod
+import { Calendar, DatePicker } from '@opencosmos/ui/dates'             // date-fns + react-day-picker
+import { DataTable } from '@opencosmos/ui/tables'                       // @tanstack/react-table
+import { DragDrop } from '@opencosmos/ui/dnd'                           // @dnd-kit/*
 ```
 
 ## Themes
@@ -56,7 +56,7 @@ Three themes, each with light and dark modes:
 - **Volt** — Bold, electric, cyberpunk neon
 
 ```tsx
-import { useTheme } from '@thesage/ui/hooks'
+import { useTheme } from '@opencosmos/ui/hooks'
 const { theme, setTheme, mode, setMode } = useTheme()
 setTheme('volt')
 setMode('dark')
@@ -67,13 +67,13 @@ setMode('dark')
 - Use CSS variables: `bg-background`, `text-foreground`, `border-border`
 - NEVER hardcode colors: no `bg-white`, `text-black`, `bg-neutral-100`
 - All components accept `className` for Tailwind overrides
-- Merge classes with `cn()`: `import { cn } from '@thesage/ui/utils'`
+- Merge classes with `cn()`: `import { cn } from '@opencosmos/ui/utils'`
 
 ## Motion
 
 Every animation MUST respect user preferences:
 ```tsx
-import { useMotionPreference } from '@thesage/ui/hooks'
+import { useMotionPreference } from '@opencosmos/ui/hooks'
 const { shouldAnimate, scale } = useMotionPreference()
 ```
 
@@ -81,14 +81,14 @@ const { shouldAnimate, scale } = useMotionPreference()
 
 | Category | Count | Import | Examples |
 |----------|-------|--------|----------|
-| Actions | 5 | `@thesage/ui` | Button, Toggle, ToggleGroup, Link, Magnetic |
-| Forms | 18 | `@thesage/ui` | Input, Textarea, Select, Checkbox, Switch, Slider, Combobox, RadioGroup, Label, SearchBar |
-| Navigation | 7 | `@thesage/ui` | Tabs, Breadcrumb, Pagination, NavigationMenu, Menubar, Command |
-| Overlays | 8 | `@thesage/ui` | Dialog, AlertDialog, Popover, Tooltip, HoverCard, ContextMenu, DropdownMenu, Drawer |
-| Feedback | 6 | `@thesage/ui` | Alert, Toaster/toast, Progress, Skeleton, Spinner |
-| Data Display | 14 | `@thesage/ui` | Card, Badge, Avatar, Table, Carousel, AspectRatio, Collapsible, CodeBlock |
-| Layout | 8 | `@thesage/ui` | Accordion, Separator, ScrollArea, ResizablePanel, Sheet |
-| Features | 3 | `@thesage/ui` | CustomizerPanel, ThemeSwitcher |
+| Actions | 5 | `@opencosmos/ui` | Button, Toggle, ToggleGroup, Link, Magnetic |
+| Forms | 18 | `@opencosmos/ui` | Input, Textarea, Select, Checkbox, Switch, Slider, Combobox, RadioGroup, Label, SearchBar |
+| Navigation | 7 | `@opencosmos/ui` | Tabs, Breadcrumb, Pagination, NavigationMenu, Menubar, Command |
+| Overlays | 8 | `@opencosmos/ui` | Dialog, AlertDialog, Popover, Tooltip, HoverCard, ContextMenu, DropdownMenu, Drawer |
+| Feedback | 6 | `@opencosmos/ui` | Alert, Toaster/toast, Progress, Skeleton, Spinner |
+| Data Display | 14 | `@opencosmos/ui` | Card, Badge, Avatar, Table, Carousel, AspectRatio, Collapsible, CodeBlock |
+| Layout | 8 | `@opencosmos/ui` | Accordion, Separator, ScrollArea, ResizablePanel, Sheet |
+| Features | 3 | `@opencosmos/ui` | CustomizerPanel, ThemeSwitcher |
 
 ## High-Frequency Component Quick Reference
 
@@ -163,7 +163,7 @@ const { shouldAnimate, scale } = useMotionPreference()
 
 ### Form (react-hook-form integration)
 ```tsx
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@thesage/ui/forms'
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@opencosmos/ui/forms'
 
 <Form {...form}>
   <FormField control={form.control} name="email" render={({ field }) => (
@@ -180,16 +180,16 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '
 
 | Entrypoint | Size | Peer Deps Required |
 |------------|------|--------------------|
-| `@thesage/ui` (core) | 146 KB | None |
-| `@thesage/ui/dates` | 29 KB | date-fns, react-day-picker |
-| `@thesage/ui/tokens` | 11 KB | None |
-| `@thesage/ui/utils` | 10 KB | None |
-| `@thesage/ui/forms` | 9 KB | react-hook-form, zod |
-| `@thesage/ui/tables` | 8 KB | @tanstack/react-table |
-| `@thesage/ui/dnd` | 8 KB | @dnd-kit/* |
-| `@thesage/ui/providers` | 8 KB | None |
-| `@thesage/ui/hooks` | 6 KB | None |
-| `@thesage/ui/webgl` | 1 KB | framer-motion |
+| `@opencosmos/ui` (core) | 146 KB | None |
+| `@opencosmos/ui/dates` | 29 KB | date-fns, react-day-picker |
+| `@opencosmos/ui/tokens` | 11 KB | None |
+| `@opencosmos/ui/utils` | 10 KB | None |
+| `@opencosmos/ui/forms` | 9 KB | react-hook-form, zod |
+| `@opencosmos/ui/tables` | 8 KB | @tanstack/react-table |
+| `@opencosmos/ui/dnd` | 8 KB | @dnd-kit/* |
+| `@opencosmos/ui/providers` | 8 KB | None |
+| `@opencosmos/ui/hooks` | 6 KB | None |
+| `@opencosmos/ui/webgl` | 1 KB | framer-motion |
 
 `sideEffects: false` enables tree-shaking. Heavy features isolated behind subpath exports.
 
@@ -214,26 +214,26 @@ For gaps SDE doesn't cover, these libraries integrate well:
 ## Eject (Full Customization)
 
 ```bash
-npx @thesage/ui eject Button              # copies to src/components/ui/Button.tsx
-npx @thesage/ui eject Dialog --dir my/dir  # custom target
-npx @thesage/ui eject --list               # list all components
+npx @opencosmos/ui eject Button              # copies to src/components/ui/Button.tsx
+npx @opencosmos/ui eject Dialog --dir my/dir  # custom target
+npx @opencosmos/ui eject --list               # list all components
 ```
 
 Imports are automatically rewritten:
 - `../../lib/utils` → `./utils` (auto-scaffolded)
-- `../../hooks/*` → `@thesage/ui/hooks`
-- `../category/*` → `@thesage/ui`
+- `../../hooks/*` → `@opencosmos/ui/hooks`
+- `../category/*` → `@opencosmos/ui`
 
-Ejected components keep working with SDE themes and CSS variables. Also available via MCP tool `eject_component` and web UI at thesage.dev.
+Ejected components keep working with SDE themes and CSS variables. Also available via MCP tool `eject_component` and web UI at opencosmos.ai/studio.
 
 ## Full API Reference
 
 For complete props, variants, and examples for all 100 components:
-- Web: https://thesage.dev/llms-full.txt
-- MCP Server: `npx @thesage/mcp` (tools: list_components, search_components, get_component)
+- Web: https://opencosmos.ai/studio/llms-full.txt
+- MCP Server: `npx @opencosmos/mcp` (tools: list_components, search_components, get_component)
 
 ## Resources
 
-- Docs: https://thesage.dev/docs
-- GitHub: https://github.com/shalomormsby/sage-design-engine
-- NPM: https://www.npmjs.com/package/@thesage/ui
+- Docs: https://opencosmos.ai/studio/docs
+- GitHub: https://github.com/shalomormsby/opencosmos-ui
+- NPM: https://www.npmjs.com/package/@opencosmos/ui

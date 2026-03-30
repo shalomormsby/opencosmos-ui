@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ResponsiveContainer, Legend, Tooltip } from 'recharts';
-import { cn } from '@thesage/ui/utils';
+import { cn } from '@opencosmos/ui/utils';
 
 // Format: { THEME_NAME: { cssVariable: string; value: string } }
 const THEMES = {

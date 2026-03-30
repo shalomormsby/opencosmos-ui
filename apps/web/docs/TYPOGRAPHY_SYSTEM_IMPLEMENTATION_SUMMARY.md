@@ -55,7 +55,7 @@ Creative (2): Creative Bold, Artistic Flair
 Playful (1): Playful Rounded
 ```
 
-**Verification:** ✅ @thesage/tokens builds successfully
+**Verification:** ✅ @opencosmos/tokens builds successfully
 
 ---
 
@@ -98,7 +98,7 @@ customFontThemes: {
 savedFontThemes: SavedFontTheme[]
 ```
 
-**Verification:** ✅ @thesage/ui builds successfully, all actions tested
+**Verification:** ✅ @opencosmos/ui builds successfully, all actions tested
 
 ---
 
@@ -460,8 +460,8 @@ Typography System Architecture
 
 ### Build Testing
 
-- ✅ @thesage/tokens builds successfully
-- ✅ @thesage/ui builds successfully
+- ✅ @opencosmos/tokens builds successfully
+- ✅ @opencosmos/ui builds successfully
 - ✅ @ecosystem/web builds successfully
 - ✅ Type checking passes
 - ✅ Linting passes

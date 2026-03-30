@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Breadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
-import { Card } from '@thesage/ui';
+import { Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
+import { Card } from '@opencosmos/ui';
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, Line, LineChart, Pie, PieChart, XAxis, YAxis, Label } from 'recharts';
 import {
   ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, type ChartConfig
@@ -37,7 +37,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 // ... imports
-import { Button, CollapsibleCodeBlock } from '@thesage/ui';
+import { Button, CollapsibleCodeBlock } from '@opencosmos/ui';
 import { Copy, Eye, EyeOff } from 'lucide-react';
 
 // ... (existing imports and types)

@@ -1,4 +1,4 @@
-import { Code, Link, Spinner, ProgressBar, Switch } from '@thesage/ui';
+import { Code, Link, Spinner, ProgressBar, Switch } from '@opencosmos/ui';
 import { Home, Search, Settings, User, LogOut, ChevronDown, ChevronUp, MoreHorizontal } from 'lucide-react';
 import {
   // Phase 1 & 2 components
@@ -40,7 +40,7 @@ import {
   TreeView,
   NotificationCenter,
   GlassSurface,
-} from '@thesage/ui';
+} from '@opencosmos/ui';
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -161,7 +161,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Alert, AlertDescription, AlertTitle } from '@thesage/ui';
+        code: `import { Alert, AlertDescription, AlertTitle } from '@opencosmos/ui';
 
 <Alert>
   <AlertTitle>Heads up!</AlertTitle>
@@ -173,7 +173,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
       },
       {
         title: 'Destructive Variant',
-        code: `import { Alert, AlertDescription, AlertTitle } from '@thesage/ui';
+        code: `import { Alert, AlertDescription, AlertTitle } from '@opencosmos/ui';
 
 <Alert variant="destructive">
   <AlertTitle>Error</AlertTitle>
@@ -184,7 +184,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
         description: 'Error alert using destructive variant',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Alert.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Alert.tsx',
     accessibilityNotes: [
       'Uses role="alert" for screen reader announcements',
       'WCAG 2.1 AA compliant color contrast',
@@ -195,7 +195,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
 
   Avatar: {
     component: Avatar,
-    description: 'An image element with a fallback for representing the user. Migrated to @thesage/ui.',
+    description: 'An image element with a fallback for representing the user. Migrated to @opencosmos/ui.',
     props: {
       className: {
         type: 'text',
@@ -228,7 +228,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Avatar, AvatarFallback, AvatarImage } from "@thesage/ui"
+        code: `import { Avatar, AvatarFallback, AvatarImage } from "@opencosmos/ui"
 
 <Avatar>
   <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -237,7 +237,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
         description: 'Avatar with image and fallback',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Avatar.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Avatar.tsx',
   },
 
   Button: {
@@ -276,7 +276,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Button } from '@thesage/ui';
+        code: `import { Button } from '@opencosmos/ui';
 
 <Button variant="default" onClick={() => console.log('Clicked!')}>
   Click Me
@@ -285,7 +285,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
       },
       {
         title: 'All Variants',
-        code: `import { Button } from '@thesage/ui';
+        code: `import { Button } from '@opencosmos/ui';
 
 <div className="flex gap-3">
   <Button variant="default">Default</Button>
@@ -299,7 +299,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
       },
       {
         title: 'Sizes',
-        code: `import { Button } from '@thesage/ui';
+        code: `import { Button } from '@opencosmos/ui';
 
 <div className="flex items-center gap-3">
   <Button size="sm">Small</Button>
@@ -309,7 +309,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
         description: 'All available button sizes',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Button.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Button.tsx',
     accessibilityNotes: [
       'Uses semantic <button> element for proper keyboard and screen reader support',
       'focus-visible outline ensures visible focus ring only for keyboard navigation',
@@ -322,7 +322,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
 
   Card: {
     component: Card,
-    description: 'Container component with standard and glass-morphism styling. Migrated to @thesage/ui.',
+    description: 'Container component with standard and glass-morphism styling. Migrated to @opencosmos/ui.',
     props: {
       variant: {
         type: 'select',
@@ -366,7 +366,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Card } from '@thesage/ui';
+        code: `import { Card } from '@opencosmos/ui';
 
 <Card>
   <p>Your content goes here</p>
@@ -404,7 +404,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
       },
       {
         title: 'Structured Content',
-        code: `import { Card, CardHeader, CardTitle, CardContent } from '@thesage/ui';
+        code: `import { Card, CardHeader, CardTitle, CardContent } from '@opencosmos/ui';
 
 <Card>
   <CardHeader>
@@ -417,7 +417,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
         description: 'Using subcomponents for structured layout',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/atoms/Card/Card.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/atoms/Card/Card.tsx',
   },
 
   Dialog: {
@@ -459,7 +459,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@thesage/ui';
+        code: `import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@opencosmos/ui';
 
 <Dialog>
   <DialogTrigger asChild>
@@ -478,7 +478,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
       },
       {
         title: 'Confirmation Dialog',
-        code: `import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Button } from '@thesage/ui';
+        code: `import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, Button } from '@opencosmos/ui';
 
 <Dialog>
   <DialogTrigger asChild>
@@ -501,7 +501,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
         description: 'Confirmation dialog with footer actions',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Dialog.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Dialog.tsx',
     accessibilityNotes: [
       'Built on Radix UI Dialog primitive with full ARIA support',
       'Focus automatically trapped within dialog when open',
@@ -544,7 +544,7 @@ export const componentRegistry: Record<string, ComponentConfig> = {
     codeExamples: [
       {
         title: 'Inline Code',
-        code: `import { Code } from '@thesage/ui';
+        code: `import { Code } from '@opencosmos/ui';
 
 <p>
   Use the <Code syntax="keyword">useState</Code> hook to manage component state.
@@ -572,7 +572,7 @@ console.log(greeting);\`)}
         code: `<div className="space-y-2">
   <p>Import the component:</p>
   <Code inline={false} syntax="keyword">
-    import {{ Button }} from '@thesage/ui';
+    import {{ Button }} from '@opencosmos/ui';
   </Code>
 
   <p>Then use it with <Code syntax="property">variant</Code> prop.</p>
@@ -580,7 +580,7 @@ console.log(greeting);\`)}
         description: 'Combining inline and block code in documentation',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/atoms/Code/Code.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/atoms/Code/Code.tsx',
   },
 
   Link: {
@@ -628,7 +628,7 @@ console.log(greeting);\`)}
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Link } from '@thesage/ui';
+        code: `import { Link } from '@opencosmos/ui';
 
 <Link href="/about">Learn More</Link>`,
         description: 'Simple link with default styling',
@@ -671,12 +671,12 @@ console.log(greeting);\`)}
         description: 'Using links in navigation menus',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/atoms/Link/Link.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/atoms/Link/Link.tsx',
   },
 
   Badge: {
     component: Badge,
-    description: 'A small label for displaying status, counts, or categorization. Migrated to @thesage/ui.',
+    description: 'A small label for displaying status, counts, or categorization. Migrated to @opencosmos/ui.',
     props: {
       variant: {
         type: 'select',
@@ -709,7 +709,7 @@ console.log(greeting);\`)}
     codeExamples: [
       {
         title: 'Status Badges',
-        code: `import { Badge } from '@thesage/ui';
+        code: `import { Badge } from '@opencosmos/ui';
 
 <div className="flex gap-2">
   <Badge variant="success">Active</Badge>
@@ -751,7 +751,7 @@ console.log(greeting);\`)}
         description: 'Using badges as category or technology tags',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Badge.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Badge.tsx',
   },
 
   Sidebar: {
@@ -846,7 +846,7 @@ console.log(greeting);\`)}
     codeExamples: [
       {
         title: 'Basic Structure',
-        code: `import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem } from '@thesage/ui';
+        code: `import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem } from '@opencosmos/ui';
 import { Home, Settings, User } from 'lucide-react';
 
 export default function AppSidebar() {
@@ -881,7 +881,7 @@ export default function AppSidebar() {
         description: 'Using the depth prop to create visual hierarchy for nested navigation.',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/layout/Sidebar.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/layout/Sidebar.tsx',
     accessibilityNotes: [
       'Uses semantically correct <aside> element for the root container.',
       'Navigation items use <button> or Slot for keyboard interaction.',
@@ -915,7 +915,7 @@ export default function AppSidebar() {
     codeExamples: [
       {
         title: 'Basic Loading State',
-        code: `import { Spinner } from '@thesage/ui';
+        code: `import { Spinner } from '@opencosmos/ui';
 
 <div className="flex justify-center p-8">
   <Spinner />
@@ -954,7 +954,7 @@ export default function AppSidebar() {
         description: 'Spinner as loading overlay for content area',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/atoms/Spinner/Spinner.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/atoms/Spinner/Spinner.tsx',
   },
 
   ProgressBar: {
@@ -989,7 +989,7 @@ export default function AppSidebar() {
     codeExamples: [
       {
         title: 'Upload Progress',
-        code: `import { ProgressBar } from '@thesage/ui';
+        code: `import { ProgressBar } from '@opencosmos/ui';
 
 const [uploadProgress, setUploadProgress] = useState(0);
 
@@ -1042,7 +1042,7 @@ useEffect(() => {
         description: 'Animated progress bar that updates over time',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/atoms/ProgressBar/ProgressBar.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/atoms/ProgressBar/ProgressBar.tsx',
   },
 
   Switch: {
@@ -1068,7 +1068,7 @@ useEffect(() => {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Switch } from '@thesage/ui';
+        code: `import { Switch } from '@opencosmos/ui';
 
 const [enabled, setEnabled] = useState(false);
 
@@ -1080,7 +1080,7 @@ const [enabled, setEnabled] = useState(false);
       },
       {
         title: 'With Label',
-        code: `import { Switch } from '@thesage/ui';
+        code: `import { Switch } from '@opencosmos/ui';
 
 const [darkMode, setDarkMode] = useState(false);
 
@@ -1092,7 +1092,7 @@ const [darkMode, setDarkMode] = useState(false);
       },
       {
         title: 'Different Sizes',
-        code: `import { Switch } from '@thesage/ui';
+        code: `import { Switch } from '@opencosmos/ui';
 
 <div className="flex items-center gap-4">
   <Switch size="sm" checked={true} onCheckedChange={() => {}} />
@@ -1102,7 +1102,7 @@ const [darkMode, setDarkMode] = useState(false);
         description: 'Switch in all available sizes'
       }
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/atoms/Switch/Switch.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/atoms/Switch/Switch.tsx',
   },
 
   Checkbox: {
@@ -1118,7 +1118,7 @@ const [darkMode, setDarkMode] = useState(false);
     codeExamples: [
       {
         title: 'Terms and Conditions',
-        code: `import { Checkbox, Label } from '@thesage/ui';
+        code: `import { Checkbox, Label } from '@opencosmos/ui';
 
 <div className="flex items-center space-x-2">
   <Checkbox id="terms" />
@@ -1127,7 +1127,7 @@ const [darkMode, setDarkMode] = useState(false);
         description: 'Checkbox with a label'
       }
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Checkbox.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Checkbox.tsx',
   },
 
   Select: {
@@ -1155,7 +1155,7 @@ const [darkMode, setDarkMode] = useState(false);
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@thesage/ui';
+        code: `import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@opencosmos/ui';
 
 <Select>
   <SelectTrigger className="w-[180px]">
@@ -1170,7 +1170,7 @@ const [darkMode, setDarkMode] = useState(false);
         description: 'Basic select dropdown'
       }
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Select.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Select.tsx',
   },
 
   Separator: {
@@ -1211,7 +1211,7 @@ const [darkMode, setDarkMode] = useState(false);
     codeExamples: [
       {
         title: 'Usage',
-        code: `import { Separator } from '@thesage/ui';
+        code: `import { Separator } from '@opencosmos/ui';
 
 <div>
   <Separator orientation="vertical" />
@@ -1219,7 +1219,7 @@ const [darkMode, setDarkMode] = useState(false);
         description: 'Basic usage'
       }
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Separator.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Separator.tsx',
   },
 
   ScrollArea: {
@@ -1246,7 +1246,7 @@ const [darkMode, setDarkMode] = useState(false);
     codeExamples: [
       {
         title: 'Usage',
-        code: `import { ScrollArea } from '@thesage/ui';
+        code: `import { ScrollArea } from '@opencosmos/ui';
 
 <ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
   Content...
@@ -1254,7 +1254,7 @@ const [darkMode, setDarkMode] = useState(false);
         description: 'Scrollable area with custom scrollbar'
       }
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/ScrollArea.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/ScrollArea.tsx',
   },
 
   Skeleton: {
@@ -1298,7 +1298,7 @@ const [darkMode, setDarkMode] = useState(false);
     codeExamples: [
       {
         title: 'Card Skeleton',
-        code: `import { Skeleton } from '@thesage/ui';
+        code: `import { Skeleton } from '@opencosmos/ui';
 
 <div className="space-y-2">
   <Skeleton className="h-12 w-12 rounded-full" />
@@ -1309,7 +1309,7 @@ const [darkMode, setDarkMode] = useState(false);
       },
       {
         title: 'List Skeleton',
-        code: `import { Skeleton } from '@thesage/ui';
+        code: `import { Skeleton } from '@opencosmos/ui';
 
 <div className="space-y-3">
   {Array.from({ length: 5 }).map((_, i) => (
@@ -1325,7 +1325,7 @@ const [darkMode, setDarkMode] = useState(false);
         description: 'Loading skeleton for a list of items',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Skeleton.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Skeleton.tsx',
   },
 
 
@@ -1404,7 +1404,7 @@ const [darkMode, setDarkMode] = useState(false);
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, Button } from '@thesage/ui';
+        code: `import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, Button } from '@opencosmos/ui';
 
 <DropdownMenu>
   <DropdownMenuTrigger asChild>
@@ -1420,7 +1420,7 @@ const [darkMode, setDarkMode] = useState(false);
         description: 'Simple dropdown menu with labeled sections',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/DropdownMenu.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/DropdownMenu.tsx',
     accessibilityNotes: [
       'Built on Radix UI DropdownMenu primitive with full ARIA support',
       'Keyboard navigation with arrow keys, Enter, and Escape',
@@ -1465,7 +1465,7 @@ const [darkMode, setDarkMode] = useState(false);
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { RadioGroup, RadioGroupItem } from '@thesage/ui';
+        code: `import { RadioGroup, RadioGroupItem } from '@opencosmos/ui';
 
 <RadioGroup defaultValue="option-one">
   <div className="flex items-center space-x-2">
@@ -1480,7 +1480,7 @@ const [darkMode, setDarkMode] = useState(false);
         description: 'Radio group with two options',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/RadioGroup.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/RadioGroup.tsx',
     accessibilityNotes: [
       'Built on Radix UI RadioGroup primitive',
       'Keyboard navigation with arrow keys',
@@ -1525,7 +1525,7 @@ const [darkMode, setDarkMode] = useState(false);
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, Button } from '@thesage/ui';
+        code: `import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, Button } from '@opencosmos/ui';
 
 <Sheet>
   <SheetTrigger asChild>
@@ -1558,7 +1558,7 @@ const [darkMode, setDarkMode] = useState(false);
         description: 'Sheet sliding from different sides',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Sheet.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Sheet.tsx',
     accessibilityNotes: [
       'Built on Radix UI Dialog primitive (repurposed as sheet)',
       'Focus trap within sheet when open',
@@ -1605,7 +1605,7 @@ const [darkMode, setDarkMode] = useState(false);
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@thesage/ui';
+        code: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@opencosmos/ui';
 
 <Table>
   <TableHeader>
@@ -1626,7 +1626,7 @@ const [darkMode, setDarkMode] = useState(false);
         description: 'Simple table with header and body',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Table.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Table.tsx',
     accessibilityNotes: [
       'Uses semantic HTML table elements',
       'Proper table structure with thead and tbody',
@@ -1653,9 +1653,9 @@ const [darkMode, setDarkMode] = useState(false);
         code: `import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { Button } from "@thesage/ui"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@thesage/ui"
-import { Input } from "@thesage/ui"
+import { Button } from "@opencosmos/ui"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@opencosmos/ui"
+import { Input } from "@opencosmos/ui"
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -1702,7 +1702,7 @@ function ProfileForm() {
         description: 'Complete form with validation using react-hook-form and zod',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Form.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Form.tsx',
     accessibilityNotes: [
       'Built on react-hook-form for accessibility',
       'Proper form field associations with labels',
@@ -1730,7 +1730,7 @@ function ProfileForm() {
     codeExamples: [
       {
         title: 'Basic Data Table',
-        code: `import { DataTable } from "@thesage/ui"
+        code: `import { DataTable } from "@opencosmos/ui"
 import { ColumnDef } from "@tanstack/react-table"
 
 type Payment = {
@@ -1771,7 +1771,7 @@ export function PaymentsTable() {
         description: 'Data table with sorting and pagination',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/DataTable.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/DataTable.tsx',
     accessibilityNotes: [
       'Built on TanStack Table with full accessibility support',
       'Keyboard navigation through table cells',
@@ -1783,7 +1783,7 @@ export function PaymentsTable() {
 
   Textarea: {
     component: Textarea,
-    description: 'Multi-line text input field. Styled with Sage Design Engine tokens.',
+    description: 'Multi-line text input field. Styled with OpenCosmos UI tokens.',
     props: {
       placeholder: {
         type: 'text',
@@ -1821,15 +1821,15 @@ export function PaymentsTable() {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Textarea } from "@thesage/ui"
+        code: `import { Textarea } from "@opencosmos/ui"
 
 <Textarea placeholder="Type your message here." />`,
         description: 'Simple textarea',
       },
       {
         title: 'With Label',
-        code: `import { Label } from "@thesage/ui"
-import { Textarea } from "@thesage/ui"
+        code: `import { Label } from "@opencosmos/ui"
+import { Textarea } from "@opencosmos/ui"
 
 <div className="grid w-full gap-1.5">
   <Label htmlFor="message">Your message</Label>
@@ -1838,7 +1838,7 @@ import { Textarea } from "@thesage/ui"
         description: 'Textarea with a label',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Textarea.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Textarea.tsx',
   },
   Input: {
     component: Input,
@@ -1896,14 +1896,14 @@ import { Textarea } from "@thesage/ui"
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Input } from "@thesage/ui"
+        code: `import { Input } from "@opencosmos/ui"
 
 <Input type="text" placeholder="Enter text..." />`,
         description: 'Simple text input',
       },
       {
         title: 'With Label',
-        code: `import { Input, Label } from "@thesage/ui"
+        code: `import { Input, Label } from "@opencosmos/ui"
 
 <div className="grid w-full max-w-sm items-center gap-1.5">
   <Label htmlFor="email">Email</Label>
@@ -1913,7 +1913,7 @@ import { Textarea } from "@thesage/ui"
       },
       {
         title: 'Form Integration',
-        code: `import { Input, Label, Button } from "@thesage/ui"
+        code: `import { Input, Label, Button } from "@opencosmos/ui"
 
 <form className="space-y-4">
   <div className="grid w-full items-center gap-1.5">
@@ -1984,7 +1984,7 @@ import { Textarea } from "@thesage/ui"
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Label, Input } from "@thesage/ui"
+        code: `import { Label, Input } from "@opencosmos/ui"
 
 <div className="grid w-full items-center gap-1.5">
   <Label htmlFor="email">Email</Label>
@@ -1994,7 +1994,7 @@ import { Textarea } from "@thesage/ui"
       },
       {
         title: 'With Checkbox',
-        code: `import { Label, Checkbox } from "@thesage/ui"
+        code: `import { Label, Checkbox } from "@opencosmos/ui"
 
 <div className="flex items-center space-x-2">
   <Checkbox id="terms" />
@@ -2004,7 +2004,7 @@ import { Textarea } from "@thesage/ui"
       },
       {
         title: 'With Required Field',
-        code: `import { Label, Input } from "@thesage/ui"
+        code: `import { Label, Input } from "@opencosmos/ui"
 
 <div className="grid w-full items-center gap-1.5">
   <Label htmlFor="username">
@@ -2070,7 +2070,7 @@ import { Textarea } from "@thesage/ui"
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Combobox } from "@thesage/ui"
+        code: `import { Combobox } from "@opencosmos/ui"
 
 const frameworks = [
   { value: "react", label: "React" },
@@ -2086,7 +2086,7 @@ const frameworks = [
         description: 'Searchable select with custom options',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Combobox.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Combobox.tsx',
   },
   Command: {
     component: Command,
@@ -2128,7 +2128,7 @@ const frameworks = [
   CommandGroup,
   CommandItem,
   CommandSeparator,
-} from "@thesage/ui"
+} from "@opencosmos/ui"
 
 <Command className="rounded-lg border shadow-md">
   <CommandInput placeholder="Type a command..." />
@@ -2143,7 +2143,7 @@ const frameworks = [
         description: 'Command palette with search and grouped items',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Command.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Command.tsx',
   },
   Popover: {
     component: Popover,
@@ -2175,8 +2175,8 @@ const frameworks = [
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Popover, PopoverContent, PopoverTrigger } from "@thesage/ui"
-import { Button } from "@thesage/ui"
+        code: `import { Popover, PopoverContent, PopoverTrigger } from "@opencosmos/ui"
+import { Button } from "@opencosmos/ui"
 
 <Popover>
   <PopoverTrigger asChild>
@@ -2194,7 +2194,7 @@ import { Button } from "@thesage/ui"
         description: 'Popover with custom content',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Popover.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Popover.tsx',
   },
   Tabs: {
     component: Tabs,
@@ -2237,7 +2237,7 @@ import { Button } from "@thesage/ui"
     codeExamples: [
       {
         title: 'Basic Tabs',
-        code: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@thesage/ui"
+        code: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@opencosmos/ui"
 
 <Tabs defaultValue="account" className="w-[400px]">
   <TabsList>
@@ -2254,7 +2254,7 @@ import { Button } from "@thesage/ui"
         description: 'Basic tabbed interface',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Tabs.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Tabs.tsx',
   },
   Toaster: {
     component: Toaster,
@@ -2285,7 +2285,7 @@ import { Button } from "@thesage/ui"
       {
         title: 'Setup',
         code: `// Add to your root layout
-import { Toaster } from "@thesage/ui"
+import { Toaster } from "@opencosmos/ui"
 
 export default function RootLayout({ children }) {
   return (
@@ -2322,7 +2322,7 @@ toast("Event created", {
         description: 'Using toast notifications',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Sonner.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Sonner.tsx',
   },
 
   // Phase 3 Batch 1 Components
@@ -2363,7 +2363,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@thesage/ui"
+        code: `import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@opencosmos/ui"
 
 <Accordion type="single" collapsible>
   <AccordionItem value="item-1">
@@ -2376,7 +2376,7 @@ toast("Event created", {
         description: 'Simple accordion with collapsible items',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Accordion.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Accordion.tsx',
   },
 
   AlertDialog: {
@@ -2411,7 +2411,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Confirmation Dialog',
-        code: `import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@thesage/ui"
+        code: `import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@opencosmos/ui"
 
 <AlertDialog>
   <AlertDialogTrigger asChild>
@@ -2433,7 +2433,7 @@ toast("Event created", {
         description: 'Confirmation dialog for destructive actions',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/AlertDialog.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/AlertDialog.tsx',
   },
 
   Collapsible: {
@@ -2466,7 +2466,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@thesage/ui"
+        code: `import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@opencosmos/ui"
 
 <Collapsible>
   <CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>
@@ -2477,7 +2477,7 @@ toast("Event created", {
         description: 'Collapsible panel with trigger',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Collapsible.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Collapsible.tsx',
   },
 
   HoverCard: {
@@ -2506,7 +2506,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { HoverCard, HoverCardContent, HoverCardTrigger } from "@thesage/ui"
+        code: `import { HoverCard, HoverCardContent, HoverCardTrigger } from "@opencosmos/ui"
 
 <HoverCard>
   <HoverCardTrigger>Hover me</HoverCardTrigger>
@@ -2517,7 +2517,7 @@ toast("Event created", {
         description: 'Hover card with preview content',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/HoverCard.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/HoverCard.tsx',
   },
 
   Tooltip: {
@@ -2545,7 +2545,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@thesage/ui"
+        code: `import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@opencosmos/ui"
 
 <TooltipProvider>
   <Tooltip>
@@ -2558,7 +2558,7 @@ toast("Event created", {
         description: 'Simple tooltip on hover',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Tooltip.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Tooltip.tsx',
   },
 
   // Phase 3 Batch 2 Components
@@ -2581,13 +2581,13 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Slider } from "@thesage/ui"
+        code: `import { Slider } from "@opencosmos/ui"
 
 <Slider defaultValue={[50]} max={100} step={1} />`,
         description: 'Range slider with default value',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Slider.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Slider.tsx',
   },
 
   Toggle: {
@@ -2622,7 +2622,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Toggle } from "@thesage/ui"
+        code: `import { Toggle } from "@opencosmos/ui"
 
 <Toggle aria-label="Toggle italic">
   Toggle
@@ -2630,7 +2630,7 @@ toast("Event created", {
         description: 'Simple toggle button',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Toggle.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Toggle.tsx',
   },
 
   ToggleGroup: {
@@ -2665,7 +2665,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { ToggleGroup, ToggleGroupItem } from "@thesage/ui"
+        code: `import { ToggleGroup, ToggleGroupItem } from "@opencosmos/ui"
 
 <ToggleGroup type="single">
   <ToggleGroupItem value="a">A</ToggleGroupItem>
@@ -2675,7 +2675,7 @@ toast("Event created", {
         description: 'Toggle group with single selection',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/ToggleGroup.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/ToggleGroup.tsx',
   },
 
   AspectRatio: {
@@ -2698,7 +2698,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Image Container',
-        code: `import { AspectRatio } from "@thesage/ui"
+        code: `import { AspectRatio } from "@opencosmos/ui"
 
 <AspectRatio ratio={16 / 9}>
   <img src="/photo.jpg" alt="Photo" className="object-cover" />
@@ -2706,7 +2706,7 @@ toast("Event created", {
         description: 'Maintain aspect ratio for images',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/AspectRatio.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/AspectRatio.tsx',
   },
 
   Progress: {
@@ -2725,13 +2725,13 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Progress } from "@thesage/ui"
+        code: `import { Progress } from "@opencosmos/ui"
 
 <Progress value={33} />`,
         description: 'Progress indicator',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Progress.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Progress.tsx',
   },
 
   // Phase 3 Batch 3 Components
@@ -2763,7 +2763,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@thesage/ui"
+        code: `import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@opencosmos/ui"
 
 <Breadcrumb>
   <BreadcrumbList>
@@ -2779,7 +2779,7 @@ toast("Event created", {
         description: 'Navigation breadcrumb trail',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Breadcrumb.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Breadcrumb.tsx',
   },
 
   ContextMenu: {
@@ -2809,7 +2809,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "@thesage/ui"
+        code: `import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from "@opencosmos/ui"
 
 <ContextMenu>
   <ContextMenuTrigger>Right click</ContextMenuTrigger>
@@ -2821,7 +2821,7 @@ toast("Event created", {
         description: 'Context menu on right-click',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/ContextMenu.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/ContextMenu.tsx',
   },
 
   Menubar: {
@@ -2852,7 +2852,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "@thesage/ui"
+        code: `import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "@opencosmos/ui"
 
 <Menubar>
   <MenubarMenu>
@@ -2866,7 +2866,7 @@ toast("Event created", {
         description: 'Application menubar',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Menubar.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Menubar.tsx',
   },
 
   NavigationMenu: {
@@ -2897,7 +2897,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@thesage/ui"
+        code: `import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@opencosmos/ui"
 
 <NavigationMenu>
   <NavigationMenuList>
@@ -2912,7 +2912,7 @@ toast("Event created", {
         description: 'Navigation menu with dropdowns',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/NavigationMenu.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/NavigationMenu.tsx',
   },
 
   Pagination: {
@@ -2950,7 +2950,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@thesage/ui"
+        code: `import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@opencosmos/ui"
 
 <Pagination>
   <PaginationContent>
@@ -2968,7 +2968,7 @@ toast("Event created", {
         description: 'Page navigation controls',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Pagination.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Pagination.tsx',
   },
 
   // Phase 3 Batch 4 Components
@@ -3004,7 +3004,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@thesage/ui"
+        code: `import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@opencosmos/ui"
 
 <Drawer>
   <DrawerTrigger>Open</DrawerTrigger>
@@ -3018,7 +3018,7 @@ toast("Event created", {
         description: 'Bottom drawer panel',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Drawer.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Drawer.tsx',
   },
 
   Carousel: {
@@ -3069,7 +3069,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@thesage/ui"
+        code: `import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@opencosmos/ui"
 
 <Carousel>
   <CarouselContent>
@@ -3083,7 +3083,7 @@ toast("Event created", {
         description: 'Image/content carousel',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Carousel.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Carousel.tsx',
   },
 
   Calendar: {
@@ -3107,7 +3107,7 @@ toast("Event created", {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Calendar } from "@thesage/ui"
+        code: `import { Calendar } from "@opencosmos/ui"
 import { useState } from "react"
 
 const [date, setDate] = useState<Date | undefined>(new Date())
@@ -3120,7 +3120,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
         description: 'Single date selection',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Calendar.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Calendar.tsx',
   },
 
   DatePicker: {
@@ -3148,7 +3148,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { DatePicker } from "@thesage/ui"
+        code: `import { DatePicker } from "@opencosmos/ui"
 
 <DatePicker
   date={date}
@@ -3158,7 +3158,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
         description: 'Date input with calendar',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/DatePicker.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/DatePicker.tsx',
   },
 
   GlassSurface: {
@@ -3219,7 +3219,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { GlassSurface } from "@thesage/ui"
+        code: `import { GlassSurface } from "@opencosmos/ui"
 
 <GlassSurface thickness="medium" tint={2}>
   <nav className="p-4">Navigation content</nav>
@@ -3234,7 +3234,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
         description: 'Glass surface for bottom-positioned elements',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/layout/GlassSurface.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/layout/GlassSurface.tsx',
     accessibilityNotes: [
       'Glass effect is purely visual — content remains fully readable',
       'No motion animations to reduce; effect is CSS-only (backdrop-filter)',
@@ -3272,7 +3272,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { InputOTP, InputOTPGroup, InputOTPSlot } from "@thesage/ui"
+        code: `import { InputOTP, InputOTPGroup, InputOTPSlot } from "@opencosmos/ui"
 
 <InputOTP maxLength={6}>
   <InputOTPGroup>
@@ -3287,7 +3287,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
         description: '6-digit OTP input',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/InputOTP.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/InputOTP.tsx',
   },
 
   ResizablePanelGroup: {
@@ -3325,7 +3325,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@thesage/ui"
+        code: `import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@opencosmos/ui"
 
 <ResizablePanelGroup direction="horizontal">
   <ResizablePanel defaultSize={50}>
@@ -3339,7 +3339,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
         description: 'Resizable panel layout',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Resizable.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Resizable.tsx',
   },
 
   // Aliases for navigation compatibility (kebab-case → PascalCase conversion)
@@ -3373,7 +3373,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { InputOTP, InputOTPGroup, InputOTPSlot } from "@thesage/ui"
+        code: `import { InputOTP, InputOTPGroup, InputOTPSlot } from "@opencosmos/ui"
 
 <InputOTP maxLength={6}>
   <InputOTPGroup>
@@ -3388,7 +3388,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
         description: '6-digit OTP input',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/InputOTP.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/InputOTP.tsx',
   },
 
   // "resizable" converts to "Resizable" but component is registered as "ResizablePanelGroup"
@@ -3427,7 +3427,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@thesage/ui"
+        code: `import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@opencosmos/ui"
 
 <ResizablePanelGroup direction="horizontal">
   <ResizablePanel defaultSize={50}>
@@ -3441,7 +3441,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
         description: 'Resizable panel layout',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/Resizable.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Resizable.tsx',
   },
 
   OpenGraphCard: {
@@ -3450,7 +3450,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
     props: {
       title: {
         type: 'text',
-        default: 'Sage Design Engine',
+        default: 'OpenCosmos UI',
         description: 'Main title text',
       },
       description: {
@@ -3537,7 +3537,7 @@ const [date, setDate] = useState<Date | undefined>(new Date())
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { OpenGraphCard } from '@thesage/ui';
+        code: `import { OpenGraphCard } from '@opencosmos/ui';
 
 export default function MyOGImage() {
   return <OpenGraphCard title="My Page" description="A description" />;
@@ -3546,7 +3546,7 @@ export default function MyOGImage() {
       },
       {
         title: 'With Custom Icon',
-        code: `import { OpenGraphCard } from '@thesage/ui';
+        code: `import { OpenGraphCard } from '@opencosmos/ui';
 
 export default function MyOGImage() {
   return (
@@ -3568,7 +3568,7 @@ export default function MyOGImage() {
       },
       {
         title: 'Custom Gradient',
-        code: `import { OpenGraphCard } from '@thesage/ui';
+        code: `import { OpenGraphCard } from '@opencosmos/ui';
 
 export default function MyOGImage() {
   return (
@@ -3589,7 +3589,7 @@ export default function MyOGImage() {
       },
       {
         title: 'Theme-Aware Colors',
-        code: `import { OpenGraphCard } from '@thesage/ui';
+        code: `import { OpenGraphCard } from '@opencosmos/ui';
 
 // In your app, get theme colors from customizer or theme store
 const themeColors = getActiveThemeColors(); // Your helper function
@@ -3609,7 +3609,7 @@ export default function MyOGImage() {
         description: 'Pass theme colors explicitly for brand consistency',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/blocks/social/OpenGraphCard.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/blocks/social/OpenGraphCard.tsx',
   },
 
   // Phase 16 - Missing Components
@@ -3680,7 +3680,7 @@ export default function MyOGImage() {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { StatCard } from '@thesage/ui'
+        code: `import { StatCard } from '@opencosmos/ui'
 
 <StatCard
   label="Total Revenue"
@@ -3693,7 +3693,7 @@ export default function MyOGImage() {
       },
       {
         title: 'Dashboard Grid',
-        code: `import { StatCard, StatCardGroup } from '@thesage/ui'
+        code: `import { StatCard, StatCardGroup } from '@opencosmos/ui'
 
 <StatCardGroup>
   <StatCard label="Revenue" value="$45,231" change={12.5} />
@@ -3704,7 +3704,7 @@ export default function MyOGImage() {
         description: 'A responsive grid of stat cards',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/data-display/StatCard.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/data-display/StatCard.tsx',
     accessibilityNotes: [
       'Uses semantic <dl>/<dt>/<dd> for label/value pairs',
       'Trend conveyed via icon + color (not color alone)',
@@ -3752,7 +3752,7 @@ export default function MyOGImage() {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { EmptyState } from '@thesage/ui'
+        code: `import { EmptyState } from '@opencosmos/ui'
 import { Inbox } from 'lucide-react'
 
 <EmptyState
@@ -3764,7 +3764,7 @@ import { Inbox } from 'lucide-react'
       },
       {
         title: 'With Action',
-        code: `import { EmptyState, Button } from '@thesage/ui'
+        code: `import { EmptyState, Button } from '@opencosmos/ui'
 import { Plus } from 'lucide-react'
 
 <EmptyState
@@ -3776,7 +3776,7 @@ import { Plus } from 'lucide-react'
         description: 'Empty state with a call-to-action button',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/feedback/EmptyState.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/feedback/EmptyState.tsx',
     accessibilityNotes: [
       'Uses role="status" for screen reader announcements',
       'Semantic <h3> heading for title',
@@ -3805,7 +3805,7 @@ import { Plus } from 'lucide-react'
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Timeline, TimelineItem } from '@thesage/ui'
+        code: `import { Timeline, TimelineItem } from '@opencosmos/ui'
 
 <Timeline>
   <TimelineItem title="Order placed" timestamp="Jan 1" status="completed" />
@@ -3816,7 +3816,7 @@ import { Plus } from 'lucide-react'
         description: 'A simple vertical timeline with status indicators',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/data-display/Timeline.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/data-display/Timeline.tsx',
     accessibilityNotes: [
       'Uses semantic <ol> for chronological order',
       'aria-current="step" on active item',
@@ -3870,7 +3870,7 @@ import { Plus } from 'lucide-react'
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Stepper, StepperStep } from '@thesage/ui'
+        code: `import { Stepper, StepperStep } from '@opencosmos/ui'
 
 <Stepper currentStep={1}>
   <StepperStep label="Account" description="Create your account" />
@@ -3880,7 +3880,7 @@ import { Plus } from 'lucide-react'
         description: 'A horizontal stepper with 3 steps',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/feedback/Stepper.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/feedback/Stepper.tsx',
     accessibilityNotes: [
       'Uses aria-label="Progress" on the root',
       'aria-current="step" on active step',
@@ -3937,7 +3937,7 @@ import { Plus } from 'lucide-react'
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { FileUpload } from '@thesage/ui'
+        code: `import { FileUpload } from '@opencosmos/ui'
 
 <FileUpload
   label="Upload documents"
@@ -3948,7 +3948,7 @@ import { Plus } from 'lucide-react'
       },
       {
         title: 'With Validation',
-        code: `import { FileUpload } from '@thesage/ui'
+        code: `import { FileUpload } from '@opencosmos/ui'
 
 <FileUpload
   label="Upload images"
@@ -3962,7 +3962,7 @@ import { Plus } from 'lucide-react'
         description: 'File upload with type, size, and count validation',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/forms/FileUpload.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/forms/FileUpload.tsx',
     accessibilityNotes: [
       'Drop zone has role="button" for keyboard activation',
       'Keyboard activatable (Enter/Space to open file dialog)',
@@ -4006,7 +4006,7 @@ import { Plus } from 'lucide-react'
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { TreeView } from '@thesage/ui'
+        code: `import { TreeView } from '@opencosmos/ui'
 
 const nodes = [
   { id: 'src', label: 'src', children: [
@@ -4024,7 +4024,7 @@ const nodes = [
       },
       {
         title: 'Controlled State',
-        code: `import { TreeView } from '@thesage/ui'
+        code: `import { TreeView } from '@opencosmos/ui'
 import { useState } from 'react'
 
 const [expanded, setExpanded] = useState(['src'])
@@ -4040,7 +4040,7 @@ const [selected, setSelected] = useState('')
         description: 'Controlled expand and selection state',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/data-display/TreeView.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/data-display/TreeView.tsx',
     accessibilityNotes: [
       'Uses role="tree" and role="treeitem" per WAI-ARIA',
       'Full keyboard navigation (Arrow keys, Enter, Space)',
@@ -4084,7 +4084,7 @@ const [selected, setSelected] = useState('')
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { NotificationCenter } from '@thesage/ui'
+        code: `import { NotificationCenter } from '@opencosmos/ui'
 
 const notifications = [
   { id: '1', title: 'New message', timestamp: new Date(), read: false },
@@ -4101,7 +4101,7 @@ const notifications = [
       },
       {
         title: 'With Actions',
-        code: `import { NotificationCenter } from '@thesage/ui'
+        code: `import { NotificationCenter } from '@opencosmos/ui'
 
 <NotificationCenter
   notifications={[
@@ -4119,7 +4119,7 @@ const notifications = [
         description: 'Notifications with inline action buttons',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/overlays/NotificationCenter.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/overlays/NotificationCenter.tsx',
     accessibilityNotes: [
       'Trigger announces unread count to screen readers',
       'Panel uses role="dialog" with aria-label',

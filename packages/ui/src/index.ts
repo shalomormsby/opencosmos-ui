@@ -1,8 +1,8 @@
 // ============================================================================
 // MAIN BARREL EXPORTS - Backward Compatible
 // ============================================================================
-// All components remain importable from '@thesage/ui' root
-// Example: import { Button, Card, Dialog } from '@thesage/ui'
+// All components remain importable from '@opencosmos/ui' root
+// Example: import { Button, Card, Dialog } from '@opencosmos/ui'
 
 // Actions
 export * from './components/actions/Button';
@@ -142,7 +142,7 @@ export * from './lib/validation';
 export * from './lib/syntax-parser';
 
 // Tokens (selective re-exports)
-export { typographySystem } from '@thesage/tokens';
+export { typographySystem } from '@opencosmos/tokens';
 
 // Component Registry (metadata)
 export * from './component-registry';
@@ -151,7 +151,7 @@ export * from './component-registry';
 // OPTIONAL CATEGORY-BASED EXPORTS (Future Use)
 // ============================================================================
 // These allow category-specific imports for better code organization
-// Example: import { Button } from '@thesage/ui/actions'
+// Example: import { Button } from '@opencosmos/ui/actions'
 // Note: These require package.json exports configuration
 
 // Re-export categories for convenience

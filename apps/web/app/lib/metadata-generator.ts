@@ -56,10 +56,10 @@ export function generateFullDocumentation(
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Sage Design Engine",
+    "name": "OpenCosmos UI",
     "applicationCategory": "DeveloperApplication",
     "description": "A comprehensive design system built with React and TypeScript, organized by functional purpose for optimal developer experience.",
-    url: "https://thesage.dev",
+    url: "https://opencosmos.ai/studio",
     "version": "1.0.0",
     "programmingLanguage": "TypeScript",
     "runtimePlatform": "React",

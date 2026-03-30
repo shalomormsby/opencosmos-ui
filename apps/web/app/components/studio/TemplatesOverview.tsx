@@ -1,7 +1,7 @@
 'use client';
 
 import { LayoutTemplate, Layout, Sparkles, Ruler, Type, LayoutGrid, Scale } from 'lucide-react';
-import { Heading, Text, Card, Badge } from '@thesage/ui';
+import { Heading, Text, Card, Badge } from '@opencosmos/ui';
 
 interface TemplatesOverviewProps {
   onNavigate: (itemId: string) => void;

@@ -1,6 +1,6 @@
 # CI/CD Pipeline
 
-> Complete reference for the Sage Design Engine's continuous integration and deployment pipeline.
+> Complete reference for the OpenCosmos UI's continuous integration and deployment pipeline.
 
 Last updated: 2026-02-22
 
@@ -65,10 +65,10 @@ The confusion often lies here: **Publishing only happens when the system sees NO
 **What it does:**
 1. Installs dependencies (`pnpm install --frozen-lockfile`)
 2. Builds all packages (`pnpm build` via Turborepo)
-3. Lints `@thesage/ui` (`pnpm --filter @thesage/ui lint`)
-4. Typechecks `@thesage/ui` (`pnpm --filter @thesage/ui typecheck`)
-5. Runs tests (`pnpm --filter @thesage/ui test`)
-6. Checks bundle sizes (`pnpm --filter @thesage/ui size:check`)
+3. Lints `@opencosmos/ui` (`pnpm --filter @opencosmos/ui lint`)
+4. Typechecks `@opencosmos/ui` (`pnpm --filter @opencosmos/ui typecheck`)
+5. Runs tests (`pnpm --filter @opencosmos/ui test`)
+6. Checks bundle sizes (`pnpm --filter @opencosmos/ui size:check`)
 
 **Required status check:** The `build` job is required to pass before merging to `main`.
 
@@ -181,13 +181,13 @@ Trusted Publishing uses GitHub's OIDC identity provider to authenticate with npm
 
 ### One-time setup on npmjs.com
 
-For each package (`@thesage/ui`, `@thesage/tokens`, `@thesage/mcp`):
+For each package (`@opencosmos/ui`, `@opencosmos/tokens`, `@opencosmos/mcp`):
 
 1. Go to the package on [npmjs.com](https://www.npmjs.com) > **Settings** > **Trusted Publishers**
 2. Click **Add GitHub Actions**
 3. Fill in:
    - **Repository owner:** `shalomormsby`
-   - **Repository name:** `sage-design-engine`
+   - **Repository name:** `opencosmos-ui`
    - **Workflow filename:** `release.yml`
    - **Environment:** *(leave blank)*
 4. Save
@@ -207,7 +207,7 @@ Vercel is connected directly to the GitHub repo and deploys independently of Git
 
 | App | URL | Build command |
 |-----|-----|---------------|
-| Sage Studio | thesage.dev | `pnpm turbo run build --filter=web` |
+| OpenCosmos Studio | opencosmos.ai/studio | `pnpm turbo run build --filter=web` |
 
 **Preview deployments:** Every PR gets preview URLs from Vercel automatically.
 

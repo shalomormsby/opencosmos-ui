@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { VariableWeightText, Card, Slider, Label, CollapsibleCodeBlock } from '@thesage/ui';
+import { VariableWeightText, Card, Slider, Label, CollapsibleCodeBlock } from '@opencosmos/ui';
 import { Monitor, RefreshCcw } from 'lucide-react';
 
 export function VariableWeightPage() {
@@ -110,7 +110,7 @@ export function VariableWeightPage() {
                 <CollapsibleCodeBlock
                     id="variable-weight-playground"
                     title="Code"
-                    code={`import { VariableWeightText } from '@thesage/ui';
+                    code={`import { VariableWeightText } from '@opencosmos/ui';
 
 <VariableWeightText 
   minWeight={${minWeight}} 

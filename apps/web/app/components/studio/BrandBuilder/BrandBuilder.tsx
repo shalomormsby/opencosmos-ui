@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, Button, Input, Label, Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Slider } from '@thesage/ui';
+import { Card, Button, Input, Label, Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Slider } from '@opencosmos/ui';
 import { Download, Copy, Check, Save, Trash2, RefreshCw } from 'lucide-react';
 import { getAllFontNames } from '../../../../lib/fonts-dynamic';
-import { colorPalettes } from '@thesage/tokens';
+import { colorPalettes } from '@opencosmos/tokens';
 
 interface BrandConfig {
   name: string;

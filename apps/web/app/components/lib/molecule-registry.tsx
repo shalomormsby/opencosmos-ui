@@ -1,5 +1,5 @@
-import { Button } from '@thesage/ui';
-import { Dropdown, Tooltip, ThemeToggle, ThemeSwitcher, FormField, SearchBar, RadioGroup, Breadcrumbs } from '@thesage/ui';
+import { Button } from '@opencosmos/ui';
+import { Dropdown, Tooltip, ThemeToggle, ThemeSwitcher, FormField, SearchBar, RadioGroup, Breadcrumbs } from '@opencosmos/ui';
 import type { ComponentConfig } from './component-registry';
 
 export const moleculeRegistry: Record<string, ComponentConfig> = {
@@ -102,7 +102,7 @@ export const moleculeRegistry: Record<string, ComponentConfig> = {
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Breadcrumbs } from '@thesage/ui';
+        code: `import { Breadcrumbs } from '@opencosmos/ui';
 
 <Breadcrumbs
   items={[
@@ -141,7 +141,7 @@ const items: BreadcrumbItem[] = [
         description: 'TypeScript definition for breadcrumb items',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/molecules/Breadcrumbs/Breadcrumbs.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/molecules/Breadcrumbs/Breadcrumbs.tsx',
     accessibilityNotes: [
       'Uses semantic <nav> element with configurable aria-label (default: "Breadcrumb")',
       'Ordered list <ol> with <li> items for screen reader navigation',
@@ -214,7 +214,7 @@ const items: BreadcrumbItem[] = [
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Dropdown, Button } from '@thesage/ui';
+        code: `import { Dropdown, Button } from '@opencosmos/ui';
 
 <Dropdown
   trigger={<Button variant="secondary">Options</Button>}
@@ -275,7 +275,7 @@ const menuItems: DropdownItem[] = [
         description: 'Managing dropdown state and handling selections',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/molecules/Dropdown/Dropdown.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/molecules/Dropdown/Dropdown.tsx',
   },
 
   Tooltip: {
@@ -345,7 +345,7 @@ const menuItems: DropdownItem[] = [
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { Tooltip, Button } from '@thesage/ui';
+        code: `import { Tooltip, Button } from '@opencosmos/ui';
 
 <Tooltip content="Click to save your changes" position="top">
   <Button variant="default">Save</Button>
@@ -395,7 +395,7 @@ const menuItems: DropdownItem[] = [
         description: 'Showcase of all four positioning options',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/molecules/Tooltip/Tooltip.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/molecules/Tooltip/Tooltip.tsx',
   },
 
   ThemeToggle: {
@@ -423,7 +423,7 @@ const menuItems: DropdownItem[] = [
     codeExamples: [
       {
         title: 'Basic Theme Toggle',
-        code: `import { ThemeToggle } from '@thesage/ui';
+        code: `import { ThemeToggle } from '@opencosmos/ui';
 
 <ThemeToggle />`,
         description: 'Simple icon-only theme switcher',
@@ -458,7 +458,7 @@ const menuItems: DropdownItem[] = [
         description: 'Theme toggle in settings with description',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/molecules/ThemeToggle/ThemeToggle.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/molecules/ThemeToggle/ThemeToggle.tsx',
   },
 
   ThemeSwitcher: {
@@ -486,14 +486,14 @@ const menuItems: DropdownItem[] = [
     codeExamples: [
       {
         title: 'Basic Usage',
-        code: `import { ThemeSwitcher } from '@thesage/ui';
+        code: `import { ThemeSwitcher } from '@opencosmos/ui';
 
 <ThemeSwitcher />`,
         description: 'Simple theme switcher with expandable options',
       },
       {
         title: 'Expanded by Default',
-        code: `import { ThemeSwitcher } from '@thesage/ui';
+        code: `import { ThemeSwitcher } from '@opencosmos/ui';
 
 <ThemeSwitcher defaultExpanded />`,
         description: 'Theme switcher with options panel open by default',
@@ -510,7 +510,7 @@ const menuItems: DropdownItem[] = [
         description: 'Theme switcher positioned in header with dropdown panel',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/molecules/ThemeSwitcher/ThemeSwitcher.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/molecules/ThemeSwitcher/ThemeSwitcher.tsx',
   },
 
   FormField: {
@@ -571,7 +571,7 @@ const menuItems: DropdownItem[] = [
     codeExamples: [
       {
         title: 'Basic Form Field',
-        code: `import { FormField } from '@thesage/ui';
+        code: `import { FormField } from '@opencosmos/ui';
 
 <FormField label="Email Address" htmlFor="email">
   <input
@@ -631,7 +631,7 @@ const menuItems: DropdownItem[] = [
         description: 'Multiple form fields in a complete form',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/molecules/Form/FormField.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/molecules/Form/FormField.tsx',
   },
 
   SearchBar: {
@@ -683,7 +683,7 @@ const menuItems: DropdownItem[] = [
     codeExamples: [
       {
         title: 'Basic Search',
-        code: `import { SearchBar } from '@thesage/ui';
+        code: `import { SearchBar } from '@opencosmos/ui';
 
 const [results, setResults] = useState([]);
 
@@ -737,7 +737,7 @@ const [results, setResults] = useState([]);
         description: 'Search bar with dropdown results',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/molecules/Form/SearchBar.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/molecules/Form/SearchBar.tsx',
   },
 
   RadioGroup: {
@@ -810,7 +810,7 @@ const [results, setResults] = useState([]);
     codeExamples: [
       {
         title: 'Subscription Plan Selector',
-        code: `import { RadioGroup } from '@thesage/ui';
+        code: `import { RadioGroup } from '@opencosmos/ui';
 
 const [plan, setPlan] = useState('pro');
 
@@ -857,7 +857,7 @@ const [plan, setPlan] = useState('pro');
         description: 'Radio group with disabled option',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/design-system/molecules/Form/RadioGroup.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/design-system/molecules/Form/RadioGroup.tsx',
   },
 
 

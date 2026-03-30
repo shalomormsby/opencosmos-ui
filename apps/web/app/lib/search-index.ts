@@ -15,7 +15,7 @@ export const searchIndex: SearchResult[] = [
   {
     id: 'overview',
     title: 'Overview',
-    description: 'Introduction to the Sage Design Engine',
+    description: 'Introduction to the OpenCosmos UI',
     type: 'page',
     category: 'Getting Started',
     path: '/docs/overview',

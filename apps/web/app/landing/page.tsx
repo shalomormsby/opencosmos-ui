@@ -7,7 +7,7 @@ import {
   ThemeSwitcher,
   Badge,
   Code,
-} from '@thesage/ui';
+} from '@opencosmos/ui';
 import Link from 'next/link';
 import {
   Layers,
@@ -38,7 +38,7 @@ export default function LandingPage() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
               <Sparkles className="w-6 h-6 text-primary" />
-              <span className="text-xl font-heading font-bold">Sage Design Engine</span>
+              <span className="text-xl font-heading font-bold">OpenCosmos UI</span>
             </div>
             <div className="flex items-center gap-6">
               <Link href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -370,10 +370,10 @@ export default function LandingPage() {
           <div className="max-w-6xl mx-auto space-y-12">
             <div className="text-center space-y-4">
               <h2 className="text-4xl lg:text-5xl font-heading font-bold">
-                Who Is Sage Design Engine For?
+                Who Is OpenCosmos UI For?
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                From startups to enterprises, Sage Design Engine scales with your needs.
+                From startups to enterprises, OpenCosmos UI scales with your needs.
               </p>
             </div>
 
@@ -439,7 +439,7 @@ export default function LandingPage() {
                 Get Started in Minutes
               </h2>
               <p className="text-lg text-muted-foreground">
-                Install Sage Design Engine and start building with systematic design.
+                Install OpenCosmos UI and start building with systematic design.
               </p>
             </div>
 
@@ -447,7 +447,7 @@ export default function LandingPage() {
               <div>
                 <h3 className="text-lg font-semibold mb-4">Installation</h3>
                 <Code className="block">
-                  npm install @thesage/ui @thesage/tokens
+                  npm install @opencosmos/ui @opencosmos/tokens
                 </Code>
               </div>
 
@@ -461,7 +461,7 @@ export default function LandingPage() {
                     <div>
                       <p className="font-medium">Import the theme provider</p>
                       <Code className="mt-2 text-xs">
-                        {`import { ThemeProvider } from '@thesage/ui';`}
+                        {`import { ThemeProvider } from '@opencosmos/ui';`}
                       </Code>
                     </div>
                   </div>
@@ -485,7 +485,7 @@ export default function LandingPage() {
                     <div>
                       <p className="font-medium">Start using components</p>
                       <Code className="mt-2 text-xs">
-                        {`import { Button, Card } from '@thesage/ui';\n\n<Card>\n  <Button>Click me</Button>\n</Card>`}
+                        {`import { Button, Card } from '@opencosmos/ui';\n\n<Card>\n  <Button>Click me</Button>\n</Card>`}
                       </Code>
                     </div>
                   </div>
@@ -531,7 +531,7 @@ export default function LandingPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-primary" />
-              <span className="font-heading font-bold">Sage Design Engine</span>
+              <span className="font-heading font-bold">OpenCosmos UI</span>
             </div>
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
               <Link href="/" className="hover:text-foreground transition-colors">
@@ -551,7 +551,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="text-center text-sm text-muted-foreground mt-8">
-            Built with Sage Design Engine. Open source and MIT licensed.
+            Built with OpenCosmos UI. Open source and MIT licensed.
           </div>
         </Container>
       </footer>

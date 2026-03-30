@@ -1,5 +1,5 @@
 /**
- * Font Loader for Sage Studio
+ * Font Loader for OpenCosmos Studio
  * Loads documentation fonts, theme fonts, and additional fonts for typography system
  */
 

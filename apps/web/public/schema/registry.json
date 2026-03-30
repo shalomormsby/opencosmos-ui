@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Sage Design Engine Component Registry",
+  "title": "OpenCosmos UI Component Registry",
   "description": "Schema for the SDE component registry. Third parties can use this schema to create compatible registries or validate component data.",
   "type": "object",
   "required": ["version", "package", "components"],

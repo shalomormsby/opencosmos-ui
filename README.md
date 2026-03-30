@@ -1,15 +1,15 @@
-# Sage Design Engine
+# OpenCosmos UI
 
 > **Lovable by Design** — 92 accessible React components, 3 runtime-switchable themes, user-controlled motion system, and a philosophy-driven design system built for modern product teams.
 
-[![npm version](https://img.shields.io/npm/v/@thesage/ui.svg?style=flat-square)](https://www.npmjs.com/package/@thesage/ui)
+[![npm version](https://img.shields.io/npm/v/@opencosmos/ui.svg?style=flat-square)](https://www.npmjs.com/package/@opencosmos/ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue.svg)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
 
 ## Overview
 
-The Sage Design Engine is a production-ready design system that proves human-centered design through architecture, not just claims. With 100 carefully crafted components organized by functional purpose, three distinct themes with runtime switching, and a motion system that respects user accessibility needs, it's built for teams that prioritize developer experience, user agency, and code quality.
+The OpenCosmos UI is a production-ready design system that proves human-centered design through architecture, not just claims. With 100 carefully crafted components organized by functional purpose, three distinct themes with runtime switching, and a motion system that respects user accessibility needs, it's built for teams that prioritize developer experience, user agency, and code quality.
 
 **What's included:**
 
@@ -29,9 +29,9 @@ The Sage Design Engine is a production-ready design system that proves human-cen
 ### Installation
 
 ```bash
-npm install @thesage/ui
+npm install @opencosmos/ui
 # or
-pnpm add @thesage/ui
+pnpm add @opencosmos/ui
 ```
 
 ### Basic Setup
@@ -39,9 +39,9 @@ pnpm add @thesage/ui
 Wrap your app root with the required providers:
 
 ```tsx
-import { ThemeProvider, TooltipProvider } from '@thesage/ui/providers'
-import { Toaster } from '@thesage/ui'
-import '@thesage/ui/globals.css'
+import { ThemeProvider, TooltipProvider } from '@opencosmos/ui/providers'
+import { Toaster } from '@opencosmos/ui'
+import '@opencosmos/ui/globals.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -58,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ### Your First Component
 
 ```tsx
-import { Button, Card, CardContent, CardHeader, CardTitle } from '@thesage/ui'
+import { Button, Card, CardContent, CardHeader, CardTitle } from '@opencosmos/ui'
 
 export function MyComponent() {
   return (
@@ -80,24 +80,24 @@ export function MyComponent() {
 
 | Package | Description |
 |---------|-------------|
-| [`@thesage/ui`](https://www.npmjs.com/package/@thesage/ui) | 100 components, providers, hooks, theme system |
-| [`@thesage/tokens`](https://www.npmjs.com/package/@thesage/tokens) | Design tokens (colors, typography, spacing, motion) |
-| [`@thesage/mcp`](https://www.npmjs.com/package/@thesage/mcp) | MCP server for AI-assisted component discovery |
+| [`@opencosmos/ui`](https://www.npmjs.com/package/@opencosmos/ui) | 100 components, providers, hooks, theme system |
+| [`@opencosmos/tokens`](https://www.npmjs.com/package/@opencosmos/tokens) | Design tokens (colors, typography, spacing, motion) |
+| [`@opencosmos/mcp`](https://www.npmjs.com/package/@opencosmos/mcp) | MCP server for AI-assisted component discovery |
 
 ### Subpath Exports
 
 Include only what you need:
 
 ```tsx
-import { Form, FormField, FormItem } from '@thesage/ui/forms'
-import { DatePicker, Calendar } from '@thesage/ui/dates'
-import { DataTable } from '@thesage/ui/tables'
-import { DragDrop } from '@thesage/ui/dnd'
-import { WarpBackground, OrbBackground } from '@thesage/ui/webgl'
-import { useMotionPreference, useTheme } from '@thesage/ui/hooks'
-import { ThemeProvider } from '@thesage/ui/providers'
-import { cn } from '@thesage/ui/utils'
-import { spacing } from '@thesage/ui/tokens'
+import { Form, FormField, FormItem } from '@opencosmos/ui/forms'
+import { DatePicker, Calendar } from '@opencosmos/ui/dates'
+import { DataTable } from '@opencosmos/ui/tables'
+import { DragDrop } from '@opencosmos/ui/dnd'
+import { WarpBackground, OrbBackground } from '@opencosmos/ui/webgl'
+import { useMotionPreference, useTheme } from '@opencosmos/ui/hooks'
+import { ThemeProvider } from '@opencosmos/ui/providers'
+import { cn } from '@opencosmos/ui/utils'
+import { spacing } from '@opencosmos/ui/tokens'
 ```
 
 ---
@@ -115,7 +115,7 @@ Three distinct themes, switchable at runtime via CSS variables (no recompilation
 All themes support light and dark modes with WCAG AA contrast ratios.
 
 ```tsx
-import { useTheme } from '@thesage/ui/hooks'
+import { useTheme } from '@opencosmos/ui/hooks'
 
 function ThemeSwitcher() {
   const { theme, setTheme, mode, setMode } = useTheme()
@@ -136,7 +136,7 @@ function ThemeSwitcher() {
 Every animation respects user preferences automatically:
 
 ```tsx
-import { useMotionPreference } from '@thesage/ui/hooks'
+import { useMotionPreference } from '@opencosmos/ui/hooks'
 import { motion } from 'framer-motion'
 
 function AnimatedCard() {
@@ -164,23 +164,23 @@ function AnimatedCard() {
 Need to deeply customize a component? Eject it into your project:
 
 ```bash
-npx @thesage/ui eject Button
-npx @thesage/ui eject Dialog --dir components/sage
-npx @thesage/ui eject --list
+npx @opencosmos/ui eject Button
+npx @opencosmos/ui eject Dialog --dir components/sage
+npx @opencosmos/ui eject --list
 ```
 
 The CLI copies component source with imports automatically rewritten. Ejected components still work with Sage themes and CSS variables.
 
 Also available via:
-- **Web UI** — Eject button on every component page at [thesage.dev](https://thesage.dev)
+- **Web UI** — Eject button on every component page at [opencosmos.ai/studio](https://opencosmos.ai/studio)
 - **MCP** — `eject_component` tool returns transformed source for AI assistants
 - **API** — `GET /api/eject/{component}` returns JSON with source and dependencies
 
 ---
 
-## Sage Studio
+## OpenCosmos Studio
 
-Interactive documentation at [thesage.dev](https://thesage.dev):
+Interactive documentation at [opencosmos.ai/studio](https://opencosmos.ai/studio):
 
 - Component explorer with live prop controls
 - Token gallery across all themes
@@ -202,7 +202,7 @@ Interactive documentation at [thesage.dev](https://thesage.dev):
 
 ```bash
 git clone <repo-url>
-cd sage-design-engine
+cd opencosmos-ui
 pnpm install
 ```
 
@@ -211,8 +211,8 @@ pnpm install
 ```bash
 pnpm dev                          # Start dev server (Studio)
 pnpm build                        # Build all packages and apps
-pnpm build --filter @thesage/ui   # Build specific package
-pnpm --filter @thesage/ui test    # Run tests (156 tests, 30 files)
+pnpm build --filter @opencosmos/ui   # Build specific package
+pnpm --filter @opencosmos/ui test    # Run tests (156 tests, 30 files)
 pnpm lint                         # Lint all
 pnpm typecheck                    # TypeScript checks
 ```
@@ -228,17 +228,17 @@ pnpm release                      # Build and publish to NPM
 ### File Structure
 
 ```
-sage-design-engine/
+opencosmos-ui/
 ├── packages/
-│   ├── ui/                    # @thesage/ui — Component library
+│   ├── ui/                    # @opencosmos/ui — Component library
 │   │   ├── src/components/    # 100 components by functional category
 │   │   ├── src/hooks/         # useTheme, useMotionPreference
 │   │   ├── src/providers/     # ThemeProvider, TooltipProvider
 │   │   └── src/lib/           # Utilities, stores
-│   ├── tokens/                # @thesage/tokens — Design tokens
-│   └── mcp/                   # @thesage/mcp — MCP server
+│   ├── tokens/                # @opencosmos/tokens — Design tokens
+│   └── mcp/                   # @opencosmos/mcp — MCP server
 ├── apps/
-│   └── web/                   # Sage Studio (thesage.dev)
+│   └── web/                   # OpenCosmos Studio (opencosmos.ai/studio)
 ├── docs/                      # Documentation
 ├── DESIGN-PHILOSOPHY.md       # The North Star
 └── turbo.json                 # Turborepo task orchestration

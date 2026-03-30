@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading, Text, Card, Badge } from '@thesage/ui';
+import { Heading, Text, Card, Badge } from '@opencosmos/ui';
 import { ArrowRight, Webhook, FormInput, Palette, Bell, Zap, Clipboard } from 'lucide-react';
 
 interface HooksOverviewProps {

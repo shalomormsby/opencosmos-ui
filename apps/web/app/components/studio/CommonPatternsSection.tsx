@@ -1,7 +1,7 @@
 'use client';
 
-import { Card } from '@thesage/ui';
-import { Code, CollapsibleCodeBlock, Breadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
+import { Card } from '@opencosmos/ui';
+import { Code, CollapsibleCodeBlock, Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { CheckCircle, XCircle } from 'lucide-react';
 
 interface CommonPatternsSectionProps {
@@ -55,7 +55,7 @@ export function CommonPatternsSection({ breadcrumbs }: CommonPatternsSectionProp
           </h3>
           <CollapsibleCodeBlock
             id="pattern-code-correct"
-            code={`import { CollapsibleCodeBlock } from '@thesage/ui';
+            code={`import { CollapsibleCodeBlock } from '@opencosmos/ui';
 
 // [Recommended]: Automatic syntax highlighting
 <CollapsibleCodeBlock
@@ -75,7 +75,7 @@ console.log(greeting);\`}
           </h3>
           <CollapsibleCodeBlock
             id="pattern-code-wrong"
-            code={`import { Code } from '@thesage/ui';
+            code={`import { Code } from '@opencosmos/ui';
 
 // [Avoid]: Single-color text, no syntax highlighting
 <Code inline={false}>{\`const greeting = "Hello World";
@@ -162,7 +162,7 @@ console.log(greeting);\`}</Code>`}
           <h3 className="font-semibold mb-3 text-[var(--color-text-primary)]">
             Components that adapt to the current theme
           </h3>
-          <CollapsibleCodeBlock id="pattern-2" code={`import { useTheme } from '@thesage/ui';
+          <CollapsibleCodeBlock id="pattern-2" code={`import { useTheme } from '@opencosmos/ui';
 
 export function ThemedCard() {
   const { theme } = useTheme();
@@ -194,7 +194,7 @@ export function ThemedCard() {
             Using useMotionPreference hook with Framer Motion
           </h3>
           <CollapsibleCodeBlock id="pattern-3" code={`import { motion } from 'framer-motion';
-import { useMotionPreference } from '@thesage/ui';
+import { useMotionPreference } from '@opencosmos/ui';
 
 export function AnimatedCard() {
   const { shouldAnimate, scale } = useMotionPreference();
@@ -266,7 +266,7 @@ export function AnimatedCard() {
           <h3 className="font-semibold mb-3 text-[var(--color-text-primary)]">
             Building a SearchBar from Input and Button components
           </h3>
-          <CollapsibleCodeBlock id="pattern-5" code={`import { Input, Button } from '@thesage/ui';
+          <CollapsibleCodeBlock id="pattern-5" code={`import { Input, Button } from '@opencosmos/ui';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -307,7 +307,7 @@ export function SearchBar({ placeholder, onSearch }: SearchBarProps) {
           <h3 className="font-semibold mb-3 text-[var(--color-text-primary)]">
             Using the useForm hook for form validation
           </h3>
-          <CollapsibleCodeBlock id="pattern-6" code={`import { useForm, TextField, Button } from '@thesage/ui';
+          <CollapsibleCodeBlock id="pattern-6" code={`import { useForm, TextField, Button } from '@opencosmos/ui';
 
 export function LoginForm() {
   const { values, errors, handleChange, handleSubmit } = useForm({
@@ -359,7 +359,7 @@ export function LoginForm() {
           <h3 className="font-semibold mb-3 text-[var(--color-text-primary)]">
             Using the useToast hook for notifications
           </h3>
-          <CollapsibleCodeBlock id="pattern-7" code={`import { useToast, Button, ToastProvider } from '@thesage/ui';
+          <CollapsibleCodeBlock id="pattern-7" code={`import { useToast, Button, ToastProvider } from '@opencosmos/ui';
 
 function MyComponent() {
   const { toast } = useToast();
@@ -401,7 +401,7 @@ export function App() {
             Using the Modal component with state management
           </h3>
           <CollapsibleCodeBlock id="pattern-8" code={`import { useState } from 'react';
-import { Modal, Button } from '@thesage/ui';
+import { Modal, Button } from '@opencosmos/ui';
 
 export function ConfirmDialog() {
   const [isOpen, setIsOpen] = useState(false);

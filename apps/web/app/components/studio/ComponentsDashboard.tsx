@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Heading, Text, Badge, Card, Breadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
-import { COMPONENT_REGISTRY, COMPONENT_COUNTS } from '@thesage/ui';
+import { Heading, Text, Badge, Card, Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
+import { COMPONENT_REGISTRY, COMPONENT_COUNTS } from '@opencosmos/ui';
 import { Package, ChevronDown, ArrowRight, MousePointerClick, FormInput, Compass, Layers, MessageSquare, BarChart3, Layout } from 'lucide-react';
 
 interface ComponentsDashboardProps {

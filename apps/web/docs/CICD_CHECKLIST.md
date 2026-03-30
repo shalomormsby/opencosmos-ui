@@ -1,8 +1,8 @@
 ---
-description: Comprehensive CI/CD Checklist for Sage Design Engine Release
+description: Comprehensive CI/CD Checklist for OpenCosmos UI Release
 ---
 
-# Sage Design Engine CI/CD Release Checklist
+# OpenCosmos UI CI/CD Release Checklist
 
 This workflow tracks the full release process from code changes to npm publication.
 
@@ -28,10 +28,10 @@ This workflow tracks the full release process from code changes to npm publicati
 
 ## 4. Deployment & Release (System Action)
 - [ ] **Release Workflow Runs:** Triggered by the merge of the Version PR.
-- [ ] **Vercel Deployment:** The `apps/web` (Sage Studio) acts as the canary.
-    - [ ] Verify production deployment on `thesage.dev`.
+- [ ] **Vercel Deployment:** The `apps/web` (OpenCosmos Studio) acts as the canary.
+    - [ ] Verify production deployment on `opencosmos.ai/studio`.
 - [ ] **NPM Publish:** The workflow runs `pnpm release` (via `changeset publish`).
-    - [ ] Verify `@thesage/ui` is published to npm.
+    - [ ] Verify `@opencosmos/ui` is published to npm.
     - [ ] Verify other packages are published if updated.
 
 ## 5. Verification

@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Motion } from '@thesage/ui';
+import { Card, Motion } from '@opencosmos/ui';
 import { useRouter } from 'next/navigation';
 const { SplashCursor } = Motion;
 

@@ -1,6 +1,6 @@
-# Sage Design Engine — AI Development Context
+# OpenCosmos UI — AI Development Context
 
-> Source of truth for `@thesage/ui`, `@thesage/tokens`, `@thesage/mcp`, and the Sage Studio documentation site. Read [DESIGN-PHILOSOPHY.md](../DESIGN-PHILOSOPHY.md) before writing any code — it's the North Star.
+> Source of truth for `@opencosmos/ui`, `@opencosmos/tokens`, `@opencosmos/mcp`, and the OpenCosmos Studio documentation site. Read [DESIGN-PHILOSOPHY.md](../DESIGN-PHILOSOPHY.md) before writing any code — it's the North Star.
 
 Last updated: 2026-03-07
 
@@ -8,25 +8,25 @@ Last updated: 2026-03-07
 
 ## What This Repo Is
 
-Sage Design Engine (SDE) is a monorepo that produces three npm packages and one web application. Consumer apps (portfolio, creative-powerup, sage-stocks) live in a [separate ecosystem repo](https://github.com/shalomormsby/ecosystem) and install `@thesage/ui` from npm.
+OpenCosmos UI (SDE) is a monorepo that produces three npm packages and one web application. Consumer apps (portfolio, creative-powerup, sage-stocks) live in a [separate ecosystem repo](https://github.com/shalomormsby/ecosystem) and install `@opencosmos/ui` from npm.
 
 **You are working on the design system itself — the packages and docs site, not the consumer apps.**
 
 ```
-sage-design-engine/
+opencosmos-ui/
 ├── packages/
-│   ├── ui/                  # @thesage/ui v1.3.1 — 100 React components
+│   ├── ui/                  # @opencosmos/ui v1.3.1 — 100 React components
 │   │   ├── src/components/  #   11 functional categories
 │   │   ├── src/hooks/       #   useTheme, useMotionPreference, etc.
 │   │   ├── src/lib/         #   cn(), validators, animations
 │   │   ├── src/providers/   #   ThemeProvider, TooltipProvider
-│   │   └── src/cli.ts       #   Eject CLI (npx @thesage/ui eject)
-│   ├── tokens/              # @thesage/tokens v1.0.1 — Design tokens
+│   │   └── src/cli.ts       #   Eject CLI (npx @opencosmos/ui eject)
+│   ├── tokens/              # @opencosmos/tokens v1.0.1 — Design tokens
 │   │   └── src/             #   Colors, typography, spacing, motion, syntax
-│   └── mcp/                 # @thesage/mcp v0.8.3 — MCP server (8 tools)
+│   └── mcp/                 # @opencosmos/mcp v0.8.3 — MCP server (8 tools)
 │       └── src/             #   Registry, tool handlers, eject engine
 ├── apps/
-│   └── web/                 # Sage Studio — thesage.dev
+│   └── web/                 # OpenCosmos Studio — opencosmos.ai/studio
 │       ├── app/docs/        #   Route config (source of truth for all routes)
 │       ├── app/components/  #   Studio UI (playground, registry, navigation)
 │       └── public/          #   llms.txt, llms-full.txt, ai-plugin.json
@@ -66,15 +66,15 @@ Four principles from [DESIGN-PHILOSOPHY.md](../DESIGN-PHILOSOPHY.md):
 ### Package Dependency Chain
 
 ```
-@thesage/tokens (no deps)
+@opencosmos/tokens (no deps)
        ↓
-@thesage/ui (imports tokens, Radix, Zustand, Tailwind)
+@opencosmos/ui (imports tokens, Radix, Zustand, Tailwind)
        ↓
-@thesage/mcp (reads ui source + registry)
+@opencosmos/mcp (reads ui source + registry)
        ↓
 apps/web (workspace:* to all packages)
        ↓ npm publish
-ecosystem apps (install @thesage/ui from npm)
+ecosystem apps (install @opencosmos/ui from npm)
 ```
 
 ### Three Themes
@@ -97,16 +97,16 @@ Runtime switching via CSS variables. ThemeProvider + Zustand + localStorage. Eac
 ### Subpath Exports (10)
 
 ```
-@thesage/ui           # Core: 100 components
-@thesage/ui/hooks     # useTheme, useMotionPreference, etc.
-@thesage/ui/providers # ThemeProvider, TooltipProvider
-@thesage/ui/utils     # cn(), validators
-@thesage/ui/tokens    # Re-exports from @thesage/tokens
-@thesage/ui/forms     # react-hook-form + zod integration
-@thesage/ui/dates     # date-fns + react-day-picker
-@thesage/ui/tables    # @tanstack/react-table
-@thesage/ui/dnd       # @dnd-kit
-@thesage/ui/webgl     # WebGL effects
+@opencosmos/ui           # Core: 100 components
+@opencosmos/ui/hooks     # useTheme, useMotionPreference, etc.
+@opencosmos/ui/providers # ThemeProvider, TooltipProvider
+@opencosmos/ui/utils     # cn(), validators
+@opencosmos/ui/tokens    # Re-exports from @opencosmos/tokens
+@opencosmos/ui/forms     # react-hook-form + zod integration
+@opencosmos/ui/dates     # date-fns + react-day-picker
+@opencosmos/ui/tables    # @tanstack/react-table
+@opencosmos/ui/dnd       # @dnd-kit
+@opencosmos/ui/webgl     # WebGL effects
 ```
 
 Heavy features (`forms`, `dates`, `tables`, `dnd`) require optional peer dependencies.
@@ -159,11 +159,11 @@ export * from './components/[category]/ComponentName';
 
 **1.4** Install dependencies if needed:
 ```bash
-pnpm add [package] --filter @thesage/ui
+pnpm add [package] --filter @opencosmos/ui
 ```
 Heavy/optional deps → `peerDependencies` with `peerDependenciesMeta.optional: true`.
 
-**1.5** Build: `pnpm build --filter @thesage/ui`
+**1.5** Build: `pnpm build --filter @opencosmos/ui`
 
 ### Phase 2: Register in Docs Routing
 
@@ -253,7 +253,7 @@ grep -rn "\bOLD_COUNT\b" apps/web/public/ apps/web/app/layout.tsx apps/web/app/d
 ### Phase 4: Verify
 
 ```bash
-pnpm build --filter @thesage/ui    # Library builds
+pnpm build --filter @opencosmos/ui    # Library builds
 pnpm build --filter web            # App builds, new page in output
 ```
 
@@ -296,7 +296,7 @@ pnpm release                       # Build + publish
 
 **Not in api.json** → Check `packages/mcp/src/registry.ts` — api.json auto-generates from this.
 
-**TypeScript errors in Studio** → Rebuild: `pnpm build --filter @thesage/ui`
+**TypeScript errors in Studio** → Rebuild: `pnpm build --filter @opencosmos/ui`
 
 **npm publish fails** → `npm whoami` (logged in?), verify `@thesage` org access, check version is unique.
 
@@ -306,23 +306,23 @@ pnpm release                       # Build + publish
 
 Three paths for users to eject component source:
 
-1. **CLI:** `npx @thesage/ui eject Button [--dir path]`
-2. **Web UI:** Eject button on each component page at thesage.dev
+1. **CLI:** `npx @opencosmos/ui eject Button [--dir path]`
+2. **Web UI:** Eject button on each component page at opencosmos.ai/studio
 3. **MCP:** `eject_component` tool returns transformed source
 
 Import transform rules (in `packages/ui/src/cli.ts`):
 - `../../lib/utils` → `./utils` (auto-scaffolded cn utility)
-- `../../hooks/*` → `@thesage/ui/hooks`
-- `../../lib/*` → `@thesage/ui/utils`
-- `../[category]/*` → `@thesage/ui`
+- `../../hooks/*` → `@opencosmos/ui/hooks`
+- `../../lib/*` → `@opencosmos/ui/utils`
+- `../[category]/*` → `@opencosmos/ui`
 
 Ejected components retain full theme compatibility via CSS variables.
 
 ---
 
-## Sage Studio (`apps/web`)
+## OpenCosmos Studio (`apps/web`)
 
-Interactive documentation at [thesage.dev](https://thesage.dev/).
+Interactive documentation at [opencosmos.ai/studio](https://opencosmos.ai/studio/).
 
 ### Key Files
 
@@ -347,13 +347,13 @@ Routes follow `/docs/[section]/[item]` pattern. `generateStaticParams` reads fro
 ### Commands
 
 ```bash
-pnpm dev --filter web              # Sage Studio at localhost:3001
+pnpm dev --filter web              # OpenCosmos Studio at localhost:3001
 pnpm build                         # Build all (Turborepo-ordered)
-pnpm build --filter @thesage/ui    # Library only
-pnpm --filter @thesage/ui test     # 156 tests (Vitest)
-pnpm --filter @thesage/ui lint     # ESLint
-pnpm --filter @thesage/ui typecheck # TypeScript strict
-pnpm --filter @thesage/ui size:check # Bundle size limits
+pnpm build --filter @opencosmos/ui    # Library only
+pnpm --filter @opencosmos/ui test     # 156 tests (Vitest)
+pnpm --filter @opencosmos/ui lint     # ESLint
+pnpm --filter @opencosmos/ui typecheck # TypeScript strict
+pnpm --filter @opencosmos/ui size:check # Bundle size limits
 ```
 
 ### Publishing
@@ -417,7 +417,7 @@ rm -rf .turbo packages/ui/dist apps/web/.next && pnpm build
 
 - Check `useMotionPreference()` before animating — intensity 0 must work perfectly
 - Use CSS variables for colors — `bg-background`, `text-foreground`, `var(--color-primary)`
-- Use existing `@thesage/ui` components before writing custom JSX
+- Use existing `@opencosmos/ui` components before writing custom JSX
 - Use named exports, never default exports
 - Follow the component registration workflow completely (all 6 surfaces — see "Adding a Component" above)
 - Update CHANGELOG.md for significant changes
@@ -452,7 +452,7 @@ Every component must:
 
 **Assuming component props** — Read the component source to verify available props. Don't hallucinate `className` support or other props.
 
-**Stale types after pulling** — Run `pnpm build --filter @thesage/ui` to regenerate `.d.ts` declarations.
+**Stale types after pulling** — Run `pnpm build --filter @opencosmos/ui` to regenerate `.d.ts` declarations.
 
 **Tailwind not processing** — Verify `content` paths in Tailwind config match actual file structure.
 

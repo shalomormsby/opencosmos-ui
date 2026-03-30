@@ -1,7 +1,7 @@
 {
   "name": "web",
   "version": "0.1.14",
-  "description": "The official documentation and studio for Sage Design Engine.",
+  "description": "The official documentation and studio for OpenCosmos UI.",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
@@ -15,9 +15,9 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@hookform/resolvers": "^3.10.0",
     "@tanstack/react-table": "^8.21.3",
-    "@thesage/mcp": "workspace:*",
-    "@thesage/tokens": "workspace:*",
-    "@thesage/ui": "workspace:*",
+    "@opencosmos/mcp": "workspace:*",
+    "@opencosmos/tokens": "workspace:*",
+    "@opencosmos/ui": "workspace:*",
     "@vercel/analytics": "^1.6.1",
     "@vercel/edge-config": "^1.4.3",
     "class-variance-authority": "^0.7.1",

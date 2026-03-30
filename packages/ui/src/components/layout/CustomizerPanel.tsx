@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import { SlidersHorizontal, Sun, Moon, SunMoon, Building2, Leaf, Zap, Rocket, X, Palette } from 'lucide-react';
-import { studioTokens, terraTokens, voltTokens, speedboatTokens, PUBLIC_THEME_NAMES } from '@thesage/tokens';
-import type { ThemeName } from '@thesage/tokens';
+import { studioTokens, terraTokens, voltTokens, speedboatTokens, PUBLIC_THEME_NAMES } from '@opencosmos/tokens';
+import type { ThemeName } from '@opencosmos/tokens';
 import { useCustomizer } from '../../lib/store/customizer';
 import { useThemeStore } from '../../lib/store/theme';
 import { ColorPicker } from '../forms/ColorPicker';

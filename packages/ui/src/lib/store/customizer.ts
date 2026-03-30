@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { computeDerivedTokens, type FontTheme } from '@thesage/tokens';
+import { computeDerivedTokens, type FontTheme } from '@opencosmos/tokens';
 import {
   generateColorScale,
   getOptimalForeground,

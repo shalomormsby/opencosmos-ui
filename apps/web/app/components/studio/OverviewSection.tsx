@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, Button, Heading, Text, Badge } from '@thesage/ui';
-import { Code, CollapsibleCodeBlock } from '@thesage/ui';
-import { COMPONENT_COUNTS, COMPONENT_REGISTRY, MARKETING_COPY, BRAND } from '@thesage/ui';
-import { useTheme } from '@thesage/ui/hooks';
+import { Card, Button, Heading, Text, Badge } from '@opencosmos/ui';
+import { Code, CollapsibleCodeBlock } from '@opencosmos/ui';
+import { COMPONENT_COUNTS, COMPONENT_REGISTRY, MARKETING_COPY, BRAND } from '@opencosmos/ui';
+import { useTheme } from '@opencosmos/ui/hooks';
 import {
   Sliders, Building2, Leaf, Zap, Sun, Moon, Laptop, Palette, Bot, BookOpen,
   Construction, XCircle, CheckCircle, Heart, Search, Sprout, Check, Package,
@@ -195,7 +195,7 @@ export function OverviewSection() {
             <p className="text-xs text-[var(--color-text-muted)]">
               → Read{' '}
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/AGENTS.md"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/AGENTS.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--color-primary)] hover:underline"
@@ -371,7 +371,7 @@ export function OverviewSection() {
                 Component-First Architecture
               </h3>
               <p className="text-sm text-[var(--color-text-secondary)] mb-4">
-                Sage Design Engine encapsulates design tokens inside components rather than exposing them as CSS classes. This approach is the foundation of the entire system and provides several key advantages:
+                OpenCosmos UI encapsulates design tokens inside components rather than exposing them as CSS classes. This approach is the foundation of the entire system and provides several key advantages:
               </p>
 
               {/* Benefits List */}
@@ -415,7 +415,7 @@ export function OverviewSection() {
               <p className="text-xs text-[var(--color-text-muted)] mt-3">
                 → See{' '}
                 <a
-                  href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
+                  href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[var(--color-primary)] hover:underline"
@@ -501,7 +501,7 @@ export function OverviewSection() {
               <p className="text-xs text-[var(--color-text-secondary)]">
                 Design tokens as importable JavaScript objects. Comprehensive prop tables and examples for every component. AI collaboration history documented in{' '}
                 <a
-                  href="https://github.com/shalomormsby/sage-design-engine/blob/main/AGENTS.md"
+                  href="https://github.com/shalomormsby/opencosmos-ui/blob/main/AGENTS.md"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[var(--color-primary)] hover:underline"
@@ -540,7 +540,7 @@ export function OverviewSection() {
 
         <div className="mt-6 text-center">
           <a
-            href="https://github.com/shalomormsby/sage-design-engine/blob/main/DESIGN-PHILOSOPHY.md"
+            href="https://github.com/shalomormsby/opencosmos-ui/blob/main/DESIGN-PHILOSOPHY.md"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[var(--color-primary)] hover:underline text-sm font-medium"
@@ -585,7 +585,7 @@ export function OverviewSection() {
               <div>
                 <CollapsibleCodeBlock
                   id="syntax-parser-demo"
-                  code={`import { parseCode } from '@thesage/ui';
+                  code={`import { parseCode } from '@opencosmos/ui';
 
 const code = \`function hello() {
   return "world";
@@ -628,7 +628,7 @@ const tokens = parseCode(code, 'typescript');
               <div>
                 <CollapsibleCodeBlock
                   id="motion-control-demo"
-                  code={`import { useMotionPreference } from '@thesage/ui';
+                  code={`import { useMotionPreference } from '@opencosmos/ui';
 
 export function MotionAwareComponent() {
   const { scale, shouldAnimate } = useMotionPreference();
@@ -709,7 +709,7 @@ export function MotionAwareComponent() {
 
               <CollapsibleCodeBlock
                 id="theme-switching-demo"
-                code={`import { useTheme } from '@thesage/ui';
+                code={`import { useTheme } from '@opencosmos/ui';
 
 export function ThemeSwitcher() {
   const { theme, setTheme, mode, setMode } = useTheme();
@@ -798,7 +798,7 @@ export function ThemeSwitcher() {
                 2. Browse Components →
               </a>
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/tree/main/packages/ui"
+                href="https://github.com/shalomormsby/opencosmos-ui/tree/main/packages/ui"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -818,7 +818,7 @@ export function ThemeSwitcher() {
             </p>
             <div className="space-y-2 text-sm">
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -829,7 +829,7 @@ export function ThemeSwitcher() {
                 2. Explore Tokens →
               </a>
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/DESIGN-PHILOSOPHY.md"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/DESIGN-PHILOSOPHY.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -849,7 +849,7 @@ export function ThemeSwitcher() {
             </p>
             <div className="space-y-2 text-sm">
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md#architecture"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md#architecture"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -857,7 +857,7 @@ export function ThemeSwitcher() {
                 1. Architecture Guide →
               </a>
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md#development-workflow"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md#development-workflow"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -865,7 +865,7 @@ export function ThemeSwitcher() {
                 2. Component Workflow →
               </a>
               <a
-                href="https://github.com/shalomormsby/sage-design-engine"
+                href="https://github.com/shalomormsby/opencosmos-ui"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -885,7 +885,7 @@ export function ThemeSwitcher() {
             </p>
             <div className="space-y-2 text-sm">
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/AGENTS.md"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/AGENTS.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -893,7 +893,7 @@ export function ThemeSwitcher() {
                 1. AGENTS.md →
               </a>
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -929,14 +929,14 @@ export function ThemeSwitcher() {
           </div>
           <CollapsibleCodeBlock
             id="tokens-example"
-            code={`import { colorTokens, spacingTokens } from '@thesage/ui/tokens';
+            code={`import { colorTokens, spacingTokens } from '@opencosmos/ui/tokens';
 
 // Tokens are available for reference
 const primaryColor = colorTokens.studio.light.primary;
 const spacing = spacingTokens.lg; // "1.5rem" (24px)
 
 // But consumed through components:
-import { Button, Text } from '@thesage/ui';
+import { Button, Text } from '@opencosmos/ui';
 <Button variant="default">Click me</Button>  // ✅ Correct
 <Text>Hello</Text>                           // ✅ Correct
 
@@ -999,7 +999,7 @@ import { Button, Text } from '@thesage/ui';
             id="file-structure"
             code={`ecosystem/
 ├── packages/
-│   ├── ui/                      # @thesage/ui - Component library
+│   ├── ui/                      # @opencosmos/ui - Component library
 │   │   └── src/
 │   │       ├── components/
 │   │       │   ├── actions/     # Button, Toggle, ToggleGroup
@@ -1012,7 +1012,7 @@ import { Button, Text } from '@thesage/ui';
 │   │       ├── lib/             # Utilities, validation, animations, stores
 │   │       ├── hooks/           # useTheme, useMotionPreference, useForm
 │   │       └── providers/       # ThemeProvider
-│   └── tokens/                  # @thesage/tokens - Design system tokens
+│   └── tokens/                  # @opencosmos/tokens - Design system tokens
 │
 └── apps/
     ├── web/      # This documentation site
@@ -1048,7 +1048,7 @@ import { Button, Text } from '@thesage/ui';
             </div>
             <div>
               <h4 className="font-semibold text-[var(--color-text-primary)] mb-2">Compatible Frameworks</h4>
-              <p className="mb-2">Sage Design Engine works with:</p>
+              <p className="mb-2">OpenCosmos UI works with:</p>
               <ul className="list-disc list-inside space-y-1 ml-2">
                 <li>Next.js 15+ (App Router or Pages Router)</li>
                 <li>Vite 5+</li>
@@ -1076,15 +1076,15 @@ import { Button, Text } from '@thesage/ui';
                   Install dependencies
                 </h3>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
-                  Sage Design Engine requires React and Framer Motion as peer dependencies:
+                  OpenCosmos UI requires React and Framer Motion as peer dependencies:
                 </p>
                 <CollapsibleCodeBlock
                   id="installation"
-                  code={`pnpm add react framer-motion @thesage/ui
+                  code={`pnpm add react framer-motion @opencosmos/ui
 # or
-npm install react framer-motion @thesage/ui
+npm install react framer-motion @opencosmos/ui
 # or
-yarn add react framer-motion @thesage/ui`}
+yarn add react framer-motion @opencosmos/ui`}
                   defaultCollapsed={false}
                   showCopy={true}
                 />
@@ -1103,7 +1103,7 @@ yarn add react framer-motion @thesage/ui`}
                   Configure Tailwind CSS
                 </h3>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
-                  Add Sage Design Engine to your Tailwind content paths:
+                  Add OpenCosmos UI to your Tailwind content paths:
                 </p>
                 <CollapsibleCodeBlock
                   id="tailwind-config"
@@ -1115,7 +1115,7 @@ export default {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/@thesage/ui/**/*.{js,ts,jsx,tsx}', // Add this line
+    './node_modules/@opencosmos/ui/**/*.{js,ts,jsx,tsx}', // Add this line
   ],
   // ... rest of your config
 } satisfies Config;`}
@@ -1123,7 +1123,7 @@ export default {
                   showCopy={true}
                 />
                 <p className="text-xs text-[var(--color-text-muted)] mt-3">
-                  <strong>Note:</strong> Sage Design Engine uses CSS custom properties for theming. No additional Tailwind configuration required—themes are injected at runtime by the ThemeProvider.
+                  <strong>Note:</strong> OpenCosmos UI uses CSS custom properties for theming. No additional Tailwind configuration required—themes are injected at runtime by the ThemeProvider.
                 </p>
               </div>
             </div>
@@ -1141,7 +1141,7 @@ export default {
                 </h3>
                 <CollapsibleCodeBlock
                   id="basic-usage-example"
-                  code={`import { Button, Card, Badge } from '@thesage/ui';
+                  code={`import { Button, Card, Badge } from '@opencosmos/ui';
 
 export function MyComponent() {
   return (
@@ -1173,7 +1173,7 @@ export function MyComponent() {
                 </h3>
                 <CollapsibleCodeBlock
                   id="theme-provider-example"
-                  code={`import { ThemeProvider } from '@thesage/ui/providers';
+                  code={`import { ThemeProvider } from '@opencosmos/ui/providers';
 
 export default function App({ children }) {
   return (
@@ -1240,7 +1240,7 @@ export default function App({ children }) {
                       </p>
                       <CollapsibleCodeBlock
                         id="programmatic-theme-control"
-                        code={`import { useTheme } from '@thesage/ui/hooks';
+                        code={`import { useTheme } from '@opencosmos/ui/hooks';
 import { useEffect } from 'react';
 
 export function MyApp() {
@@ -1287,7 +1287,7 @@ export function MyApp() {
                 </h3>
                 <CollapsibleCodeBlock
                   id="hooks-example"
-                  code={`import { useTheme, useMotionPreference } from '@thesage/ui/hooks';
+                  code={`import { useTheme, useMotionPreference } from '@opencosmos/ui/hooks';
 
 export function Controls() {
   const { theme, setTheme, mode, setMode } = useTheme();
@@ -1312,7 +1312,7 @@ export function Controls() {
                   </h4>
 
                   <p className="text-sm text-[var(--color-text-secondary)]">
-                    Sage Design Engine uses a <strong>0-10 motion scale</strong> that gives users fine-grained control over animation intensity. This respects accessibility needs while allowing users who enjoy motion to customize their experience.
+                    OpenCosmos UI uses a <strong>0-10 motion scale</strong> that gives users fine-grained control over animation intensity. This respects accessibility needs while allowing users who enjoy motion to customize their experience.
                   </p>
 
                   <div className="p-3 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
@@ -1421,7 +1421,7 @@ export function Controls() {
                       </p>
                       <CollapsibleCodeBlock
                         id="customizer-motion-control"
-                        code={`import { CustomizerPanel } from '@thesage/ui';
+                        code={`import { CustomizerPanel } from '@opencosmos/ui';
 
 export function App() {
   return (
@@ -1446,7 +1446,7 @@ export function App() {
                       </p>
                       <CollapsibleCodeBlock
                         id="programmatic-motion-control"
-                        code={`import { useMotionPreference } from '@thesage/ui/hooks';
+                        code={`import { useMotionPreference } from '@opencosmos/ui/hooks';
 
 export function MotionControls() {
   const { scale, setMotionPreference } = useMotionPreference();
@@ -1495,7 +1495,7 @@ export function MotionControls() {
             Next Steps
           </h3>
           <p className="text-center text-[var(--color-text-secondary)] mb-8 max-w-2xl mx-auto">
-            You're all set up! Here's how to continue building with Sage Design Engine:
+            You're all set up! Here's how to continue building with OpenCosmos UI:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1546,7 +1546,7 @@ export function MotionControls() {
                   </p>
                   <CollapsibleCodeBlock
                     id="next-steps-customizer"
-                    code={`import { CustomizerPanel } from '@thesage/ui';
+                    code={`import { CustomizerPanel } from '@opencosmos/ui';
 
 export function App() {
   return (
@@ -1582,7 +1582,7 @@ export function App() {
                     <li>• Theming Deep Dive</li>
                   </ul>
                   <a
-                    href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
+                    href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block mt-2 text-xs text-[var(--color-primary)] hover:underline"
@@ -1608,7 +1608,7 @@ export function App() {
                   </p>
                   <CollapsibleCodeBlock
                     id="next-steps-build-example"
-                    code={`import { Button, Card, Badge } from '@thesage/ui';
+                    code={`import { Button, Card, Badge } from '@opencosmos/ui';
 
 export function Dashboard() {
   return (
@@ -1640,7 +1640,7 @@ export function Dashboard() {
                 📖 Full Documentation
               </a>
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/issues"
+                href="https://github.com/shalomormsby/opencosmos-ui/issues"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--color-primary)] hover:underline"
@@ -1648,7 +1648,7 @@ export function Dashboard() {
                 🐛 Report Issues
               </a>
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/discussions"
+                href="https://github.com/shalomormsby/opencosmos-ui/discussions"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[var(--color-primary)] hover:underline"
@@ -1710,7 +1710,7 @@ export function Dashboard() {
             </p>
             <div className="space-y-2 text-sm">
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -1734,7 +1734,7 @@ export function Dashboard() {
             </p>
             <div className="space-y-2 text-sm">
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md#development-workflow"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md#development-workflow"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -1742,7 +1742,7 @@ export function Dashboard() {
                 → Component Workflow
               </a>
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md#architecture"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md#architecture"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -1750,7 +1750,7 @@ export function Dashboard() {
                 → Architecture Guide
               </a>
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/CLI_COMMANDS.md"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/CLI_COMMANDS.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-[var(--color-primary)] hover:underline"
@@ -1783,12 +1783,12 @@ export function Dashboard() {
                   <strong>Common Causes:</strong>
                 </p>
                 <ul className="text-xs text-[var(--color-text-secondary)] list-disc list-inside space-y-1 ml-2 mb-2">
-                  <li>Tailwind CSS not configured to include Sage Design Engine paths</li>
+                  <li>Tailwind CSS not configured to include OpenCosmos UI paths</li>
                   <li>ThemeProvider not wrapping your app</li>
                   <li>CSS not loaded in your bundler</li>
                 </ul>
                 <p className="text-xs text-[var(--color-text-secondary)]">
-                  <strong>Solutions:</strong> Add <Code className="text-xs">./node_modules/@thesage/ui/**/*.{`{js,ts,jsx,tsx}`}</Code> to Tailwind content, wrap app with <Code className="text-xs">{`<ThemeProvider>`}</Code>, and ensure Tailwind CSS is imported in your root file.
+                  <strong>Solutions:</strong> Add <Code className="text-xs">./node_modules/@opencosmos/ui/**/*.{`{js,ts,jsx,tsx}`}</Code> to Tailwind content, wrap app with <Code className="text-xs">{`<ThemeProvider>`}</Code>, and ensure Tailwind CSS is imported in your root file.
                 </p>
               </div>
 
@@ -1814,7 +1814,7 @@ export function Dashboard() {
                   TypeScript Errors on Import
                 </h4>
                 <p className="text-xs text-[var(--color-text-secondary)] mb-2">
-                  <strong>Symptoms:</strong> <Code className="text-xs">Cannot find module '@thesage/ui' or its corresponding type declarations</Code>
+                  <strong>Symptoms:</strong> <Code className="text-xs">Cannot find module '@opencosmos/ui' or its corresponding type declarations</Code>
                 </p>
                 <p className="text-xs text-[var(--color-text-secondary)] mb-2">
                   <strong>Common Causes:</strong>
@@ -1825,7 +1825,7 @@ export function Dashboard() {
                   <li>Wrong import path</li>
                 </ul>
                 <p className="text-xs text-[var(--color-text-secondary)]">
-                  <strong>Solutions:</strong> Run <Code className="text-xs">pnpm install @thesage/ui</Code>, if using monorepo run <Code className="text-xs">pnpm build --filter @thesage/ui</Code>, and verify import uses <Code className="text-xs">{`import { Button } from '@thesage/ui'`}</Code> not <Code className="text-xs">'@thesage/ui/Button'</Code>.
+                  <strong>Solutions:</strong> Run <Code className="text-xs">pnpm install @opencosmos/ui</Code>, if using monorepo run <Code className="text-xs">pnpm build --filter @opencosmos/ui</Code>, and verify import uses <Code className="text-xs">{`import { Button } from '@opencosmos/ui'`}</Code> not <Code className="text-xs">'@opencosmos/ui/Button'</Code>.
                 </p>
               </div>
 
@@ -1835,7 +1835,7 @@ export function Dashboard() {
                   Peer Dependency Warnings
                 </h4>
                 <p className="text-xs text-[var(--color-text-secondary)] mb-2">
-                  <strong>Symptoms:</strong> <Code className="text-xs">npm WARN @thesage/ui requires a peer of react@* but none is installed</Code>
+                  <strong>Symptoms:</strong> <Code className="text-xs">npm WARN @opencosmos/ui requires a peer of react@* but none is installed</Code>
                 </p>
                 <p className="text-xs text-[var(--color-text-secondary)] mb-2">
                   <strong>Cause:</strong> Missing required peer dependencies.
@@ -1852,7 +1852,7 @@ export function Dashboard() {
                 </p>
                 <div className="space-y-1">
                   <a
-                    href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
+                    href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/docs/SAGE_DESIGN_SYSTEM_STRATEGY.md"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-xs text-[var(--color-primary)] hover:underline"
@@ -1860,7 +1860,7 @@ export function Dashboard() {
                     📖 Check the Usage Guide
                   </a>
                   <a
-                    href="https://github.com/shalomormsby/sage-design-engine/issues"
+                    href="https://github.com/shalomormsby/opencosmos-ui/issues"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-xs text-[var(--color-primary)] hover:underline"
@@ -1868,7 +1868,7 @@ export function Dashboard() {
                     🐛 Report a bug
                   </a>
                   <a
-                    href="https://github.com/shalomormsby/sage-design-engine/discussions"
+                    href="https://github.com/shalomormsby/opencosmos-ui/discussions"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block text-xs text-[var(--color-primary)] hover:underline"
@@ -1890,10 +1890,10 @@ export function Dashboard() {
                 Working on the Studio itself?
               </h3>
               <p className="text-sm text-[var(--color-text-secondary)] mb-3">
-                If you're developing or modifying Sage Studio (this documentation site), start here:
+                If you're developing or modifying OpenCosmos Studio (this documentation site), start here:
               </p>
               <a
-                href="https://github.com/shalomormsby/sage-design-engine/blob/main/apps/web/README.md"
+                href="https://github.com/shalomormsby/opencosmos-ui/blob/main/apps/web/README.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-[var(--color-primary)] hover:underline font-medium"
@@ -1916,7 +1916,7 @@ export function Dashboard() {
           </p>
           <div className="flex items-center justify-center gap-4">
             <a
-              href="https://github.com/shalomormsby/sage-design-engine"
+              href="https://github.com/shalomormsby/opencosmos-ui"
               target="_blank"
               rel="noopener noreferrer"
             >

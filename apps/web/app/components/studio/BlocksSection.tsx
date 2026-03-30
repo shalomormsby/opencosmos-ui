@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, Button } from '@thesage/ui';
-import { Header, SecondaryNav, TertiaryNav, Footer, Modal, ToastProvider, useToast, CollapsibleCodeBlock, Code, CustomizerPanel, Breadcrumbs, PageLayout, type BreadcrumbItemLegacy } from '@thesage/ui';
+import { Card, Button } from '@opencosmos/ui';
+import { Header, SecondaryNav, TertiaryNav, Footer, Modal, ToastProvider, useToast, CollapsibleCodeBlock, Code, CustomizerPanel, Breadcrumbs, PageLayout, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { SlidersHorizontal, Sun, Moon, SunMoon, Building2, Leaf, Zap, X } from 'lucide-react';
-import type { SyntaxToken } from '@thesage/ui';
+import type { SyntaxToken } from '@opencosmos/ui';
 import { BlocksOverview } from './BlocksOverview';
 import { HeroBlockPage } from './pages/blocks/HeroBlockPage';
 import { OpenGraphCardPage } from './pages/blocks/OpenGraphCardPage';
@@ -204,7 +204,7 @@ export function BlocksSection({ activeItemId, breadcrumbs, onItemChange }: Block
                 Usage Example
               </h4>
               <Card className="p-6 bg-[var(--color-surface)]">
-                <CollapsibleCodeBlock id="org-pagelayout-usage" code={`import { PageLayout, Header, Breadcrumbs } from '@thesage/ui';
+                <CollapsibleCodeBlock id="org-pagelayout-usage" code={`import { PageLayout, Header, Breadcrumbs } from '@opencosmos/ui';
 
 <PageLayout
   header={<Header logo="Sage" navLinks={links} />}
@@ -427,7 +427,7 @@ export function BlocksSection({ activeItemId, breadcrumbs, onItemChange }: Block
                 Code Example
               </h4>
               <Card className="p-6 bg-[var(--color-surface)]">
-                <CollapsibleCodeBlock id="secondary-nav-usage" code={`import { SecondaryNav } from '@thesage/ui';
+                <CollapsibleCodeBlock id="secondary-nav-usage" code={`import { SecondaryNav } from '@opencosmos/ui';
 import { useState } from 'react';
 
 function MyPage() {
@@ -589,7 +589,7 @@ function MyPage() {
                 Code Example
               </h4>
               <Card className="p-6 bg-[var(--color-surface)]">
-                <CollapsibleCodeBlock id="tertiary-nav-usage" code={`import { TertiaryNav } from '@thesage/ui';
+                <CollapsibleCodeBlock id="tertiary-nav-usage" code={`import { TertiaryNav } from '@opencosmos/ui';
 import { useState } from 'react';
 
 function ComponentSelector() {
@@ -1353,7 +1353,7 @@ export function Button({ variant, onClick }: ButtonProps) {
               <Card className="p-6 bg-[var(--color-surface)]">
                 <CollapsibleCodeBlock
                   id="org-collapsible-usage"
-                  code={`import { CollapsibleCodeBlock, parseCode } from '@thesage/ui';
+                  code={`import { CollapsibleCodeBlock, parseCode } from '@opencosmos/ui';
 
 // [New]: Automatic syntax highlighting - just pass a string!
 <CollapsibleCodeBlock
@@ -1372,7 +1372,7 @@ const tokens = parseCode('const example = 42;');
 />
 
 // Manual tokenization (for custom control)
-import type { SyntaxToken } from '@thesage/ui';
+import type { SyntaxToken } from '@opencosmos/ui';
 
 const customTokens: SyntaxToken[] = [
   { text: 'const', type: 'keyword' },

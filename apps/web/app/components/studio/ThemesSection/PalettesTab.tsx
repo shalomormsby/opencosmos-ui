@@ -29,12 +29,12 @@ import {
   ColorPicker,
   DragDropList,
   DragDropHandle,
-} from '@thesage/ui';
+} from '@opencosmos/ui';
 import { rectSortingStrategy } from '@dnd-kit/sortable';
-import { useTheme } from '@thesage/ui';
-import { useCustomizer } from '@thesage/ui';
-import { SecondaryNav, type SecondaryNavItem } from '@thesage/ui';
-import { colorPalettes, type PaletteCategory } from '@thesage/tokens';
+import { useTheme } from '@opencosmos/ui';
+import { useCustomizer } from '@opencosmos/ui';
+import { SecondaryNav, type SecondaryNavItem } from '@opencosmos/ui';
+import { colorPalettes, type PaletteCategory } from '@opencosmos/tokens';
 import {
   Check, MoreVertical, Edit, Trash2, Plus,
   Briefcase, Palette, Leaf, Zap, Minimize,

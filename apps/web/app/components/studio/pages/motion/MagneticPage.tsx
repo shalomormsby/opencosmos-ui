@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Magnetic, Card, Slider, Label, CollapsibleCodeBlock, Button } from '@thesage/ui';
+import { Magnetic, Card, Slider, Label, CollapsibleCodeBlock, Button } from '@opencosmos/ui';
 import { RefreshCcw, Mail, ArrowRight } from 'lucide-react';
 
 export function MagneticPage() {
@@ -107,7 +107,7 @@ export function MagneticPage() {
                 <CollapsibleCodeBlock
                     id="magnetic-playground"
                     title="Code"
-                    code={`import { Magnetic, Button } from '@thesage/ui';
+                    code={`import { Magnetic, Button } from '@opencosmos/ui';
 
 /* Text/Button Magnetism */
 <Magnetic strength={${strength}}>

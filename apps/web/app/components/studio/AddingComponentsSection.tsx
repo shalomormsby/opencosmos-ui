@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Code, CollapsibleCodeBlock, Breadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
+import { Card, Code, CollapsibleCodeBlock, Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { CheckCircle, XCircle, AlertOctagon, AlertTriangle } from 'lucide-react';
 
 interface AddingComponentsSectionProps {
@@ -115,7 +115,7 @@ export * from './components/[category]/ComponentName';`} defaultCollapsed={false
                     <p className="text-sm text-[var(--color-text-secondary)] mb-2">
                       You MUST rebuild the package for the Studio app to see the new component. The Studio consumes the <i>built</i> version of the library, not the raw source.
                     </p>
-                    <CollapsibleCodeBlock id="meth-3" code="pnpm --filter @thesage/ui build" defaultCollapsed={false} showCopy={true} />
+                    <CollapsibleCodeBlock id="meth-3" code="pnpm --filter @opencosmos/ui build" defaultCollapsed={false} showCopy={true} />
                   </div>
                 </li>
 
@@ -233,7 +233,7 @@ export { ComponentName } from './components/ComponentName';`} defaultCollapsed={
                   <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[var(--color-primary)] text-[var(--color-primary-foreground)] flex items-center justify-center text-sm font-semibold">5</span>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-semibold mb-2 text-[var(--color-text-primary)]">Build the package</h3>
-                    <CollapsibleCodeBlock id="add-comp-5" code="pnpm --filter @thesage/ui build" defaultCollapsed={false} showCopy={true} />
+                    <CollapsibleCodeBlock id="add-comp-5" code="pnpm --filter @opencosmos/ui build" defaultCollapsed={false} showCopy={true} />
                   </div>
                 </li>
 
@@ -275,7 +275,7 @@ export { ComponentName } from './components/ComponentName';`} defaultCollapsed={
                 <p className="text-sm text-[var(--color-text-primary)] mb-2">
                   <strong>Quick tip:</strong> When adding a component, choose its category based on its primary purpose
                 </p>
-                <CollapsibleCodeBlock id="add-comp-7" code={`import { Input, Button } from '@thesage/ui';
+                <CollapsibleCodeBlock id="add-comp-7" code={`import { Input, Button } from '@opencosmos/ui';
 
 export function SearchBar() {
   return (
@@ -342,7 +342,7 @@ export function SearchBar() {
                   <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[var(--color-primary)] text-[var(--color-primary-foreground)] flex items-center justify-center text-sm font-semibold">5</span>
                   <div className="flex-1">
                     <h3 className="font-semibold mb-2 text-[var(--color-text-primary)]">Rebuild package</h3>
-                    <CollapsibleCodeBlock id="add-comp-8" code="pnpm --filter @thesage/ui build" defaultCollapsed={false} showCopy={true} />
+                    <CollapsibleCodeBlock id="add-comp-8" code="pnpm --filter @opencosmos/ui build" defaultCollapsed={false} showCopy={true} />
                   </div>
                 </li>
               </ol>
@@ -410,7 +410,7 @@ export const colors: ColorTokens = {
                   <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[var(--color-primary)] text-[var(--color-primary-foreground)] flex items-center justify-center text-sm font-semibold">5</span>
                   <div className="flex-1">
                     <h3 className="font-semibold mb-2 text-[var(--color-text-primary)]">Rebuild package</h3>
-                    <CollapsibleCodeBlock id="add-comp-12" code="pnpm --filter @thesage/tokens build" defaultCollapsed={false} showCopy={true} />
+                    <CollapsibleCodeBlock id="add-comp-12" code="pnpm --filter @opencosmos/tokens build" defaultCollapsed={false} showCopy={true} />
                   </div>
                 </li>
               </ol>
@@ -453,13 +453,13 @@ export const colors: ColorTokens = {
                   <CollapsibleCodeBlock
                     id="eject-cli-basic"
                     code={`# Eject a single component
-npx @thesage/ui eject Button
+npx @opencosmos/ui eject Button
 
 # Eject to a custom directory
-npx @thesage/ui eject Dialog --dir components/sage
+npx @opencosmos/ui eject Dialog --dir components/sage
 
 # List all available components
-npx @thesage/ui eject --list`}
+npx @opencosmos/ui eject --list`}
                     defaultCollapsed={false}
                     showCopy={true}
                   />
@@ -486,7 +486,7 @@ npx @thesage/ui eject --list`}
                     AI Assistant (MCP)
                   </h4>
                   <p className="text-sm text-[var(--color-text-secondary)] mb-3">
-                    If you have the <Code syntax="plain">@thesage/mcp</Code> server configured, ask your AI assistant to eject a component. It will return the full transformed source code ready to save.
+                    If you have the <Code syntax="plain">@opencosmos/mcp</Code> server configured, ask your AI assistant to eject a component. It will return the full transformed source code ready to save.
                   </p>
                   <CollapsibleCodeBlock
                     id="eject-mcp-prompt"
@@ -519,8 +519,8 @@ import { Button } from '../actions/Button'
 
 // After (ejected):
 import { cn } from './utils'
-import { useMotionPreference } from '@thesage/ui/hooks'
-import { Button } from '@thesage/ui'`}
+import { useMotionPreference } from '@opencosmos/ui/hooks'
+import { Button } from '@opencosmos/ui'`}
                     defaultCollapsed={false}
                     showCopy={false}
                   />
@@ -543,7 +543,7 @@ import { Button } from '@thesage/ui'`}
                 <div className="bg-[var(--color-surface)] p-4 rounded-md border border-[var(--color-border)]">
                   <p className="text-sm font-semibold text-[var(--color-text-primary)] mb-1">Dependencies</p>
                   <p className="text-xs text-[var(--color-text-secondary)]">
-                    External dependencies (Radix UI primitives, lucide-react, etc.) are listed after ejecting. Install them with the provided <Code syntax="plain">pnpm add</Code> command. You still need <Code syntax="plain">@thesage/ui</Code> installed for hooks, utilities, and any non-ejected sibling components.
+                    External dependencies (Radix UI primitives, lucide-react, etc.) are listed after ejecting. Install them with the provided <Code syntax="plain">pnpm add</Code> command. You still need <Code syntax="plain">@opencosmos/ui</Code> installed for hooks, utilities, and any non-ejected sibling components.
                   </p>
                 </div>
               </div>
@@ -554,7 +554,7 @@ import { Button } from '@thesage/ui'`}
               <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4">Example: Ejecting the Button</h3>
               <CollapsibleCodeBlock
                 id="eject-example"
-                code={`$ npx @thesage/ui eject Button
+                code={`$ npx @opencosmos/ui eject Button
 
   Ejected Button successfully!
 
@@ -567,7 +567,7 @@ import { Button } from '@thesage/ui'`}
   Update your imports:
   import { Button } from './src/components/ui/Button'
 
-  The ejected component still works with @thesage/ui themes and CSS variables.
+  The ejected component still works with @opencosmos/ui themes and CSS variables.
   You now own it — modify freely.`}
                 defaultCollapsed={false}
                 showCopy={false}
@@ -669,7 +669,7 @@ const { track } = sizes[safeSize]; // Safe access guaranteed`}
                         id="troubleshoot-phantom"
                         code={`// package.json in the app
 "devDependencies": {
-  // Tailwind config is bundled within @thesage/ui
+  // Tailwind config is bundled within @opencosmos/ui
 }`}
                         defaultCollapsed={true}
                         showCopy={true}
@@ -807,7 +807,7 @@ ELIFECYCLE Command failed with exit code 1.`}
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-[var(--color-primary)] font-bold">3.</span>
-                      <span>Builds <Code syntax="plain">@thesage/ui</Code> first (runs tsup to generate dist files)</span>
+                      <span>Builds <Code syntax="plain">@opencosmos/ui</Code> first (runs tsup to generate dist files)</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-[var(--color-primary)] font-bold">4.</span>
@@ -849,7 +849,7 @@ ELIFECYCLE Command failed with exit code 1.`}
                   <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Problem</h4>
                   <ul className="list-disc list-inside text-sm text-[var(--color-text-secondary)] space-y-1">
                     <li>Build fails immediately on Vercel but works locally.</li>
-                    <li>Error: <Code syntax="plain">Module not found: Can't resolve '@thesage/tokens'</Code> (or similar workspace package).</li>
+                    <li>Error: <Code syntax="plain">Module not found: Can't resolve '@opencosmos/tokens'</Code> (or similar workspace package).</li>
                   </ul>
                 </div>
 
@@ -917,7 +917,7 @@ ELIFECYCLE Command failed with exit code 1.`}
                         <li>Component source: <Code syntax="plain">packages/ui/src/components/[category]/Component.tsx</Code></li>
                         <li>Built to: <Code syntax="plain">packages/ui/dist/index.mjs</Code> (via tsup)</li>
                         <li>Exported by: <Code syntax="plain">packages/ui/package.json</Code> exports field</li>
-                        <li>Imported by: <Code syntax="plain">component-registry.tsx</Code> from '@thesage/ui'</li>
+                        <li>Imported by: <Code syntax="plain">component-registry.tsx</Code> from '@opencosmos/ui'</li>
                         <li>Rendered in: Studio app examples</li>
                       </ol>
                     </div>
@@ -937,7 +937,7 @@ ELIFECYCLE Command failed with exit code 1.`}
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[var(--color-primary)] font-bold">3.</span>
-                        <span>Verify examples import correctly: Check component-registry.tsx imports from '@thesage/ui'</span>
+                        <span>Verify examples import correctly: Check component-registry.tsx imports from '@opencosmos/ui'</span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[var(--color-primary)] font-bold">4.</span>
@@ -986,7 +986,7 @@ ELIFECYCLE Command failed with exit code 1.`}
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[var(--color-primary)] font-bold">3.</span>
-                        <span>Build locally to verify: <Code syntax="plain">pnpm build --filter=@thesage/ui</Code></span>
+                        <span>Build locally to verify: <Code syntax="plain">pnpm build --filter=@opencosmos/ui</Code></span>
                       </li>
                       <li className="flex items-start gap-2">
                         <span className="text-[var(--color-primary)] font-bold">4.</span>

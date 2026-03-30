@@ -1,4 +1,4 @@
-# Sage Design Engine Documentation Audit
+# OpenCosmos UI Documentation Audit
 
 **📍 THIS IS THE ONLY AUDIT DOCUMENT - All others archived**
 
@@ -15,9 +15,9 @@
 **Phase 0: Critical Blockers** - ✅ **100% COMPLETE**
 
 **Phase 0.1: Packages Published to npm** - ✅ **COMPLETE**
-- Published `@thesage/ui`, `@thesage/mcp` and entire ecosystem to npm
+- Published `@opencosmos/ui`, `@opencosmos/mcp` and entire ecosystem to npm
 - Renamed `apps/sage-design-studio` to `apps/web`
-- Renamed all docs references to "Sage Studio"
+- Renamed all docs references to "OpenCosmos Studio"
 - Fixed Vercel deployment for `apps/web`
 - Updated all installation docs to use `@thesage` scope
 - **Decision Made:** Use `@thesage` org for immediate availability and consistency
@@ -72,7 +72,7 @@ Successfully completed 4 out of 5 Phase 2 issues (Issue #8 was already 90% compl
 **Issue #8: Tailwind Configuration Guide** - ✅ **ALREADY COMPLETE** (Phase 0.3)
 - Prerequisites section with system requirements ✅
 - Step 2: Configure Tailwind CSS with complete example ✅
-- Content paths documented: `./node_modules/@thesage/ui/**/*.{js,ts,jsx,tsx}` ✅
+- Content paths documented: `./node_modules/@opencosmos/ui/**/*.{js,ts,jsx,tsx}` ✅
 - CSS variables automatic injection documented ✅
 - Note about runtime ThemeProvider injection ✅
 - No additional work needed for Phase 2
@@ -240,7 +240,7 @@ Successfully completed all 4 Phase 3 polish issues.
 
 ### Verification
 
-- ✅ MCP server builds successfully: `pnpm build --filter @thesage/mcp`
+- ✅ MCP server builds successfully: `pnpm build --filter @opencosmos/mcp`
 - ✅ Component count verified: **92 components**
 - ✅ All category counts accurate
 - ✅ Specialty categories added and documented
@@ -277,12 +277,12 @@ Update these pages IMMEDIATELY after code changes:
 
 **Getting Started Pages:**
 - Location: `apps/web/app/components/studio/OverviewSection.tsx`
-- URL: https://thesage.dev/docs#overview
+- URL: https://opencosmos.ai/studio/docs#overview
 - Contains: Installation, Quick Start, Basic Usage, ThemeProvider setup
 
 **MCP Server Pages:**
 - Location: `apps/web/app/components/studio/McpSection/`
-- URL: https://thesage.dev/docs#mcp-server
+- URL: https://opencosmos.ai/studio/docs#mcp-server
 - Contains: Installation, Configuration, Tools, Usage, Troubleshooting
 
 ### 2. Project Documentation (.md files)
@@ -345,7 +345,7 @@ The Overview page (`apps/web/app/components/studio/OverviewSection.tsx`) contain
 
 **When to Update Components Dashboard:**
 
-The Components Dashboard (`apps/web/app/components/studio/ComponentsDashboard.tsx`) automatically pulls from `COMPONENT_REGISTRY` in `@thesage/ui`. It does NOT need manual updates when adding components.
+The Components Dashboard (`apps/web/app/components/studio/ComponentsDashboard.tsx`) automatically pulls from `COMPONENT_REGISTRY` in `@opencosmos/ui`. It does NOT need manual updates when adding components.
 
 **Automatic Updates:**
 - ✅ Component counts update automatically from `COMPONENT_COUNTS.total`
@@ -355,7 +355,7 @@ The Components Dashboard (`apps/web/app/components/studio/ComponentsDashboard.ts
 **When Manual Updates ARE Needed:**
 - ❌ Adding a new functional category (e.g., "media" for audio/video components)
   - Must add icon to `CATEGORY_ICONS` object
-  - Must update `component-registry.ts` in `@thesage/ui`
+  - Must update `component-registry.ts` in `@opencosmos/ui`
   - Must add to navigation tree in `apps/web/app/lib/navigation-tree.tsx`
   - Must add to ComponentsSection category list
 
@@ -365,7 +365,7 @@ The Components Dashboard (`apps/web/app/components/studio/ComponentsDashboard.ts
    - Add component name to appropriate category's `examples` array
    - Increment category `count`
    - Increment `totalCount`
-3. Build `@thesage/ui`: `pnpm build --filter @thesage/ui`
+3. Build `@opencosmos/ui`: `pnpm build --filter @opencosmos/ui`
 4. Dashboard updates automatically on next deploy
 
 **Verification Checklist:**
@@ -402,7 +402,7 @@ Category overview pages are rendered by `CategoryOverview` component, which pull
 
 ### Key Metrics
 
-- **Can Install:** ✅ YES - `npm install @thesage/ui` works
+- **Can Install:** ✅ YES - `npm install @opencosmos/ui` works
 - **Can Configure:** ✅ YES - Prerequisites, peer deps, and Tailwind config documented
 - **Can Get Help:** ✅ YES - Comprehensive troubleshooting section with 4 common issues
 - **Accurate Counts:** ✅ YES - 92 components consistently documented
@@ -422,7 +422,7 @@ Category overview pages are rendered by `CategoryOverview` component, which pull
 ### ✅ Phase 0.1: Packages Not Published to NPM - COMPLETE
 
 **Status:** 🟢 **RESOLVED** (January 26, 2026)
-**Solution:** Published to npm as `@thesage/ui`, `@thesage/mcp`, and ecosystem packages
+**Solution:** Published to npm as `@opencosmos/ui`, `@opencosmos/mcp`, and ecosystem packages
 
 **Completed Actions:**
 - [x] Created `@shalomormsby` organization on npm
@@ -436,16 +436,16 @@ Category overview pages are rendered by `CategoryOverview` component, which pull
 
 **Files Modified:**
 - `packages/ui/package.json` → `@shalomormsby/ui@0.0.5`
-- `packages/sds-mcp-server/package.json` → `@thesage/mcp@0.1.0`
+- `packages/sds-mcp-server/package.json` → `@opencosmos/mcp@0.1.0`
 - `apps/web/app/components/studio/OverviewSection.tsx`
 - `apps/web/app/components/studio/McpSection/InstallationTab.tsx`
 - `packages/sds-mcp-server/README.md`
 
 **Verification:**
 ```bash
-npm view @thesage/ui  # Should show package info
-npm view @thesage/mcp  # Should show package info
-npm install @thesage/ui  # Should work!
+npm view @opencosmos/ui  # Should show package info
+npm view @opencosmos/mcp  # Should show package info
+npm install @opencosmos/ui  # Should work!
 ```
 
 **Impact:** Users can now install packages via npm. Installation instructions work.
@@ -473,7 +473,7 @@ Documentation claims "48 components across 7 categories" everywhere.
 - Created `packages/ui/src/component-registry.ts` with complete metadata
 - Documents all 89 components with breakdown by category
 - Provides marketing copy and documentation templates
-- Exported from main `@thesage/ui` package
+- Exported from main `@opencosmos/ui` package
 
 **2. Accurate Component Count: 89 Total**
 - **Core 7 Categories (84 components):**
@@ -536,12 +536,12 @@ Getting Started jumps directly to `npm install @shalomormsby/ui` without mention
 
 **2. Updated Step 1: Install Dependencies**
 - Changed from "Install the package" to "Install dependencies"
-- Now explicitly includes peer dependencies: `pnpm add react framer-motion @thesage/ui`
+- Now explicitly includes peer dependencies: `pnpm add react framer-motion @opencosmos/ui`
 - Explains that React and Framer Motion are required
 
 **3. Added Step 2: Configure Tailwind CSS**
 - Complete `tailwind.config.ts` example showing content paths
-- Shows how to add `@thesage/ui` to Tailwind content array
+- Shows how to add `@opencosmos/ui` to Tailwind content array
 - Notes that themes use CSS variables (no additional Tailwind config needed)
 
 **4. Renumbered Remaining Steps**
@@ -578,7 +578,7 @@ Getting Started jumps directly to `npm install @shalomormsby/ui` without mention
 **Status:** 🟢 **COMPLETE** - Implemented 2026-01-26
 
 **The Problem:**
-Sage Studio documentation doesn't surface the component registry data anywhere. Users can't see:
+OpenCosmos Studio documentation doesn't surface the component registry data anywhere. Users can't see:
 - Total component count at a glance
 - Breakdown by category
 - Quick navigation to each category
@@ -596,7 +596,7 @@ Create a "Component Overview" dashboard section in OverviewSection.tsx that impo
 
 **2. Import Component Registry**
 ```typescript
-import { COMPONENT_COUNTS, COMPONENT_REGISTRY, MARKETING_COPY } from '@thesage/ui';
+import { COMPONENT_COUNTS, COMPONENT_REGISTRY, MARKETING_COPY } from '@opencosmos/ui';
 ```
 
 **3. Display Structure**
@@ -649,8 +649,8 @@ import { COMPONENT_COUNTS, COMPONENT_REGISTRY, MARKETING_COPY } from '@thesage/u
 ```
 
 **4. Design Specifications**
-- Use existing Card component from `@thesage/ui`
-- Match Sage Studio's color scheme (CSS variables)
+- Use existing Card component from `@opencosmos/ui`
+- Match OpenCosmos Studio's color scheme (CSS variables)
 - Cards should be clickable links to category sections (use hash navigation: `#actions`, `#forms`, etc.)
 - Hover state: Border changes to primary color
 - Responsive grid: 2 cols mobile, 3 cols tablet, 4 cols desktop
@@ -667,7 +667,7 @@ From `component-registry.ts`:
 - **Layout** (17): Organization
 
 **6. Integration Points**
-- Ensure hash links match existing section IDs in Sage Studio
+- Ensure hash links match existing section IDs in OpenCosmos Studio
 - Category sections already exist: `#actions`, `#forms`, `#navigation`, etc.
 - Verify smooth scroll behavior works
 - Test on mobile, tablet, desktop
@@ -683,7 +683,7 @@ From `component-registry.ts`:
 - [ ] Cards are clickable and navigate to correct category sections
 - [ ] Responsive grid works on all screen sizes
 - [ ] Hover states provide visual feedback
-- [ ] Design matches existing Sage Studio aesthetic
+- [ ] Design matches existing OpenCosmos Studio aesthetic
 - [ ] Specialty component count mentioned below grid
 
 **Rationale:**
@@ -691,7 +691,7 @@ Addresses Nielsen's 1st usability heuristic: "Visibility of system status." User
 
 **Implementation Summary (2026-01-26):**
 - ✅ Added Component Overview Dashboard section to OverviewSection.tsx (line ~223)
-- ✅ Imported COMPONENT_COUNTS, COMPONENT_REGISTRY, MARKETING_COPY from @thesage/ui
+- ✅ Imported COMPONENT_COUNTS, COMPONENT_REGISTRY, MARKETING_COPY from @opencosmos/ui
 - ✅ Used native Sage UI components: Heading, Text, Badge, Card (dog-fooding)
 - ✅ Displays total count (89) with Package icon in 6xl font
 - ✅ Responsive grid: 2 cols mobile, 3 tablet, 4 desktop
@@ -1145,13 +1145,13 @@ Step 5: Control themes and motion
 **Status:** 🟢 **RESOLVED** (January 27, 2026)
 
 **Original Problem:**
-Config showed `npx @thesage/mcp` which didn't exist on npm (404).
+Config showed `npx @opencosmos/mcp` which didn't exist on npm (404).
 
 **Current State:**
-Now shows `npx @thesage/mcp` which IS published.
+Now shows `npx @opencosmos/mcp` which IS published.
 
 **Verification Results:**
-- [x] Test `npx @thesage/mcp` works (Verified via local build and test script)
+- [x] Test `npx @opencosmos/mcp` works (Verified via local build and test script)
 - [x] Test Claude Desktop integration (Verified server standard IO compliance)
 - [x] Test Cursor integration (Verified server standard IO compliance)
 - [x] Verify all 4 MCP tools function (Tested with custom JSON-RPC client script)
@@ -1251,8 +1251,8 @@ See [SAGE-UI-AUDIT.md](./archive/audit-2026-01-26/SAGE-UI-AUDIT.md) lines 893-15
 
 **Implementation:**
 - Created `@thesage` npm organization
-- Published `@thesage/ui`
-- Published `@thesage/mcp`
+- Published `@opencosmos/ui`
+- Published `@opencosmos/mcp`
 - Updated all documentation
 
 ---
@@ -1293,7 +1293,7 @@ See [SAGE-UI-AUDIT.md](./archive/audit-2026-01-26/SAGE-UI-AUDIT.md) lines 893-15
 ## 📊 SUCCESS CRITERIA
 
 **Phase 0 Complete When:**
-- [ ] Installation works: `npm install @thesage/ui` succeeds
+- [ ] Installation works: `npm install @opencosmos/ui` succeeds
 - [ ] Component counts accurate across all docs
 - [ ] Prerequisites fully documented
 - [ ] Zero-context user can follow setup successfully
@@ -1316,8 +1316,8 @@ See [SAGE-UI-AUDIT.md](./archive/audit-2026-01-26/SAGE-UI-AUDIT.md) lines 893-15
 ## 📂 FILES MODIFIED (RUNNING LOG)
 
 ### Published Packages
-- `@thesage/ui` → https://www.npmjs.com/package/@thesage/ui
-- `@thesage/mcp` → https://www.npmjs.com/package/@thesage/mcp
+- `@opencosmos/ui` → https://www.npmjs.com/package/@opencosmos/ui
+- `@opencosmos/mcp` → https://www.npmjs.com/package/@opencosmos/mcp
 
 ### Updated (Phase 0.1)
 - `packages/ui/package.json` - Package name and npm metadata
@@ -1387,7 +1387,7 @@ This is the **single source of truth** for the Sage UI documentation audit and i
   - Updated category counts in COMPONENT_CATEGORIES
   - Updated list_components tool to include all 11 categories
   - MCP server builds successfully
-- ✅ Build verified successful: `pnpm build --filter @thesage/mcp`
+- ✅ Build verified successful: `pnpm build --filter @opencosmos/mcp`
 - 📊 Progress: **100% complete (16/16 issues resolved)**
 
 **What Changed:**
@@ -1405,7 +1405,7 @@ This is the **single source of truth** for the Sage UI documentation audit and i
 ### Summary of Completed Work
 
 **Phase 0: Critical Blockers (3/3)**
-- ✅ Published @thesage/ui and @thesage/mcp to npm
+- ✅ Published @opencosmos/ui and @opencosmos/mcp to npm
 - ✅ Fixed component count discrepancy (now 92 components)
 - ✅ Added prerequisites and peer dependencies documentation
 
@@ -1430,7 +1430,7 @@ This is the **single source of truth** for the Sage UI documentation audit and i
 
 ### Next Steps (Post-Audit)
 
-1. **Publish updated MCP to npm:** `pnpm publish --filter @thesage/mcp`
+1. **Publish updated MCP to npm:** `pnpm publish --filter @opencosmos/mcp`
 2. **Test MCP in Claude Desktop/Cursor** with new component registry
 3. **Consider Phase 4:** Additional enhancements (accessibility audit, testing coverage, etc.)
 

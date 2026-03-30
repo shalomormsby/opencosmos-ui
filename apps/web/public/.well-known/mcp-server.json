@@ -1,14 +1,14 @@
 {
   "servers": [
     {
-      "name": "@thesage/mcp",
+      "name": "@opencosmos/mcp",
       "version": "0.8.0",
-      "description": "Model Context Protocol server for Sage Design Engine — discover, integrate, and eject 100 accessible React components with AI assistants",
-      "source": "https://www.npmjs.com/package/@thesage/mcp",
-      "repository": "https://github.com/shalomormsby/sage-design-engine/tree/main/packages/mcp",
+      "description": "Model Context Protocol server for OpenCosmos UI — discover, integrate, and eject 100 accessible React components with AI assistants",
+      "source": "https://www.npmjs.com/package/@opencosmos/mcp",
+      "repository": "https://github.com/shalomormsby/opencosmos-ui/tree/main/packages/mcp",
       "install": {
         "command": "npx",
-        "args": ["@thesage/mcp"]
+        "args": ["@opencosmos/mcp"]
       },
       "tools": [
         {
@@ -25,7 +25,7 @@
         },
         {
           "name": "install_component",
-          "description": "Get installation instructions and provider setup for @thesage/ui"
+          "description": "Get installation instructions and provider setup for @opencosmos/ui"
         },
         {
           "name": "get_app_shell",

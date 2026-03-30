@@ -20,7 +20,7 @@
  *   "mcpServers": {
  *     "sds": {
  *       "command": "npx",
- *       "args": ["@thesage/mcp"]
+ *       "args": ["@opencosmos/mcp"]
  *     }
  *   }
  * }
@@ -260,7 +260,7 @@ function formatComponentDetails(component: ComponentMetadata): string {
     importParts.push(...component.subComponents);
   }
   output += `## Import\n`;
-  output += `\`\`\`typescript\nimport { ${importParts.join(', ')} } from '@thesage/ui';\n\`\`\`\n\n`;
+  output += `\`\`\`typescript\nimport { ${importParts.join(', ')} } from '@opencosmos/ui';\n\`\`\`\n\n`;
 
   // Props table
   if (component.props && Object.keys(component.props).length > 0) {
@@ -308,8 +308,8 @@ function formatComponentDetails(component: ComponentMetadata): string {
   }
 
   output += `## Documentation\n`;
-  output += `View full documentation at: https://thesage.dev/docs#${component.category}/${component.name.toLowerCase().replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}\n`;
-  output += `\nFull API reference: https://thesage.dev/llms-full.txt\n`;
+  output += `View full documentation at: https://opencosmos.ai/studio/docs#${component.category}/${component.name.toLowerCase().replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}\n`;
+  output += `\nFull API reference: https://opencosmos.ai/studio/llms-full.txt\n`;
 
   return output;
 }
@@ -320,13 +320,13 @@ function formatComponentDetails(component: ComponentMetadata): string {
 function formatInstallationInstructions(component: ComponentMetadata): string {
   let output = `# Install ${component.name}\n\n`;
 
-  output += `## 1. Install @thesage/ui package\n\n`;
+  output += `## 1. Install @opencosmos/ui package\n\n`;
   output += `\`\`\`bash\n`;
-  output += `pnpm add @thesage/ui\n`;
+  output += `pnpm add @opencosmos/ui\n`;
   output += `# or\n`;
-  output += `npm install @thesage/ui\n`;
+  output += `npm install @opencosmos/ui\n`;
   output += `# or\n`;
-  output += `yarn add @thesage/ui\n`;
+  output += `yarn add @opencosmos/ui\n`;
   output += `\`\`\`\n\n`;
 
   if (component.dependencies.length > 0) {
@@ -339,7 +339,7 @@ function formatInstallationInstructions(component: ComponentMetadata): string {
 
   output += `## ${component.dependencies.length > 0 ? '3' : '2'}. Import and use\n\n`;
   output += `\`\`\`typescript\n`;
-  output += `import { ${component.name} } from '@thesage/ui';\n\n`;
+  output += `import { ${component.name} } from '@opencosmos/ui';\n\n`;
   output += `export function MyComponent() {\n`;
   output += `  return (\n`;
   output += `    <${component.name}>\n`;
@@ -350,8 +350,8 @@ function formatInstallationInstructions(component: ComponentMetadata): string {
   output += `\`\`\`\n\n`;
 
   output += `## Additional Resources\n\n`;
-  output += `- **Documentation:** https://thesage.dev/#${component.category}/${component.name.toLowerCase().replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}\n`;
-  output += `- **GitHub:** https://github.com/shalomormsby/sage-design-engine/tree/main/packages/ui/src/components/${component.category}\n`;
+  output += `- **Documentation:** https://opencosmos.ai/studio/#${component.category}/${component.name.toLowerCase().replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}\n`;
+  output += `- **GitHub:** https://github.com/shalomormsby/opencosmos-ui/tree/main/packages/ui/src/components/${component.category}\n`;
 
   return output;
 }
@@ -361,20 +361,20 @@ function formatInstallationInstructions(component: ComponentMetadata): string {
  */
 function generateAppShell(framework: string, theme: string): string {
   if (framework === 'nextjs') {
-    return `# Next.js App Router Setup with Sage Design Engine
+    return `# Next.js App Router Setup with OpenCosmos UI
 
 ## 1. Install dependencies
 
 \`\`\`bash
-pnpm add @thesage/ui
+pnpm add @opencosmos/ui
 pnpm add -D tailwindcss@^3.4 postcss autoprefixer tailwindcss-animate
 \`\`\`
 
 ## 2. app/layout.tsx
 
 \`\`\`tsx
-import { ThemeProvider, TooltipProvider, Toaster } from '@thesage/ui'
-import '@thesage/ui/globals.css'
+import { ThemeProvider, TooltipProvider, Toaster } from '@opencosmos/ui'
+import '@opencosmos/ui/globals.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -400,7 +400,7 @@ module.exports = {
   content: [
     './app/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
-    './node_modules/@thesage/ui/dist/**/*.{js,mjs}',
+    './node_modules/@opencosmos/ui/dist/**/*.{js,mjs}',
   ],
   darkMode: 'class',
   theme: { extend: {} },
@@ -419,7 +419,7 @@ module.exports = {
 ## 5. app/page.tsx (starter)
 
 \`\`\`tsx
-import { Button, Card, Heading, Text } from '@thesage/ui'
+import { Button, Card, Heading, Text } from '@opencosmos/ui'
 
 export default function Home() {
   return (
@@ -436,12 +436,12 @@ export default function Home() {
   }
 
   // Vite (default)
-  return `# Vite + React Setup with Sage Design Engine
+  return `# Vite + React Setup with OpenCosmos UI
 
 ## 1. Install dependencies
 
 \`\`\`bash
-pnpm add @thesage/ui
+pnpm add @opencosmos/ui
 pnpm add -D tailwindcss@^3.4 postcss autoprefixer tailwindcss-animate
 \`\`\`
 
@@ -450,8 +450,8 @@ pnpm add -D tailwindcss@^3.4 postcss autoprefixer tailwindcss-animate
 \`\`\`tsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ThemeProvider, TooltipProvider, Toaster } from '@thesage/ui'
-import '@thesage/ui/globals.css'
+import { ThemeProvider, TooltipProvider, Toaster } from '@opencosmos/ui'
+import '@opencosmos/ui/globals.css'
 import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -474,7 +474,7 @@ export default {
   content: [
     './index.html',
     './src/**/*.{ts,tsx}',
-    './node_modules/@thesage/ui/dist/**/*.{js,mjs}',
+    './node_modules/@opencosmos/ui/dist/**/*.{js,mjs}',
   ],
   darkMode: 'class',
   theme: { extend: {} },
@@ -493,7 +493,7 @@ export default {
 ## 5. src/App.tsx (starter)
 
 \`\`\`tsx
-import { Button, Card, Heading, Text, ThemeToggle, ThemeSwitcher } from '@thesage/ui'
+import { Button, Card, Heading, Text, ThemeToggle, ThemeSwitcher } from '@opencosmos/ui'
 
 export default function App() {
   return (
@@ -527,14 +527,14 @@ function generateAuditChecklist(): string {
 - [ ] ThemeProvider wraps the entire app
 - [ ] TooltipProvider wraps any area using Tooltip components
 - [ ] <Toaster /> is rendered at app root (required for toast notifications)
-- [ ] '@thesage/ui/globals.css' is imported at the top level
+- [ ] '@opencosmos/ui/globals.css' is imported at the top level
 
 ### Styling
 - [ ] No hardcoded colors (no bg-white, text-black, bg-blue-500, text-gray-900)
 - [ ] All colors use CSS variables (bg-background, text-foreground, bg-primary, border-border, etc.)
 - [ ] className merging uses cn() utility, not string concatenation
 - [ ] Dark mode works correctly via ThemeProvider (no manual dark: class management needed)
-- [ ] tailwind.config.js content array includes: './node_modules/@thesage/ui/dist/**/*.{js,mjs}'
+- [ ] tailwind.config.js content array includes: './node_modules/@opencosmos/ui/dist/**/*.{js,mjs}'
 
 ### Accessibility
 - [ ] All interactive elements are keyboard-navigable
@@ -545,13 +545,13 @@ function generateAuditChecklist(): string {
 - [ ] Images have alt text
 
 ### Imports
-- [ ] Components imported from '@thesage/ui' (not relative paths to node_modules)
+- [ ] Components imported from '@opencosmos/ui' (not relative paths to node_modules)
 - [ ] Heavy features use subpath imports:
-  - @thesage/ui/forms (react-hook-form + zod)
-  - @thesage/ui/dates (date-fns + react-day-picker)
-  - @thesage/ui/tables (@tanstack/react-table)
-  - @thesage/ui/dnd (@dnd-kit)
-- [ ] No duplicate imports (same component from both @thesage/ui and a local file)
+  - @opencosmos/ui/forms (react-hook-form + zod)
+  - @opencosmos/ui/dates (date-fns + react-day-picker)
+  - @opencosmos/ui/tables (@tanstack/react-table)
+  - @opencosmos/ui/dnd (@dnd-kit)
+- [ ] No duplicate imports (same component from both @opencosmos/ui and a local file)
 - [ ] Peer dependencies installed for subpath imports that need them
 
 ### Component Usage
@@ -568,13 +568,13 @@ function generateAuditChecklist(): string {
 function transformImports(source: string): string {
   return source
     .replace(/from\s+['"]\.\.\/\.\.\/lib\/utils['"]/g, `from './utils'`)
-    .replace(/from\s+['"]\.\.\/\.\.\/lib\/[^'"]+['"]/g, `from '@thesage/ui/utils'`)
-    .replace(/from\s+['"]\.\.\/\.\.\/hooks\/[^'"]+['"]/g, `from '@thesage/ui/hooks'`)
-    .replace(/from\s+['"]\.\.\/[^.][^'"]*['"]/g, `from '@thesage/ui'`);
+    .replace(/from\s+['"]\.\.\/\.\.\/lib\/[^'"]+['"]/g, `from '@opencosmos/ui/utils'`)
+    .replace(/from\s+['"]\.\.\/\.\.\/hooks\/[^'"]+['"]/g, `from '@opencosmos/ui/hooks'`)
+    .replace(/from\s+['"]\.\.\/[^.][^'"]*['"]/g, `from '@opencosmos/ui'`);
 }
 
 /**
- * Resolve the @thesage/ui source directory.
+ * Resolve the @opencosmos/ui source directory.
  * Tries monorepo path first, then node_modules.
  */
 function resolveUiSourceDir(): string | null {
@@ -586,9 +586,9 @@ function resolveUiSourceDir(): string | null {
   const monorepoPathDist = join(__dirname_, '..', '..', '..', 'ui', 'src');
   if (existsSync(join(monorepoPathDist, 'components'))) return monorepoPathDist;
 
-  // npm: try to find @thesage/ui in node_modules
+  // npm: try to find @opencosmos/ui in node_modules
   try {
-    const resolved = require.resolve('@thesage/ui/package.json');
+    const resolved = require.resolve('@opencosmos/ui/package.json');
     const pkgDir = dirname(resolved);
     const srcDir = join(pkgDir, 'src');
     if (existsSync(join(srcDir, 'components'))) return srcDir;
@@ -604,7 +604,7 @@ function generateEjectSource(component: ComponentMetadata, targetDir: string): s
   const srcDir = resolveUiSourceDir();
 
   if (!srcDir) {
-    return `Error: Could not locate @thesage/ui source files. Ensure the package is installed with source (v1.4.0+) or you are in the monorepo.`;
+    return `Error: Could not locate @opencosmos/ui source files. Ensure the package is installed with source (v1.4.0+) or you are in the monorepo.`;
   }
 
   // Find the component file
@@ -622,7 +622,7 @@ function generateEjectSource(component: ComponentMetadata, targetDir: string): s
   let match;
   while ((match = importRegex.exec(rawSource)) !== null) {
     const pkg = match[1];
-    if (pkg.startsWith('@thesage/') || pkg === 'react') continue;
+    if (pkg.startsWith('@opencosmos/') || pkg === 'react') continue;
     const pkgName = pkg.startsWith('@') ? pkg.split('/').slice(0, 2).join('/') : pkg.split('/')[0];
     deps.add(pkgName);
   }
@@ -646,8 +646,8 @@ function generateEjectSource(component: ComponentMetadata, targetDir: string): s
   }
 
   output += `### Update imports\n\n`;
-  output += `\`\`\`tsx\n// Before:\nimport { ${component.name} } from '@thesage/ui'\n// After:\nimport { ${component.name} } from './${targetDir}/${component.name}'\n\`\`\`\n\n`;
-  output += `The ejected component still works with @thesage/ui themes and CSS variables. You now own it — modify freely.`;
+  output += `\`\`\`tsx\n// Before:\nimport { ${component.name} } from '@opencosmos/ui'\n// After:\nimport { ${component.name} } from './${targetDir}/${component.name}'\n\`\`\`\n\n`;
+  output += `The ejected component still works with @opencosmos/ui themes and CSS variables. You now own it — modify freely.`;
 
   return output;
 }
@@ -878,7 +878,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           importParts.push(...component.subComponents);
         }
         output += `### Import\n\n`;
-        output += `\`\`\`tsx\nimport { ${importParts.join(', ')} } from '@thesage/ui'\n\`\`\`\n\n`;
+        output += `\`\`\`tsx\nimport { ${importParts.join(', ')} } from '@opencosmos/ui'\n\`\`\`\n\n`;
 
         // Add use cases as examples context
         if (component.useCases.length > 0) {
@@ -899,7 +899,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           output += '\n';
         }
 
-        output += `\nFull API reference: https://thesage.dev/llms-full.txt\n`;
+        output += `\nFull API reference: https://opencosmos.ai/studio/llms-full.txt\n`;
 
         return {
           content: [

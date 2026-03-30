@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CollapsibleCodeBlock, Label, Switch, Slider, Backgrounds } from '@thesage/ui';
+import { Card, CollapsibleCodeBlock, Label, Switch, Slider, Backgrounds } from '@opencosmos/ui';
 import { Terminal } from 'lucide-react';
 const { FaultyTerminal } = Backgrounds;
 
-const TERMINAL_CODE = `import { Backgrounds } from '@thesage/ui';
+const TERMINAL_CODE = `import { Backgrounds } from '@opencosmos/ui';
 const { FaultyTerminal } = Backgrounds;
 
 export default function NotFoundPage() {

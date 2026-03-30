@@ -1,10 +1,10 @@
-# Sage Studio
+# OpenCosmos Studio
 
-> **Interactive documentation for the Sage UI.** Makes design tokens, components, and design decisions publicly explorable at [thesage.dev](https://thesage.dev).
+> **Interactive documentation for the Sage UI.** Makes design tokens, components, and design decisions publicly explorable at [opencosmos.ai/studio](https://opencosmos.ai/studio).
 
 ## Purpose & Scope
 
-**This README documents the Sage Studio app** — the Next.js 15 documentation platform itself, including its architecture, development workflow, and how to add components to the playground.
+**This README documents the OpenCosmos Studio app** — the Next.js 15 documentation platform itself, including its architecture, development workflow, and how to add components to the playground.
 
 **For the design system itself** (components, tokens, usage patterns), see:
 - **[SAGE_DESIGN_SYSTEM_STRATEGY.md](./docs/SAGE_DESIGN_SYSTEM_STRATEGY.md)** — Complete design system strategy, architecture, and usage guide
@@ -13,12 +13,12 @@
 
 ## Overview
 
-Sage Studio is the living documentation platform for the **Sage UI** (`@thesage/ui` + `@thesage/tokens`)—a high-performance component library built on **Radix UI** and **Tailwind CSS**. It provides interactive component playgrounds, token visualization, and LLM-optimized documentation.
+OpenCosmos Studio is the living documentation platform for the **Sage UI** (`@opencosmos/ui` + `@opencosmos/tokens`)—a high-performance component library built on **Radix UI** and **Tailwind CSS**. It provides interactive component playgrounds, token visualization, and LLM-optimized documentation.
 
 ## Features
 
-- **Interactive Component Playground**: Explore `@thesage/ui` components with live prop controls.
-- **Token Visualization**: See global design tokens (colors, typography) defined in `@thesage/tokens`.
+- **Interactive Component Playground**: Explore `@opencosmos/ui` components with live prop controls.
+- **Token Visualization**: See global design tokens (colors, typography) defined in `@opencosmos/tokens`.
 - **Theme Switching**: Preview components in Studio, Sage, and Volt themes.
 - **Copy-Paste Workflow**: Integration guides for consuming the library in other Next.js apps.
 - **Accessibility-First**: All components built on accessible Radix primitives.
@@ -43,16 +43,16 @@ The Studio runs on **port 3001** by default.
 ### The "Sage Stack" (Web Edition)
 
 The Studio is a standard **Next.js 15** application that consumes:
-1.  **`@thesage/ui`**: The React component library (exports `Button`, `Input`, etc.).
-2.  **`@thesage/tokens`**: The design token definitions.
-3.  **`@thesage/mcp`**: MCP server for AI-assisted component discovery.
+1.  **`@opencosmos/ui`**: The React component library (exports `Button`, `Input`, etc.).
+2.  **`@opencosmos/tokens`**: The design token definitions.
+3.  **`@opencosmos/mcp`**: MCP server for AI-assisted component discovery.
 
 ### Design System Integration
 
 The Studio imports components directly from the local workspace packages, ensuring that documentation always matches the code:
 
 ```typescript
-import { Button, Input } from '@thesage/ui';
+import { Button, Input } from '@opencosmos/ui';
 // Styles are automatically applied via Tailwind content scanning
 ```
 
@@ -117,7 +117,7 @@ To add a new component to the playground:
       description: 'Simple example showing default usage',
     },
   ],
-  sourceUrl: 'https://github.com/shalomormsby/sage-design-engine/blob/main/packages/ui/src/components/[category]/YourComponent/YourComponent.tsx',
+  sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/[category]/YourComponent/YourComponent.tsx',
   accessibilityNotes: [
     'Uses semantic HTML elements',
     'Keyboard navigable with Tab/Enter',
@@ -132,7 +132,7 @@ To add a new component to the playground:
 
 - **Framework**: Next.js 15 (App Router)
 - **Styling**: Tailwind CSS
-- **Components**: `@thesage/ui` + `@thesage/tokens`
+- **Components**: `@opencosmos/ui` + `@opencosmos/tokens`
 - **State**: React hooks + design system's Zustand stores
 - **Code Highlighting**: Custom syntax parser in CollapsibleCodeBlock component
 

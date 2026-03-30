@@ -1,7 +1,7 @@
 'use client';
 
-import { Card } from '@thesage/ui';
-import { Breadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
+import { Card } from '@opencosmos/ui';
+import { Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { ArrowRight } from 'lucide-react';
 
 interface ContributingSectionProps {
@@ -40,7 +40,7 @@ export function ContributingSection({ breadcrumbs }: ContributingSectionProps) {
             <div>
               <h3 className="font-semibold mb-2 text-[var(--color-text-primary)]">Clone the repository</h3>
               <pre className="bg-[var(--color-surface)] p-4 rounded-md text-sm overflow-x-auto border border-[var(--color-border)]">
-                <code className="text-[var(--color-text-primary)]">git clone https://github.com/shalomormsby/sage-design-engine.git
+                <code className="text-[var(--color-text-primary)]">git clone https://github.com/shalomormsby/opencosmos-ui.git
                   cd ecosystem</code>
               </pre>
             </div>
@@ -59,7 +59,7 @@ export function ContributingSection({ breadcrumbs }: ContributingSectionProps) {
             <div>
               <h3 className="font-semibold mb-2 text-[var(--color-text-primary)]">Verify setup</h3>
               <pre className="bg-[var(--color-surface)] p-4 rounded-md text-sm overflow-x-auto border border-[var(--color-border)]">
-                <code className="text-[var(--color-text-primary)]">pnpm --filter @thesage/ui build
+                <code className="text-[var(--color-text-primary)]">pnpm --filter @opencosmos/ui build
                   pnpm --filter web dev</code>
               </pre>
               <p className="text-sm text-[var(--color-text-muted)] mt-2">
@@ -105,7 +105,7 @@ export function ContributingSection({ breadcrumbs }: ContributingSectionProps) {
               <div className="flex-1">
                 <h3 className="font-semibold mb-2 text-[var(--color-text-primary)]">Test locally in studio app</h3>
                 <pre className="bg-[var(--color-surface)] p-4 rounded-md text-sm overflow-x-auto border border-[var(--color-border)]">
-                  <code className="text-[var(--color-text-primary)]">pnpm --filter @thesage/ui build
+                  <code className="text-[var(--color-text-primary)]">pnpm --filter @opencosmos/ui build
                     pnpm --filter web dev</code>
                 </pre>
                 <p className="text-sm text-[var(--color-text-muted)] mt-2">
@@ -132,7 +132,7 @@ export function ContributingSection({ breadcrumbs }: ContributingSectionProps) {
               <div>
                 <span className="font-medium text-[var(--color-text-primary)]">Build succeeds</span>
                 <pre className="bg-[var(--color-surface)] p-2 rounded-md text-xs mt-1 border border-[var(--color-border)]">
-                  <code className="text-[var(--color-text-primary)]">pnpm --filter @thesage/ui build</code>
+                  <code className="text-[var(--color-text-primary)]">pnpm --filter @opencosmos/ui build</code>
                 </pre>
               </div>
             </label>
@@ -251,7 +251,7 @@ This component embodies [principle from DESIGN-PHILOSOPHY.md]
             <div className="p-4 bg-[var(--color-surface)] rounded-md border border-[var(--color-border)]">
               <h3 className="font-semibold mb-2 text-[var(--color-text-primary)]">Link to Design Philosophy</h3>
               <p className="text-sm text-[var(--color-text-secondary)]">
-                Reference specific principles from <a href="https://github.com/shalomormsby/sage-design-engine/blob/main/DESIGN-PHILOSOPHY.md" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">DESIGN-PHILOSOPHY.md</a> that your contribution addresses.
+                Reference specific principles from <a href="https://github.com/shalomormsby/opencosmos-ui/blob/main/DESIGN-PHILOSOPHY.md" target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline">DESIGN-PHILOSOPHY.md</a> that your contribution addresses.
                 This helps reviewers understand your design decisions.
               </p>
             </div>

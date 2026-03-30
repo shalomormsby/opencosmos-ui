@@ -405,7 +405,7 @@ Speedboat uses a single `tsconfig.json` for both the app and Storybook:
 
 ---
 
-## Summary Checklist for Sage Design Engine
+## Summary Checklist for OpenCosmos UI
 
 - [ ] Adopt `@storybook/react-vite` (Storybook 10) for Vite-native integration
 - [ ] Import `globals.css` in `.storybook/preview.ts` to get all tokens and component styles

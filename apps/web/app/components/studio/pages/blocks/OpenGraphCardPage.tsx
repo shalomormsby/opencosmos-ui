@@ -17,7 +17,7 @@ import {
     SelectItem,
     SelectValue,
     type GradientConfig,
-} from '@thesage/ui';
+} from '@opencosmos/ui';
 import { Eye, Code, Download, Save, Check, Trash2, RefreshCw } from 'lucide-react';
 
 interface SavedOGDesign {
@@ -72,7 +72,7 @@ const AVAILABLE_FONTS = [
 
 export function OpenGraphCardPage() {
     // State for all customizable properties
-    const [title, setTitle] = useState('Sage Design Engine');
+    const [title, setTitle] = useState('OpenCosmos UI');
     const [description, setDescription] = useState("Make it lovable.");
     const [showIcon, setShowIcon] = useState(true);
     const [titleFontSize, setTitleFontSize] = useState(96);
@@ -262,7 +262,7 @@ export function OpenGraphCardPage() {
         const descFontCode = descriptionFontSize !== 42 ? `\n      descriptionFontSize={${descriptionFontSize}}` : '';
         const fontCode = fontFamily !== 'Space Grotesk' ? `\n      fontFamily="${fontFamily}"` : '';
 
-        return `import { OpenGraphCard } from '@thesage/ui';
+        return `import { OpenGraphCard } from '@opencosmos/ui';
 
 export default function OGImage() {
   return (
@@ -705,7 +705,7 @@ export default function OGImage() {
                     </h2>
                     <CollapsibleCodeBlock
                         id="og-card-install"
-                        code="pnpm add @thesage/ui"
+                        code="pnpm add @opencosmos/ui"
                         language="bash"
                         defaultCollapsed={false}
                         showCopy={true}
@@ -719,7 +719,7 @@ export default function OGImage() {
                     </h2>
                     <CollapsibleCodeBlock
                         id="og-card-basic"
-                        code={`import { OpenGraphCard } from '@thesage/ui';
+                        code={`import { OpenGraphCard } from '@opencosmos/ui';
 
 // In your app/opengraph-image.tsx (Next.js)
 export default function OGImage() {
@@ -743,7 +743,7 @@ export default function OGImage() {
                     </h2>
                     <CollapsibleCodeBlock
                         id="og-card-icon"
-                        code={`import { OpenGraphCard } from '@thesage/ui';
+                        code={`import { OpenGraphCard } from '@opencosmos/ui';
 
 export default function OGImage() {
   return (

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ThemeSwitcher } from '@thesage/ui';
+import { ThemeSwitcher } from '@opencosmos/ui';
 
 /**
  * Mode switcher for the design system documentation

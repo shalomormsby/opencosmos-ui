@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { TertiaryNav, Breadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
+import { TertiaryNav, Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { BrandTab } from './BrandTab';
 import { ColorsTab } from './ColorsTab';
 import { TypographyTab } from './TypographyTab';

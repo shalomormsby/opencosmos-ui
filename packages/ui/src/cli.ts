@@ -15,12 +15,12 @@ export function transformImports(source: string): string {
   return source
     // ../../lib/utils → ./utils  (cn utility — we scaffold it alongside)
     .replace(/from\s+['"]\.\.\/\.\.\/lib\/utils['"]/g, `from './utils'`)
-    // ../../lib/* → @thesage/ui/utils
-    .replace(/from\s+['"]\.\.\/\.\.\/lib\/[^'"]+['"]/g, `from '@thesage/ui/utils'`)
-    // ../../hooks/* → @thesage/ui/hooks
-    .replace(/from\s+['"]\.\.\/\.\.\/hooks\/[^'"]+['"]/g, `from '@thesage/ui/hooks'`)
-    // ../category/Component → @thesage/ui  (cross-component imports)
-    .replace(/from\s+['"]\.\.\/[^.][^'"]*['"]/g, `from '@thesage/ui'`);
+    // ../../lib/* → @opencosmos/ui/utils
+    .replace(/from\s+['"]\.\.\/\.\.\/lib\/[^'"]+['"]/g, `from '@opencosmos/ui/utils'`)
+    // ../../hooks/* → @opencosmos/ui/hooks
+    .replace(/from\s+['"]\.\.\/\.\.\/hooks\/[^'"]+['"]/g, `from '@opencosmos/ui/hooks'`)
+    // ../category/Component → @opencosmos/ui  (cross-component imports)
+    .replace(/from\s+['"]\.\.\/[^.][^'"]*['"]/g, `from '@opencosmos/ui'`);
 }
 
 // ---------------------------------------------------------------------------
@@ -69,7 +69,7 @@ function listComponents(): void {
     process.exit(1);
   }
 
-  console.log('\n  @thesage/ui — Available Components\n');
+  console.log('\n  @opencosmos/ui — Available Components\n');
 
   for (const category of readdirSync(srcDir).sort()) {
     const categoryPath = join(srcDir, category);
@@ -97,7 +97,7 @@ function ejectComponent(name: string, targetDir: string): void {
 
   if (!found) {
     console.error(`\n  Error: Component "${name}" not found.\n`);
-    console.error('  Run `npx @thesage/ui eject --list` to see available components.\n');
+    console.error('  Run `npx @opencosmos/ui eject --list` to see available components.\n');
     process.exit(1);
   }
 
@@ -125,8 +125,8 @@ function ejectComponent(name: string, targetDir: string): void {
   let match;
   while ((match = importRegex.exec(source)) !== null) {
     const pkg = match[1];
-    // Skip internal @thesage imports and react (always present)
-    if (pkg.startsWith('@thesage/') || pkg === 'react') continue;
+    // Skip internal @opencosmos imports and react (always present)
+    if (pkg.startsWith('@opencosmos/') || pkg === 'react') continue;
     // Normalize scoped packages to package name
     const pkgName = pkg.startsWith('@') ? pkg.split('/').slice(0, 2).join('/') : pkg.split('/')[0];
     deps.add(pkgName);
@@ -146,7 +146,7 @@ function ejectComponent(name: string, targetDir: string): void {
 
   console.log('  Update your imports:');
   console.log(`  import { ${name} } from './${targetDir}/${name}'\n`);
-  console.log('  The ejected component still works with @thesage/ui themes and CSS variables.');
+  console.log('  The ejected component still works with @opencosmos/ui themes and CSS variables.');
   console.log('  You now own it — modify freely.\n');
 }
 
@@ -158,11 +158,11 @@ function main(): void {
 
   if (args.length === 0 || args.includes('--help') || args.includes('-h')) {
     console.log(`
-  @thesage/ui eject — Copy component source into your project
+  @opencosmos/ui eject — Copy component source into your project
 
   Usage:
-    npx @thesage/ui eject <ComponentName>  [--dir <path>]
-    npx @thesage/ui eject --list
+    npx @opencosmos/ui eject <ComponentName>  [--dir <path>]
+    npx @opencosmos/ui eject --list
 
   Options:
     --dir <path>   Target directory (default: src/components/ui)
@@ -170,8 +170,8 @@ function main(): void {
     --help         Show this help message
 
   Examples:
-    npx @thesage/ui eject Button
-    npx @thesage/ui eject Dialog --dir components/sage
+    npx @opencosmos/ui eject Button
+    npx @opencosmos/ui eject Dialog --dir components/sage
 `);
     return;
   }
@@ -190,7 +190,7 @@ function main(): void {
 
   const componentName = args[1];
   if (!componentName || componentName.startsWith('--')) {
-    console.error('\n  Error: Component name is required.\n  Usage: npx @thesage/ui eject <ComponentName>\n');
+    console.error('\n  Error: Component name is required.\n  Usage: npx @opencosmos/ui eject <ComponentName>\n');
     process.exit(1);
   }
 

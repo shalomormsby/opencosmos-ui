@@ -130,7 +130,7 @@ Do **not** write from scratch. Adopt `recharts` and wrap them in Sage UI design 
 ## 3. Strategic Pivot: Rebranding to Sage UI
 
 **Current Status:** "Sage UI" 
-**New Identity:** **Sage UI** (@thesage/ui)
+**New Identity:** **Sage UI** (@opencosmos/ui)
 
 ### The Problem with "Design System"
 The term "Design System" often implies:

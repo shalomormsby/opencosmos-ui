@@ -5,7 +5,7 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { ThemeName, ColorMode } from '@thesage/tokens';
+import type { ThemeName, ColorMode } from '@opencosmos/tokens';
 
 // Re-export types for convenience
 export type { ThemeName, ColorMode };

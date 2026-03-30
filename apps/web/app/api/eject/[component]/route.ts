@@ -7,9 +7,9 @@ const UI_SRC = join(process.cwd(), '..', '..', 'packages', 'ui', 'src');
 function transformImports(source: string): string {
   return source
     .replace(/from\s+['"]\.\.\/\.\.\/lib\/utils['"]/g, `from './utils'`)
-    .replace(/from\s+['"]\.\.\/\.\.\/lib\/[^'"]+['"]/g, `from '@thesage/ui/utils'`)
-    .replace(/from\s+['"]\.\.\/\.\.\/hooks\/[^'"]+['"]/g, `from '@thesage/ui/hooks'`)
-    .replace(/from\s+['"]\.\.\/[^.][^'"]*['"]/g, `from '@thesage/ui'`);
+    .replace(/from\s+['"]\.\.\/\.\.\/lib\/[^'"]+['"]/g, `from '@opencosmos/ui/utils'`)
+    .replace(/from\s+['"]\.\.\/\.\.\/hooks\/[^'"]+['"]/g, `from '@opencosmos/ui/hooks'`)
+    .replace(/from\s+['"]\.\.\/[^.][^'"]*['"]/g, `from '@opencosmos/ui'`);
 }
 
 function findComponent(name: string): { filePath: string; category: string } | null {
@@ -52,7 +52,7 @@ export async function GET(
   let match;
   while ((match = importRegex.exec(rawSource)) !== null) {
     const pkg = match[1];
-    if (pkg.startsWith('@thesage/') || pkg === 'react') continue;
+    if (pkg.startsWith('@opencosmos/') || pkg === 'react') continue;
     const pkgName = pkg.startsWith('@') ? pkg.split('/').slice(0, 2).join('/') : pkg.split('/')[0];
     if (!deps.includes(pkgName)) deps.push(pkgName);
   }

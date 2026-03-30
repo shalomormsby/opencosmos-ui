@@ -8,8 +8,8 @@
 import { useEffect, useState } from 'react';
 import { useThemeStore } from '../lib/store/theme';
 import { useCustomizer, type ColorPalette } from '../lib/store/customizer';
-import { studioTokens, terraTokens, voltTokens, speedboatTokens, syntaxColors, codeColors } from '@thesage/tokens';
-import type { ThemeName, ColorMode } from '@thesage/tokens';
+import { studioTokens, terraTokens, voltTokens, speedboatTokens, syntaxColors, codeColors } from '@opencosmos/tokens';
+import type { ThemeName, ColorMode } from '@opencosmos/tokens';
 
 // ── Type-safe token access ──────────────────────────────────────────────────
 

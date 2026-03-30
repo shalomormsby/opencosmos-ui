@@ -6,7 +6,7 @@
  *
  * @example
  * ```ts
- * import { parseCode } from '@thesage/ui';
+ * import { parseCode } from '@opencosmos/ui';
  *
  * const tokens = parseCode('const greeting = "Hello World";');
  * // Use with CollapsibleCodeBlock:

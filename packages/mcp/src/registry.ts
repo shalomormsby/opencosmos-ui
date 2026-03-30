@@ -1,7 +1,7 @@
 /**
  * Component Registry for Sage UI
  *
- * This registry contains metadata for all 100 components in @thesage/ui,
+ * This registry contains metadata for all 100 components in @opencosmos/ui,
  * organized into 7 core functional categories plus 4 specialty categories.
  *
  * Core Categories (7):
@@ -761,7 +761,7 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
     dependencies: ['@radix-ui/react-toast'],
     radixPrimitive: '@radix-ui/react-toast',
     subComponents: ['ToastAction', 'ToastClose', 'ToastDescription', 'ToastProvider', 'ToastTitle', 'ToastViewport'],
-    example: `// Prefer using Sonner (Toaster + toast()) for new projects.\n// This is the Radix-based alternative.\nimport { useToast } from '@thesage/ui'\nconst { toast } = useToast()\ntoast({ title: 'Success', description: 'Item saved.' })`,
+    example: `// Prefer using Sonner (Toaster + toast()) for new projects.\n// This is the Radix-based alternative.\nimport { useToast } from '@opencosmos/ui'\nconst { toast } = useToast()\ntoast({ title: 'Success', description: 'Item saved.' })`,
   },
 
   // ============================================================================
@@ -858,7 +858,7 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
       columns: { type: 'ColumnDef<TData, TValue>[]', description: 'Column definitions from @tanstack/react-table', required: true },
       data: { type: 'TData[]', description: 'Array of row data', required: true },
     },
-    example: `import { DataTable } from '@thesage/ui/tables'\nconst columns = [\n  { accessorKey: 'name', header: 'Name' },\n  { accessorKey: 'email', header: 'Email' },\n]\n<DataTable columns={columns} data={users} />`,
+    example: `import { DataTable } from '@opencosmos/ui/tables'\nconst columns = [\n  { accessorKey: 'name', header: 'Name' },\n  { accessorKey: 'email', header: 'Email' },\n]\n<DataTable columns={columns} data={users} />`,
   },
   table: {
     name: 'Table',
@@ -928,7 +928,7 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
       inline: { type: 'boolean', default: 'false', description: 'Render as inline code (true) or block (false)' },
       showCopy: { type: 'boolean', default: 'true', description: 'Show copy button for block code' },
     },
-    example: `// Inline\n<Code inline>npm install @thesage/ui</Code>\n\n// Block\n<Code>{\`const x = 1;\nconst y = 2;\`}</Code>`,
+    example: `// Inline\n<Code inline>npm install @opencosmos/ui</Code>\n\n// Block\n<Code>{\`const x = 1;\nconst y = 2;\`}</Code>`,
   },
   'collapsible-code-block': {
     name: 'CollapsibleCodeBlock',
@@ -941,7 +941,7 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
       'Tutorial code snippets',
       'API examples',
     ],
-    dependencies: ['@thesage/tokens'],
+    dependencies: ['@opencosmos/tokens'],
     props: {
       code: { type: 'string', description: 'Source code string', required: true },
       language: { type: "'tsx' | 'typescript' | 'javascript' | 'jsx' | 'css' | 'html' | 'json' | 'bash'", default: "'tsx'", description: 'Language for syntax highlighting' },
@@ -1274,7 +1274,7 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
       'Motion preferences',
       'User experience customization',
     ],
-    dependencies: ['lucide-react', '@thesage/tokens'],
+    dependencies: ['lucide-react', '@opencosmos/tokens'],
     example: `// Place in your layout. It reads theme state from ThemeProvider.\n<CustomizerPanel />`,
   },
   'page-layout': {
@@ -1899,7 +1899,7 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
     ],
     dependencies: [],
     props: {
-      title: { type: 'string', default: "'Sage Design Engine'", description: 'Main title text' },
+      title: { type: 'string', default: "'OpenCosmos UI'", description: 'Main title text' },
       description: { type: 'string', description: 'Subtitle text' },
       variant: { type: "'primary' | 'secondary' | 'accent' | 'sage' | 'emerald' | 'gradient'", default: "'sage'", description: 'Visual style variant' },
       icon: { type: 'ReactNode', description: 'Custom logo or icon element' },

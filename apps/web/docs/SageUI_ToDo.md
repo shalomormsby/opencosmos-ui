@@ -1,7 +1,7 @@
-# Sage Design Engine - To Do
+# OpenCosmos UI - To Do
 
 
-This document tracks planned improvements and enhancements to the Sage Design Engine.
+This document tracks planned improvements and enhancements to the OpenCosmos UI.
 
 ## 📋 Projects Overview
 
@@ -30,24 +30,24 @@ Enable users to define a primary color in the Customizer that automatically ripp
 #### ✅ Phase 1: Curated Palette Library + UI (COMPLETE)
 
 **Phase 1A: Color Engine & Token Infrastructure**
-- [x] Create `@thesage/tokens/color-utils.ts` - Standalone color transformation utilities
+- [x] Create `@opencosmos/tokens/color-utils.ts` - Standalone color transformation utilities
   - [x] `hexToHSL()` / `hslToHex()` - Bidirectional color space conversion
   - [x] `adjustLightness()` - Perceptually uniform tint/shade generation
   - [x] `adjustSaturation()` - Saturation manipulation for color harmony
   - [x] `rotateHue()` - Hue rotation for complementary/analogous colors
   - [x] `getContrastRatio()` - WCAG contrast ratio calculation
   - [x] `getOptimalForeground()` - Auto-accessible foreground color selection
-- [x] Create `@thesage/tokens/token-graph.ts` - Token dependency mapping system
+- [x] Create `@opencosmos/tokens/token-graph.ts` - Token dependency mapping system
   - [x] Map 15+ CSS variables that derive from `--color-primary`
   - [x] UI tokens: `--color-link`, `--color-link-hover`, `--color-ring`, `--color-accent`
   - [x] Chart tokens: `--chart-1` through `--chart-5` with intelligent derivations
   - [x] Mode-aware derivations (different transforms for light vs dark)
   - [x] `computeDerivedTokens()` function for single-call updates
-- [x] Enhance `@thesage/ui/lib/colors.ts` with HSL transformations
+- [x] Enhance `@opencosmos/ui/lib/colors.ts` with HSL transformations
   - [x] `generateColorScale()` - Tailwind-style 50-900 tint/shade variants
 
 **Phase 1B: Curated Palette Library**
-- [x] Create `@thesage/tokens/color-palettes.ts` with 21 curated palettes
+- [x] Create `@opencosmos/tokens/color-palettes.ts` with 21 curated palettes
   - [x] Professional (5): Midnight Sapphire, Forest Executive, Burgundy Trust, Slate Corporate, Navy Prestige
   - [x] Creative (3): Coral Sunset, Teal Wave, Purple Dream
   - [x] Natural (2): Earth Tones, Ocean Breeze
@@ -58,7 +58,7 @@ Enable users to define a primary color in the Customizer that automatically ripp
 - [x] Add palette metadata (mood tags, WCAG compliance, best use cases, inspiration)
 
 **Phase 1C: State Management**
-- [x] Rewrite `@thesage/ui/lib/store/customizer.ts` with Zustand
+- [x] Rewrite `@opencosmos/ui/lib/store/customizer.ts` with Zustand
   - [x] Per-theme, per-mode storage: `customColors[theme][mode]`
   - [x] `ColorPalette` interface with primary/secondary/accent + scale + derived tokens
   - [x] `setCustomPrimaryColor()` action with full palette generation
@@ -68,7 +68,7 @@ Enable users to define a primary color in the Customizer that automatically ripp
   - [x] localStorage persistence across browser sessions
 
 **Phase 1D: Theme Provider Integration**
-- [x] Enhance `@thesage/ui/providers/ThemeProvider.tsx`
+- [x] Enhance `@opencosmos/ui/providers/ThemeProvider.tsx`
   - [x] `mergeCustomColorTokens()` - Non-destructive overlay function
   - [x] Smart merge strategy (base tokens + custom palette + derived tokens)
   - [x] Batched DOM updates via `requestAnimationFrame()`
@@ -76,7 +76,7 @@ Enable users to define a primary color in the Customizer that automatically ripp
   - [x] Reactive updates on theme/mode/palette changes
 
 **Phase 1E: UI Components**
-- [x] Create `@thesage/ui/components/forms/ColorPicker.tsx`
+- [x] Create `@opencosmos/ui/components/forms/ColorPicker.tsx`
   - [x] Dual input methods (visual picker + hex text input)
   - [x] Real-time hex validation
   - [x] Live color preview swatch
@@ -90,7 +90,7 @@ Enable users to define a primary color in the Customizer that automatically ripp
   - [x] One-click "Apply Palette" functionality
   - [x] Active state indicator
   - [x] Responsive grid layout (1-3 columns)
-- [x] Update `@thesage/ui/components/layout/CustomizerPanel.tsx`
+- [x] Update `@opencosmos/ui/components/layout/CustomizerPanel.tsx`
   - [x] Add "Primary Color" section with Palette icon
   - [x] Integrate ColorPicker component
   - [x] Add Apply/Reset buttons
@@ -108,13 +108,13 @@ Enable users to define a primary color in the Customizer that automatically ripp
 
 **Phase 1G: Build & Deployment**
 - [x] Fix circular dependency (tokens ← ui)
-- [x] Add missing `@thesage/tokens` dependency to web
+- [x] Add missing `@opencosmos/tokens` dependency to web
 - [x] Verify local build successful
 - [x] Verify Vercel deployment successful
 - [x] Production verification
 
 **Commits:**
-- `e6a5d98` - fix(web): Add missing @thesage/tokens dependency for Vercel build
+- `e6a5d98` - fix(web): Add missing @opencosmos/tokens dependency for Vercel build
 - `3fcb1b1` - docs: Document dynamic color customization system and register PalettesTab
 
 ---
@@ -280,7 +280,7 @@ Enable users to define a primary color in the Customizer that automatically ripp
 
 ### Phase 1: Identity & Documentation (Immediate)
 - [x] **Documentation Rebrand**:
-    - Rename "Sage Studio" -> "Sage Studio" or "Sage UI Studio".
+    - Rename "OpenCosmos Studio" -> "OpenCosmos Studio" or "Sage UI Studio".
     - Update homepage copy: "The Solopreneur's Development Stack" / "AI-Native Components".
     - Update metadata/titles across the documentation site.
     - [x] Global Find & Replace: `Sage Design System` -> `Sage UI`, `@sds/*` -> `@thesage/*`.
@@ -292,9 +292,9 @@ Enable users to define a primary color in the Customizer that automatically ripp
 *Goal: Rename packages to align with new brand. Proposed Naming: `@thesage/*` or `@sage-ui/*`.*
 
 - [x] **Package Renaming**:
-    - `@thesage/ui` -> `@thesage/ui` (The Primitives)
-    - `@thesage/tokens` -> `@thesage/tokens`
-    - `@thesage/mcp` -> `@thesage/mcp`
+    - `@opencosmos/ui` -> `@opencosmos/ui` (The Primitives)
+    - `@opencosmos/tokens` -> `@opencosmos/tokens`
+    - `@opencosmos/mcp` -> `@opencosmos/mcp`
 - [x] **New Packages**:
     - [x] `@thesage/hooks` (New utility belt)
     - [x] `@thesage/charts` (Recharts wrapper)
@@ -412,7 +412,7 @@ High-impact tasks to evolve the Sage UI Motion section and make it as useful as 
     - [x] **TypewriterPage**: A classic effect. (Impact: Medium)
     - [x] **MagneticPage**: Great for micro-interactions. (Impact: High)
 - [ ] **Standardize "Motion Primitives"**
-    - Create a `Motion` namespace in `@thesage/ui` (e.g., `<Motion.Fade in>`). Reduces boilerplate. (Impact: High)
+    - Create a `Motion` namespace in `@opencosmos/ui` (e.g., `<Motion.Fade in>`). Reduces boilerplate. (Impact: High)
 - [x] **"Playground" for Motion Tokens**
     - Build a page where users can tweak variables and see real-time effects on dummy UI. (Impact: High) - *Implemented as the new "Primitives" page*
 - [ ] **Accessibility First (Reduced Motion)**
@@ -468,7 +468,7 @@ Each layer builds upon the previous, creating a systematic approach where change
 
 ### Implementation Requirements
 
-1) Must be built with existing Sage UI design token, components, blocks, and templates that are imported directly from '@thesage/ui'. We should "dog-food" everything. We must not write custom CSS or create custom components that aren't in the Sage UI library. Where there are key missing elements, components, or blocks, we should build them and add them to Sage UI. This includes dynamic Motion elements, of couse. 
+1) Must be built with existing Sage UI design token, components, blocks, and templates that are imported directly from '@opencosmos/ui'. We should "dog-food" everything. We must not write custom CSS or create custom components that aren't in the Sage UI library. Where there are key missing elements, components, or blocks, we should build them and add them to Sage UI. This includes dynamic Motion elements, of couse. 
 2) Should visualize and present the Sage UI system in a beautiful, dynamic, and engaging way, including the thoughful use of animations. [Should not rely on static text and demand lots of reading.]
 3) Must be clear, concise, and action-oriented, i.e., able to help the website visitor get up and running as quickly as possible. 
 4) Should be stylistically cutting-edge, on par or excelling the quality of the inspirations on line 459 - 462 (and other relevant offerings).
@@ -692,7 +692,7 @@ interface GradientPickerProps {
 - [ ] Add keyboard navigation support
 - [ ] Write component documentation
 - [ ] Add to component registry
-- [ ] Register in Sage Studio
+- [ ] Register in OpenCosmos Studio
 
 #### Phase 5: Polish & Testing
 - [ ] Add motion respect (useMotionPreference)
@@ -793,7 +793,7 @@ packages/ui/src/components/features/GradientBuilder/
   - One-click apply palette as gradient stops
 
 - **Curated Palettes Tab**:
-  - Browse 50+ curated palettes from `@thesage/tokens`
+  - Browse 50+ curated palettes from `@opencosmos/tokens`
   - Filter by category, mood, accessibility
   - Preview palette as gradient
 
@@ -980,7 +980,7 @@ interface SavedGradientPreset {
 - [ ] Build `ColorSourcePanel.tsx` with tabs:
   - **Theme Palette Tab**: Pull from `useTheme()` and `useCustomizer()`
   - **Saved Palettes Tab**: Access `savedPalettes` from customizer store
-  - **Curated Tab**: Import from `@thesage/tokens/color-palettes`
+  - **Curated Tab**: Import from `@opencosmos/tokens/color-palettes`
 - [ ] Build palette → gradient conversion logic
   - Map palette colors to gradient stops
   - Auto-distribute positions
@@ -999,7 +999,7 @@ interface SavedGradientPreset {
 
 #### Phase 5: Accessibility & Export (Day 4, Morning)
 - [ ] Build `AccessibilityPanel.tsx`
-  - Integrate `getContrastRatio()` from `@thesage/ui/lib/colors`
+  - Integrate `getContrastRatio()` from `@opencosmos/ui/lib/colors`
   - Test gradient zones against foreground color
   - Display WCAG AA/AAA badges
   - Show accessibility score (A-F)
@@ -1035,11 +1035,11 @@ interface SavedGradientPreset {
   - Full prop documentation
   - Interactive examples
   - Code snippets
-- [ ] Add to Sage Studio navigation
+- [ ] Add to OpenCosmos Studio navigation
   - New "Gradient Builder" page under Features
   - Link from OpenGraphCard docs
   - Link from Customizer
-- [ ] Build @thesage/ui package
+- [ ] Build @opencosmos/ui package
 - [ ] Integration testing:
   - Test with OpenGraphCard
   - Test with all three themes
@@ -1146,7 +1146,7 @@ This approach minimizes risk, maximizes learning, and aligns with agile principl
 - ✅ Color utilities (`getContrastRatio`, `hexToHSL`, `generateColorScale`)
 - ✅ Customizer Zustand store (for preset persistence)
 - ✅ Theme system (Studio/Sage/Volt)
-- ✅ Color palettes (`@thesage/tokens/color-palettes`)
+- ✅ Color palettes (`@opencosmos/tokens/color-palettes`)
 
 ### New Dependencies (if needed)
 - None required for GradientPicker (Option A)
@@ -1234,10 +1234,10 @@ This approach minimizes risk, maximizes learning, and aligns with agile principl
 **Status:** Planned
 
 ### Objective
-Reduce the installation footprint of `@thesage/ui` by moving heavy libraries to `peerDependencies` and exploring specialized "batteries-included" replacements for external dependencies.
+Reduce the installation footprint of `@opencosmos/ui` by moving heavy libraries to `peerDependencies` and exploring specialized "batteries-included" replacements for external dependencies.
 
 ### Motivation
-With 47 dependencies, `@thesage/ui` is risking "dependency hell" for consumers and slow install times. We want to align with industry best practices (like Shadcn/UI, Mantine, Chakra) where the core package is lightweight and consumers control their own versions of heavy libraries (React, Framer Motion, etc.).
+With 47 dependencies, `@opencosmos/ui` is risking "dependency hell" for consumers and slow install times. We want to align with industry best practices (like Shadcn/UI, Mantine, Chakra) where the core package is lightweight and consumers control their own versions of heavy libraries (React, Framer Motion, etc.).
 
 ### Task Checklist
 

@@ -86,7 +86,7 @@
 
 - [ ] **Update existing 18 font themes** with optional detailed scales (or rely on generated defaults)
 
-- [ ] **Build and test:** `pnpm build --filter @thesage/tokens`
+- [ ] **Build and test:** `pnpm build --filter @opencosmos/tokens`
 
 **Deliverable:** Enhanced data model ready for detailed typography customization
 
@@ -195,9 +195,9 @@
   ```typescript
   'use client';
   import { useState, useEffect, useMemo } from 'react';
-  import { Card, Button, Label, Select, Slider, Switch } from '@thesage/ui';
-  import { useTheme, useCustomizer } from '@thesage/ui';
-  import { fontThemes, generateScale, type TypographyScale, type TypeLevel } from '@thesage/tokens';
+  import { Card, Button, Label, Select, Slider, Switch } from '@opencosmos/ui';
+  import { useTheme, useCustomizer } from '@opencosmos/ui';
+  import { fontThemes, generateScale, type TypographyScale, type TypeLevel } from '@opencosmos/tokens';
 
   export function TypographyPlayground() {
     // State management
@@ -660,7 +660,7 @@ Figure 1: Typography specimen showing scale and hierarchy
 - ✅ Created 18 curated font themes across 8 categories
 - ✅ Exported font themes from `packages/tokens/src/index.ts`
 - ✅ Implemented 5 helper functions (getFontThemesByCategory, etc.)
-- ✅ Build verified: `pnpm build --filter @thesage/tokens`
+- ✅ Build verified: `pnpm build --filter @opencosmos/tokens`
 
 ---
 
@@ -685,7 +685,7 @@ Figure 1: Typography specimen showing scale and hierarchy
   8. `reorderFontThemes()`
   9-12. Additional helpers
 - ✅ LocalStorage persistence configured (version 4)
-- ✅ Build verified: `pnpm build --filter @thesage/ui`
+- ✅ Build verified: `pnpm build --filter @opencosmos/ui`
 
 ---
 

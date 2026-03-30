@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     'ui library',
     'component library',
   ],
-  authors: [{ name: 'Sage Design Engine Team' }],
-  creator: 'Sage Design Engine',
-  publisher: 'Sage Design Engine',
+  authors: [{ name: 'OpenCosmos UI Team' }],
+  creator: 'OpenCosmos UI',
+  publisher: 'OpenCosmos UI',
   openGraph: {
     title: 'Sage — Make it Lovable',
     description: 'Components that feel alive. Themes with real personality. Motion your users control. Designed for humans. Fluent with AI.',
-    url: 'https://thesage.dev',
+    url: 'https://opencosmos.ai/studio',
     siteName: 'Sage',
     images: [
       {

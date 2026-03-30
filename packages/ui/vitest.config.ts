@@ -4,7 +4,7 @@ import path from 'path';
 export default defineConfig({
   resolve: {
     alias: {
-      '@thesage/tokens': path.resolve(__dirname, '../tokens/src/index.ts'),
+      '@opencosmos/tokens': path.resolve(__dirname, '../tokens/src/index.ts'),
     },
   },
   test: {

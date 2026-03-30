@@ -9,8 +9,8 @@ Thank you for your interest in contributing! This project is built on the belief
 3. **Set up your environment:**
 
 ```bash
-git clone https://github.com/shalomormsby/sage-design-engine.git
-cd sage-design-engine
+git clone https://github.com/shalomormsby/opencosmos-ui.git
+cd opencosmos-ui
 pnpm install
 pnpm build
 ```
@@ -24,7 +24,7 @@ pnpm build
 
 ### Reporting Bugs
 
-- Open an issue on [GitHub Issues](https://github.com/shalomormsby/sage-design-engine/issues)
+- Open an issue on [GitHub Issues](https://github.com/shalomormsby/opencosmos-ui/issues)
 - Include: steps to reproduce, expected vs actual behavior, browser/OS, and screenshots if applicable
 - Check existing issues first to avoid duplicates
 
@@ -47,7 +47,7 @@ pnpm build
 
 ### Adding Components
 
-If you're adding a new component to `@thesage/ui`, follow the [register-new-component workflow](.agent/workflows/register-new-component.md) exactly. Incomplete registration means the component won't be discoverable.
+If you're adding a new component to `@opencosmos/ui`, follow the [register-new-component workflow](.agent/workflows/register-new-component.md) exactly. Incomplete registration means the component won't be discoverable.
 
 ## Code Standards
 

@@ -1,7 +1,7 @@
 'use client';
 
-import { Card, CollapsibleCodeBlock } from '@thesage/ui';
-import { VariableWeightText } from '@thesage/ui';
+import { Card, CollapsibleCodeBlock } from '@opencosmos/ui';
+import { VariableWeightText } from '@opencosmos/ui';
 import { Check } from 'lucide-react';
 
 export function TextEffectsSection() {

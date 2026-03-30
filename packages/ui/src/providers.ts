@@ -1,6 +1,6 @@
 /**
  * Providers subpath export
- * Allows: import { ... } from '@thesage/ui/providers'
+ * Allows: import { ... } from '@opencosmos/ui/providers'
  */
 
 // Re-export all providers

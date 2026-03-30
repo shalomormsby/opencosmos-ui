@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Header, Button, BRAND } from '@thesage/ui';
+import { Header, Button, BRAND } from '@opencosmos/ui';
 import { Github } from 'lucide-react';
 import { SageHero } from './components/landing/SageHero';
 import { LayerVisualization } from './components/landing/LayerVisualization';
@@ -39,7 +39,7 @@ export default function LandingPage() {
             className="gap-2"
           >
             <a
-              href="https://github.com/shalomormsby/sage-design-engine"
+              href="https://github.com/shalomormsby/opencosmos-ui"
               target="_blank"
               rel="noopener noreferrer"
             >
