@@ -1,8 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/studio',
   reactStrictMode: true,
   transpilePackages: ['@opencosmos/ui', '@opencosmos/mcp'],
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'thesage.dev' }],
+        destination: 'https://studio.opencosmos.ai/:path*',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {

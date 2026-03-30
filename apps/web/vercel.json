@@ -1,12 +1,4 @@
 {
   "buildCommand": "pnpm turbo run build --filter=web",
-  "installCommand": "pnpm install",
-  "redirects": [
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "thesage.dev" }],
-      "destination": "https://opencosmos.ai/studio/:path*",
-      "permanent": true
-    }
-  ]
+  "installCommand": "pnpm install"
 }
