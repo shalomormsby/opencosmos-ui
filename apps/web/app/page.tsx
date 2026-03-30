@@ -30,6 +30,7 @@ export default function LandingPage() {
           { label: 'Documentation', href: '/docs' },
           { label: 'Components', href: '/docs/components' },
           { label: 'Themes', href: '/docs/themes' },
+          { label: 'OpenCosmos', href: 'https://opencosmos.ai' },
         ]}
         actions={
           <Button
