@@ -1,23 +1,23 @@
-# @thesage/tokens
+# @opencosmos/tokens
 
-Design tokens for the Sage Design Engine — the foundation layer that defines colors, typography, spacing, motion curves, and syntax highlighting across three themes.
+Design tokens for the OpenCosmos UI — the foundation layer that defines colors, typography, spacing, motion curves, and syntax highlighting across three themes.
 
-[![npm version](https://img.shields.io/npm/v/@thesage/tokens?style=flat-square)](https://www.npmjs.com/package/@thesage/tokens)
+[![npm version](https://img.shields.io/npm/v/@opencosmos/tokens?style=flat-square)](https://www.npmjs.com/package/@opencosmos/tokens)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Why a separate package?
 
-Tokens are **design decisions as code**. They serve audiences beyond React components — CSS-only projects, native apps, Figma plugins, or anyone building their own component layer on top of Sage's design language. Install `@thesage/tokens` for just the values, or get them bundled with components via `@thesage/ui/tokens`.
+Tokens are **design decisions as code**. They serve audiences beyond React components — CSS-only projects, native apps, Figma plugins, or anyone building their own component layer on top of Sage's design language. Install `@opencosmos/tokens` for just the values, or get them bundled with components via `@opencosmos/ui/tokens`.
 
 ## Installation
 
 ```bash
-npm install @thesage/tokens
+npm install @opencosmos/tokens
 # or
-pnpm add @thesage/tokens
+pnpm add @opencosmos/tokens
 ```
 
-If you're already using `@thesage/ui`, tokens are re-exported via the `@thesage/ui/tokens` subpath — no separate install needed.
+If you're already using `@opencosmos/ui`, tokens are re-exported via the `@opencosmos/ui/tokens` subpath — no separate install needed.
 
 ## Usage
 
@@ -26,7 +26,7 @@ If you're already using `@thesage/ui`, tokens are re-exported via the `@thesage/
 Each theme exports a complete set of design values for light and dark modes:
 
 ```ts
-import { studioTokens, terraTokens, voltTokens } from '@thesage/tokens'
+import { studioTokens, terraTokens, voltTokens } from '@opencosmos/tokens'
 
 const primary = studioTokens.light.colors.primary
 const heading = terraTokens.dark.colors.foreground
@@ -35,7 +35,7 @@ const heading = terraTokens.dark.colors.foreground
 ### Typography system
 
 ```ts
-import { typographySystem } from '@thesage/tokens'
+import { typographySystem } from '@opencosmos/tokens'
 
 // Access size scales (xs through 8xl), font stacks, and type presets
 const bodySize = typographySystem.sizes.base
@@ -44,7 +44,7 @@ const bodySize = typographySystem.sizes.base
 ### Font themes
 
 ```ts
-import { fontThemes } from '@thesage/tokens'
+import { fontThemes } from '@opencosmos/tokens'
 
 // 10+ curated font combinations with Google Fonts integration
 const editorial = fontThemes.editorial // { heading, body, mono, bestFor }
@@ -55,7 +55,7 @@ const editorial = fontThemes.editorial // { heading, body, mono, bestFor }
 Generate accessible color scales from a single hex value:
 
 ```ts
-import { hexToHSL, generateColorScale } from '@thesage/tokens'
+import { hexToHSL, generateColorScale } from '@opencosmos/tokens'
 
 const hsl = hexToHSL('#3b82f6')           // "217 91% 60%"
 const scale = generateColorScale('#3b82f6') // Full 50-950 scale
@@ -66,7 +66,7 @@ const scale = generateColorScale('#3b82f6') // Full 50-950 scale
 Pre-built palettes with light/dark mode support:
 
 ```ts
-import { colorPalettes } from '@thesage/tokens'
+import { colorPalettes } from '@opencosmos/tokens'
 ```
 
 ### Syntax highlighting
@@ -74,13 +74,13 @@ import { colorPalettes } from '@thesage/tokens'
 14 token types for code highlighting, theme-aware:
 
 ```ts
-import { syntaxTokens } from '@thesage/tokens'
+import { syntaxTokens } from '@opencosmos/tokens'
 ```
 
 ### Type helpers
 
 ```ts
-import type { ThemeName, ColorMode, ThemeConfig } from '@thesage/tokens'
+import type { ThemeName, ColorMode, ThemeConfig } from '@opencosmos/tokens'
 
 const config: ThemeConfig = { name: 'studio', mode: 'dark' }
 ```

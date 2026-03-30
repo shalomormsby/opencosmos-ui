@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-The MCP server registry currently contains **48 components** out of **89 total** exported from `@thesage/ui`. We need to add **41 missing components** to achieve complete AI-powered discoverability via Claude Desktop and Cursor.
+The MCP server registry currently contains **48 components** out of **89 total** exported from `@opencosmos/ui`. We need to add **41 missing components** to achieve complete AI-powered discoverability via Claude Desktop and Cursor.
 
 **Impact:**
 - **Current:** AI can only discover 54% of available components
@@ -362,7 +362,7 @@ After adding all components:
 ### Build & Test
 ```bash
 # 1. Build MCP server
-pnpm build --filter @thesage/mcp
+pnpm build --filter @opencosmos/mcp
 
 # 2. Test search functionality
 node -e "const {searchComponents} = require('./packages/mcp/dist/registry.js'); console.log(searchComponents('heading').map(c => c.name));"
@@ -372,7 +372,7 @@ node -e "const {getComponentCount} = require('./packages/mcp/dist/registry.js');
 # Should output: Total: 89
 
 # 4. Test MCP server
-npx @thesage/mcp
+npx @opencosmos/mcp
 # Then in Claude Desktop: "List all Sage UI components"
 ```
 
@@ -413,7 +413,7 @@ npx @thesage/mcp
 
 ## Success Criteria
 
-- [ ] All 89 components from `@thesage/ui/src/index.ts` are in MCP registry
+- [ ] All 89 components from `@opencosmos/ui/src/index.ts` are in MCP registry
 - [ ] Each component has complete metadata (name, category, description, keywords, useCases, dependencies)
 - [ ] `getComponentCount()` returns 89
 - [ ] Search works for all new components

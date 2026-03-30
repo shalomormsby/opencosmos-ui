@@ -1,22 +1,22 @@
-# Sage Design Engine (@thesage/ui)
+# OpenCosmos UI (@opencosmos/ui)
 
 <div align="center">
 
-[![npm version](https://img.shields.io/npm/v/@thesage/ui?color=indigo&style=flat-square)](https://www.npmjs.com/package/@thesage/ui)
-[![License](https://img.shields.io/npm/l/@thesage/ui?color=blue&style=flat-square)](https://github.com/shalomormsby/sage-design-engine/blob/main/LICENSE)
-[![Downloads](https://img.shields.io/npm/dt/@thesage/ui?color=teal&style=flat-square)](https://www.npmjs.com/package/@thesage/ui)
+[![npm version](https://img.shields.io/npm/v/@opencosmos/ui?color=indigo&style=flat-square)](https://www.npmjs.com/package/@opencosmos/ui)
+[![License](https://img.shields.io/npm/l/@opencosmos/ui?color=blue&style=flat-square)](https://github.com/shalomormsby/opencosmos-ui/blob/main/LICENSE)
+[![Downloads](https://img.shields.io/npm/dt/@opencosmos/ui?color=teal&style=flat-square)](https://www.npmjs.com/package/@opencosmos/ui)
 
 **Sage — Make it Lovable.**
 
 Components that feel alive. Themes with real personality. Motion your users control. Designed for humans. Fluent with AI.
 
-[Documentation](https://thesage.dev) | [Components](https://thesage.dev/components) | [GitHub](https://github.com/shalomormsby/sage-design-engine)
+[Documentation](https://opencosmos.ai/studio) | [Components](https://opencosmos.ai/studio/components) | [GitHub](https://github.com/shalomormsby/opencosmos-ui)
 
 </div>
 
 ---
 
-**Sage Design Engine** is a component library and design system built on **Radix UI** primitives and **Tailwind CSS**. 100 accessible components across 11 functional categories, three distinct themes with runtime switching, and a user-controlled motion system — all wired through a 4-layer design token architecture.
+**OpenCosmos UI** is a component library and design system built on **Radix UI** primitives and **Tailwind CSS**. 100 accessible components across 11 functional categories, three distinct themes with runtime switching, and a user-controlled motion system — all wired through a 4-layer design token architecture.
 
 ## Features
 
@@ -30,7 +30,7 @@ Components that feel alive. Themes with real personality. Motion your users cont
 ## Installation
 
 ```bash
-pnpm add @thesage/ui
+pnpm add @opencosmos/ui
 ```
 
 Sage requires **Tailwind CSS** as a styling engine:
@@ -64,7 +64,7 @@ pnpm add @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
 module.exports = {
   content: [
     "./src/**/*.{ts,tsx}",
-    "./node_modules/@thesage/ui/dist/**/*.{js,ts,jsx,tsx}"
+    "./node_modules/@opencosmos/ui/dist/**/*.{js,ts,jsx,tsx}"
   ],
 }
 ```
@@ -72,13 +72,13 @@ module.exports = {
 ### Import styles
 
 ```tsx
-import '@thesage/ui/globals.css';
+import '@opencosmos/ui/globals.css';
 ```
 
 ## Usage
 
 ```tsx
-import { Button, Card, ThemeProvider } from '@thesage/ui';
+import { Button, Card, ThemeProvider } from '@opencosmos/ui';
 
 export default function App() {
   return (
@@ -101,15 +101,15 @@ export default function App() {
 ### Subpath imports
 
 ```tsx
-import { useMotionPreference, useTheme } from '@thesage/ui/hooks'
-import { ThemeProvider } from '@thesage/ui/providers'
-import { cn } from '@thesage/ui/utils'
+import { useMotionPreference, useTheme } from '@opencosmos/ui/hooks'
+import { ThemeProvider } from '@opencosmos/ui/providers'
+import { cn } from '@opencosmos/ui/utils'
 
 // Optional feature imports
-import { Form, FormField } from '@thesage/ui/forms'
-import { DatePicker } from '@thesage/ui/dates'
-import { DataTable } from '@thesage/ui/tables'
-import { SortableList } from '@thesage/ui/dnd'
+import { Form, FormField } from '@opencosmos/ui/forms'
+import { DatePicker } from '@opencosmos/ui/dates'
+import { DataTable } from '@opencosmos/ui/tables'
+import { SortableList } from '@opencosmos/ui/dnd'
 ```
 
 ## Component categories
@@ -130,14 +130,14 @@ import { SortableList } from '@thesage/ui/dnd'
 Need to deeply customize a component? Eject it into your project for full ownership:
 
 ```bash
-npx @thesage/ui eject Button
-npx @thesage/ui eject Dialog --dir components/sage
-npx @thesage/ui eject --list  # see all available components
+npx @opencosmos/ui eject Button
+npx @opencosmos/ui eject Dialog --dir components/sage
+npx @opencosmos/ui eject --list  # see all available components
 ```
 
 This copies the component source into your project with imports automatically rewritten. The ejected component still works with Sage themes and CSS variables — you just own the code now.
 
-You can also eject from [thesage.dev](https://thesage.dev) — every component page has an **Eject** button that lets you copy or download the source directly.
+You can also eject from [opencosmos.ai/studio](https://opencosmos.ai/studio) — every component page has an **Eject** button that lets you copy or download the source directly.
 
 ## Bundle size
 

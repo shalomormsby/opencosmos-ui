@@ -23,8 +23,8 @@ import {
   DialogDescription,
   DialogFooter,
   CollapsibleCodeBlock,
-} from '@thesage/ui';
-import { fontThemes, generateScale, type TypographyScale, type TypeLevel } from '@thesage/tokens';
+} from '@opencosmos/ui';
+import { fontThemes, generateScale, type TypographyScale, type TypeLevel } from '@opencosmos/tokens';
 import { getAllFontNames, getFontVariable } from '../../../../../lib/fonts-dynamic';
 import {
   Type,

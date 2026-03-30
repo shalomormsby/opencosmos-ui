@@ -1,6 +1,6 @@
 /**
  * Utils subpath export
- * Allows: import { ... } from '@thesage/ui/utils'
+ * Allows: import { ... } from '@opencosmos/ui/utils'
  */
 
 // Re-export all utilities

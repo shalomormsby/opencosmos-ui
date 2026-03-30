@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, Code, CollapsibleCodeBlock, Breadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
+import { Card, Code, CollapsibleCodeBlock, Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { ArrowRight } from 'lucide-react';
 
 interface ArchitectureSectionProps {

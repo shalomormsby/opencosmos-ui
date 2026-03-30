@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CollapsibleCodeBlock, Label, Slider, Switch, Motion } from '@thesage/ui';
+import { Card, CollapsibleCodeBlock, Label, Slider, Switch, Motion } from '@opencosmos/ui';
 import { MousePointer2 } from 'lucide-react';
 const { SplashCursor } = Motion;
 

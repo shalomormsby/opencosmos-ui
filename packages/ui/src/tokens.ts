@@ -1,7 +1,7 @@
 /**
  * Tokens subpath export
- * Allows: import { ... } from '@thesage/ui/tokens'
+ * Allows: import { ... } from '@opencosmos/ui/tokens'
  */
 
-// Re-export all tokens from @thesage/tokens
-export * from '@thesage/tokens';
+// Re-export all tokens from @opencosmos/tokens
+export * from '@opencosmos/tokens';

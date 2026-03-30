@@ -1,8 +1,8 @@
 'use client';
 
-import { HeroBlock, Card, Heading, Text, Stack, CollapsibleCodeBlock, OrbBackground, Typewriter, ThemeToggle } from '@thesage/ui';
+import { HeroBlock, Card, Heading, Text, Stack, CollapsibleCodeBlock, OrbBackground, Typewriter, ThemeToggle } from '@opencosmos/ui';
 
-const CONST_CODE = `import { HeroBlock, OrbBackground, Typewriter } from '@thesage/ui';
+const CONST_CODE = `import { HeroBlock, OrbBackground, Typewriter } from '@opencosmos/ui';
 
 export function LandingPage() {
   return (

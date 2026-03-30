@@ -1,7 +1,7 @@
 'use client';
 
-import { Heading, Text, Card, Badge } from '@thesage/ui';
-import { COMPONENT_REGISTRY } from '@thesage/ui';
+import { Heading, Text, Card, Badge } from '@opencosmos/ui';
+import { COMPONENT_REGISTRY } from '@opencosmos/ui';
 import { ArrowRight, MousePointerClick, FormInput, Compass, Layers, MessageSquare, BarChart3, Layout } from 'lucide-react';
 
 interface CategoryOverviewProps {

@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CollapsibleCodeBlock, Label, Switch, Slider, Backgrounds } from '@thesage/ui';
+import { Card, CollapsibleCodeBlock, Label, Switch, Slider, Backgrounds } from '@opencosmos/ui';
 import { Sparkles } from 'lucide-react';
 const { WarpBackground } = Backgrounds;
 
-const WARP_CODE = `import { Backgrounds } from '@thesage/ui';
+const WARP_CODE = `import { Backgrounds } from '@opencosmos/ui';
 const { WarpBackground } = Backgrounds;
 
 export default function HeroSection() {

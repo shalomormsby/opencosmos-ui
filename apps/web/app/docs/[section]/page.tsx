@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   const label = sectionLabel(resolved);
   return {
     title: label,
-    description: `${label} documentation for Sage Design Engine.`,
+    description: `${label} documentation for OpenCosmos UI.`,
   };
 }
 

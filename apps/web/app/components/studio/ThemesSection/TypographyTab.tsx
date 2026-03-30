@@ -36,12 +36,12 @@ import {
   Tooltip,
   TooltipTrigger,
   TooltipContent,
-} from '@thesage/ui';
+} from '@opencosmos/ui';
 import { rectSortingStrategy } from '@dnd-kit/sortable';
-import { useTheme } from '@thesage/ui';
-import { useCustomizer } from '@thesage/ui';
-import { SecondaryNav, type SecondaryNavItem } from '@thesage/ui';
-import { fontThemes, type FontThemeCategory } from '@thesage/tokens';
+import { useTheme } from '@opencosmos/ui';
+import { useCustomizer } from '@opencosmos/ui';
+import { SecondaryNav, type SecondaryNavItem } from '@opencosmos/ui';
+import { fontThemes, type FontThemeCategory } from '@opencosmos/tokens';
 import { getAllFontNames } from '../../../../lib/fonts-dynamic';
 import {
   Check, MoreVertical, Edit, Trash2, Plus, Info,

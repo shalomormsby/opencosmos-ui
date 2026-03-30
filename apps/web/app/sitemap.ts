@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { VALID_SECTIONS, SECTION_ITEMS } from './docs/route-config';
 
-const BASE_URL = 'https://thesage.dev';
+const BASE_URL = 'https://opencosmos.ai/studio';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const today = new Date().toISOString().split('T')[0];

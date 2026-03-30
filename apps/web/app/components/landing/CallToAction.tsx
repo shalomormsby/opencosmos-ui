@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Heading, Text, Magnetic } from '@thesage/ui';
+import { Button, Heading, Text, Magnetic } from '@opencosmos/ui';
 import { ArrowRight, Terminal } from 'lucide-react';
 import Link from 'next/link';
 

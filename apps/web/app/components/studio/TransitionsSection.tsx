@@ -1,6 +1,6 @@
 'use client';
 
-import { Card } from '@thesage/ui';
+import { Card } from '@opencosmos/ui';
 
 export function TransitionsSection() {
   return (

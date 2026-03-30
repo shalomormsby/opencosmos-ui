@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Breadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
+import { Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { McpOverview } from '../McpOverview';
 import { OverviewTab } from './OverviewTab';
 import { InstallationTab } from './InstallationTab';

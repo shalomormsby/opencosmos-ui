@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Breadcrumbs, type BreadcrumbItemLegacy, Tabs, TabsList, TabsTrigger, TabsContent } from '@thesage/ui';
+import { Breadcrumbs, type BreadcrumbItemLegacy, Tabs, TabsList, TabsTrigger, TabsContent } from '@opencosmos/ui';
 import { ChartsSections } from './ChartsSections';
 import { OpenGraphCardPage } from './pages/blocks/OpenGraphCardPage';
 import { BrandBuilder } from './BrandBuilder/BrandBuilder';

@@ -22,7 +22,7 @@ import {
     ScrollArea,
     Skeleton,
     useToast,
-} from '@thesage/ui';
+} from '@opencosmos/ui';
 
 export default function UniversalPage() {
     const { toast } = useToast();
@@ -41,7 +41,7 @@ export default function UniversalPage() {
                             <CardDescription>A web-first component library.</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p>This is a standard card component migrated to @thesage/ui. It supports all the nice things like hover effects and proper theming.</p>
+                            <p>This is a standard card component migrated to @opencosmos/ui. It supports all the nice things like hover effects and proper theming.</p>
                         </CardContent>
                         <CardFooter>
                             <Button>Get Started</Button>

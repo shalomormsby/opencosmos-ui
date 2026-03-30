@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Card, Text, Button, Badge, Heading, Input, Label, Tabs, TabsList, TabsTrigger, TabsContent, useMotionPreference } from '@thesage/ui';
+import { Card, Text, Button, Badge, Heading, Input, Label, Tabs, TabsList, TabsTrigger, TabsContent, useMotionPreference } from '@opencosmos/ui';
 import { Palette, Box, LayoutTemplate, Layers, Check, ArrowRight, Component } from 'lucide-react';
 
 export function LayerVisualization() {

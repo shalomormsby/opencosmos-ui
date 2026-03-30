@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, Button, Slider, Switch, Label, SecondaryNav, useMotionPreference } from '@thesage/ui';
+import { Card, Button, Slider, Switch, Label, SecondaryNav, useMotionPreference } from '@opencosmos/ui';
 import { motion } from 'framer-motion';
 import { RotateCcw } from 'lucide-react';
-import { baseTokens, motion as motionTokens } from '@thesage/ui/tokens';
+import { baseTokens, motion as motionTokens } from '@opencosmos/ui/tokens';
 
 // Types for our Motion Playground
 type DurationToken = keyof typeof baseTokens.duration;

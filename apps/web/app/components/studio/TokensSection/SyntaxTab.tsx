@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, Code, CollapsibleCodeBlock } from '@thesage/ui';
-import { syntaxColors } from '@thesage/ui/tokens';
+import { Card, Code, CollapsibleCodeBlock } from '@opencosmos/ui';
+import { syntaxColors } from '@opencosmos/ui/tokens';
 
 export function SyntaxTab() {
   const [copiedToken, setCopiedToken] = useState<string | null>(null);
@@ -253,7 +253,7 @@ export function SyntaxTab() {
             </p>
             <CollapsibleCodeBlock
               id="syntax-usage-1"
-              code={`import { CollapsibleCodeBlock, parseCode } from '@thesage/ui';
+              code={`import { CollapsibleCodeBlock, parseCode } from '@opencosmos/ui';
 
 // Automatic tokenization - just pass the code string!
 <CollapsibleCodeBlock

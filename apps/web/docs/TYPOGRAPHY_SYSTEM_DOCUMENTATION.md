@@ -60,7 +60,7 @@ Ensure body fonts are legible at small sizes:
 
 ### Browsing Font Themes
 
-1. Navigate to **Themes → Typography** in Sage Studio
+1. Navigate to **Themes → Typography** in OpenCosmos Studio
 2. Browse by category:
    - **All**: View all 18+ font themes
    - **My Themes**: Your custom font themes
@@ -647,8 +647,8 @@ See individual font licenses on [Google Fonts](https://fonts.google.com/).
 
 ## Support
 
-- **Documentation**: [Sage Studio](https://thesage.dev/#themes/typography)
-- **Issues**: [GitHub Issues](https://github.com/shalomormsby/sage-design-engine/issues)
+- **Documentation**: [OpenCosmos Studio](https://opencosmos.ai/studio/#themes/typography)
+- **Issues**: [GitHub Issues](https://github.com/shalomormsby/opencosmos-ui/issues)
 - **Questions**: Open a discussion or reach out
 
 ---

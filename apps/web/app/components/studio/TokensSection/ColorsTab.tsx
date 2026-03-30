@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, Badge, Code, Button, useTheme } from '@thesage/ui';
-import { useCustomizer } from '@thesage/ui';
-import { colorTokens, semanticColors, getContrastRatio } from '@thesage/ui/utils';
+import { Card, Badge, Code, Button, useTheme } from '@opencosmos/ui';
+import { useCustomizer } from '@opencosmos/ui';
+import { colorTokens, semanticColors, getContrastRatio } from '@opencosmos/ui/utils';
 import { Palette, ArrowRight, Copy, Check } from 'lucide-react';
 
 export function ColorsTab() {
@@ -380,7 +380,7 @@ export function ColorsTab() {
               Available Utilities
             </h4>
             <p className="text-sm text-[var(--color-text-secondary)] mb-4">
-              Import from <Code>@thesage/tokens</Code> or <Code>@thesage/ui/utils</Code>
+              Import from <Code>@opencosmos/tokens</Code> or <Code>@opencosmos/ui/utils</Code>
             </p>
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2">

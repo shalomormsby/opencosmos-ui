@@ -1,4 +1,4 @@
-import type { RouteConfig } from '@thesage/ui';
+import type { RouteConfig } from '@opencosmos/ui';
 
 export type Section =
   | 'getting-started'

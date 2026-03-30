@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server';
 import {
   COMPONENT_REGISTRY,
   COMPONENT_CATEGORIES,
-} from '@thesage/mcp/registry';
+} from '@opencosmos/mcp/registry';
 
-const PRODUCT_NAME = 'Sage Design Engine';
+const PRODUCT_NAME = 'OpenCosmos UI';
 
 export async function GET() {
   const components = Object.values(COMPONENT_REGISTRY).map((comp) => ({
@@ -33,11 +33,11 @@ export async function GET() {
     name: PRODUCT_NAME,
     version: '1.1.0',
     totalComponents: components.length,
-    package: '@thesage/ui',
-    install: 'pnpm add @thesage/ui',
-    docs: 'https://thesage.dev/docs',
-    llmsFullTxt: 'https://thesage.dev/llms-full.txt',
-    mcp: '@thesage/mcp',
+    package: '@opencosmos/ui',
+    install: 'pnpm add @opencosmos/ui',
+    docs: 'https://opencosmos.ai/studio/docs',
+    llmsFullTxt: 'https://opencosmos.ai/studio/llms-full.txt',
+    mcp: '@opencosmos/mcp',
     themes: ['studio', 'terra', 'volt'],
     categories,
     components,

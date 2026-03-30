@@ -1,6 +1,6 @@
 # SDE Optimization Plan for 3rd-Party AI-Powered App Building
 
-> **Goal:** Make the Sage Design Engine optimized for 3rd-party consumption so AI tools (Claude, Cursor, Copilot, etc.) can efficiently build apps using `@thesage/ui`. Achieve A+ across all dimensions.
+> **Goal:** Make the OpenCosmos UI optimized for 3rd-party consumption so AI tools (Claude, Cursor, Copilot, etc.) can efficiently build apps using `@opencosmos/ui`. Achieve A+ across all dimensions.
 
 **Created:** 2026-02-15
 **Last Updated:** 2026-02-15
@@ -13,7 +13,7 @@
 An external audit identified deficiencies in the SDE's machine-readability for 3rd-party AI tool consumption. Several findings were based on incomplete information (MCP server exists, Combobox exists, npm is published), but the core insight is valid: **AI tools can't efficiently consume SDE component APIs without reading source code every time**.
 
 ### What Already Exists (Strong Foundation)
-- MCP server (`@thesage/mcp`) with 4 tools and 92 components — **but lacks prop signatures**
+- MCP server (`@opencosmos/mcp`) with 4 tools and 92 components — **but lacks prop signatures**
 - Component registry with descriptions, keywords, use cases (`packages/mcp/src/registry.ts`)
 - Full props definitions in Studio's component-registry (`apps/web/app/components/lib/component-registry.tsx`)
 - JSON-LD metadata generator (`apps/web/app/lib/metadata-generator.ts`)
@@ -52,8 +52,8 @@ An external audit identified deficiencies in the SDE's machine-readability for 3
 - [x] Add `example` field with JSX code example for enriched components
 - [x] Update `formatComponentDetails()` in `packages/mcp/src/index.ts` to render props table, sub-components, and examples
 - [x] Version bump `packages/mcp/package.json` to 0.4.0
-- [x] Build and verify MCP server (requires `pnpm build --filter @thesage/mcp`)
-- [x] Publish to npm (`@thesage/mcp@0.6.0` live)
+- [x] Build and verify MCP server (requires `pnpm build --filter @opencosmos/mcp`)
+- [x] Publish to npm (`@opencosmos/mcp@0.6.0` live)
 
 ---
 
@@ -69,7 +69,7 @@ An external audit identified deficiencies in the SDE's machine-readability for 3
 - [x] Investigate why `/docs` returns 404 HTTP status
   - **Finding:** The `/docs` route has a valid `page.tsx` and should return 200. The external audit's 404 claim was likely a WebFetch tool misinterpretation.
 - [x] Add `apps/web/app/docs/layout.tsx` with proper metadata (title, description, OG tags, sage:llms-full meta)
-- [x] Verify with `curl -I https://thesage.dev/docs` after deployment — **HTTP 200 confirmed**
+- [x] Verify with `curl -I https://opencosmos.ai/studio/docs` after deployment — **HTTP 200 confirmed**
 - [ ] **NEW:** Fix "Documentation - undefined" title bug (see Phase 9A below)
 
 ---
@@ -77,7 +77,7 @@ An external audit identified deficiencies in the SDE's machine-readability for 3
 ### Phase 5: General-Purpose Starter Template (P1, Medium Effort) ✅
 
 - [x] Create `templates/nextjs-app/` directory
-- [x] `package.json` with correct dependencies (@thesage/ui, next, react, tailwindcss)
+- [x] `package.json` with correct dependencies (@opencosmos/ui, next, react, tailwindcss)
 - [x] `layout.tsx` with correct provider hierarchy (ThemeProvider > TooltipProvider > Toaster)
 - [x] `tailwind.config.ts` with SDE CSS variables
 - [x] `globals.css` importing SDE styles
@@ -99,7 +99,7 @@ An external audit identified deficiencies in the SDE's machine-readability for 3
 
 ### Phase 7: Quick DX & Documentation Wins (Low Effort, High Impact) ✅
 
-- [x] **Ship `.claude/` in npm package:** Include AI context file in `node_modules/@thesage/ui` for auto-discovery by Claude and other AI tools — **Confirmed shipped in `@thesage/ui@1.0.2`**
+- [x] **Ship `.claude/` in npm package:** Include AI context file in `node_modules/@opencosmos/ui` for auto-discovery by Claude and other AI tools — **Confirmed shipped in `@opencosmos/ui@1.0.2`**
 - [x] **Third-party pairing docs:** Document recommended libraries for gaps (e.g., Tiptap for rich text, react-dropzone for file upload)
 - [x] **Bundle size documentation:** Document per-component bundle impact, verify tree-shaking
 
@@ -109,18 +109,18 @@ An external audit identified deficiencies in the SDE's machine-readability for 3
 
 - [x] Add props data to the ~67 components not yet enriched in Phase 2
 - [x] Rebuild MCP server with full props coverage (66KB → 94KB)
-- [x] Publish to npm (`@thesage/mcp@0.6.0` live)
+- [x] Publish to npm (`@opencosmos/mcp@0.6.0` live)
 
 ---
 
 ## Verification Checklist (Phases 1–8)
 
-- [x] `curl https://thesage.dev/llms.txt` returns valid content — **200 OK**
-- [x] `curl https://thesage.dev/llms-full.txt` returns complete component reference — **200 OK**
-- [x] `@thesage/mcp@0.6.0` published to npm with props data
-- [x] `curl https://thesage.dev/robots.txt` returns valid robots file — **200 OK**
-- [x] `curl -I https://thesage.dev/docs` returns HTTP 200 — **Confirmed**
-- [x] `.claude/CLAUDE.md` ships in `@thesage/ui@1.0.2` tarball — **Confirmed**
+- [x] `curl https://opencosmos.ai/studio/llms.txt` returns valid content — **200 OK**
+- [x] `curl https://opencosmos.ai/studio/llms-full.txt` returns complete component reference — **200 OK**
+- [x] `@opencosmos/mcp@0.6.0` published to npm with props data
+- [x] `curl https://opencosmos.ai/studio/robots.txt` returns valid robots file — **200 OK**
+- [x] `curl -I https://opencosmos.ai/studio/docs` returns HTTP 200 — **Confirmed**
+- [x] `.claude/CLAUDE.md` ships in `@opencosmos/ui@1.0.2` tarball — **Confirmed**
 - [x] Template project builds and runs successfully — **Verified: 8 files, proper deps and provider hierarchy**
 - [x] `pnpm build` passes for all packages — **11/11 tasks successful**
 
@@ -135,7 +135,7 @@ An external audit identified deficiencies in the SDE's machine-readability for 3
 | HTTP 404 on all pages | **Fixed** | `/` and `/docs` both return HTTP 200 |
 | `og:title` = "Documentation - undefined" | **Confirmed bug** | `BRAND.productName` undefined at SSR build time |
 | `/docs/api.json` returns 404 | **Confirmed** | No route or static file exists |
-| `.claude/` not in npm package | **Audit was wrong** | `@thesage/ui@1.0.2` ships `.claude/CLAUDE.md` (7.1KB) |
+| `.claude/` not in npm package | **Audit was wrong** | `@opencosmos/ui@1.0.2` ships `.claude/CLAUDE.md` (7.1KB) |
 | MCP has 89 components / 7 categories | **Audit was wrong** | MCP registry has 92 components / 11 categories |
 | llms-full.txt has 92 components | **Audit was wrong** | llms-full.txt documents 89 (missing Accordion, Collapsible, Sonner) |
 | npm description "48+" is stale | **Confirmed** | Published desc still says "48+" |
@@ -146,11 +146,11 @@ An external audit identified deficiencies in the SDE's machine-readability for 3
 
 The `og:title` and `twitter:title` on `/docs` render as `"Documentation - undefined"`. Root cause:
 
-**`packages/ui/tsup.config.ts` adds `"use client"` banner to ALL output files.** When the server-side metadata in `apps/web/app/docs/layout.tsx` imports `BRAND` from `@thesage/ui`, Next.js treats the entire module as a client module. Non-component exports (plain objects like `BRAND`) resolve to `undefined` in server contexts.
+**`packages/ui/tsup.config.ts` adds `"use client"` banner to ALL output files.** When the server-side metadata in `apps/web/app/docs/layout.tsx` imports `BRAND` from `@opencosmos/ui`, Next.js treats the entire module as a client module. Non-component exports (plain objects like `BRAND`) resolve to `undefined` in server contexts.
 
 ```typescript
 // docs/layout.tsx — runs on server
-import { BRAND } from '@thesage/ui';  // ← module has "use client" banner
+import { BRAND } from '@opencosmos/ui';  // ← module has "use client" banner
 export const metadata: Metadata = {
   title: `Documentation - ${BRAND.productName}`,  // ← BRAND is undefined here
 };
@@ -167,8 +167,8 @@ export const metadata: Metadata = {
 **Impact:** SEO, social sharing previews, link unfurling on Slack/Discord all show broken title.
 
 - [x] Fix the `og:title` / `twitter:title` rendering "Documentation - undefined"
-  - **Applied Option A:** Hardcoded `"Sage Design Engine"` via local `PRODUCT_NAME` constant in `apps/web/app/docs/layout.tsx`, with comment explaining why `BRAND` can't be imported (tsup `"use client"` banner)
-- [ ] Verify fix after deploy: `curl -s https://thesage.dev/docs | grep 'og:title'` should show `"Documentation - Sage Design Engine"`
+  - **Applied Option A:** Hardcoded `"OpenCosmos UI"` via local `PRODUCT_NAME` constant in `apps/web/app/docs/layout.tsx`, with comment explaining why `BRAND` can't be imported (tsup `"use client"` banner)
+- [ ] Verify fix after deploy: `curl -s https://opencosmos.ai/studio/docs | grep 'og:title'` should show `"Documentation - OpenCosmos UI"`
 
 ---
 
@@ -188,14 +188,14 @@ export const metadata: Metadata = {
 
 **Impact:** `npm search` and package pages show "48+ accessible components" — 44 components behind reality.
 
-- [x] Updated `packages/ui/package.json` description to: `"Sage Design Engine — Make it Lovable. 92 accessible React components, three themes, user-controlled motion."`
-- [ ] Publish `@thesage/ui@1.0.3` with updated description (pending npm publish)
+- [x] Updated `packages/ui/package.json` description to: `"OpenCosmos UI — Make it Lovable. 92 accessible React components, three themes, user-controlled motion."`
+- [ ] Publish `@opencosmos/ui@1.0.3` with updated description (pending npm publish)
 
 ---
 
 ### Phase 9D: Fix Catch-All Route Missing Sections (P1, Severity: MEDIUM) ✅
 
-**Impact:** Visiting `thesage.dev/tools`, `thesage.dev/getting-started`, `thesage.dev/backgrounds`, or `thesage.dev/cursor` returns 404 instead of redirecting to `/docs#section`.
+**Impact:** Visiting `opencosmos.ai/studio/tools`, `opencosmos.ai/studio/getting-started`, `opencosmos.ai/studio/backgrounds`, or `opencosmos.ai/studio/cursor` returns 404 instead of redirecting to `/docs#section`.
 
 - [x] Added `'getting-started'`, `'tools'`, `'backgrounds'`, `'cursor'` to `validSections` in `apps/web/app/[...slug]/page.tsx`
 - [x] All sections defined in `docs/page.tsx` Section type are now present in the catch-all
@@ -208,11 +208,11 @@ export const metadata: Metadata = {
 
 - [x] Created `apps/web/app/docs/api.json/route.ts` as a Next.js API route
 - [x] Returns JSON with full component catalog: `{ name, version, totalComponents, package, install, docs, llmsFullTxt, mcp, themes, categories, components }`
-- [x] Sources data from MCP registry via `@thesage/mcp/registry` subpath export (added `./registry` export to MCP package)
+- [x] Sources data from MCP registry via `@opencosmos/mcp/registry` subpath export (added `./registry` export to MCP package)
 - [x] CORS headers (`Access-Control-Allow-Origin: *`) with cache headers (`max-age=3600, s-maxage=86400`)
 - [x] OPTIONS preflight handler for cross-origin requests
 - [x] Documented endpoint in llms.txt and robots.txt
-- [x] Added `@thesage/mcp` as workspace dependency to web app, added to `transpilePackages`
+- [x] Added `@opencosmos/mcp` as workspace dependency to web app, added to `transpilePackages`
 
 ---
 
@@ -255,7 +255,7 @@ export const metadata: Metadata = {
 **Impact:** Improves Google indexing quality and AI crawler comprehension.
 
 - [x] Added `Organization` JSON-LD schema to root `apps/web/app/layout.tsx` (name, url, logo, description, sameAs links)
-- [x] Added `canonical` link to root metadata (`https://thesage.dev`)
+- [x] Added `canonical` link to root metadata (`https://opencosmos.ai/studio`)
 - [x] Added `keywords` meta tag with 12 relevant terms
 - [x] Added `CollectionPage` JSON-LD to docs layout (name, description, url, mainEntity as SoftwareSourceCode, numberOfItems: 92, 7 category descriptions)
 - [x] Fixed root layout BRAND import issue (same tsup "use client" problem as Phase 9A) — hardcoded product name/description
@@ -294,7 +294,7 @@ export const metadata: Metadata = {
 - [x] Exported `labelVariants` from `Label.tsx` (forms)
 - [x] Exported `alertVariants` from `Alert.tsx` (feedback)
 - All 7 CVA variant definitions now publicly exported: `buttonVariants`, `toggleVariants`, `badgeVariants`, `cardVariants`, `sheetVariants`, `labelVariants`, `alertVariants`
-- Available via `import { buttonVariants, cardVariants } from '@thesage/ui'`
+- Available via `import { buttonVariants, cardVariants } from '@opencosmos/ui'`
 
 ---
 
@@ -322,7 +322,7 @@ export const metadata: Metadata = {
 - [x] Schema covers: version, package, totalComponents, themes, categories, components array
 - [x] Component schema includes: name, category (11 enum values), description, keywords, useCases, dependencies, radixPrimitive, props, subComponents, examples
 - [x] Prop schema includes: name, type, required, default, description, options
-- [x] Accessible at `https://thesage.dev/schema/registry.json`
+- [x] Accessible at `https://opencosmos.ai/studio/schema/registry.json`
 
 ---
 
@@ -343,8 +343,8 @@ export const metadata: Metadata = {
 
 ### Phase 24: Build Verification ✅
 
-- [x] `pnpm build --filter @thesage/ui` — successful (ESM + CJS + DTS)
-- [x] `pnpm build --filter @thesage/mcp` — successful (ESM + CJS + DTS)
+- [x] `pnpm build --filter @opencosmos/ui` — successful (ESM + CJS + DTS)
+- [x] `pnpm build --filter @opencosmos/mcp` — successful (ESM + CJS + DTS)
 - [x] All 156 tests passing across 30 test files
 - [x] No TypeScript errors
 

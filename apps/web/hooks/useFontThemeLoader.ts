@@ -4,7 +4,7 @@
  */
 
 import { useEffect, useState, useCallback } from 'react';
-import type { FontTheme } from '@thesage/tokens';
+import type { FontTheme } from '@opencosmos/tokens';
 import {
   getFontThemeFamilies,
   markFontsAsLoaded,

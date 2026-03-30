@@ -308,8 +308,8 @@ function formatComponentDetails(component: ComponentMetadata): string {
   }
 
   output += `## Documentation\n`;
-  output += `View full documentation at: https://thesage.dev/docs#${component.category}/${component.name.toLowerCase().replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}\n`;
-  output += `\nFull API reference: https://thesage.dev/llms-full.txt\n`;
+  output += `View full documentation at: https://opencosmos.ai/studio/docs#${component.category}/${component.name.toLowerCase().replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}\n`;
+  output += `\nFull API reference: https://opencosmos.ai/studio/llms-full.txt\n`;
 
   return output;
 }
@@ -350,8 +350,8 @@ function formatInstallationInstructions(component: ComponentMetadata): string {
   output += `\`\`\`\n\n`;
 
   output += `## Additional Resources\n\n`;
-  output += `- **Documentation:** https://thesage.dev/#${component.category}/${component.name.toLowerCase().replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}\n`;
-  output += `- **GitHub:** https://github.com/shalomormsby/sage-design-engine/tree/main/packages/ui/src/components/${component.category}\n`;
+  output += `- **Documentation:** https://opencosmos.ai/studio/#${component.category}/${component.name.toLowerCase().replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}\n`;
+  output += `- **GitHub:** https://github.com/shalomormsby/opencosmos-ui/tree/main/packages/ui/src/components/${component.category}\n`;
 
   return output;
 }
@@ -361,7 +361,7 @@ function formatInstallationInstructions(component: ComponentMetadata): string {
  */
 function generateAppShell(framework: string, theme: string): string {
   if (framework === 'nextjs') {
-    return `# Next.js App Router Setup with Sage Design Engine
+    return `# Next.js App Router Setup with OpenCosmos UI
 
 ## 1. Install dependencies
 
@@ -436,7 +436,7 @@ export default function Home() {
   }
 
   // Vite (default)
-  return `# Vite + React Setup with Sage Design Engine
+  return `# Vite + React Setup with OpenCosmos UI
 
 ## 1. Install dependencies
 
@@ -899,7 +899,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           output += '\n';
         }
 
-        output += `\nFull API reference: https://thesage.dev/llms-full.txt\n`;
+        output += `\nFull API reference: https://opencosmos.ai/studio/llms-full.txt\n`;
 
         return {
           content: [

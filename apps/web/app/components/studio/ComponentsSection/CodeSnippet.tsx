@@ -1,6 +1,6 @@
 'use client';
 
-import { CollapsibleCodeBlock } from '@thesage/ui';
+import { CollapsibleCodeBlock } from '@opencosmos/ui';
 
 interface CodeSnippetProps {
   code: string;

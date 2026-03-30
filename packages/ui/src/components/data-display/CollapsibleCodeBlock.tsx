@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { useTheme } from '../../hooks/useTheme';
-import { syntaxColors } from '@thesage/tokens';
+import { syntaxColors } from '@opencosmos/tokens';
 import { parseCode, type SyntaxToken } from '../../lib/syntax-parser';
 
 export interface CollapsibleCodeBlockProps {

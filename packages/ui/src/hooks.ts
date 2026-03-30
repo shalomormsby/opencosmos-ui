@@ -1,6 +1,6 @@
 /**
  * Hooks subpath export
- * Allows: import { ... } from '@thesage/ui/hooks'
+ * Allows: import { ... } from '@opencosmos/ui/hooks'
  */
 
 // Re-export all hooks

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card } from '@thesage/ui';
+import { Card } from '@opencosmos/ui';
 import type { ComponentConfig } from '../../lib/component-registry';
 import { CodeSnippet } from './CodeSnippet';
 import { JsonLdMetadata } from '../../JsonLdMetadata';
@@ -41,8 +41,8 @@ export function EnhancedComponentPlayground({ componentName, config }: Component
   const installCommand = designSystemComponents.includes(componentName)
     ? `# Install @ecosystem/design-system to use ${componentName}
 pnpm add @ecosystem/design-system`
-    : `# Install @thesage/ui to use ${componentName}
-pnpm add @thesage/ui`;
+    : `# Install @opencosmos/ui to use ${componentName}
+pnpm add @opencosmos/ui`;
 
   // Generate import statement
   const generateImportStatement = () => {
@@ -55,7 +55,7 @@ pnpm add @thesage/ui`;
 
     const packageName = designSystemComponents.includes(componentName)
       ? '@ecosystem/design-system'
-      : '@thesage/ui';
+      : '@opencosmos/ui';
 
     return `import { ${relatedExports.join(', ')} } from '${packageName}';`;
   };

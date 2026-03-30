@@ -6,12 +6,12 @@ Brand Builder is the first Template in Sage UI's 4-layer hierarchy, demonstratin
 ## 4-Layer Hierarchy in Action
 
 ### Layer 1: Tokens (Design System Primitives)
-- **Color Palettes** (`@thesage/tokens/colorPalettes`) - 12 curated themes
+- **Color Palettes** (`@opencosmos/tokens/colorPalettes`) - 12 curated themes
 - **Typography Fonts** (`fonts-dynamic`) - 24+ Google Fonts + System fonts
 - **Spacing** - Consistent grid spacing throughout
 
 ### Layer 2: Components (Individual UI Elements)
-Brand Builder uses these components from `@thesage/ui`:
+Brand Builder uses these components from `@opencosmos/ui`:
 
 #### Form Components
 - **Input** - Text inputs for brand name, logo text, color hex values
@@ -84,7 +84,7 @@ Brand Builder demonstrates these composed patterns that could be extracted as re
 
 ### Data Flow
 1. **Fonts** → `getAllFontNames()` from `lib/fonts-dynamic.ts`
-2. **Colors** → `colorPalettes` slice from `@thesage/tokens`
+2. **Colors** → `colorPalettes` slice from `@opencosmos/tokens`
 3. **Storage** → localStorage + Vercel Edge Config sync
 4. **State** → React useState hooks with controlled components
 
@@ -111,11 +111,11 @@ Follows the Open Graph Card layout pattern:
 
 | Component | Source | Purpose |
 |-----------|--------|---------|
-| Card | @thesage/ui | Section containers |
-| Button | @thesage/ui | Actions (6 types) |
-| Input | @thesage/ui | Text fields (4 fields) |
-| Label | @thesage/ui | Form labels |
-| Select | @thesage/ui | Dropdowns (4 selects) |
+| Card | @opencosmos/ui | Section containers |
+| Button | @opencosmos/ui | Actions (6 types) |
+| Input | @opencosmos/ui | Text fields (4 fields) |
+| Label | @opencosmos/ui | Form labels |
+| Select | @opencosmos/ui | Dropdowns (4 selects) |
 | Icons | lucide-react | Visual feedback |
 
 ## Blocks Identified for Future Extraction
@@ -143,7 +143,7 @@ Templates (Layer 4 - LayoutTemplate icon)
 ## Success Metrics
 ✅ First template in 4-layer hierarchy
 ✅ Demonstrates Token → Component → Block → Template flow
-✅ Uses 5+ components from @thesage/ui
+✅ Uses 5+ components from @opencosmos/ui
 ✅ Identifies 5 potential blocks for extraction
 ✅ Sticky preview with independent scrolling
 ✅ Multi-format export (SVG, CSS, JSON)

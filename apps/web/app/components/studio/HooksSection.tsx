@@ -1,11 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card, Button, Badge, Code, CollapsibleCodeBlock } from '@thesage/ui';
-import { TextField, Breadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
-import { useForm, useTheme, useToast } from '@thesage/ui';
+import { Card, Button, Badge, Code, CollapsibleCodeBlock } from '@opencosmos/ui';
+import { TextField, Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
+import { useForm, useTheme, useToast } from '@opencosmos/ui';
 import { HooksOverview } from './HooksOverview';
-// useClipboard is mocked locally below — the hook is available via @thesage/ui/hooks if needed
+// useClipboard is mocked locally below — the hook is available via @opencosmos/ui/hooks if needed
 
 // Mocking useClipboard for now until the package linking is fully propagated
 const useClipboard = () => {
@@ -79,7 +79,7 @@ function UseClipboardSection() {
   const { toast } = useToast();
 
   const handleCopy = () => {
-    copy('Hello from Sage Design Engine!');
+    copy('Hello from OpenCosmos UI!');
     toast('Copied to clipboard!', 'success');
   }
 
@@ -89,18 +89,18 @@ function UseClipboardSection() {
         <h3 className="text-2xl font-semibold mb-2 text-[var(--color-text-primary)]">useClipboard</h3>
         <Card className="p-6">
           <p className="text-[var(--color-text-primary)] mb-4">
-            Copy text to the clipboard with ease. Available as a utility hook via <Code syntax="plain">@thesage/ui/hooks</Code>.
+            Copy text to the clipboard with ease. Available as a utility hook via <Code syntax="plain">@opencosmos/ui/hooks</Code>.
           </p>
 
           <div className="flex flex-col gap-4">
             <div className="text-sm text-[var(--color-text-secondary)]">
               <strong>Import:</strong>
-              <Code syntax="plain" className="mt-2">import {'{ useClipboard }'} from '@thesage/ui/hooks';</Code>
+              <Code syntax="plain" className="mt-2">import {'{ useClipboard }'} from '@opencosmos/ui/hooks';</Code>
             </div>
 
             <div>
               <h5 className="font-medium text-[var(--color-text-primary)] mb-2">Live Demo</h5>
-              <Button onClick={handleCopy}>Copy "Hello from Sage Design Engine!"</Button>
+              <Button onClick={handleCopy}>Copy "Hello from OpenCosmos UI!"</Button>
             </div>
           </div>
         </Card>
@@ -159,7 +159,7 @@ function UseFormSection() {
           id="use-form-demo"
           title="useForm Example"
           language="typescript"
-          code={`import { useForm } from '@thesage/ui';
+          code={`import { useForm } from '@opencosmos/ui';
 
 function LoginForm() {
   const form = useForm({
@@ -248,7 +248,7 @@ function UseThemeSection() {
             id="hook-4"
             title="useTheme Example"
             language="typescript"
-            code={`import { useTheme } from '@thesage/ui';
+            code={`import { useTheme } from '@opencosmos/ui';
  
  function ThemeControls() {
    const { theme, mode, setTheme, setMode } = useTheme();
@@ -333,7 +333,7 @@ function UseMotionPreferenceSection() {
             id="hook-6"
             title="Motion Preference Example"
             language="typescript"
-            code={`import { useMotionPreference } from '@thesage/ui';
+            code={`import { useMotionPreference } from '@opencosmos/ui';
  import { motion } from 'framer-motion';
  
    function AnimatedComponent() {

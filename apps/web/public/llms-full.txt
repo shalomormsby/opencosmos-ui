@@ -1,9 +1,9 @@
-# Sage Design Engine — Complete Component Reference
+# OpenCosmos UI — Complete Component Reference
 # Version: 1.1.0 | React 18/19 | Next.js 15+ | Tailwind 3.4+ | framer-motion ^12
 # Components: 100 | Themes: 3 (Studio, Terra, Volt) | Blocks: 2
 # Last verified: 2026-02-16
-# Package: pnpm add @thesage/ui
-# MCP: npx @thesage/mcp
+# Package: pnpm add @opencosmos/ui
+# MCP: npx @opencosmos/mcp
 
 > 100 components | 11 categories | 3 themes | TypeScript strict mode | MIT license
 
@@ -12,9 +12,9 @@
 ## INSTALLATION
 
 ```bash
-pnpm add @thesage/ui
+pnpm add @opencosmos/ui
 # or
-npm install @thesage/ui
+npm install @opencosmos/ui
 ```
 
 ## PROVIDER HIERARCHY (Required)
@@ -22,9 +22,9 @@ npm install @thesage/ui
 Wrap your app root in this order:
 
 ```tsx
-import { ThemeProvider, TooltipProvider } from '@thesage/ui/providers'
-import { Toaster } from '@thesage/ui'
-import '@thesage/ui/globals.css'
+import { ThemeProvider, TooltipProvider } from '@opencosmos/ui/providers'
+import { Toaster } from '@opencosmos/ui'
+import '@opencosmos/ui/globals.css'
 
 export default function RootLayout({ children }) {
   return (
@@ -42,19 +42,19 @@ export default function RootLayout({ children }) {
 
 ```tsx
 // Main exports (most common)
-import { Button, Card, Input, Dialog, Badge } from '@thesage/ui'
+import { Button, Card, Input, Dialog, Badge } from '@opencosmos/ui'
 
 // Subpath exports
-import { useMotionPreference, useTheme } from '@thesage/ui/hooks'
-import { ThemeProvider, TooltipProvider } from '@thesage/ui/providers'
-import { cn } from '@thesage/ui/utils'
-import { spacing, typography } from '@thesage/ui/tokens'
+import { useMotionPreference, useTheme } from '@opencosmos/ui/hooks'
+import { ThemeProvider, TooltipProvider } from '@opencosmos/ui/providers'
+import { cn } from '@opencosmos/ui/utils'
+import { spacing, typography } from '@opencosmos/ui/tokens'
 
 // Heavy/optional features
-import { Form, FormField, FormItem } from '@thesage/ui/forms'
-import { Calendar, DatePicker } from '@thesage/ui/dates'
-import { DataTable } from '@thesage/ui/tables'
-import { DragDrop } from '@thesage/ui/dnd'
+import { Form, FormField, FormItem } from '@opencosmos/ui/forms'
+import { Calendar, DatePicker } from '@opencosmos/ui/dates'
+import { DataTable } from '@opencosmos/ui/tables'
+import { DragDrop } from '@opencosmos/ui/dnd'
 ```
 
 ## EJECT (Full Customization)
@@ -62,14 +62,14 @@ import { DragDrop } from '@thesage/ui/dnd'
 Copy any component's source into your project with imports rewritten:
 
 ```bash
-npx @thesage/ui eject Button              # eject to src/components/ui/
-npx @thesage/ui eject Dialog --dir my/dir  # custom target
-npx @thesage/ui eject --list               # list all components
+npx @opencosmos/ui eject Button              # eject to src/components/ui/
+npx @opencosmos/ui eject Dialog --dir my/dir  # custom target
+npx @opencosmos/ui eject --list               # list all components
 ```
 
-Ejected components keep working with SDE themes and CSS variables. Internal imports (`../../lib/utils`) are rewritten to package-level imports (`@thesage/ui/hooks`, `@thesage/ui/utils`). A `utils.ts` with `cn()` is auto-scaffolded alongside the ejected file.
+Ejected components keep working with SDE themes and CSS variables. Internal imports (`../../lib/utils`) are rewritten to package-level imports (`@opencosmos/ui/hooks`, `@opencosmos/ui/utils`). A `utils.ts` with `cn()` is auto-scaffolded alongside the ejected file.
 
-Also available via MCP tool `eject_component` (returns transformed source) and web UI (Eject button on every component page at thesage.dev).
+Also available via MCP tool `eject_component` (returns transformed source) and web UI (Eject button on every component page at opencosmos.ai/studio).
 
 ## COMPLETE APP SHELL (copy-paste ready)
 
@@ -79,8 +79,8 @@ Also available via MCP tool `eject_component` (returns transformed source) and w
 // src/main.tsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { ThemeProvider, TooltipProvider, Toaster } from '@thesage/ui'
-import '@thesage/ui/globals.css'
+import { ThemeProvider, TooltipProvider, Toaster } from '@opencosmos/ui'
+import '@opencosmos/ui/globals.css'
 import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -97,7 +97,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 // tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{ts,tsx}', './node_modules/@thesage/ui/dist/**/*.{js,mjs}'],
+  content: ['./index.html', './src/**/*.{ts,tsx}', './node_modules/@opencosmos/ui/dist/**/*.{js,mjs}'],
   darkMode: 'class',
   theme: { extend: {} },
   plugins: [require('tailwindcss-animate')],
@@ -113,8 +113,8 @@ export default {
 
 ```tsx
 // app/layout.tsx
-import { ThemeProvider, TooltipProvider, Toaster } from '@thesage/ui'
-import '@thesage/ui/globals.css'
+import { ThemeProvider, TooltipProvider, Toaster } from '@opencosmos/ui'
+import '@opencosmos/ui/globals.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -133,9 +133,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ```
 
 ### Manual Setup (any React project)
-1. `pnpm add @thesage/ui`
-2. Add to tailwind.config.js content array: `'./node_modules/@thesage/ui/dist/**/*.{js,mjs}'`
-3. Import globals: `import '@thesage/ui/globals.css'`
+1. `pnpm add @opencosmos/ui`
+2. Add to tailwind.config.js content array: `'./node_modules/@opencosmos/ui/dist/**/*.{js,mjs}'`
+3. Import globals: `import '@opencosmos/ui/globals.css'`
 4. Wrap app in providers: `<ThemeProvider><TooltipProvider>{children}<Toaster /></TooltipProvider></ThemeProvider>`
 
 ---
@@ -149,7 +149,7 @@ Three themes, each with light and dark modes:
 
 Switch at runtime:
 ```tsx
-import { useTheme } from '@thesage/ui/hooks'
+import { useTheme } from '@opencosmos/ui/hooks'
 const { theme, setTheme, mode, setMode } = useTheme()
 setTheme('volt')
 setMode('dark')
@@ -160,13 +160,13 @@ setMode('dark')
 - Use CSS variables for colors: `bg-background`, `text-foreground`, `border-border`
 - Never hardcode colors: no `bg-white`, `text-black`, `bg-neutral-100`
 - All components are Tailwind-compatible via `className` prop
-- Use `cn()` utility to merge classNames: `import { cn } from '@thesage/ui/utils'`
+- Use `cn()` utility to merge classNames: `import { cn } from '@opencosmos/ui/utils'`
 
 ## MOTION
 
 Every animation MUST respect user preferences:
 ```tsx
-import { useMotionPreference } from '@thesage/ui/hooks'
+import { useMotionPreference } from '@opencosmos/ui/hooks'
 const { shouldAnimate, scale } = useMotionPreference()
 // shouldAnimate = false when intensity is 0 or prefers-reduced-motion
 // scale = 0-1 multiplier for animation intensity
@@ -180,7 +180,7 @@ const { shouldAnimate, scale } = useMotionPreference()
 Interactive elements that trigger behaviors.
 
 ### Button
-Import: `import { Button } from '@thesage/ui'`
+Import: `import { Button } from '@opencosmos/ui'`
 Props:
   - variant: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link' (default: 'default')
   - size: 'sm' | 'default' | 'lg' | 'icon' (default: 'default')
@@ -196,7 +196,7 @@ Example:
 ```
 
 ### Toggle
-Import: `import { Toggle } from '@thesage/ui'`
+Import: `import { Toggle } from '@opencosmos/ui'`
 Props:
   - pressed: boolean
   - onPressedChange: (pressed: boolean) => void
@@ -213,7 +213,7 @@ Example:
 ```
 
 ### ToggleGroup
-Import: `import { ToggleGroup, ToggleGroupItem } from '@thesage/ui'`
+Import: `import { ToggleGroup, ToggleGroupItem } from '@opencosmos/ui'`
 Props:
   - type: 'single' | 'multiple' (required)
   - value: string | string[]
@@ -232,7 +232,7 @@ Example:
 ```
 
 ### Link
-Import: `import { Link } from '@thesage/ui'`
+Import: `import { Link } from '@opencosmos/ui'`
 Props:
   - variant: 'default' | 'inline' (default: 'default')
   - hoverEffect: boolean (default: true)
@@ -245,7 +245,7 @@ Example:
 ```
 
 ### Magnetic
-Import: `import { Magnetic } from '@thesage/ui'`
+Import: `import { Magnetic } from '@opencosmos/ui'`
 Props:
   - children: ReactNode
   - strength: number (default: 0.5)
@@ -264,7 +264,7 @@ Example:
 Input controls for data collection.
 
 ### Input
-Import: `import { Input } from '@thesage/ui'`
+Import: `import { Input } from '@opencosmos/ui'`
 Props:
   - type: string (default: 'text') — HTML input type
   - placeholder: string
@@ -277,7 +277,7 @@ Example:
 ```
 
 ### Textarea
-Import: `import { Textarea } from '@thesage/ui'`
+Import: `import { Textarea } from '@opencosmos/ui'`
 Props:
   - placeholder: string
   - disabled: boolean (default: false)
@@ -289,7 +289,7 @@ Example:
 ```
 
 ### Select
-Import: `import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@thesage/ui'`
+Import: `import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@opencosmos/ui'`
 Props (Select):
   - value: string
   - onValueChange: (value: string) => void
@@ -310,7 +310,7 @@ Example:
 ```
 
 ### Combobox
-Import: `import { Combobox } from '@thesage/ui'`
+Import: `import { Combobox } from '@opencosmos/ui'`
 Props:
   - options: { value: string; label: string }[]
   - value: string
@@ -334,7 +334,7 @@ Example:
 ```
 
 ### Checkbox
-Import: `import { Checkbox } from '@thesage/ui'`
+Import: `import { Checkbox } from '@opencosmos/ui'`
 Props:
   - checked: boolean | 'indeterminate'
   - onCheckedChange: (checked: boolean) => void
@@ -350,7 +350,7 @@ Example:
 ```
 
 ### Switch
-Import: `import { Switch } from '@thesage/ui'`
+Import: `import { Switch } from '@opencosmos/ui'`
 Props:
   - checked: boolean
   - onCheckedChange: (checked: boolean) => void
@@ -365,7 +365,7 @@ Example:
 ```
 
 ### Slider
-Import: `import { Slider } from '@thesage/ui'`
+Import: `import { Slider } from '@opencosmos/ui'`
 Props:
   - value: number[]
   - onValueChange: (value: number[]) => void
@@ -381,7 +381,7 @@ Example:
 ```
 
 ### RadioGroup
-Import: `import { RadioGroup, RadioGroupItem } from '@thesage/ui'`
+Import: `import { RadioGroup, RadioGroupItem } from '@opencosmos/ui'`
 Props:
   - value: string
   - onValueChange: (value: string) => void
@@ -403,14 +403,14 @@ Example:
 ```
 
 ### Label
-Import: `import { Label } from '@thesage/ui'`
+Import: `import { Label } from '@opencosmos/ui'`
 Props:
   - htmlFor: string — Associates label with input by ID
   - All standard <label> attributes
 Built on: @radix-ui/react-label
 
 ### Form (react-hook-form integration)
-Import: `import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@thesage/ui'`
+Import: `import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@opencosmos/ui'`
 Dependencies: react-hook-form, @hookform/resolvers, zod
 
 Example:
@@ -448,7 +448,7 @@ function MyForm() {
 ```
 
 ### InputOTP
-Import: `import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from '@thesage/ui'`
+Import: `import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from '@opencosmos/ui'`
 Props:
   - maxLength: number (required)
   - value: string
@@ -473,7 +473,7 @@ Example:
 ```
 
 ### SearchBar
-Import: `import { SearchBar } from '@thesage/ui'`
+Import: `import { SearchBar } from '@opencosmos/ui'`
 Props:
   - value: string
   - onChange: (value: string) => void
@@ -481,36 +481,36 @@ Props:
   - shortcutKey: string
 
 ### FilterButton
-Import: `import { FilterButton } from '@thesage/ui'`
+Import: `import { FilterButton } from '@opencosmos/ui'`
 Props:
   - active: boolean
   - onClick: () => void
   - children: ReactNode
 
 ### ThemeSwitcher
-Import: `import { ThemeSwitcher } from '@thesage/ui'`
+Import: `import { ThemeSwitcher } from '@opencosmos/ui'`
 Switches between Studio, Terra, and Volt themes.
 
 ### ThemeToggle
-Import: `import { ThemeToggle } from '@thesage/ui'`
+Import: `import { ThemeToggle } from '@opencosmos/ui'`
 Toggles between light and dark mode.
 
 ### ColorPicker
-Import: `import { ColorPicker } from '@thesage/ui'`
+Import: `import { ColorPicker } from '@opencosmos/ui'`
 Props:
   - value: string (hex color)
   - onChange: (color: string) => void
   - presets: string[] (preset color swatches)
 
 ### DragDrop
-Import: `import { DragDrop } from '@thesage/ui/dnd'`
+Import: `import { DragDrop } from '@opencosmos/ui/dnd'`
 Props:
   - onDrop: (files: File[]) => void
   - accept: string (MIME types)
   - maxSize: number (bytes)
 
 ### FileUpload
-Import: `import { FileUpload } from '@thesage/ui'`
+Import: `import { FileUpload } from '@opencosmos/ui'`
 Drag-and-drop file upload zone with validation, file list, and remove functionality.
 Props:
   - accept: Record<string, string[]> — Accepted file types (MIME types)
@@ -536,7 +536,7 @@ Example:
 ```
 
 ### TextField
-Import: `import { TextField } from '@thesage/ui'`
+Import: `import { TextField } from '@opencosmos/ui'`
 Props:
   - label: string
   - helperText: string
@@ -549,7 +549,7 @@ Props:
 Moving through content and hierarchy.
 
 ### Tabs
-Import: `import { Tabs, TabsList, TabsTrigger, TabsContent } from '@thesage/ui'`
+Import: `import { Tabs, TabsList, TabsTrigger, TabsContent } from '@opencosmos/ui'`
 Props:
   - defaultValue: string
   - value: string
@@ -569,7 +569,7 @@ Example:
 ```
 
 ### Breadcrumb
-Import: `import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@thesage/ui'`
+Import: `import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator } from '@opencosmos/ui'`
 
 Example:
 ```tsx
@@ -587,7 +587,7 @@ Example:
 ```
 
 ### Command (Command Palette)
-Import: `import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandDialog } from '@thesage/ui'`
+Import: `import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandDialog } from '@opencosmos/ui'`
 Dependency: cmdk
 
 Example:
@@ -605,7 +605,7 @@ Example:
 ```
 
 ### Pagination
-Import: `import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from '@thesage/ui'`
+Import: `import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis } from '@opencosmos/ui'`
 
 Example:
 ```tsx
@@ -620,28 +620,28 @@ Example:
 ```
 
 ### NavigationMenu
-Import: `import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink } from '@thesage/ui'`
+Import: `import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink } from '@opencosmos/ui'`
 Built on: @radix-ui/react-navigation-menu
 
 ### Menubar
-Import: `import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator } from '@thesage/ui'`
+Import: `import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator } from '@opencosmos/ui'`
 Built on: @radix-ui/react-menubar
 
 ### NavLink
-Import: `import { NavLink } from '@thesage/ui'`
+Import: `import { NavLink } from '@opencosmos/ui'`
 Props:
   - href: string
   - isActive: boolean
   - variant: string
 
 ### SecondaryNav
-Import: `import { SecondaryNav } from '@thesage/ui'`
+Import: `import { SecondaryNav } from '@opencosmos/ui'`
 
 ### TertiaryNav
-Import: `import { TertiaryNav } from '@thesage/ui'`
+Import: `import { TertiaryNav } from '@opencosmos/ui'`
 
 ### Breadcrumbs
-Import: `import { Breadcrumbs } from '@thesage/ui'`
+Import: `import { Breadcrumbs } from '@opencosmos/ui'`
 Props:
   - items: { label: string; href?: string }[]
   - variant: 'default' | 'with-icon'
@@ -652,7 +652,7 @@ Props:
 Contextual content above main UI.
 
 ### Dialog
-Import: `import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@thesage/ui'`
+Import: `import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@opencosmos/ui'`
 Props:
   - open: boolean
   - onOpenChange: (open: boolean) => void
@@ -678,7 +678,7 @@ Example:
 ```
 
 ### AlertDialog
-Import: `import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from '@thesage/ui'`
+Import: `import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from '@opencosmos/ui'`
 Built on: @radix-ui/react-alert-dialog
 
 Example:
@@ -701,7 +701,7 @@ Example:
 ```
 
 ### Sheet
-Import: `import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@thesage/ui'`
+Import: `import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription } from '@opencosmos/ui'`
 Props (SheetContent):
   - side: 'top' | 'right' | 'bottom' | 'left' (default: 'right')
 Built on: @radix-ui/react-dialog
@@ -722,7 +722,7 @@ Example:
 ```
 
 ### Drawer
-Import: `import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose } from '@thesage/ui'`
+Import: `import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerFooter, DrawerClose } from '@opencosmos/ui'`
 Dependency: vaul
 
 Example:
@@ -746,7 +746,7 @@ Example:
 ```
 
 ### DropdownMenu
-Import: `import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@thesage/ui'`
+Import: `import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from '@opencosmos/ui'`
 Built on: @radix-ui/react-dropdown-menu
 
 Example:
@@ -765,11 +765,11 @@ Example:
 ```
 
 ### ContextMenu
-Import: `import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from '@thesage/ui'`
+Import: `import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from '@opencosmos/ui'`
 Built on: @radix-ui/react-context-menu
 
 ### Popover
-Import: `import { Popover, PopoverTrigger, PopoverContent } from '@thesage/ui'`
+Import: `import { Popover, PopoverTrigger, PopoverContent } from '@opencosmos/ui'`
 Built on: @radix-ui/react-popover
 
 Example:
@@ -785,11 +785,11 @@ Example:
 ```
 
 ### HoverCard
-Import: `import { HoverCard, HoverCardTrigger, HoverCardContent } from '@thesage/ui'`
+Import: `import { HoverCard, HoverCardTrigger, HoverCardContent } from '@opencosmos/ui'`
 Built on: @radix-ui/react-hover-card
 
 ### Tooltip
-Import: `import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@thesage/ui'`
+Import: `import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@opencosmos/ui'`
 Note: Requires TooltipProvider wrapping your app.
 Built on: @radix-ui/react-tooltip
 
@@ -806,15 +806,15 @@ Example:
 ```
 
 ### Modal
-Import: `import { Modal } from '@thesage/ui'`
+Import: `import { Modal } from '@opencosmos/ui'`
 Simple wrapper around Dialog for common patterns.
 
 ### Dropdown
-Import: `import { Dropdown } from '@thesage/ui'`
+Import: `import { Dropdown } from '@opencosmos/ui'`
 Simple wrapper around DropdownMenu for common patterns.
 
 ### NotificationCenter
-Import: `import { NotificationCenter } from '@thesage/ui'`
+Import: `import { NotificationCenter } from '@opencosmos/ui'`
 Dropdown notification panel with grouped notifications, read/unread state, and actions.
 Props:
   - notifications: NotificationItem[] (required) — Array of notification items
@@ -841,7 +841,7 @@ Example:
 Communicating system state and user action results.
 
 ### Alert
-Import: `import { Alert, AlertTitle, AlertDescription } from '@thesage/ui'`
+Import: `import { Alert, AlertTitle, AlertDescription } from '@opencosmos/ui'`
 Props:
   - variant: 'default' | 'destructive' (default: 'default')
 
@@ -854,7 +854,7 @@ Example:
 ```
 
 ### Toast / Sonner
-Import: `import { Toaster, useToast } from '@thesage/ui'`
+Import: `import { Toaster, useToast } from '@opencosmos/ui'`
 Add `<Toaster />` to your layout, then:
 
 ```tsx
@@ -863,7 +863,7 @@ toast({ title: 'Success', description: 'Item saved.' })
 ```
 
 ### Progress
-Import: `import { Progress } from '@thesage/ui'`
+Import: `import { Progress } from '@opencosmos/ui'`
 Props:
   - value: number (0-100)
 Built on: @radix-ui/react-progress
@@ -874,7 +874,7 @@ Example:
 ```
 
 ### ProgressBar
-Import: `import { ProgressBar } from '@thesage/ui'`
+Import: `import { ProgressBar } from '@opencosmos/ui'`
 Props:
   - value: number (0-100)
   - variant: 'primary' | 'success' | 'warning' | 'error' | 'info' (default: 'primary')
@@ -887,7 +887,7 @@ Example:
 ```
 
 ### Skeleton
-Import: `import { Skeleton } from '@thesage/ui'`
+Import: `import { Skeleton } from '@opencosmos/ui'`
 Props:
   - variant: 'default' | 'circular' | 'rectangular' | 'text' (default: 'default')
   - width: string (default: '100%')
@@ -903,7 +903,7 @@ Example:
 ```
 
 ### Spinner
-Import: `import { Spinner } from '@thesage/ui'`
+Import: `import { Spinner } from '@opencosmos/ui'`
 Props:
   - size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' (default: 'md')
   - variant: 'primary' | 'secondary' | 'inherit' (default: 'primary')
@@ -914,7 +914,7 @@ Example:
 ```
 
 ### EmptyState
-Import: `import { EmptyState } from '@thesage/ui'`
+Import: `import { EmptyState } from '@opencosmos/ui'`
 Placeholder for empty content areas with icon, title, description, and call-to-action.
 Props:
   - icon: ReactNode — Icon displayed above the title
@@ -934,7 +934,7 @@ Example:
 ```
 
 ### Stepper
-Import: `import { Stepper, StepperStep } from '@thesage/ui'`
+Import: `import { Stepper, StepperStep } from '@opencosmos/ui'`
 Multi-step progress indicator for wizards and multi-step forms.
 Props:
   - currentStep: number (required) — Zero-based index of the current step
@@ -957,7 +957,7 @@ Example:
 Presenting information in structured formats.
 
 ### Card
-Import: `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@thesage/ui'`
+Import: `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@opencosmos/ui'`
 Props:
   - variant: 'default' | 'glass' | 'outline' (default: 'default')
   - hoverEffect: boolean (default: false)
@@ -979,7 +979,7 @@ Example:
 ```
 
 ### Badge
-Import: `import { Badge } from '@thesage/ui'`
+Import: `import { Badge } from '@opencosmos/ui'`
 Props:
   - variant: 'default' | 'secondary' | 'destructive' | 'outline' | 'success' | 'warning' | 'error' | 'info' (default: 'default')
   - size: 'sm' | 'md' | 'lg' (default: 'md')
@@ -991,7 +991,7 @@ Example:
 ```
 
 ### Table
-Import: `import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@thesage/ui'`
+Import: `import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@opencosmos/ui'`
 
 Example:
 ```tsx
@@ -1012,12 +1012,12 @@ Example:
 ```
 
 ### DataTable
-Import: `import { DataTable } from '@thesage/ui/tables'`
+Import: `import { DataTable } from '@opencosmos/ui/tables'`
 Dependency: @tanstack/react-table
 Enhanced table with sorting, filtering, pagination.
 
 ### Avatar
-Import: `import { Avatar, AvatarImage, AvatarFallback } from '@thesage/ui'`
+Import: `import { Avatar, AvatarImage, AvatarFallback } from '@opencosmos/ui'`
 Built on: @radix-ui/react-avatar
 
 Example:
@@ -1029,54 +1029,54 @@ Example:
 ```
 
 ### Calendar
-Import: `import { Calendar } from '@thesage/ui/dates'`
+Import: `import { Calendar } from '@opencosmos/ui/dates'`
 Dependencies: react-day-picker, date-fns
 
 ### Heading
-Import: `import { Heading } from '@thesage/ui'`
+Import: `import { Heading } from '@opencosmos/ui'`
 Props:
   - as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' (default: 'h2')
   - size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
 ### Text
-Import: `import { Text } from '@thesage/ui'`
+Import: `import { Text } from '@opencosmos/ui'`
 Props:
   - variant: 'primary' | 'secondary' | 'muted'
   - as: 'p' | 'span' | 'div' (default: 'p')
 
 ### Code
-Import: `import { Code } from '@thesage/ui'`
+Import: `import { Code } from '@opencosmos/ui'`
 Props:
   - inline: boolean (default: false)
   - showCopy: boolean (default: true)
   - syntax: 'plain' | 'keyword' | 'function' | 'string' | 'number' | 'boolean' | 'property' | 'className' | 'comment'
 
 ### CollapsibleCodeBlock
-Import: `import { CollapsibleCodeBlock } from '@thesage/ui'`
+Import: `import { CollapsibleCodeBlock } from '@opencosmos/ui'`
 Expandable code block with syntax highlighting, preview mode, and copy.
 
 ### DescriptionList
-Import: `import { DescriptionList } from '@thesage/ui'`
+Import: `import { DescriptionList } from '@opencosmos/ui'`
 Props:
   - items: { term: string; description: string }[]
   - layout: 'row' | 'column' (default: 'row')
 
 ### Brand
-Import: `import { Brand } from '@thesage/ui'`
+Import: `import { Brand } from '@opencosmos/ui'`
 Theme-aware brand/logo component.
 
 ### AspectImage
-Import: `import { AspectImage } from '@thesage/ui'`
+Import: `import { AspectImage } from '@opencosmos/ui'`
 Props:
   - ratio: number (default: 16/9)
   - caption: string
 
 ### VariableWeightText
-Import: `import { VariableWeightText } from '@thesage/ui'`
+Import: `import { VariableWeightText } from '@opencosmos/ui'`
 Animated breathing font-weight effect. Dependency: framer-motion.
 
 ### Typewriter
-Import: `import { Typewriter } from '@thesage/ui'`
+Import: `import { Typewriter } from '@opencosmos/ui'`
 Props:
   - words: string[]
   - loop: boolean (default: true)
@@ -1084,11 +1084,11 @@ Props:
 Dependency: framer-motion.
 
 ### GitHubIcon
-Import: `import { GitHubIcon } from '@thesage/ui'`
+Import: `import { GitHubIcon } from '@opencosmos/ui'`
 Theme-aware GitHub logo SVG.
 
 ### StatCard
-Import: `import { StatCard } from '@thesage/ui'`
+Import: `import { StatCard } from '@opencosmos/ui'`
 Displays key metrics and statistics with label, value, trend indicator, and optional icon.
 Props:
   - label: string (required) — The metric label (e.g. "Revenue")
@@ -1107,7 +1107,7 @@ Example:
 ```
 
 ### Timeline
-Import: `import { Timeline, TimelineItem } from '@thesage/ui'`
+Import: `import { Timeline, TimelineItem } from '@opencosmos/ui'`
 Chronological event display with connecting lines, icons, and status indicators.
 Props:
   - orientation: 'vertical' | 'horizontal' (default: 'vertical')
@@ -1123,7 +1123,7 @@ Example:
 ```
 
 ### TreeView
-Import: `import { TreeView } from '@thesage/ui'`
+Import: `import { TreeView } from '@opencosmos/ui'`
 Hierarchical data display with expand/collapse, keyboard navigation, and selection.
 Props:
   - nodes: TreeNode[] (required) — Array of tree nodes
@@ -1151,7 +1151,7 @@ Example:
 Spatial organization and structural elements.
 
 ### Accordion
-Import: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@thesage/ui'`
+Import: `import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@opencosmos/ui'`
 Props:
   - type: 'single' | 'multiple' (required)
   - collapsible: boolean (default: false, for type="single")
@@ -1168,36 +1168,36 @@ Example:
 ```
 
 ### Separator
-Import: `import { Separator } from '@thesage/ui'`
+Import: `import { Separator } from '@opencosmos/ui'`
 Props:
   - orientation: 'horizontal' | 'vertical' (default: 'horizontal')
 Built on: @radix-ui/react-separator
 
 ### ScrollArea
-Import: `import { ScrollArea } from '@thesage/ui'`
+Import: `import { ScrollArea } from '@opencosmos/ui'`
 Custom scrollbar styling for overflow content.
 Built on: @radix-ui/react-scroll-area
 
 ### AspectRatio
-Import: `import { AspectRatio } from '@thesage/ui'`
+Import: `import { AspectRatio } from '@opencosmos/ui'`
 Props:
   - ratio: number (default: 1)
 Built on: @radix-ui/react-aspect-ratio
 
 ### Collapsible
-Import: `import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@thesage/ui'`
+Import: `import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@opencosmos/ui'`
 Built on: @radix-ui/react-collapsible
 
 ### Carousel
-Import: `import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@thesage/ui'`
+Import: `import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@opencosmos/ui'`
 Dependency: embla-carousel-react
 
 ### DatePicker
-Import: `import { DatePicker } from '@thesage/ui/dates'`
+Import: `import { DatePicker } from '@opencosmos/ui/dates'`
 Calendar + Popover date picker.
 
 ### Resizable
-Import: `import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@thesage/ui'`
+Import: `import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@opencosmos/ui'`
 Dependency: react-resizable-panels
 
 Example:
@@ -1210,7 +1210,7 @@ Example:
 ```
 
 ### GlassSurface
-Import: `import { GlassSurface } from '@thesage/ui'`
+Import: `import { GlassSurface } from '@opencosmos/ui'`
 Liquid glass surface with backdrop blur, five thickness tiers, and 10-step tint scale.
 Props:
   - active: boolean (default: true) — Whether the frosted glass effect is active
@@ -1228,18 +1228,18 @@ Example:
 ```
 
 ### Grid
-Import: `import { Grid } from '@thesage/ui'`
+Import: `import { Grid } from '@opencosmos/ui'`
 Props:
   - cols: number | { sm?: number; md?: number; lg?: number }
   - gap: number
 
 ### Container
-Import: `import { Container } from '@thesage/ui'`
+Import: `import { Container } from '@opencosmos/ui'`
 Props:
   - size: 'sm' | 'md' | 'lg' | 'xl' | 'full'
 
 ### Stack
-Import: `import { Stack } from '@thesage/ui'`
+Import: `import { Stack } from '@opencosmos/ui'`
 Props:
   - direction: 'vertical' | 'horizontal' (default: 'vertical')
   - gap: number
@@ -1247,7 +1247,7 @@ Props:
   - justify: 'start' | 'center' | 'end' | 'between' | 'around'
 
 ### Sidebar
-Import: `import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem } from '@thesage/ui'`
+Import: `import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem } from '@opencosmos/ui'`
 Props (SidebarItem):
   - isActive: boolean
   - icon: ReactNode
@@ -1270,23 +1270,23 @@ Example:
 ```
 
 ### Header
-Import: `import { Header } from '@thesage/ui'`
+Import: `import { Header } from '@opencosmos/ui'`
 Page header with sticky positioning, glass morphism, mobile menu.
 
 ### Footer
-Import: `import { Footer } from '@thesage/ui'`
+Import: `import { Footer } from '@opencosmos/ui'`
 Multi-column footer with social links and copyright.
 
 ### CustomizerPanel
-Import: `import { CustomizerPanel } from '@thesage/ui'`
+Import: `import { CustomizerPanel } from '@opencosmos/ui'`
 Floating panel for theme, mode, and motion customization.
 
 ### PageLayout
-Import: `import { PageLayout } from '@thesage/ui'`
+Import: `import { PageLayout } from '@opencosmos/ui'`
 Flexible page layout with header, nav stacks, breadcrumbs, and footer.
 
 ### PageTemplate
-Import: `import { PageTemplate } from '@thesage/ui'`
+Import: `import { PageTemplate } from '@opencosmos/ui'`
 Opinionated page template with Swiss Grid design and customizer.
 
 ---
@@ -1295,15 +1295,15 @@ Opinionated page template with Swiss Grid design and customizer.
 Animated background effects and decorative elements.
 
 ### WarpBackground
-Import: `import { WarpBackground } from '@thesage/ui'`
+Import: `import { WarpBackground } from '@opencosmos/ui'`
 Animated warp speed star field. Dependency: framer-motion.
 
 ### FaultyTerminal
-Import: `import { FaultyTerminal } from '@thesage/ui'`
+Import: `import { FaultyTerminal } from '@opencosmos/ui'`
 Glitchy CRT terminal background effect.
 
 ### OrbBackground
-Import: `import { OrbBackground } from '@thesage/ui'`
+Import: `import { OrbBackground } from '@opencosmos/ui'`
 Animated floating orb with gradient blur. Dependency: framer-motion.
 
 ---
@@ -1312,11 +1312,11 @@ Animated floating orb with gradient blur. Dependency: framer-motion.
 Custom cursor effects.
 
 ### SplashCursor
-Import: `import { SplashCursor } from '@thesage/ui'`
+Import: `import { SplashCursor } from '@opencosmos/ui'`
 Splash/ripple effect on click.
 
 ### TargetCursor
-Import: `import { TargetCursor } from '@thesage/ui'`
+Import: `import { TargetCursor } from '@opencosmos/ui'`
 Target/crosshair cursor appearance.
 
 ---
@@ -1325,7 +1325,7 @@ Target/crosshair cursor appearance.
 Animation components.
 
 ### AnimatedBeam
-Import: `import { AnimatedBeam } from '@thesage/ui'`
+Import: `import { AnimatedBeam } from '@opencosmos/ui'`
 Animated beam connecting two elements. Dependency: framer-motion.
 
 ---
@@ -1334,11 +1334,11 @@ Animated beam connecting two elements. Dependency: framer-motion.
 Composed page sections.
 
 ### Hero
-Import: `import { Hero } from '@thesage/ui'`
+Import: `import { Hero } from '@opencosmos/ui'`
 Full-width hero with title, subtitle, and CTA.
 
 ### OpenGraphCard
-Import: `import { OpenGraphCard } from '@thesage/ui'`
+Import: `import { OpenGraphCard } from '@opencosmos/ui'`
 Social media preview card for OG metadata.
 
 ---
@@ -1347,7 +1347,7 @@ Social media preview card for OG metadata.
 
 ## Settings Page
 ```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent, Card, CardHeader, CardTitle, CardContent, Switch, Button, Separator } from '@thesage/ui'
+import { Tabs, TabsList, TabsTrigger, TabsContent, Card, CardHeader, CardTitle, CardContent, Switch, Button, Separator } from '@opencosmos/ui'
 
 <Tabs defaultValue="general">
   <TabsList>
@@ -1375,7 +1375,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent, Card, CardHeader, CardTitle, 
 
 ## Data Table Page
 ```tsx
-import { Card, CardHeader, CardTitle, CardContent, Input, Button, Badge, Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@thesage/ui'
+import { Card, CardHeader, CardTitle, CardContent, Input, Button, Badge, Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@opencosmos/ui'
 
 <Card>
   <CardHeader>
@@ -1410,7 +1410,7 @@ import { Card, CardHeader, CardTitle, CardContent, Input, Button, Badge, Table, 
 
 ## Form Page
 ```tsx
-import { Card, CardHeader, CardTitle, CardContent, CardFooter, Input, Label, Textarea, Select, SelectTrigger, SelectValue, SelectContent, SelectItem, Button } from '@thesage/ui'
+import { Card, CardHeader, CardTitle, CardContent, CardFooter, Input, Label, Textarea, Select, SelectTrigger, SelectValue, SelectContent, SelectItem, Button } from '@opencosmos/ui'
 
 <Card className="max-w-lg">
   <CardHeader>
@@ -1446,7 +1446,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter, Input, Label, Tex
 
 ## Dashboard Layout
 ```tsx
-import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem, Card, CardHeader, CardTitle, CardContent, Badge } from '@thesage/ui'
+import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem, Card, CardHeader, CardTitle, CardContent, Badge } from '@opencosmos/ui'
 
 <div className="flex h-screen">
   <Sidebar className="w-64 border-r">
@@ -1480,7 +1480,7 @@ import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem, Car
 
 # DESIGN TOKENS
 
-Available via `import { spacing, typography } from '@thesage/ui/tokens'`
+Available via `import { spacing, typography } from '@opencosmos/ui/tokens'`
 
 Token categories:
 - **Colors**: CSS variables (--color-background, --color-foreground, --color-primary, --color-secondary, --color-muted, --color-accent, --color-destructive, --color-border, --color-ring)
@@ -1494,10 +1494,10 @@ Token categories:
 # HOOKS
 
 ```tsx
-import { useTheme } from '@thesage/ui/hooks'
+import { useTheme } from '@opencosmos/ui/hooks'
 // Returns: { theme, setTheme, mode, setMode, resolvedMode }
 
-import { useMotionPreference } from '@thesage/ui/hooks'
+import { useMotionPreference } from '@opencosmos/ui/hooks'
 // Returns: { shouldAnimate, scale, intensity, setIntensity }
 ```
 
@@ -1512,7 +1512,7 @@ For AI assistants (Claude Code, Cursor, VS Code):
   "mcpServers": {
     "sds": {
       "command": "npx",
-      "args": ["@thesage/mcp"]
+      "args": ["@opencosmos/mcp"]
     }
   }
 }
@@ -1528,16 +1528,16 @@ All sizes are minified + brotli compressed, with all dependencies included.
 
 | Entrypoint | Import Path | Size | Limit |
 |------------|-------------|------|-------|
-| Core (all 100 components) | `@thesage/ui` | 146.4 KB | 450 KB |
-| Tokens | `@thesage/ui/tokens` | 10.9 KB | 70 KB |
-| Forms (react-hook-form) | `@thesage/ui/forms` | 9.4 KB | 10 KB |
-| Utils | `@thesage/ui/utils` | 9.5 KB | 25 KB |
-| Tables (@tanstack) | `@thesage/ui/tables` | 8.3 KB | 10 KB |
-| DnD (@dnd-kit) | `@thesage/ui/dnd` | 8.3 KB | 10 KB |
-| Providers | `@thesage/ui/providers` | 8.3 KB | 60 KB |
-| Hooks | `@thesage/ui/hooks` | 6.0 KB | 40 KB |
-| Dates (date-fns) | `@thesage/ui/dates` | 28.8 KB | 30 KB |
-| WebGL | `@thesage/ui/webgl` | 1.1 KB | 10 KB |
+| Core (all 100 components) | `@opencosmos/ui` | 146.4 KB | 450 KB |
+| Tokens | `@opencosmos/ui/tokens` | 10.9 KB | 70 KB |
+| Forms (react-hook-form) | `@opencosmos/ui/forms` | 9.4 KB | 10 KB |
+| Utils | `@opencosmos/ui/utils` | 9.5 KB | 25 KB |
+| Tables (@tanstack) | `@opencosmos/ui/tables` | 8.3 KB | 10 KB |
+| DnD (@dnd-kit) | `@opencosmos/ui/dnd` | 8.3 KB | 10 KB |
+| Providers | `@opencosmos/ui/providers` | 8.3 KB | 60 KB |
+| Hooks | `@opencosmos/ui/hooks` | 6.0 KB | 40 KB |
+| Dates (date-fns) | `@opencosmos/ui/dates` | 28.8 KB | 30 KB |
+| WebGL | `@opencosmos/ui/webgl` | 1.1 KB | 10 KB |
 
 **Tree-shaking:** `sideEffects: false` is set in package.json. Bundlers (Next.js, Vite, webpack) will eliminate unused exports at build time. Heavy optional features (forms, dates, tables, dnd) are isolated behind subpath exports so they are never included unless explicitly imported.
 
@@ -1545,7 +1545,7 @@ All sizes are minified + brotli compressed, with all dependencies included.
 
 # RECOMMENDED THIRD-PARTY PAIRINGS
 
-SDE covers 100 components. For gaps, these libraries integrate well with @thesage/ui styling and patterns:
+SDE covers 100 components. For gaps, these libraries integrate well with @opencosmos/ui styling and patterns:
 
 | Need | Library | Install | Notes |
 |------|---------|---------|-------|
@@ -1560,10 +1560,10 @@ SDE covers 100 components. For gaps, these libraries integrate well with @thesag
 | State Machines | XState | `xstate @xstate/react` | For complex multi-step flows (wizards, checkout). |
 
 **Already integrated as peer dependencies (optional):**
-- `@tanstack/react-table` → Available via `@thesage/ui/tables` (DataTable)
-- `react-hook-form` + `zod` → Available via `@thesage/ui/forms` (Form, FormField)
-- `date-fns` + `react-day-picker` → Available via `@thesage/ui/dates` (Calendar, DatePicker)
-- `@dnd-kit/*` → Available via `@thesage/ui/dnd` (DragDrop)
+- `@tanstack/react-table` → Available via `@opencosmos/ui/tables` (DataTable)
+- `react-hook-form` + `zod` → Available via `@opencosmos/ui/forms` (Form, FormField)
+- `date-fns` + `react-day-picker` → Available via `@opencosmos/ui/dates` (Calendar, DatePicker)
+- `@dnd-kit/*` → Available via `@opencosmos/ui/dnd` (DragDrop)
 - `framer-motion` → Used by Magnetic, motion hooks, and animations
 - `lucide-react` → Icon library, already a dependency
 
@@ -1579,8 +1579,8 @@ RIGHT: `<Button variant="default">`              → use variant prop
 WRONG: `<Dialog>content</Dialog>`                → missing compound structure
 RIGHT: `<Dialog><DialogTrigger>...</DialogTrigger><DialogContent>...</DialogContent></Dialog>`
 
-WRONG: `import { Button } from '@thesage/ui/components/actions/Button'`
-RIGHT: `import { Button } from '@thesage/ui'`
+WRONG: `import { Button } from '@opencosmos/ui/components/actions/Button'`
+RIGHT: `import { Button } from '@opencosmos/ui'`
 
 WRONG: `<div className="bg-white dark:bg-gray-900">`
 RIGHT: `<div className="bg-background">`          → CSS variable handles mode
@@ -1608,10 +1608,10 @@ RIGHT: `const { shouldAnimate } = useMotionPreference()` → conditionally anima
 | Searchable dropdown | Combobox (not Select) | Combobox has built-in search/filter |
 | Boolean toggle | Switch (not Checkbox) | Switch for instant effect, Checkbox for form submission |
 | Multi-select | Checkbox group (not Select) | Select is single-value only |
-| File upload | DragDrop from `@thesage/ui/dnd` | Handles drag events, accessible |
-| Date selection | DatePicker from `@thesage/ui/dates` | Wraps Calendar + Popover |
-| Data grid with sort/filter | DataTable from `@thesage/ui/tables` | Built on @tanstack/react-table |
-| Form validation | Form from `@thesage/ui/forms` | Wraps react-hook-form + zod |
+| File upload | DragDrop from `@opencosmos/ui/dnd` | Handles drag events, accessible |
+| Date selection | DatePicker from `@opencosmos/ui/dates` | Wraps Calendar + Popover |
+| Data grid with sort/filter | DataTable from `@opencosmos/ui/tables` | Built on @tanstack/react-table |
+| Form validation | Form from `@opencosmos/ui/forms` | Wraps react-hook-form + zod |
 | Short notification | Sonner / Toast | Auto-dismisses, non-blocking |
 | Important message | Alert | Persistent, stays visible in flow |
 | Full-page modal | Dialog | Focus-trapped, centered overlay |
@@ -1655,16 +1655,16 @@ SDE uses subpath exports to keep your bundle lean. Only import what you use:
 
 | Import | Size (min+brotli) | What's Included |
 |--------|-------------------|-----------------|
-| `@thesage/ui` | ~146 KB | All 100 base components |
-| `@thesage/ui/hooks` | ~40 KB | useTheme, useMotionPreference, useForm |
-| `@thesage/ui/providers` | ~60 KB | ThemeProvider, TooltipProvider |
-| `@thesage/ui/tokens` | ~70 KB | Design tokens (re-exported from @thesage/tokens) |
-| `@thesage/ui/utils` | ~25 KB | cn(), parseCode, and utilities |
-| `@thesage/ui/forms` | ~9 KB | Form integration (requires react-hook-form + zod) |
-| `@thesage/ui/dates` | ~29 KB | Calendar, DatePicker (requires date-fns) |
-| `@thesage/ui/tables` | ~8 KB | DataTable (requires @tanstack/react-table) |
-| `@thesage/ui/dnd` | ~8 KB | DragDrop (requires @dnd-kit) |
-| `@thesage/ui/webgl` | ~1 KB | WebGL components |
+| `@opencosmos/ui` | ~146 KB | All 100 base components |
+| `@opencosmos/ui/hooks` | ~40 KB | useTheme, useMotionPreference, useForm |
+| `@opencosmos/ui/providers` | ~60 KB | ThemeProvider, TooltipProvider |
+| `@opencosmos/ui/tokens` | ~70 KB | Design tokens (re-exported from @opencosmos/tokens) |
+| `@opencosmos/ui/utils` | ~25 KB | cn(), parseCode, and utilities |
+| `@opencosmos/ui/forms` | ~9 KB | Form integration (requires react-hook-form + zod) |
+| `@opencosmos/ui/dates` | ~29 KB | Calendar, DatePicker (requires date-fns) |
+| `@opencosmos/ui/tables` | ~8 KB | DataTable (requires @tanstack/react-table) |
+| `@opencosmos/ui/dnd` | ~8 KB | DragDrop (requires @dnd-kit) |
+| `@opencosmos/ui/webgl` | ~1 KB | WebGL components |
 
 Heavy optional dependencies are peer deps — install only what your app needs.
 
@@ -1673,10 +1673,10 @@ Heavy optional dependencies are peer deps — install only what your app needs.
 All CVA-based components export their variant definitions for custom composition:
 
 ```tsx
-import { buttonVariants, badgeVariants, cardVariants, alertVariants } from '@thesage/ui'
-import { toggleVariants } from '@thesage/ui'
-import { sheetVariants } from '@thesage/ui'
-import { labelVariants } from '@thesage/ui'
+import { buttonVariants, badgeVariants, cardVariants, alertVariants } from '@opencosmos/ui'
+import { toggleVariants } from '@opencosmos/ui'
+import { sheetVariants } from '@opencosmos/ui'
+import { labelVariants } from '@opencosmos/ui'
 
 // Use variants without rendering the component
 <a className={buttonVariants({ variant: "ghost", size: "sm" })}>Link styled as button</a>
@@ -1686,10 +1686,10 @@ import { labelVariants } from '@thesage/ui'
 
 # RESOURCES
 
-- Docs: https://thesage.dev/docs/overview
-- GitHub: https://github.com/shalomormsby/sage-design-engine
-- NPM: https://www.npmjs.com/package/@thesage/ui
-- MCP: https://www.npmjs.com/package/@thesage/mcp
-- API JSON: https://thesage.dev/docs/api.json
-- AI Plugin: https://thesage.dev/.well-known/ai-plugin.json
-- MCP Discovery: https://thesage.dev/.well-known/mcp-server.json
+- Docs: https://opencosmos.ai/studio/docs/overview
+- GitHub: https://github.com/shalomormsby/opencosmos-ui
+- NPM: https://www.npmjs.com/package/@opencosmos/ui
+- MCP: https://www.npmjs.com/package/@opencosmos/mcp
+- API JSON: https://opencosmos.ai/studio/docs/api.json
+- AI Plugin: https://opencosmos.ai/studio/.well-known/ai-plugin.json
+- MCP Discovery: https://opencosmos.ai/studio/.well-known/mcp-server.json

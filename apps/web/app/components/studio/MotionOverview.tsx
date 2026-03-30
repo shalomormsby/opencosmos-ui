@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading, Text, Card, Badge } from '@thesage/ui';
+import { Heading, Text, Card, Badge } from '@opencosmos/ui';
 import { ArrowRight, Zap, Type, Sparkles, MousePointer2, Image, Activity, Terminal, Magnet } from 'lucide-react';
 
 interface MotionOverviewProps {

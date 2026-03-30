@@ -1,4 +1,4 @@
-# Sage Design Engine - Strategy & Implementation Status
+# OpenCosmos UI - Strategy & Implementation Status
 
 > **Last Updated:** 2026-02-06
 > **Current Phase:** ✅ Phase 5 - Assemblies & Templates (Planning)
@@ -23,7 +23,7 @@
 
 ### The Solopreneur Stack
 
-The Sage Design Engine is evolving from a traditional enterprise design system to a **Solopreneur-focused Accelerator**. The goal is not just "consistency" but **"quality speed"** - enabling rapid development of premium, high-scale web applications.
+The OpenCosmos UI is evolving from a traditional enterprise design system to a **Solopreneur-focused Accelerator**. The goal is not just "consistency" but **"quality speed"** - enabling rapid development of premium, high-scale web applications.
 
 ### Core Principles
 
@@ -66,7 +66,7 @@ The Sage Design Engine is evolving from a traditional enterprise design system t
 - **Documentation aligned** with new structure
 
 **Commits:**
-- `77c39eb` - Core restructure (@thesage/ui components)
+- `77c39eb` - Core restructure (@opencosmos/ui components)
 - `51f4747` - Studio navigation updates
 - `78b7001` - TypeScript fixes
 
@@ -118,7 +118,7 @@ Layout (8)         → Accordion, AspectRatio, Carousel, Collapsible,
 |-------|-----------|---------|
 | **Primitives** | Radix UI | Headless accessible components |
 | **Styling** | Tailwind CSS | Utility-first with custom animations |
-| **Tokens** | @thesage/tokens | Universal design tokens (CSS vars) |
+| **Tokens** | @opencosmos/tokens | Universal design tokens (CSS vars) |
 | **Animation** | CSS Keyframes | Radix data attributes (`data-[state=open]`) |
 | **Framework** | Next.js 15+ | Server Components, App Router |
 | **Build** | tsup + tsc | ESM/CJS bundles with declarations |
@@ -129,7 +129,7 @@ Layout (8)         → Accordion, AspectRatio, Carousel, Collapsible,
 ```
 ecosystem/
 ├── packages/
-│   ├── ui/                          # @thesage/ui - Component library (Tier 1)
+│   ├── ui/                          # @opencosmos/ui - Component library (Tier 1)
 │   │   └── src/
 │   │       ├── components/
 │   │       │   ├── actions/
@@ -141,7 +141,7 @@ ecosystem/
 │   │       │   └── layout/
 │   │       ├── lib/utils.ts        # cn() helper
 │   │       └── index.ts            # Barrel exports
-│   ├── tokens/                      # @thesage/tokens - Design system tokens
+│   ├── tokens/                      # @opencosmos/tokens - Design system tokens
 │   │   └── src/studio.ts
 │   ├── config/                      # Shared configs (Tailwind)
 │   │   └── tailwind/index.js
@@ -159,7 +159,7 @@ ecosystem/
 
 ### Three-Tier Architecture (Current + Planned)
 
-#### Tier 1: Primitives (@thesage/ui) - ✅ COMPLETE
+#### Tier 1: Primitives (@opencosmos/ui) - ✅ COMPLETE
 
 **Goal:** 100% shadcn/ui parity - accessible, unopinionated building blocks
 
@@ -411,7 +411,7 @@ Modern design systems have abandoned rigid Atomic Design hierarchies (atoms/mole
 **Status:** 100% complete
 
 **Infrastructure Setup (2026-01-14):**
-- ✅ Created complete infrastructure in @thesage/ui:
+- ✅ Created complete infrastructure in @opencosmos/ui:
   - `lib/syntax-parser/` - Full tokenizer for code highlighting
   - `lib/store/` - Theme and customizer stores
   - `lib/validation.ts` - Form validation utilities
@@ -421,13 +421,13 @@ Modern design systems have abandoned rigid Atomic Design hierarchies (atoms/mole
 
 **Subpath Exports Configuration (2026-01-15):**
 - ✅ Configured package.json exports field for better developer experience:
-  - `@thesage/ui/tokens` - Re-exports from @thesage/tokens
-  - `@thesage/ui/hooks` - useTheme, useMotionPreference, useForm
-  - `@thesage/ui/utils` - animations, breadcrumbs, colors, utils, validation, syntax-parser
-  - `@thesage/ui/providers` - ThemeProvider
+  - `@opencosmos/ui/tokens` - Re-exports from @opencosmos/tokens
+  - `@opencosmos/ui/hooks` - useTheme, useMotionPreference, useForm
+  - `@opencosmos/ui/utils` - animations, breadcrumbs, colors, utils, validation, syntax-parser
+  - `@opencosmos/ui/providers` - ThemeProvider
 - ✅ Created entry point files: `src/tokens.ts`, `src/hooks.ts`, `src/utils.ts`, `src/providers.ts`
 - ✅ Updated build configuration to generate TypeScript declarations (tsup --dts)
-- ✅ Moved @thesage/tokens from devDependencies to dependencies
+- ✅ Moved @opencosmos/tokens from devDependencies to dependencies
 - ✅ Added framer-motion as peer dependency for VariableWeightText component
 
 **Components Migrated (44+ components):**
@@ -452,17 +452,17 @@ Modern design systems have abandoned rigid Atomic Design hierarchies (atoms/mole
 
 **App Import Migration (44 files updated):**
 - ✅ **Portfolio app** - 15 files migrated:
-  - Fixed legacy imports (`@thesage/ui/atoms`, `@thesage/ui/features/customizer`)
+  - Fixed legacy imports (`@opencosmos/ui/atoms`, `@opencosmos/ui/features/customizer`)
   - Updated component APIs (SearchInput → SearchBar with new onChange handler)
   - Fixed Badge variant API (variant="primary" → variant="default")
 - ✅ **Creative Powerup app** - 3 files migrated:
   - Fixed legacy imports in ExperimentCard and contribute page
-- ✅ **Sage Studio app** - 26+ files migrated:
-  - Updated all component imports to use @thesage/ui root import
+- ✅ **OpenCosmos Studio app** - 26+ files migrated:
+  - Updated all component imports to use @opencosmos/ui root import
 
 **Build Verification (All Apps):**
-- ✅ @thesage/ui package builds successfully with TypeScript declarations
-- ✅ Sage Studio: Compiled successfully (5.0s)
+- ✅ @opencosmos/ui package builds successfully with TypeScript declarations
+- ✅ OpenCosmos Studio: Compiled successfully (5.0s)
 - ✅ Portfolio: Compiled successfully (3.1s)
 - ✅ Creative Powerup: Compiled successfully (2.8s)
 - ✅ Production deployment verified with zero errors
@@ -711,8 +711,8 @@ cd <repo-root>
 pnpm build
 
 # Rebuild specific package
-pnpm build --filter=@thesage/ui
-pnpm build --filter=@thesage/tokens
+pnpm build --filter=@opencosmos/ui
+pnpm build --filter=@opencosmos/tokens
 pnpm build --filter=@ecosystem/web
 
 # Start Studio dev server
@@ -789,7 +789,7 @@ The Model Context Protocol (MCP) is an open standard for connecting AI assistant
 ### Implementation Plan
 
 **Phase 1: Server Setup**
-- Create MCP server package (`@thesage/mcp`)
+- Create MCP server package (`@opencosmos/mcp`)
 - Implement component listing endpoint
 - Add search functionality
 - Set up authentication (if needed)
@@ -864,7 +864,7 @@ The Model Context Protocol (MCP) is an open standard for connecting AI assistant
   - Four MCP tools: list, search, get, install
   - Multi-client support (Claude Desktop, Cursor, VS Code)
   - Full documentation at studio site
-  - Package: @thesage/mcp v0.1.0
+  - Package: @opencosmos/mcp v0.1.0
 - [x] ✅ **Quality Verification Phase** (2026-01-14)
   - Component registry audit complete (48/48)
   - Fixed missing Input and Label components in Studio
@@ -882,7 +882,7 @@ The Model Context Protocol (MCP) is an open standard for connecting AI assistant
   - [x] Subpath exports configuration (tokens, hooks, utils, providers)
   - [x] All 44+ components migrated with functional organization
   - [x] 3 new components added (TextField, SearchBar, VariableWeightText)
-  - [x] Build @thesage/ui package successfully with TypeScript declarations
+  - [x] Build @opencosmos/ui package successfully with TypeScript declarations
   - [x] Migrated all app imports across 44 files (Portfolio, Creative Powerup, Studio)
   - [x] Removed legacy package (114 files deleted)
   - [x] Production deployment verified with zero errors
@@ -935,9 +935,9 @@ The Model Context Protocol (MCP) is an open standard for connecting AI assistant
 ### Major Decisions
 
 **2026-01-15 - Legacy Migration Complete (Phase 4)**
-- Successfully completed migration from `@ecosystem/design-system` to `@thesage/ui`
+- Successfully completed migration from `@ecosystem/design-system` to `@opencosmos/ui`
 - **Subpath exports configured** for improved developer experience:
-  - `@thesage/ui/tokens`, `@thesage/ui/hooks`, `@thesage/ui/utils`, `@thesage/ui/providers`
+  - `@opencosmos/ui/tokens`, `@opencosmos/ui/hooks`, `@opencosmos/ui/utils`, `@opencosmos/ui/providers`
   - Created dedicated entry point files for each subpath
   - Updated build configuration to generate TypeScript declarations with tsup --dts
 - **44+ components migrated** with strict functional organization
@@ -952,19 +952,19 @@ The Model Context Protocol (MCP) is an open standard for connecting AI assistant
 **2026-01-14 - Legacy Migration Started (Phase 4)**
 - Decided to skip formal deprecation phase since all usage is internal (3 apps only)
 - Going directly from quality verification to component migration
-- Created infrastructure in @thesage/ui: syntax-parser, stores, hooks, providers
+- Created infrastructure in @opencosmos/ui: syntax-parser, stores, hooks, providers
 - Migrated 15+ critical components to functionally organized structure
 - **Critical fix**: Removed molecules/ and organisms/ directories created by error
 - All components now strictly organized by function (actions/forms/navigation/overlays/feedback/data-display/layout)
 
 **2026-01-14 - MCP Server Configured in Claude Desktop**
-- Added @thesage/mcp to Claude Desktop config at `~/Library/Application Support/Claude/claude_desktop_config.json`
+- Added @opencosmos/mcp to Claude Desktop config at `~/Library/Application Support/Claude/claude_desktop_config.json`
 - Configuration uses local path: `node <repo-root>/packages/sds-mcp-server/dist/index.js`
 - Enables Claude Desktop to browse, search, and get installation instructions for all 48 Sage UI components
 - Verified MCP server functionality with all four tools working
 
 **2026-01-14 - Quality Verification Complete**
-- Audited all 48 components across MCP server, @thesage/ui, and Studio registry
+- Audited all 48 components across MCP server, @opencosmos/ui, and Studio registry
 - Found and fixed 2 critical missing components (Input and Label) in Studio registry
 - Verified MCP server has 100% component coverage with working search
 - Created comprehensive verification report with manual testing checklist
@@ -972,7 +972,7 @@ The Model Context Protocol (MCP) is an open standard for connecting AI assistant
 - Ready for manual browser testing phase
 
 **2026-01-14 - MCP Server MVP Complete**
-- Implemented Model Context Protocol server at `@thesage/mcp`
+- Implemented Model Context Protocol server at `@opencosmos/mcp`
 - Created comprehensive component registry with all 48 components
 - Built four MCP tools: `list_components`, `search_components`, `get_component`, `install_component`
 - Added full documentation to studio site with dedicated page
@@ -980,7 +980,7 @@ The Model Context Protocol (MCP) is an open standard for connecting AI assistant
 - Strategic priority achieved: Sage UI is now truly AI-native
 
 **2026-01-14 - Functional Organization Implemented**
-- Restructured all 48 @thesage/ui components into 7 functional categories
+- Restructured all 48 @opencosmos/ui components into 7 functional categories
 - Updated Studio navigation to match
 - Zero breaking changes (backward compatible exports)
 - Aligns Sage UI with modern design system patterns
@@ -1071,7 +1071,7 @@ The Model Context Protocol (MCP) is an open standard for connecting AI assistant
 - **Zod:** https://zod.dev/
 
 ### Internal Resources
-- **GitHub:** https://github.com/shalomormsby/sage-design-engine
+- **GitHub:** https://github.com/shalomormsby/opencosmos-ui
 - **Studio (dev):** http://localhost:3001
 - **Vercel (prod):** [URL TBD]
 

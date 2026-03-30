@@ -1,7 +1,7 @@
 'use client';
 
 import { Bot, Zap, Search, Package, Terminal, FileDown, Wrench, Book, AlertCircle } from 'lucide-react';
-import { Heading, Text, Card, Badge } from '@thesage/ui';
+import { Heading, Text, Card, Badge } from '@opencosmos/ui';
 
 interface McpOverviewProps {
   onNavigate: (itemId: string) => void;
@@ -27,7 +27,7 @@ export function McpOverview({ onNavigate }: McpOverviewProps) {
           </div>
         </div>
         <Text variant="secondary" size="lg" className="max-w-3xl">
-          Enable AI assistants to browse, search, and install Sage Design Engine components through natural language
+          Enable AI assistants to browse, search, and install OpenCosmos UI components through natural language
         </Text>
       </div>
 
@@ -38,7 +38,7 @@ export function McpOverview({ onNavigate }: McpOverviewProps) {
         </Heading>
         <Card className="p-6">
           <Text variant="secondary" className="mb-4">
-            The Model Context Protocol (MCP) Server connects AI assistants like Claude Desktop, Cursor, and VS Code to the Sage Design Engine.
+            The Model Context Protocol (MCP) Server connects AI assistants like Claude Desktop, Cursor, and VS Code to the OpenCosmos UI.
             It enables LLMs to discover, search, and install components directly through natural conversation.
           </Text>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -224,7 +224,7 @@ export function McpOverview({ onNavigate }: McpOverviewProps) {
               View the complete README and API documentation
             </Text>
             <a
-              href="https://github.com/shalomormsby/sage-design-engine/tree/main/packages/mcp"
+              href="https://github.com/shalomormsby/opencosmos-ui/tree/main/packages/mcp"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-[var(--color-primary)] hover:underline"
@@ -267,7 +267,7 @@ export function McpOverview({ onNavigate }: McpOverviewProps) {
               Found a bug or have a feature request?
             </Text>
             <a
-              href="https://github.com/shalomormsby/sage-design-engine/issues"
+              href="https://github.com/shalomormsby/opencosmos-ui/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-[var(--color-primary)] hover:underline"

@@ -1,4 +1,4 @@
-# Sage Design Engine: Enterprise Readiness Plan
+# OpenCosmos UI: Enterprise Readiness Plan
 
 > **Purpose:** Complete implementation plan to make the SDE enterprise-ready.
 > **Created:** February 2026
@@ -23,7 +23,7 @@ cat docs/ENTERPRISE-READINESS-PLAN.md
 node -e "console.log(require('./node_modules/react/package.json').version)"
 
 # Check if build is clean
-pnpm build --filter @thesage/ui
+pnpm build --filter @opencosmos/ui
 
 # Check for any forwardRef remnants (should be 0)
 grep -r "forwardRef" packages/ui/src --include="*.tsx" | wc -l
@@ -52,7 +52,7 @@ pnpm build
 pnpm typecheck 2>/dev/null || echo "No typecheck script configured"
 
 # Verify test suite (once Phase 2 is done)
-pnpm --filter @thesage/ui test 2>/dev/null || echo "No test script configured yet"
+pnpm --filter @opencosmos/ui test 2>/dev/null || echo "No test script configured yet"
 ```
 
 ---
@@ -90,7 +90,7 @@ pnpm --filter @thesage/ui test 2>/dev/null || echo "No test script configured ye
 #### 1D. Verification ✅
 - [x] Build all packages: `pnpm build` → **11/11 successful**
 - [ ] Test production build locally: `pnpm build && cd apps/web && pnpm start`
-- [ ] Test Sage Studio manually (http://localhost:3001)
+- [ ] Test OpenCosmos Studio manually (http://localhost:3001)
 - [ ] Test Portfolio manually (http://localhost:3000)
 - [ ] Test Customizer end-to-end (theme switching, motion slider, persistence)
 - [ ] Test motion=0 (verify instant state changes, no animations)
@@ -125,7 +125,7 @@ pnpm --filter @thesage/ui test 2>/dev/null || echo "No test script configured ye
 #### 2C. CI Integration ✅
 - [x] Add test step to `.github/workflows/ci.yml`
 - [x] Verify tests run on every PR
-- [ ] Add accessibility testing: `pnpm --filter @thesage/ui add -D @axe-core/react` (deferred to Phase 4)
+- [ ] Add accessibility testing: `pnpm --filter @opencosmos/ui add -D @axe-core/react` (deferred to Phase 4)
 - [ ] **GIT TAG:** `git tag enterprise-phase-2-complete`
 
 ---
@@ -148,14 +148,14 @@ pnpm --filter @thesage/ui test 2>/dev/null || echo "No test script configured ye
   - [x] `OrbBackground.tsx` → `from '../../lib/webgl'`
   - [x] `FaultyTerminal.tsx` → `from '../../lib/webgl'`
   - [x] `WarpBackground.tsx` → `from '../../lib/webgl'`
-  - [x] `Galaxy.tsx` (apps/web) → `from '@thesage/ui/webgl'`
+  - [x] `Galaxy.tsx` (apps/web) → `from '@opencosmos/ui/webgl'`
 - [x] Added `./webgl` subpath export to `packages/ui/package.json`
 - [x] Added `src/webgl.ts` to build entry points
 - [x] Remove `ogl` from `packages/ui/package.json`
 - [x] Remove `ogl` from `apps/web/package.json`
 - [x] **BUILD:** 11/11 packages + apps build successfully, 63 tests passing
 - [x] Bundle size: `webgl.mjs` = 5.53 KB (vs `ogl` = 80 KB)
-- [ ] **TEST:** Verify all 3 backgrounds render correctly on Sage Studio
+- [ ] **TEST:** Verify all 3 backgrounds render correctly on OpenCosmos Studio
 - [ ] **COMMIT:** `chore: vendor OGL WebGL utilities, remove ogl dependency`
 
 #### 3B. Audit Radix Packages ✅
@@ -164,21 +164,21 @@ pnpm --filter @thesage/ui test 2>/dev/null || echo "No test script configured ye
 - No commit needed (no changes)
 
 #### 3C. Create Optional Subpath Exports ✅
-> **Note:** Deps moved to optional peerDependencies with `peerDependenciesMeta`. Backward compatible — components still exported from main `@thesage/ui` entry.
+> **Note:** Deps moved to optional peerDependencies with `peerDependenciesMeta`. Backward compatible — components still exported from main `@opencosmos/ui` entry.
 
-- [x] `@thesage/ui/forms` (react-hook-form, zod, @hookform/resolvers) — `forms.mjs` = 3.54 KB
+- [x] `@opencosmos/ui/forms` (react-hook-form, zod, @hookform/resolvers) — `forms.mjs` = 3.54 KB
   - [x] Create `packages/ui/src/forms.ts` entry point
   - [x] Move form deps to optional peerDependencies + devDependencies
   - [x] apps/web already had these deps
-- [x] `@thesage/ui/dates` (date-fns, react-day-picker) — `dates.mjs` = 6.83 KB
+- [x] `@opencosmos/ui/dates` (date-fns, react-day-picker) — `dates.mjs` = 6.83 KB
   - [x] Create `packages/ui/src/dates.ts` entry point
   - [x] Move date deps to optional peerDependencies + devDependencies
   - [x] Added missing deps to apps/web
-- [x] `@thesage/ui/tables` (@tanstack/react-table) — `tables.mjs` = 6.06 KB
+- [x] `@opencosmos/ui/tables` (@tanstack/react-table) — `tables.mjs` = 6.06 KB
   - [x] Create `packages/ui/src/tables.ts` entry point
   - [x] Move table dep to optional peerDependencies + devDependencies
   - [x] Added missing dep to apps/web
-- [x] `@thesage/ui/dnd` (@dnd-kit/*) — `dnd.mjs` = 7.32 KB
+- [x] `@opencosmos/ui/dnd` (@dnd-kit/*) — `dnd.mjs` = 7.32 KB
   - [x] Create `packages/ui/src/dnd.ts` entry point
   - [x] Move dnd deps to optional peerDependencies + devDependencies
   - [x] Added missing @dnd-kit/utilities to apps/web
@@ -211,7 +211,7 @@ git reset --hard HEAD~1
 ### Phase 4: Enterprise Polish
 
 - [x] Write integration guide → `docs/ENTERPRISE-INTEGRATION-GUIDE.md` (setup, providers, imports, styling, motion, bundle sizes, troubleshooting)
-- [x] Run security audit: `pnpm audit` — 0 vulnerabilities in `@thesage/ui`; fixed Next.js CVEs by updating to 15.5.12 and 16.1.6; remaining 25 vulns are in app-level transitive deps (expo, vercel CLI, MCP SDK)
+- [x] Run security audit: `pnpm audit` — 0 vulnerabilities in `@opencosmos/ui`; fixed Next.js CVEs by updating to 15.5.12 and 16.1.6; remaining 25 vulns are in app-level transitive deps (expo, vercel CLI, MCP SDK)
 - [x] Run accessibility audit — 15 issues found, all critical/major fixed: BreadcrumbPage semantic HTML, CustomizerPanel (aria-labels, Escape key, aria-pressed), CollapsibleCodeBlock (aria-labels, SVG aria-hidden), SearchBar SVG, Code tooltip role
 - [x] Create performance benchmarks — Bundle sizes tracked via size-limit in CI (10 entry points, all within limits); sizes documented in integration guide
 - [x] Document breaking change policy — Codified in CLAUDE.md Breaking Changes Protocol; semver enforced via changesets
@@ -226,14 +226,14 @@ git reset --hard HEAD~1
 
 ### What Is This Project?
 
-The **Sage Design Engine (SDE)** is a React component library and design system built on:
+The **OpenCosmos UI (SDE)** is a React component library and design system built on:
 - **Radix UI** primitives (26 packages) for accessible, unstyled components
 - **Tailwind CSS** for styling via CSS variables
 - **Framer Motion** for animations
 - **Zustand** for state management (themes, preferences)
 
 **Live sites:**
-- Sage Studio (docs): https://thesage.dev
+- OpenCosmos Studio (docs): https://opencosmos.ai/studio
 - Portfolio: https://shalomormsby.com
 
 ### Monorepo Structure
@@ -243,7 +243,7 @@ ecosystem/
 ├── package.json              # Root - pnpm overrides for React version
 ├── pnpm-workspace.yaml       # Workspace config
 ├── packages/
-│   ├── ui/                   # @thesage/ui - Main component library (48+ components)
+│   ├── ui/                   # @opencosmos/ui - Main component library (48+ components)
 │   │   ├── src/
 │   │   │   ├── components/   # Organized by function (actions, forms, overlays, etc.)
 │   │   │   ├── hooks/        # useTheme, useMotionPreference, etc.
@@ -251,14 +251,14 @@ ecosystem/
 │   │   │   └── lib/          # Utilities (cn, etc.)
 │   │   ├── package.json      # 25 production deps + 9 optional peer deps
 │   │   └── tsup.config.ts    # Build config
-│   ├── tokens/               # @thesage/tokens - Design tokens
+│   ├── tokens/               # @opencosmos/tokens - Design tokens
 │   ├── hooks/                # @thesage/hooks - Shared hooks
 │   ├── core/                 # @thesage/core - Theme state
 │   ├── charts/               # @thesage/charts - Data visualization (recharts - React 19 compatible)
 │   ├── config/               # @thesage/config - Shared config
-│   └── mcp/                  # @thesage/mcp - AI integration (MCP server)
+│   └── mcp/                  # @opencosmos/mcp - AI integration (MCP server)
 ├── apps/
-│   ├── web/                  # Sage Studio - Next.js 15.5.12, React 19.2.1
+│   ├── web/                  # OpenCosmos Studio - Next.js 15.5.12, React 19.2.1
 │   ├── portfolio/            # Portfolio - Next.js 16.x, React 19.2.1
 │   ├── creative-powerup/     # Experiments - Next.js 16.1.6, React 19.2.1
 │   ├── mobile/               # React Native 0.81.5, Expo 54, React 19.1.0
@@ -288,7 +288,7 @@ ecosystem/
 | Package | Version | Notes |
 |---------|---------|-------|
 | React | 19.2.1 | All apps unified on React 19 via pnpm override |
-| @thesage/ui | 1.0.0-rc.1 | Enterprise-ready release candidate |
+| @opencosmos/ui | 1.0.0-rc.1 | Enterprise-ready release candidate |
 | Next.js | 15.5.12 / 16.1.6 | Mixed across apps (both React 19 compatible, CVEs patched) |
 | Framer Motion | 12.23-12.26.2 | Compatible with React 19 |
 | Zustand | 5.0.9 | Compatible with React 19 |
@@ -298,12 +298,12 @@ ecosystem/
 
 ```bash
 # Development
-pnpm dev --filter web          # Start Sage Studio
+pnpm dev --filter web          # Start OpenCosmos Studio
 pnpm dev --filter portfolio    # Start Portfolio
 
 # Build
 pnpm build                     # Build everything
-pnpm build --filter @thesage/ui # Build UI library only
+pnpm build --filter @opencosmos/ui # Build UI library only
 
 # Quality
 pnpm lint                      # Lint all
@@ -390,10 +390,10 @@ const Button = ({ ref, className, ...props }: ButtonProps & { ref?: React.Ref<HT
 
 | Subpath | Deps | Bundle (brotli) |
 |---------|------|-----------------|
-| `@thesage/ui/forms` | react-hook-form, @hookform/resolvers, zod | 9.4 KB |
-| `@thesage/ui/dates` | date-fns, react-day-picker | 29 KB |
-| `@thesage/ui/tables` | @tanstack/react-table | 8.3 KB |
-| `@thesage/ui/dnd` | @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities | 8.3 KB |
+| `@opencosmos/ui/forms` | react-hook-form, @hookform/resolvers, zod | 9.4 KB |
+| `@opencosmos/ui/dates` | date-fns, react-day-picker | 29 KB |
+| `@opencosmos/ui/tables` | @tanstack/react-table | 8.3 KB |
+| `@opencosmos/ui/dnd` | @dnd-kit/core, @dnd-kit/sortable, @dnd-kit/utilities | 8.3 KB |
 
 **Vendored (no external dependency):**
 - WebGL utilities — 1.1 KB (replaced `ogl` at 80 KB, 93% reduction)
@@ -447,7 +447,7 @@ packages/ui/src/lib/webgl/
 import { Mesh, Program, Renderer, Triangle, Vec3 } from '../../lib/webgl';
 
 // apps/web components (subpath export)
-import { Renderer, Program, Mesh, Color, Triangle } from '@thesage/ui/webgl';
+import { Renderer, Program, Mesh, Color, Triangle } from '@opencosmos/ui/webgl';
 ```
 
 ### Key Design Decisions
@@ -459,7 +459,7 @@ import { Renderer, Program, Mesh, Color, Triangle } from '@thesage/ui/webgl';
 
 ### Manual Test Checklist
 
-After vendoring, verify on Sage Studio (https://thesage.dev or localhost:3001):
+After vendoring, verify on OpenCosmos Studio (https://opencosmos.ai/studio or localhost:3001):
 - [ ] `/docs#motion/orb-background` - Orb renders, animates, responds to hover
 - [ ] Faulty Terminal effect works (if documented)
 - [ ] Warp Background effect works (if documented)
@@ -549,7 +549,7 @@ packages/ui/
 
 ### Phase 4 ✅ — Enterprise Polish
 - [x] Integration guide complete (`docs/ENTERPRISE-INTEGRATION-GUIDE.md`)
-- [x] Security audit clean for @thesage/ui (Next.js CVEs patched)
+- [x] Security audit clean for @opencosmos/ui (Next.js CVEs patched)
 - [x] Accessibility audit — all critical/major issues fixed
 - [x] Version set to 1.0.0-rc.1
 - [ ] External consumer test (manual step before v1.0.0)

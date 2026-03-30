@@ -1,6 +1,6 @@
 # SDE Improvement Plan: Speedboat-Ready Component Engine
 
-> **Goal:** Make the Sage Design Engine a performant, production-ready UI engine for building Moloco Speedboat sandbox apps via AI-assisted workflows (Claude Code, Cursor, etc.).
+> **Goal:** Make the OpenCosmos UI a performant, production-ready UI engine for building Moloco Speedboat sandbox apps via AI-assisted workflows (Claude Code, Cursor, etc.).
 >
 > **Last updated:** 2026-02-17 12:00 AM PST
 > **Status:** Phases 0 + 2 complete. Phases 1, 3-7 pending.
@@ -207,7 +207,7 @@ Grid is `grid-cols-3` (line 192). Changes needed:
 | `packages/ui/src/providers/ThemeProvider.tsx` | (1) Import `speedboatTokens` at line 11. (2) Add `speedboat: speedboatTokens` to `themeTokens` at line 18. (3) Add `speedboat` entry to `fontFamilies` at line 37. (4) Add missing CSS variable mappings to `getThemeVars` for card/popover/muted/destructive/input. | Lines 11, 15-19, 22-37, 42-131 |
 | `packages/ui/src/components/layout/CustomizerPanel.tsx` | (1) Import `speedboatTokens` at line 4, add `Rocket` to lucide-react import at line 3. (2) Add Speedboat to theme array at line 196. (3) Change `grid-cols-3` to `grid-cols-4` at line 192. (4) Add `speedboat` cases to font preview ternaries at lines 223-234. | Lines 3-4, 192-196, 223-234 |
 | `packages/tokens/src/fontThemes.ts` | **Optional:** Add a `speedboat` entry to the `fontThemes` array for the font selector UI. Not required for theme to function. | After line 142 (professional section) |
-| `packages/ui/src/lib/store/theme.ts` | **No change needed** — `ThemeName` type auto-updates from `@thesage/tokens`. | — |
+| `packages/ui/src/lib/store/theme.ts` | **No change needed** — `ThemeName` type auto-updates from `@opencosmos/tokens`. | — |
 | `apps/web/lib/fonts.ts` | **No change needed** — Roboto and Montserrat already loaded with `--font-roboto` and `--font-montserrat` CSS variables. | Lines 132, 160 |
 | `apps/web/app/layout.tsx` | **No change needed** — `allFontVariables` already includes Roboto + Montserrat. | Line 59 |
 | `apps/web/app/components/studio/TokensSection/TypographyTab.tsx` | Add `speedboat` case to hardcoded font display names (heading: 'Montserrat', body: 'Roboto'). | Lines 11-22 |
@@ -224,7 +224,7 @@ Grid is `grid-cols-3` (line 192). Changes needed:
 - [ ] Success/warning/error semantic colors match Speedboat's palette exactly
 - [ ] `--color-card`, `--color-muted`, `--color-destructive`, `--color-popover`, `--color-input` are correctly theme-switched (new `getThemeVars` mappings)
 - [ ] All 99 components render correctly with the Speedboat theme (no missing CSS variable fallbacks)
-- [ ] `pnpm build` passes for `@thesage/tokens`, `@thesage/ui`, and `apps/web`
+- [ ] `pnpm build` passes for `@opencosmos/tokens`, `@opencosmos/ui`, and `apps/web`
 - [ ] Existing themes (Studio/Terra/Volt) are unchanged
 
 ### Estimated Effort
@@ -235,7 +235,7 @@ Grid is `grid-cols-3` (line 192). Changes needed:
 
 ## Phase 2: Tailwind v4 Upgrade (DONE)
 
-> Completed 2026-02-16. Upgraded to Tailwind CSS v4.0.0, tailwind-merge v3, @tailwindcss/postcss. Used Option A (JS preset via `@config`). Bumped to `@thesage/ui` v1.2.0.
+> Completed 2026-02-16. Upgraded to Tailwind CSS v4.0.0, tailwind-merge v3, @tailwindcss/postcss. Used Option A (JS preset via `@config`). Bumped to `@opencosmos/ui` v1.2.0.
 >
 > **Original rationale:** SDE was pinned to Tailwind CSS v3.4. Tailwind v4 has been stable since early 2025 and is the default for new projects. Every new Speedboat app would naturally use v4. Staying on v3 creates compounding tech debt — the config format, directives, and plugin system are all different.
 
@@ -280,7 +280,7 @@ The `apps/mobile` experiment (NativeWind + Expo) is abandoned. It's a single-scr
 **Content paths (each app explicitly includes UI package source):**
 - Portfolio: `path.join(__dirname, "../../packages/ui/src/**/*.{js,ts,jsx,tsx}")`
 - Creative Powerup: Same pattern
-- Template: `"./node_modules/@thesage/ui/dist/**/*.{js,mjs}"` (consumer path)
+- Template: `"./node_modules/@opencosmos/ui/dist/**/*.{js,mjs}"` (consumer path)
 
 **PostCSS configs (all identical pattern):**
 - `apps/portfolio/postcss.config.mjs` — `{ tailwindcss: {}, autoprefixer: {} }`
@@ -366,7 +366,7 @@ The shared preset at `packages/config/tailwind/index.js` defines all semantic co
 | `apps/portfolio/app/globals.css` | Same pattern. Add `@source "../../packages/ui/src";`. Convert `@layer utilities` custom classes to `@utility` directives |
 | `apps/creative-powerup/app/globals.css` | Same pattern |
 | `apps/web/app/globals.css` (or equivalent) | Same pattern |
-| `templates/nextjs-app/app/globals.css` | Replace directives. Add `@source "../node_modules/@thesage/ui/dist";` |
+| `templates/nextjs-app/app/globals.css` | Replace directives. Add `@source "../node_modules/@opencosmos/ui/dist";` |
 
 **Step 4: Remove Tailwind config files (if using `@config` in CSS)**
 | File | Change |
@@ -445,7 +445,7 @@ If using Option A (`@config` to load the JS preset), the config's `theme.extend.
 - [x] `tailwindcss` ^4.0.0 in `packages/ui` and `apps/web`
 - [x] `@tailwindcss/postcss` ^4.0.0 added as devDep
 - [x] `packages/ui/src/globals.css` kept as pure CSS variable defaults (no Tailwind directives — correct for exported library CSS)
-- [x] `pnpm build` passes for `@thesage/ui`, `apps/web`, `apps/portfolio`, `apps/creative-powerup` — verified by author
+- [x] `pnpm build` passes for `@opencosmos/ui`, `apps/web`, `apps/portfolio`, `apps/creative-powerup` — verified by author
 - [x] `pnpm test` passes (156 tests) — verified by author
 - [x] Runtime theme switching works: Studio/Terra/Volt × light/dark (6 combinations verified visually) — verified by author
 - [x] Dark mode toggle works via `.dark` class strategy — verified by author
@@ -482,7 +482,7 @@ If using Option A (`@config` to load the JS preset), the config's `theme.extend.
 
 ## Phase 3: Bundle & Dependency Optimization (Priority: HIGH)
 
-> **Why:** `@thesage/ui` brings 38 direct dependencies and has a 450KB core bundle limit. For comparison, shadcn/ui components are copy-pasted with zero install-time deps beyond what you use. The dependency weight matters for install speed, cold start, and the cognitive overhead of `node_modules` bloat.
+> **Why:** `@opencosmos/ui` brings 38 direct dependencies and has a 450KB core bundle limit. For comparison, shadcn/ui components are copy-pasted with zero install-time deps beyond what you use. The dependency weight matters for install speed, cold start, and the cognitive overhead of `node_modules` bloat.
 
 ### 3A: Make framer-motion Optional
 
@@ -494,26 +494,26 @@ framer-motion (~150KB min+gzip) is currently a **required** peer dependency, but
 - `packages/ui/src/globals.css` — ensure CSS-only transitions work as fallback
 
 **Acceptance criteria:**
-- [ ] `pnpm add @thesage/ui` does NOT fail if framer-motion is not installed
+- [ ] `pnpm add @opencosmos/ui` does NOT fail if framer-motion is not installed
 - [ ] Core components (Button, Card, Input, Dialog, etc.) render correctly without framer-motion
 - [ ] Motion components (AnimatedBeam, SplashCursor, WarpBackground) show a console warning if framer-motion is missing
 - [ ] README documents framer-motion as "required for animation features, optional otherwise"
 
 ### 3B: Additional Subpath Exports
 
-Current core bundle (`@thesage/ui` main entry) exports all 99 components. Consider splitting:
+Current core bundle (`@opencosmos/ui` main entry) exports all 99 components. Consider splitting:
 
 | Proposed Subpath | Components | Rationale |
 |---|---|---|
-| `@thesage/ui/backgrounds` | WarpBackground, FaultyTerminal, OrbBackground | WebGL-heavy, rarely needed |
-| `@thesage/ui/cursor` | SplashCursor, TargetCursor | Niche, framer-motion dependent |
-| `@thesage/ui/motion` | AnimatedBeam | Animation-specific |
-| `@thesage/ui/blocks` | Hero, OpenGraphCard + future blocks | Composite components |
+| `@opencosmos/ui/backgrounds` | WarpBackground, FaultyTerminal, OrbBackground | WebGL-heavy, rarely needed |
+| `@opencosmos/ui/cursor` | SplashCursor, TargetCursor | Niche, framer-motion dependent |
+| `@opencosmos/ui/motion` | AnimatedBeam | Animation-specific |
+| `@opencosmos/ui/blocks` | Hero, OpenGraphCard + future blocks | Composite components |
 
 **Acceptance criteria:**
 - [ ] Each new subpath has its own entry in `package.json` exports
 - [ ] Each new subpath has its own size-limit budget
-- [ ] Tree-shaking verified: importing `@thesage/ui` without using backgrounds doesn't bundle WebGL code
+- [ ] Tree-shaking verified: importing `@opencosmos/ui` without using backgrounds doesn't bundle WebGL code
 - [ ] Core bundle limit reduced from 450KB to ≤350KB
 
 ### 3C: Reduce Direct Dependencies
@@ -532,7 +532,7 @@ Some dependencies are used by only 1-2 components but are always installed:
 **Acceptance criteria:**
 - [ ] Direct dependency count reduced from 38 to ≤30
 - [ ] Components that need moved deps import them dynamically or document the required install
-- [ ] `pnpm add @thesage/ui` install time measurably faster
+- [ ] `pnpm add @opencosmos/ui` install time measurably faster
 
 ### Estimated Effort
 
@@ -542,13 +542,13 @@ Some dependencies are used by only 1-2 components but are always installed:
 
 ## Phase 4: Eject CLI & Source Ownership (Priority: MEDIUM-HIGH)
 
-> **Why:** SDE is an npm package — you import from `@thesage/ui`, you don't own the source. When a component needs customization beyond props/variants/className, you're stuck. shadcn/ui's entire value proposition is "you own the source." SDE needs a credible source-ownership story.
+> **Why:** SDE is an npm package — you import from `@opencosmos/ui`, you don't own the source. When a component needs customization beyond props/variants/className, you're stuck. shadcn/ui's entire value proposition is "you own the source." SDE needs a credible source-ownership story.
 
 ### Current State
 
 - `eject_component` MCP tool exists in `packages/mcp/src/index.ts` (handler lines 874-913, instruction generator lines 561-602)
 - It works when invoked via the MCP protocol
-- No standalone CLI — `npx @thesage/ui eject Button` fails (no `bin` field in `packages/ui/package.json`)
+- No standalone CLI — `npx @opencosmos/ui eject Button` fails (no `bin` field in `packages/ui/package.json`)
 - No web UI eject button on component doc pages
 
 ### Implementation
@@ -558,9 +558,9 @@ Some dependencies are used by only 1-2 components but are always installed:
 Create `packages/ui/src/cli.ts` with an `eject` command:
 
 ```bash
-npx @thesage/ui eject Button
+npx @opencosmos/ui eject Button
 # → Copies packages/ui/src/components/actions/Button.tsx to ./components/ui/Button.tsx
-# → Rewrites imports from internal paths to @thesage/ui public exports
+# → Rewrites imports from internal paths to @opencosmos/ui public exports
 # → Adds the component's direct Radix/CVA dependencies to your package.json
 ```
 
@@ -571,15 +571,15 @@ npx @thesage/ui eject Button
 
 **4B: Web UI Eject Button (nice-to-have)**
 
-Add a "Copy source" button on each component's doc page in Sage Studio that shows the raw `.tsx` source with import paths rewritten.
+Add a "Copy source" button on each component's doc page in OpenCosmos Studio that shows the raw `.tsx` source with import paths rewritten.
 
 ### Acceptance Criteria
 
-- [ ] `npx @thesage/ui eject Button` copies Button.tsx to `./components/ui/Button.tsx` with rewritten imports
+- [ ] `npx @opencosmos/ui eject Button` copies Button.tsx to `./components/ui/Button.tsx` with rewritten imports
 - [ ] Ejected component renders identically to the package version
-- [ ] `npx @thesage/ui eject --list` shows all ejectible components
+- [ ] `npx @opencosmos/ui eject --list` shows all ejectible components
 - [ ] CLI outputs a message listing any peer deps the user needs to install
-- [ ] `pnpm build --filter @thesage/ui` produces the CLI binary
+- [ ] `pnpm build --filter @opencosmos/ui` produces the CLI binary
 
 ### Estimated Effort
 
@@ -614,7 +614,7 @@ Blocks live in `packages/ui/src/components/blocks/` and are exported from the ma
 - Accepts layout props (title, breadcrumbs, actions)
 - Composes existing SDE components (no new primitives)
 - Is theme-aware (uses CSS variables, not hardcoded colors)
-- Has a Storybook-style example in Sage Studio
+- Has a Storybook-style example in OpenCosmos Studio
 
 ### Acceptance Criteria
 
@@ -641,14 +641,14 @@ Blocks live in `packages/ui/src/components/blocks/` and are exported from the ma
 ```
 templates/vite-react/
 ├── index.html
-├── package.json          (react, @thesage/ui, framer-motion, tailwindcss ^4, @tailwindcss/vite, vite)
+├── package.json          (react, @opencosmos/ui, framer-motion, tailwindcss ^4, @tailwindcss/vite, vite)
 ├── vite.config.ts        (React plugin + @tailwindcss/vite plugin)
 ├── postcss.config.js     (@tailwindcss/postcss — only needed if not using Vite plugin)
 ├── tsconfig.json
 └── src/
     ├── main.tsx          (ThemeProvider + TooltipProvider + Toaster)
     ├── App.tsx           (example using Button, Card, ThemeSwitcher)
-    └── index.css         (@import "tailwindcss"; @config path/to/sde-preset; @thesage/ui/globals.css import)
+    └── index.css         (@import "tailwindcss"; @config path/to/sde-preset; @opencosmos/ui/globals.css import)
 ```
 
 > **Tailwind v4 Note:** No `tailwind.config.js` needed. Tailwind v4 uses CSS-first configuration via `@config` directive pointing to the SDE JS preset, or inline `@theme` blocks. For Vite, prefer `@tailwindcss/vite` plugin over PostCSS. See Phase 2 completion notes for the pattern used in the docs site.
@@ -688,12 +688,12 @@ Add a "VITE + REACT SETUP" section to llms-full.txt alongside the existing Next.
 **Problem:** `packages/ui/tsup.config.ts` adds `"use client"` banner to ALL output files. This means non-component exports (like `BRAND`, utility functions, token objects) are treated as client modules by Next.js. Causes `undefined` values when imported in server contexts (metadata, generateStaticParams, etc.).
 
 **Fix:** Either:
-- Split server-safe exports into a separate entry point (`@thesage/ui/server`) without the banner
+- Split server-safe exports into a separate entry point (`@opencosmos/ui/server`) without the banner
 - Use granular `"use client"` directives per-component file instead of a blanket banner
-- Export constants like `BRAND` from `@thesage/tokens` (which has no `"use client"` banner)
+- Export constants like `BRAND` from `@opencosmos/tokens` (which has no `"use client"` banner)
 
 **Acceptance criteria:**
-- [ ] `import { BRAND } from '@thesage/ui'` works in Next.js server components
+- [ ] `import { BRAND } from '@opencosmos/ui'` works in Next.js server components
 - [ ] All React components still have `"use client"` directive
 
 ### 7B: ThemeProvider `defaultTheme` / `defaultMode` Props (Priority: Medium)
@@ -723,11 +723,11 @@ If provided, these set the Zustand store on first render (not on every render �
 
 ### 7D: Deploy Pending Fixes (Priority: Medium)
 
-Several fixes from Phase 0 were implemented locally but may not be deployed to thesage.dev. Verify:
-- [ ] `thesage.dev/docs/components/button` redirects to `/docs/actions/button` (not 404)
-- [ ] `thesage.dev/sitemap.xml` shows ~140 URLs (not ~25)
-- [ ] `thesage.dev/docs/api.json` shows version 1.1.0 and 99 components
-- [ ] `thesage.dev/llms-full.txt` has all 99 components and 8 MCP tools
+Several fixes from Phase 0 were implemented locally but may not be deployed to opencosmos.ai/studio. Verify:
+- [ ] `opencosmos.ai/studio/docs/components/button` redirects to `/docs/actions/button` (not 404)
+- [ ] `opencosmos.ai/studio/sitemap.xml` shows ~140 URLs (not ~25)
+- [ ] `opencosmos.ai/studio/docs/api.json` shows version 1.1.0 and 99 components
+- [ ] `opencosmos.ai/studio/llms-full.txt` has all 99 components and 8 MCP tools
 
 ### 7E: Invocation-Test MCP Tools (Priority: Medium)
 
@@ -737,7 +737,7 @@ Four MCP tools are "Listed" but not invocation-tested:
 - `get_examples` — does it return useful examples for a given component?
 - `get_audit_checklist` — does it return a meaningful checklist?
 
-Test each via `npx @thesage/mcp` and verify the output is useful, not just structurally valid.
+Test each via `npx @opencosmos/mcp` and verify the output is useful, not just structurally valid.
 
 ---
 
@@ -776,7 +776,7 @@ This document is self-contained. To resume work in a fresh session:
 
 ### Key File Paths (SDE Monorepo)
 
-| Purpose | Path (relative to `sage-design-engine/`) |
+| Purpose | Path (relative to `opencosmos-ui/`) |
 |---|---|
 | UI component source | `packages/ui/src/components/` |
 | UI package.json | `packages/ui/package.json` |
@@ -786,7 +786,7 @@ This document is self-contained. To resume work in a fresh session:
 | Customizer store | `packages/ui/src/lib/store/customizer.ts` |
 | MCP server | `packages/mcp/src/index.ts` |
 | MCP registry | `packages/mcp/src/registry.ts` |
-| Sage Studio (docs site) | `apps/web/` |
+| OpenCosmos Studio (docs site) | `apps/web/` |
 | Route config | `apps/web/app/docs/route-config.ts` |
 | llms-full.txt | `apps/web/public/llms-full.txt` |
 | Tailwind config preset | `packages/config/tailwind/index.js` |
@@ -812,7 +812,7 @@ This document is self-contained. To resume work in a fresh session:
 
 ### Architecture Notes
 
-- **SDE theme system:** Zustand store persists theme/mode to localStorage (key: `ecosystem-theme`). ThemeProvider reads the store and injects CSS variables onto `:root`. Themes are defined as token objects in `@thesage/tokens` — adding a 4th theme means creating a new token file and registering it in the ThemeProvider's `themeTokens` map.
+- **SDE theme system:** Zustand store persists theme/mode to localStorage (key: `ecosystem-theme`). ThemeProvider reads the store and injects CSS variables onto `:root`. Themes are defined as token objects in `@opencosmos/tokens` — adding a 4th theme means creating a new token file and registering it in the ThemeProvider's `themeTokens` map.
 - **SDE's `ThemeName` type:** Defined as `typeof THEME_NAMES[number]` in `packages/tokens/src/index.ts`. Adding `'speedboat'` to the `THEME_NAMES` const array automatically extends the type.
 - **SDE routing:** Uses functional categories (`/docs/actions/button`), not `/docs/components/button`. The `SECTION_ITEMS` map in `route-config.ts` is the source of truth.
 - **Speedboat styling:** Currently uses Radix UI Themes (`@radix-ui/themes@3.3.0`) + inline styles via a `theme.ts` object. No Tailwind. Migration to SDE requires adding Tailwind.
@@ -827,7 +827,7 @@ This document is self-contained. To resume work in a fresh session:
 
 ---
 
-# The A+ Plan: Making Sage Design Engine (SDE) the Gold Standard for AI-Native Component Libraries
+# The A+ Plan: Making OpenCosmos UI (SDE) the Gold Standard for AI-Native Component Libraries
 
 > **Last updated:** 2026-02-16T12:30:00 PST (Fixes 1-6 implemented, built, verified)
 > **Previous update:** 2026-02-16T20:45:00 PST (SDE root cause analysis + fix plan added)
@@ -861,9 +861,9 @@ This document is self-contained. To resume work in a fresh session:
 | npm description updated to "99 components" | **Done** | Consistent with llms-full.txt |
 | Zustand theme store with localStorage | **Done** | Theme/mode/motion preferences persist |
 | Version bump to 1.1.0 | **Done** | Active release cadence (pushed today: 2026-02-16) |
-| Homepage routing fixed (/ returns 200) | **Done** | Title: "Sage Design Engine" — proper content renders |
-| Docs routing fixed (/docs returns 200) | **Done** | Title: "Documentation — Sage Design Engine" |
-| Title tag "undefined" fixed | **Done** | Component pages now show "Button — Components — Sage Design Engine" (no more undefined) |
+| Homepage routing fixed (/ returns 200) | **Done** | Title: "OpenCosmos UI" — proper content renders |
+| Docs routing fixed (/docs returns 200) | **Done** | Title: "Documentation — OpenCosmos UI" |
+| Title tag "undefined" fixed | **Done** | Component pages now show "Button — Components — OpenCosmos UI" (no more undefined) |
 | llms-full.txt enhanced | **Done** | Error recovery patterns, composition compatibility, decision tables, bundle architecture sections added |
 | Component page 404 redirect | **Done (local)** | 308 redirect from `/docs/components/[item]` to `/docs/[category]/[item]`. Pending deploy. |
 | Dynamic sitemap | **Done (local)** | ~140 URLs generated from `SECTION_ITEMS`. Pending deploy. |
@@ -889,7 +889,7 @@ This document is self-contained. To resume work in a fresh session:
 | AI Integration | 5x | 5 | 5 | 0 | **SDE now qualitatively leads.** SDE has 8 MCP tools vs shadcn's 7. Richer llms-full.txt with error recovery patterns, composition compatibility, decision tables. Plus: ai-plugin.json, mcp-server.json, .claude/ in npm, robots.txt AI permissions. shadcn has v0 integration and JSON registry schema per component. |
 | Component Coverage | 4x | 4 | 4 | 0 | Tied. SDE has 99 components vs 56, but shadcn has **27 page-level blocks** (dashboards, login flows, sidebars). SDE still has only 2 blocks (Hero, OpenGraphCard). **Blocks are the biggest remaining opportunity.** |
 | Dev Velocity | 4x | 4 | 4 | 0 | Tied. shadcn has `npx shadcn init` + 10 framework guides. SDE has batteries-included install + 11 subpath exports + get_app_shell MCP tool. **Add scaffold CLI to pull ahead.** |
-| Customizability | 3x | 5 | 4 | **-3** | (5−4) × 3 = -3. Structural gap narrowed but not closed. eject_component MCP tool exists but no standalone CLI (`npx @thesage/ui eject Button` doesn't work — no `bin` in package.json). shadcn's copy-paste model is still fundamentally more customizable. |
+| Customizability | 3x | 5 | 4 | **-3** | (5−4) × 3 = -3. Structural gap narrowed but not closed. eject_component MCP tool exists but no standalone CLI (`npx @opencosmos/ui eject Button` doesn't work — no `bin` in package.json). shadcn's copy-paste model is still fundamentally more customizable. |
 | Accessibility | 3x | 4 | 4 | 0 | Tied. Both built on Radix. SDE has unique motion accessibility (0-10 scale). |
 | Community | 3x | 5 | 1 | **-12** | (1−5) × 3 = -12. Not closable short-term. 106,699 stars vs 1. **Accept and compensate elsewhere.** |
 | Theming | 2x | 4 | 5 | **+2** | (5−4) × 2 = +2. **SDE leads.** 3 distinct visual identities (Studio/Terra/Volt) vs 21 color variations on one layout. Zustand-powered persistence. |
@@ -912,13 +912,13 @@ This document is self-contained. To resume work in a fresh session:
 
 - Root cause: URL pattern mismatch. SDE uses functional categories (`/docs/actions/button`), not `/docs/components/button`.
 - Fix: 308 permanent redirect from `/docs/components/[item]` to `/docs/[category]/[item]` in `apps/web/app/docs/[section]/[item]/page.tsx`.
-- Pending deploy verification at thesage.dev.
+- Pending deploy verification at opencosmos.ai/studio.
 
 ### SB-2: Eject Mechanism Doesn't Work
 
 **Severity: High — Tracked in Phase 4**
 
-- `npx @thesage/ui eject Button` doesn't work — no `bin` field in package.json
+- `npx @opencosmos/ui eject Button` doesn't work — no `bin` field in package.json
 - `eject_component` is listed in MCP manifest but not invocation-tested
 - No web UI eject button exists on component pages
 
@@ -946,18 +946,18 @@ npm keywords added (10 keywords). MIT LICENSE file created at repo root.
 
 | Endpoint | Status | Finding |
 |---|---|---|
-| `thesage.dev` | **200** | Title: "Sage Design Engine". Full content renders. |
-| `thesage.dev/docs` | **200** | Title: "Documentation — Sage Design Engine". Categories visible. |
-| `thesage.dev/docs/components/button` | **404 → FIXED locally** | 308 redirect to `/docs/actions/button`. Pending deploy. |
-| `thesage.dev/llms.txt` | **200** | References MCP v0.8.0 with 8 tools. |
-| `thesage.dev/llms-full.txt` | **200** | 99 components, 11 categories. Includes error recovery, composition compatibility, decision tables. |
-| `thesage.dev/docs/api.json` | **200** | 99 components at v1.1.0. |
-| `thesage.dev/.well-known/ai-plugin.json` | **200** | Valid AI plugin manifest. |
-| `thesage.dev/.well-known/mcp-server.json` | **200** | v0.8.0, 8 tools listed. |
-| `thesage.dev/robots.txt` | **200** | ClaudeBot, GPTBot, Google-Extended explicitly allowed. |
-| npm `@thesage/ui` | **1.1.1** | 11 subpath exports. 38 deps. 11 peer deps. 10 keywords. No `bin` field. *(Now v1.2.0 after Phase 2 Tailwind v4 upgrade)* |
-| npm `@thesage/mcp` | **0.8.1** | Single dep (@modelcontextprotocol/sdk). Has `bin: sds-mcp`. |
-| GitHub `shalomormsby/sage-design-engine` | **1 star** | 0 forks. MIT license. TypeScript. |
+| `opencosmos.ai/studio` | **200** | Title: "OpenCosmos UI". Full content renders. |
+| `opencosmos.ai/studio/docs` | **200** | Title: "Documentation — OpenCosmos UI". Categories visible. |
+| `opencosmos.ai/studio/docs/components/button` | **404 → FIXED locally** | 308 redirect to `/docs/actions/button`. Pending deploy. |
+| `opencosmos.ai/studio/llms.txt` | **200** | References MCP v0.8.0 with 8 tools. |
+| `opencosmos.ai/studio/llms-full.txt` | **200** | 99 components, 11 categories. Includes error recovery, composition compatibility, decision tables. |
+| `opencosmos.ai/studio/docs/api.json` | **200** | 99 components at v1.1.0. |
+| `opencosmos.ai/studio/.well-known/ai-plugin.json` | **200** | Valid AI plugin manifest. |
+| `opencosmos.ai/studio/.well-known/mcp-server.json` | **200** | v0.8.0, 8 tools listed. |
+| `opencosmos.ai/studio/robots.txt` | **200** | ClaudeBot, GPTBot, Google-Extended explicitly allowed. |
+| npm `@opencosmos/ui` | **1.1.1** | 11 subpath exports. 38 deps. 11 peer deps. 10 keywords. No `bin` field. *(Now v1.2.0 after Phase 2 Tailwind v4 upgrade)* |
+| npm `@opencosmos/mcp` | **0.8.1** | Single dep (@modelcontextprotocol/sdk). Has `bin: sds-mcp`. |
+| GitHub `shalomormsby/opencosmos-ui` | **1 star** | 0 forks. MIT license. TypeScript. |
 
 ---
 

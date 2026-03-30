@@ -1,8 +1,8 @@
-# @thesage/mcp
+# @opencosmos/mcp
 
-**Model Context Protocol server for Sage Design Engine**
+**Model Context Protocol server for OpenCosmos UI**
 
-Enable AI assistants like Claude Desktop, Cursor, and VS Code to browse, search, and install Sage Design Engine components directly through natural language.
+Enable AI assistants like Claude Desktop, Cursor, and VS Code to browse, search, and install OpenCosmos UI components directly through natural language.
 
 ## Features
 
@@ -18,11 +18,11 @@ Enable AI assistants like Claude Desktop, Cursor, and VS Code to browse, search,
 ### Quick Start
 
 ```bash
-pnpm add -D @thesage/mcp
+pnpm add -D @opencosmos/mcp
 # or
-npm install --save-dev @thesage/mcp
+npm install --save-dev @opencosmos/mcp
 # or
-yarn add -D @thesage/mcp
+yarn add -D @opencosmos/mcp
 ```
 
 ### MCP Client Configuration
@@ -36,7 +36,7 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
   "mcpServers": {
     "sds": {
       "command": "npx",
-      "args": ["@thesage/mcp"]
+      "args": ["@opencosmos/mcp"]
     }
   }
 }
@@ -53,7 +53,7 @@ Add to `.cursor/mcp.json` in your project:
   "mcpServers": {
     "sds": {
       "command": "npx",
-      "args": ["@thesage/mcp"]
+      "args": ["@opencosmos/mcp"]
     }
   }
 }
@@ -68,7 +68,7 @@ Add to `.vscode/mcp.json`:
   "servers": {
     "sds": {
       "command": "npx",
-      "args": ["@thesage/mcp"]
+      "args": ["@opencosmos/mcp"]
     }
   }
 }
@@ -86,7 +86,7 @@ List all available components, optionally filtered by category.
 - `category` (optional): Filter by `actions`, `forms`, `navigation`, `overlays`, `feedback`, `data-display`, `layout`, `backgrounds`, `cursor`, `motion`, or `blocks`
 
 **Example AI prompts:**
-- "Show me all Sage Design Engine components"
+- "Show me all OpenCosmos UI components"
 - "List all form components"
 - "What overlay components are available?"
 
@@ -166,7 +166,7 @@ Eject a component's source code for full customization. Returns the **actual tra
 
 ## Component Categories
 
-The Sage Design Engine organizes components functionally (not atomically):
+The OpenCosmos UI organizes components functionally (not atomically):
 
 - **Actions** (3) - Interactive elements that trigger behaviors
 - **Forms** (11) - Input controls for data collection
@@ -182,7 +182,7 @@ Once configured, you can interact with the server through your AI assistant:
 
 ### Browse Components
 
-> "Show me all components in the Sage Design Engine"
+> "Show me all components in the OpenCosmos UI"
 
 The AI will use `list_components` to display all 100 components organized by category.
 
@@ -219,7 +219,7 @@ The AI will use `install_component` to provide:
 
 The MCP server consists of:
 
-1. **Component Registry** (`src/registry.ts`) - Metadata for all 100 @thesage/ui components
+1. **Component Registry** (`src/registry.ts`) - Metadata for all 100 @opencosmos/ui components
 2. **MCP Server** (`src/index.ts`) - Model Context Protocol implementation with 8 tools
 3. **Eject Engine** - Reads component source, transforms imports, returns ready-to-use code
 
@@ -243,15 +243,15 @@ The server runs in stdio mode, communicating via stdin/stdout per the MCP specif
 
 ## Documentation
 
-- **Full Documentation**: https://thesage.dev/
-- **GitHub**: https://github.com/shalomormsby/sage-design-engine
+- **Full Documentation**: https://opencosmos.ai/studio/
+- **GitHub**: https://github.com/shalomormsby/opencosmos-ui
 - **MCP Specification**: https://modelcontextprotocol.io/
 
 ## Support
 
 For issues or questions:
-- GitHub Issues: https://github.com/shalomormsby/sage-design-engine/issues
-- Documentation: https://thesage.dev/#mcp-server
+- GitHub Issues: https://github.com/shalomormsby/opencosmos-ui/issues
+- Documentation: https://opencosmos.ai/studio/#mcp-server
 
 ## License
 
@@ -259,4 +259,4 @@ MIT © Shalom Ormsby
 
 ---
 
-**Part of the [Sage Design Engine](https://thesage.dev/) - Build lovable products at AI speed.**
+**Part of the [OpenCosmos UI](https://opencosmos.ai/studio/) - Build lovable products at AI speed.**

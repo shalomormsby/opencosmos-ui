@@ -3,7 +3,7 @@
  *
  * This file serves as the authoritative source for component counts,
  * categories, and organization. Used by:
- * - Documentation (Sage Studio)
+ * - Documentation (OpenCosmos Studio)
  * - MCP Server registry
  * - Marketing materials
  * - Internal tooling
@@ -13,7 +13,7 @@
  *
  * The workflow includes:
  * - Creating the component in packages/ui
- * - Registering in Sage Studio (apps/web)
+ * - Registering in OpenCosmos Studio (apps/web)
  * - Updating THIS registry file
  * - Updating MCP server registry
  * - Version bumping and npm publishing
@@ -22,7 +22,7 @@
  */
 
 export const BRAND = {
-  productName: 'Sage Design Engine',
+  productName: 'OpenCosmos UI',
   productNameShort: 'Sage',
   themeNames: {
     organic: 'Terra',
@@ -35,7 +35,7 @@ export const BRAND = {
 
 export const COMPONENT_REGISTRY = {
   /**
-   * Total count of all exported UI components from @thesage/ui
+   * Total count of all exported UI components from @opencosmos/ui
    */
   totalCount: 100,
 

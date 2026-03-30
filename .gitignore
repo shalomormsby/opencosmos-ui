@@ -38,3 +38,6 @@ coverage/
 # Misc
 *.tsbuildinfo
 .cache/
+
+# Vercel
+.vercel/

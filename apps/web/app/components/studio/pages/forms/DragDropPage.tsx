@@ -9,9 +9,9 @@ import {
   Badge,
   CollapsibleCodeBlock,
   Button,
-} from '@thesage/ui';
+} from '@opencosmos/ui';
 import { GripVertical, RefreshCcw, Trash2 } from 'lucide-react';
-import type { DragDropItem } from '@thesage/ui';
+import type { DragDropItem } from '@opencosmos/ui';
 
 interface TaskItem extends DragDropItem {
   id: string;
@@ -120,7 +120,7 @@ export function DragDropPage() {
         <CollapsibleCodeBlock
           id="drag-drop-simple"
           title="Code"
-          code={`import { DragDropList, Badge } from '@thesage/ui';
+          code={`import { DragDropList, Badge } from '@opencosmos/ui';
 
 const [tasks, setTasks] = useState([
   { id: '1', name: 'Design landing page', status: 'done' },
@@ -201,7 +201,7 @@ const [tasks, setTasks] = useState([
         <CollapsibleCodeBlock
           id="drag-drop-handle"
           title="Code"
-          code={`import { DragDropList, DragDropHandle } from '@thesage/ui';
+          code={`import { DragDropList, DragDropHandle } from '@opencosmos/ui';
 
 <DragDropList
   items={tasks}
@@ -264,7 +264,7 @@ const [tasks, setTasks] = useState([
         <CollapsibleCodeBlock
           id="drag-drop-table"
           title="Code"
-          code={`import { DragDropTable, Badge } from '@thesage/ui';
+          code={`import { DragDropTable, Badge } from '@opencosmos/ui';
 
 const [people, setPeople] = useState([
   { id: '1', name: 'Alice Johnson', email: 'alice@example.com', role: 'Designer' },

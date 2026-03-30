@@ -1,4 +1,4 @@
-# Sage Design Engine - Publishing Strategy
+# OpenCosmos UI - Publishing Strategy
 
 **Status**: Proposed
 **Date**: 2026-01-28
@@ -33,7 +33,7 @@ Since this is a **TurboRepo** monorepo using **pnpm**, the industry-standard sol
 
 1. **Development**:
    - You write code in a feature branch.
-   - You run `npx changeset` to declare your intent (e.g., "patch bump for @thesage/ui: fixed hover state").
+   - You run `npx changeset` to declare your intent (e.g., "patch bump for @opencosmos/ui: fixed hover state").
    - This creates a markdown file in `.changeset/`.
 
 2. **Pull Request**:
@@ -49,7 +49,7 @@ Since this is a **TurboRepo** monorepo using **pnpm**, the industry-standard sol
    - You review the "Version Packages" PR.
    - You hit **Merge**.
    - GitHub Action detects the merge, builds the packages, and **publishes to npm**.
-   - It also pushes git tags (e.g., `@thesage/ui@1.0.1`) back to the repo.
+   - It also pushes git tags (e.g., `@opencosmos/ui@1.0.1`) back to the repo.
 
 ## 🚀 Implementation Plan
 

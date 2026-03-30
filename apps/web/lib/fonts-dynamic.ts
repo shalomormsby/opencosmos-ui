@@ -6,7 +6,7 @@
  * This file provides utilities for working with those loaded fonts.
  */
 
-import type { FontTheme } from '@thesage/tokens';
+import type { FontTheme } from '@opencosmos/tokens';
 
 /**
  * Font loading status

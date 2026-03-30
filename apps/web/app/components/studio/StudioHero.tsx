@@ -1,7 +1,7 @@
 'use client';
 
-import { Button } from '@thesage/ui';
-import { GitHubIcon } from '@thesage/ui';
+import { Button } from '@opencosmos/ui';
+import { GitHubIcon } from '@opencosmos/ui';
 
 /**
  * StudioHero Component
@@ -30,13 +30,13 @@ export function StudioHero() {
         <div className="text-center max-w-4xl mx-auto">
           {/* Title: Primary hierarchy level */}
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-12 text-[var(--color-text-primary)] tracking-tight">
-            Sage Studio
+            OpenCosmos Studio
           </h1>
 
           {/* CTA: Centered with generous spacing (mb-16 = 64px = 8 units) */}
           <div className="mb-16">
             <a
-              href="https://github.com/shalomormsby/sage-design-engine"
+              href="https://github.com/shalomormsby/opencosmos-ui"
               target="_blank"
               rel="noopener noreferrer"
             >

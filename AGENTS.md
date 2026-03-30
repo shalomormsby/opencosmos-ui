@@ -1,6 +1,6 @@
 # AGENTS.md
 
-> **For AI coding agents working on Sage Design Engine. Read [DESIGN-PHILOSOPHY.md](DESIGN-PHILOSOPHY.md) first — it's the North Star. This file tells you how to build in alignment with it.**
+> **For AI coding agents working on OpenCosmos UI. Read [DESIGN-PHILOSOPHY.md](DESIGN-PHILOSOPHY.md) first — it's the North Star. This file tells you how to build in alignment with it.**
 
 Last updated: 2026-03-07
 
@@ -8,23 +8,23 @@ Last updated: 2026-03-07
 
 ## Quick Orientation
 
-**Sage Design Engine (SDE)** is the source of truth for the Sage design system — the component library, design tokens, MCP server, and interactive documentation site. Everything published under the `@thesage/*` npm scope originates here.
+**OpenCosmos UI (SDE)** is the source of truth for the Sage design system — the component library, design tokens, MCP server, and interactive documentation site. Everything published under the `@thesage/*` npm scope originates here.
 
-This repo is **not** the product ecosystem. Consumer applications (portfolio, creative-powerup, sage-stocks) live in a separate [ecosystem repo](https://github.com/shalomormsby/ecosystem). Those apps install `@thesage/ui` from npm. This repo is where those packages are built, tested, documented, and published.
+This repo is **not** the product ecosystem. Consumer applications (portfolio, creative-powerup, sage-stocks) live in a separate [ecosystem repo](https://github.com/shalomormsby/ecosystem). Those apps install `@opencosmos/ui` from npm. This repo is where those packages are built, tested, documented, and published.
 
 ```
-sage-design-engine/
+opencosmos-ui/
 ├── packages/
-│   ├── ui/                  # @thesage/ui — Component library (THE HEART)
+│   ├── ui/                  # @opencosmos/ui — Component library (THE HEART)
 │   │   └── src/
 │   │       ├── components/  # Functionally organized (actions, forms, navigation, etc.)
 │   │       ├── lib/         # Utilities (cn, validation, animations)
 │   │       ├── hooks/       # useTheme, useMotionPreference, etc.
 │   │       └── providers/   # ThemeProvider, etc.
-│   ├── tokens/              # @thesage/tokens — Design tokens (colors, typography, spacing, motion, syntax)
-│   └── mcp/                 # @thesage/mcp — MCP server for AI assistants (8 tools)
+│   ├── tokens/              # @opencosmos/tokens — Design tokens (colors, typography, spacing, motion, syntax)
+│   └── mcp/                 # @opencosmos/mcp — MCP server for AI assistants (8 tools)
 ├── apps/
-│   └── web/                 # Sage Studio — Interactive docs at thesage.dev
+│   └── web/                 # OpenCosmos Studio — Interactive docs at opencosmos.ai/studio
 ├── .agent/                  # Agent workflows (archived)
 ├── .github/workflows/       # CI: build, lint, typecheck, test, size-check
 ├── docs/                    # Planning docs, audits, guides
@@ -47,7 +47,7 @@ sage-design-engine/
    pnpm build
    pnpm dev --filter web
    ```
-   Sage Studio should run on **http://localhost:3001** (or next available port).
+   OpenCosmos Studio should run on **http://localhost:3001** (or next available port).
 
 3. **Check current work context:**
    ```bash
@@ -67,20 +67,20 @@ sage-design-engine/
 
 | Package | Version | Purpose |
 |---------|---------|---------|
-| **@thesage/ui** | 1.3.1 | 100 accessible React components, 3 themes, motion system, eject CLI |
-| **@thesage/tokens** | 1.0.1 | Design tokens (colors, typography, spacing, motion, syntax highlighting) |
-| **@thesage/mcp** | 0.8.3 | MCP server with 8 tools for AI assistants to discover and use components |
+| **@opencosmos/ui** | 1.3.1 | 100 accessible React components, 3 themes, motion system, eject CLI |
+| **@opencosmos/tokens** | 1.0.1 | Design tokens (colors, typography, spacing, motion, syntax highlighting) |
+| **@opencosmos/mcp** | 0.8.3 | MCP server with 8 tools for AI assistants to discover and use components |
 
 ### One Application
 
 | App | Purpose | URL |
 |-----|---------|-----|
-| **Sage Studio** (`apps/web`) | Interactive docs, component playground, eject UI | [thesage.dev](https://thesage.dev) |
+| **OpenCosmos Studio** (`apps/web`) | Interactive docs, component playground, eject UI | [opencosmos.ai/studio](https://opencosmos.ai/studio) |
 
 ### Relationship to Ecosystem
 
 ```
-sage-design-engine (this repo)          ecosystem (separate repo)
+opencosmos-ui (this repo)          ecosystem (separate repo)
 ┌─────────────────────┐                 ┌────────────────────────┐
 │ packages/ui         │──npm publish──▶ │ apps/portfolio         │
 │ packages/tokens     │                 │ apps/creative-powerup  │
@@ -89,8 +89,8 @@ sage-design-engine (this repo)          ecosystem (separate repo)
 └─────────────────────┘                 └────────────────────────┘
 ```
 
-- SDE packages are published to npm. Consumer apps install from npm (`@thesage/ui: ^1.3.1`), not workspace references.
-- Sage Studio (`apps/web`) uses `workspace:*` references to the local packages for live development.
+- SDE packages are published to npm. Consumer apps install from npm (`@opencosmos/ui: ^1.3.1`), not workspace references.
+- OpenCosmos Studio (`apps/web`) uses `workspace:*` references to the local packages for live development.
 - The ecosystem repo has its own AGENTS.md, CLAUDE.md, and workflows.
 
 ---
@@ -138,26 +138,26 @@ Components are organized by **primary purpose**, not abstract hierarchy:
 
 ### Main exports (most common)
 ```typescript
-import { Button, Card, Dialog, useTheme } from '@thesage/ui'
+import { Button, Card, Dialog, useTheme } from '@opencosmos/ui'
 ```
 
 ### Subpath exports (10 available)
 ```typescript
-import { useMotionPreference, useTheme } from '@thesage/ui/hooks'
-import { ThemeProvider } from '@thesage/ui/providers'
-import { cn } from '@thesage/ui/utils'
-import { spacing, typography } from '@thesage/ui/tokens'
-import { Form, FormField } from '@thesage/ui/forms'
-import { DatePicker } from '@thesage/ui/dates'
-import { DataTable } from '@thesage/ui/tables'
-import { SortableList } from '@thesage/ui/dnd'
-import '@thesage/ui/globals.css'
+import { useMotionPreference, useTheme } from '@opencosmos/ui/hooks'
+import { ThemeProvider } from '@opencosmos/ui/providers'
+import { cn } from '@opencosmos/ui/utils'
+import { spacing, typography } from '@opencosmos/ui/tokens'
+import { Form, FormField } from '@opencosmos/ui/forms'
+import { DatePicker } from '@opencosmos/ui/dates'
+import { DataTable } from '@opencosmos/ui/tables'
+import { SortableList } from '@opencosmos/ui/dnd'
+import '@opencosmos/ui/globals.css'
 ```
 
 ### Never use
 ```typescript
 // ❌ Legacy — don't use
-import { Button } from '@thesage/ui/atoms'
+import { Button } from '@opencosmos/ui/atoms'
 import { Card } from '@ecosystem/design-system'
 ```
 
@@ -168,7 +168,7 @@ import { Card } from '@ecosystem/design-system'
 ### Motion Must Respect Preferences
 
 ```typescript
-import { useMotionPreference } from '@thesage/ui/hooks'
+import { useMotionPreference } from '@opencosmos/ui/hooks'
 
 function AnimatedComponent() {
   const { shouldAnimate, scale } = useMotionPreference()
@@ -198,7 +198,7 @@ All styling must respect the active theme (Studio, Terra, or Volt) in both light
 
 ### Use Design System Components First
 
-Always search for existing `@thesage/ui` components before writing custom JSX. If a component doesn't exist and should, mention it and offer to create it following the workflow in [CLAUDE.md](.claude/CLAUDE.md).
+Always search for existing `@opencosmos/ui` components before writing custom JSX. If a component doesn't exist and should, mention it and offer to create it following the workflow in [CLAUDE.md](.claude/CLAUDE.md).
 
 ### Named Exports Only
 
@@ -242,8 +242,8 @@ Three themes with distinct personalities, each with light and dark modes:
 
 Three ways users can eject component source for full customization:
 
-1. **CLI:** `npx @thesage/ui eject Button [--dir path]`
-2. **Web UI:** Eject button on every component page at thesage.dev
+1. **CLI:** `npx @opencosmos/ui eject Button [--dir path]`
+2. **Web UI:** Eject button on every component page at opencosmos.ai/studio
 3. **MCP:** AI assistants use `eject_component` tool to get transformed source
 
 Ejected components retain theme compatibility (CSS variables). Internal imports are transformed to package-level imports automatically.
@@ -281,18 +281,18 @@ A component is not "done" until registered across **6 surfaces:** Library, Docs 
 
 ```bash
 # Development
-pnpm dev --filter web              # Start Sage Studio (localhost:3001)
+pnpm dev --filter web              # Start OpenCosmos Studio (localhost:3001)
 
 # Build
 pnpm build                         # Build everything (packages first, then apps)
-pnpm build --filter @thesage/ui    # Build component library only
+pnpm build --filter @opencosmos/ui    # Build component library only
 pnpm build --filter web            # Build Studio app only
 
 # Quality
-pnpm --filter @thesage/ui lint       # Lint component library
-pnpm --filter @thesage/ui typecheck  # TypeScript check
-pnpm --filter @thesage/ui test       # Run tests (Vitest, 156 tests)
-pnpm --filter @thesage/ui size:check # Bundle size limits
+pnpm --filter @opencosmos/ui lint       # Lint component library
+pnpm --filter @opencosmos/ui typecheck  # TypeScript check
+pnpm --filter @opencosmos/ui test       # Run tests (Vitest, 156 tests)
+pnpm --filter @opencosmos/ui size:check # Bundle size limits
 
 # Publishing (via Changesets)
 pnpm changeset                       # Create changeset entry
@@ -304,9 +304,9 @@ pnpm release                         # Build + publish to npm
 
 Turborepo handles dependency-aware ordering automatically:
 
-1. `@thesage/tokens` (no deps)
-2. `@thesage/ui` (depends on tokens)
-3. `@thesage/mcp` (depends on ui)
+1. `@opencosmos/tokens` (no deps)
+2. `@opencosmos/ui` (depends on tokens)
+3. `@opencosmos/mcp` (depends on ui)
 4. `apps/web` (depends on all packages via `workspace:*`)
 
 ### Bundle Size Limits
@@ -331,10 +331,10 @@ Enforced in CI. Every export has a size ceiling:
 Runs on every PR and push to main (`.github/workflows/ci.yml`):
 
 1. `pnpm build` — all packages and apps
-2. `pnpm --filter @thesage/ui lint`
-3. `pnpm --filter @thesage/ui typecheck`
-4. `pnpm --filter @thesage/ui test` (Vitest)
-5. `pnpm --filter @thesage/ui size:check`
+2. `pnpm --filter @opencosmos/ui lint`
+3. `pnpm --filter @opencosmos/ui typecheck`
+4. `pnpm --filter @opencosmos/ui test` (Vitest)
+5. `pnpm --filter @opencosmos/ui size:check`
 
 Node 24, pnpm 10.26.1+.
 
@@ -433,7 +433,7 @@ If styles don't apply, verify `content` paths in the Tailwind config match actua
 ### TypeScript Errors After Pulling
 Rebuild the library to regenerate type definitions:
 ```bash
-pnpm build --filter @thesage/ui
+pnpm build --filter @opencosmos/ui
 ```
 
 ### Black Shader Previews

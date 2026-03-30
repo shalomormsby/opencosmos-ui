@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Breadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
+import { Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { EnhancedComponentPlayground } from './EnhancedComponentPlayground';
 import { CategoryOverview } from './CategoryOverview';
 import { componentRegistry } from '../../lib/component-registry';

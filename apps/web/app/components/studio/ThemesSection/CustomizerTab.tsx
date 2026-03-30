@@ -1,8 +1,8 @@
 'use client';
 import React from 'react';
 import { SlidersHorizontal, Sun, Moon, Building2, Leaf, Zap, Palette } from 'lucide-react';
-import { studioTokens, terraTokens, voltTokens } from '@thesage/tokens';
-import { useCustomizer, useTheme, ColorPicker, Button, Card } from '@thesage/ui';
+import { studioTokens, terraTokens, voltTokens } from '@opencosmos/tokens';
+import { useCustomizer, useTheme, ColorPicker, Button, Card } from '@opencosmos/ui';
 
 export function CustomizerTab() {
     const [mounted, setMounted] = React.useState(false);

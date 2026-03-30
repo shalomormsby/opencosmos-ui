@@ -1,6 +1,6 @@
 'use client';
 
-import { HeroBlock, OrbBackground, Typewriter, useTheme, BRAND } from '@thesage/ui';
+import { HeroBlock, OrbBackground, Typewriter, useTheme, BRAND } from '@opencosmos/ui';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 

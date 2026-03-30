@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading, Text, Card, Badge } from '@thesage/ui';
+import { Heading, Text, Card, Badge } from '@opencosmos/ui';
 import { ArrowRight, type LucideIcon } from 'lucide-react';
 import { ReactNode } from 'react';
 

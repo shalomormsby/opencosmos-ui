@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Card, Button, useMotionPreference } from '@thesage/ui';
-import { CollapsibleCodeBlock } from '@thesage/ui';
-import type { SyntaxToken } from '@thesage/ui';
-import { baseTokens, motion } from '@thesage/ui/tokens';
+import { Card, Button, useMotionPreference } from '@opencosmos/ui';
+import { CollapsibleCodeBlock } from '@opencosmos/ui';
+import type { SyntaxToken } from '@opencosmos/ui';
+import { baseTokens, motion } from '@opencosmos/ui/tokens';
 import { CheckCircle, XCircle } from 'lucide-react';
 
 /**
@@ -301,7 +301,7 @@ export function MotionFoundationsSection() {
 }
 
 // React Hook approach (recommended)
-import { useMotionPreference } from '@thesage/ui';
+import { useMotionPreference } from '@opencosmos/ui';
 
 function MyComponent() {
   const { shouldAnimate, scale } = useMotionPreference();
@@ -504,7 +504,7 @@ tl.to('.hero', { opacity: 1, duration: 0.5 })
         <p className="text-sm text-[var(--color-text-secondary)] mb-6">
           Pre-built animation variants and presets for Framer Motion. Import from{' '}
           <code className="px-1 py-0.5 bg-[var(--color-surface)] rounded text-[var(--color-primary)]">
-            @thesage/ui/utils
+            @opencosmos/ui/utils
           </code>
         </p>
 
@@ -518,7 +518,7 @@ tl.to('.hero', { opacity: 1, duration: 0.5 })
             </p>
             <CollapsibleCodeBlock
               id="fade-variants"
-              code={`import { fadeVariants } from '@thesage/ui/utils';
+              code={`import { fadeVariants } from '@opencosmos/ui/utils';
 
 <motion.div
   initial="hidden"
@@ -541,7 +541,7 @@ tl.to('.hero', { opacity: 1, duration: 0.5 })
             </p>
             <CollapsibleCodeBlock
               id="slide-variants"
-              code={`import { slideVariants } from '@thesage/ui/utils';
+              code={`import { slideVariants } from '@opencosmos/ui/utils';
 
 <motion.div
   initial="hidden"
@@ -564,7 +564,7 @@ tl.to('.hero', { opacity: 1, duration: 0.5 })
             </p>
             <CollapsibleCodeBlock
               id="scale-variants"
-              code={`import { scaleVariants } from '@thesage/ui/utils';
+              code={`import { scaleVariants } from '@opencosmos/ui/utils';
 
 <motion.div
   initial="hidden"
@@ -587,7 +587,7 @@ tl.to('.hero', { opacity: 1, duration: 0.5 })
             </p>
             <CollapsibleCodeBlock
               id="modal-variants"
-              code={`import { modalVariants } from '@thesage/ui/utils';
+              code={`import { modalVariants } from '@opencosmos/ui/utils';
 
 <motion.div variants={modalVariants.overlay}>
   <motion.div variants={modalVariants.content}>
@@ -608,7 +608,7 @@ tl.to('.hero', { opacity: 1, duration: 0.5 })
             </p>
             <CollapsibleCodeBlock
               id="rotate-variants"
-              code={`import { rotateVariants } from '@thesage/ui/utils';
+              code={`import { rotateVariants } from '@opencosmos/ui/utils';
 
 <motion.div
   initial="hidden"
@@ -631,7 +631,7 @@ tl.to('.hero', { opacity: 1, duration: 0.5 })
             </p>
             <CollapsibleCodeBlock
               id="drawer-variants"
-              code={`import { drawerVariants } from '@thesage/ui/utils';
+              code={`import { drawerVariants } from '@opencosmos/ui/utils';
 
 <motion.div
   initial="hidden"
@@ -654,7 +654,7 @@ tl.to('.hero', { opacity: 1, duration: 0.5 })
             </p>
             <CollapsibleCodeBlock
               id="collapse-variants"
-              code={`import { collapseVariants } from '@thesage/ui/utils';
+              code={`import { collapseVariants } from '@opencosmos/ui/utils';
 
 <motion.div
   initial="collapsed"
@@ -701,7 +701,7 @@ tl.to('.hero', { opacity: 1, duration: 0.5 })
             </div>
             <CollapsibleCodeBlock
               id="complete-presets"
-              code={`import { presets } from '@thesage/ui/utils';
+              code={`import { presets } from '@opencosmos/ui/utils';
 
 // Simple fade animation
 <motion.div {...presets.fade}>
@@ -736,7 +736,7 @@ tl.to('.hero', { opacity: 1, duration: 0.5 })
           </p>
           <CollapsibleCodeBlock
             id="custom-animations"
-            code={`import { createAnimation, transitions, easings } from '@thesage/ui/utils';
+            code={`import { createAnimation, transitions, easings } from '@opencosmos/ui/utils';
 
 const customAnimation = createAnimation(
   {
@@ -772,7 +772,7 @@ const customAnimation = createAnimation(
               { text: ' } ', type: 'plain' },
               { text: 'from', type: 'keyword' },
               { text: ' ', type: 'plain' },
-              { text: "'@thesage/ui'", type: 'string' },
+              { text: "'@opencosmos/ui'", type: 'string' },
               { text: ';', type: 'punctuation' },
               { text: '\n\n', type: 'plain' },
               { text: 'const', type: 'keyword' },

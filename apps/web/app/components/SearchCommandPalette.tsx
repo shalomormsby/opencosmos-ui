@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Card } from '@thesage/ui';
+import { Card } from '@opencosmos/ui';
 import { searchContent, getResultTypeIcon, type SearchResult } from '../lib/search-index';
 
 interface SearchCommandPaletteProps {

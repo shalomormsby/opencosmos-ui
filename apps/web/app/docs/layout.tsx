@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { DocsShell } from './DocsShell';
 
-const PRODUCT_NAME = 'Sage Design Engine';
+const PRODUCT_NAME = 'OpenCosmos UI';
 
 export const metadata: Metadata = {
   title: {
@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   description:
     '100 accessible React components built on Radix UI + Tailwind CSS. Three themes, design tokens, motion control, TypeScript strict mode.',
   alternates: {
-    canonical: 'https://thesage.dev/docs',
+    canonical: 'https://opencosmos.ai/studio/docs',
   },
   openGraph: {
     title: `Documentation — ${PRODUCT_NAME}`,
     description:
       '100 accessible React components built on Radix UI + Tailwind CSS. Three themes, design tokens, motion control.',
-    url: 'https://thesage.dev/docs',
+    url: 'https://opencosmos.ai/studio/docs',
     type: 'website',
   },
   other: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     'sage:categories':
       'actions,forms,navigation,overlays,feedback,data-display,layout,backgrounds,cursor,motion,blocks',
     'sage:themes': 'studio,terra,volt',
-    'sage:llms-full': 'https://thesage.dev/llms-full.txt',
+    'sage:llms-full': 'https://opencosmos.ai/studio/llms-full.txt',
   },
 };
 
@@ -36,11 +36,11 @@ const collectionJsonLd = {
   name: `Documentation — ${PRODUCT_NAME}`,
   description:
     '100 accessible React components built on Radix UI + Tailwind CSS. Three themes, design tokens, motion control.',
-  url: 'https://thesage.dev/docs',
+  url: 'https://opencosmos.ai/studio/docs',
   mainEntity: {
     '@type': 'SoftwareSourceCode',
     name: PRODUCT_NAME,
-    codeRepository: 'https://github.com/shalomormsby/sage-design-engine',
+    codeRepository: 'https://github.com/shalomormsby/opencosmos-ui',
     programmingLanguage: ['TypeScript', 'React'],
     runtimePlatform: 'Node.js',
   },

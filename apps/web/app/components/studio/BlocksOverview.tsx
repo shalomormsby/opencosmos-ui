@@ -1,6 +1,6 @@
 'use client';
 
-import { Heading, Text, Card, Badge } from '@thesage/ui';
+import { Heading, Text, Card, Badge } from '@opencosmos/ui';
 import { ArrowRight, Layers, FileJson, LayoutTemplate, Menu, MessageSquare, PanelTop, CreditCard, ChevronDown, Maximize2 } from 'lucide-react';
 
 interface BlocksOverviewProps {

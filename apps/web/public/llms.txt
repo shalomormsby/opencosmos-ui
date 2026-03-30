@@ -1,4 +1,4 @@
-# Sage Design Engine (SDE)
+# OpenCosmos UI (SDE)
 
 > 100 accessible React components built on Radix UI + Tailwind CSS.
 > Three themes (Studio, Terra, Volt) with light/dark modes.
@@ -8,50 +8,50 @@
 ## Install
 
 ```
-pnpm add @thesage/ui
+pnpm add @opencosmos/ui
 ```
 
 ## Quick Start
 
 ```tsx
-import { ThemeProvider, TooltipProvider } from '@thesage/ui/providers'
-import { Button, Card, Input } from '@thesage/ui'
-import '@thesage/ui/globals.css'
+import { ThemeProvider, TooltipProvider } from '@opencosmos/ui/providers'
+import { Button, Card, Input } from '@opencosmos/ui'
+import '@opencosmos/ui/globals.css'
 ```
 
 ## Docs
-- Overview: https://thesage.dev/docs/overview
-- Components: https://thesage.dev/docs/components
-- Design Tokens: https://thesage.dev/docs/tokens
-- Themes: https://thesage.dev/docs/themes
-- Motion: https://thesage.dev/docs/motion
+- Overview: https://opencosmos.ai/studio/docs/overview
+- Components: https://opencosmos.ai/studio/docs/components
+- Design Tokens: https://opencosmos.ai/studio/docs/tokens
+- Themes: https://opencosmos.ai/studio/docs/themes
+- Motion: https://opencosmos.ai/studio/docs/motion
 
 ## Full Component API Reference
-- https://thesage.dev/llms-full.txt
-- JSON API: https://thesage.dev/docs/api.json
+- https://opencosmos.ai/studio/llms-full.txt
+- JSON API: https://opencosmos.ai/studio/docs/api.json
 
 ## MCP Server (for AI Assistants)
-- Package: @thesage/mcp (v0.8.0, 8 tools)
+- Package: @opencosmos/mcp (v0.8.0, 8 tools)
 - Tools: list_components, search_components, get_component, install_component, get_app_shell, get_examples, get_audit_checklist, eject_component
-- Config: `{ "mcpServers": { "sds": { "command": "npx", "args": ["@thesage/mcp"] } } }`
-- Discovery: https://thesage.dev/.well-known/mcp-server.json
+- Config: `{ "mcpServers": { "sds": { "command": "npx", "args": ["@opencosmos/mcp"] } } }`
+- Discovery: https://opencosmos.ai/studio/.well-known/mcp-server.json
 
 ## Eject (Full Customization)
 
 Copy any component's source into your project with imports rewritten:
 
 ```bash
-npx @thesage/ui eject Button              # eject to src/components/ui/
-npx @thesage/ui eject Dialog --dir my/dir  # custom target
-npx @thesage/ui eject --list               # list all components
+npx @opencosmos/ui eject Button              # eject to src/components/ui/
+npx @opencosmos/ui eject Dialog --dir my/dir  # custom target
+npx @opencosmos/ui eject --list               # list all components
 ```
 
 Also available via:
 - MCP tool: `eject_component` (returns transformed source code)
-- Web UI: Eject button on every component page at thesage.dev
-- API: `GET https://thesage.dev/api/eject/{ComponentName}` (JSON response)
+- Web UI: Eject button on every component page at opencosmos.ai/studio
+- API: `GET https://opencosmos.ai/studio/api/eject/{ComponentName}` (JSON response)
 
 ## Resources
-- GitHub: https://github.com/shalomormsby/sage-design-engine
-- NPM: https://www.npmjs.com/package/@thesage/ui
-- AGENTS.md: https://github.com/shalomormsby/sage-design-engine/blob/main/AGENTS.md
+- GitHub: https://github.com/shalomormsby/opencosmos-ui
+- NPM: https://www.npmjs.com/package/@opencosmos/ui
+- AGENTS.md: https://github.com/shalomormsby/opencosmos-ui/blob/main/AGENTS.md

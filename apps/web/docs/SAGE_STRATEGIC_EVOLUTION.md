@@ -9,7 +9,7 @@
 The initial version of Sage UI was a "Kit of Parts"—a collection of high-quality components (`<Button>`, `<Card>`, `<Input>`) that users had to manually assemble. While valuable (Phase 1), this approach requires significant effort for every new page and places the burden of design coherence on the user.
 
 **The Insight:** We are moving from manual assembly to **Architected Creation**.
-We are building the **Sage Design Engine**: An intelligent system where users provide *content* and *intent*, and the system automatically renders high-quality, accessible, branded interfaces.
+We are building the **OpenCosmos UI**: An intelligent system where users provide *content* and *intent*, and the system automatically renders high-quality, accessible, branded interfaces.
 
 ### The "Change Once, Ripple Everywhere" Promise
 By abstracting page layouts into **Archetypes** (formerly Templates), we decouple *structure* from *content*.
@@ -79,9 +79,9 @@ Because the Archetype relies on *semantic* tokens (e.g., `primary-color`, `borde
 
 ## 5. Naming & Brand Identity
 
-### Domain: `thesage.dev`
+### Domain: `opencosmos.ai/studio`
 This domain is excellent. It positions the product not just as a tool ("Sage UI") but as an entity or guide ("The Sage").
-*   **Relevance:** Whether it's called "Sage UI", "Sage Design Engine", or "Sage Stack", `thesage.dev` remains the perfect home. It implies wisdom, guidance, and a comprehensive ecosystem.
+*   **Relevance:** Whether it's called "Sage UI", "OpenCosmos UI", or "Sage Stack", `opencosmos.ai/studio` remains the perfect home. It implies wisdom, guidance, and a comprehensive ecosystem.
 
 ---
 
@@ -103,6 +103,6 @@ This domain is excellent. It positions the product not just as a tool ("Sage UI"
 ## 7. Immediate Roadmap
 
 1.  **Formalize the Rename:** [COMPLETED] Execute "Sage Theme" -> "Terra Theme" in the codebase.
-2.  **Ecosystem-Wide Branding:** [COMPLETED] Rename "Sage UI" -> "Sage Design Engine" and implement `BRAND` token.
+2.  **Ecosystem-Wide Branding:** [COMPLETED] Rename "Sage UI" -> "OpenCosmos UI" and implement `BRAND` token.
 3.  **Refine Archetypes:** [COMPLETED] Audit `SectionOverview` to ensure it accepts a pure data object prop alongside standard props.
 3.  **Docs Update:** Ensure the documentation reflects this new "Engine" philosophy, perhaps updating the "Philosophy" or "Introduction" page to explain the separation of Content (Data) vs. Soul (Theme).

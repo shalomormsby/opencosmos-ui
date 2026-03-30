@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { generateBreadcrumbs, type BreadcrumbItemLegacy } from '@thesage/ui';
+import { generateBreadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { OverviewSection } from '../components/studio/OverviewSection';
 import { ArchitectureSection } from '../components/studio/ArchitectureSection';
 import { AddingComponentsSection } from '../components/studio/AddingComponentsSection';

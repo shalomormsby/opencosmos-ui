@@ -1,9 +1,9 @@
 'use client';
 
-import { OrbBackground, Card, Heading, Text, Stack, Slider, Label, CollapsibleCodeBlock, ThemeToggle } from '@thesage/ui';
+import { OrbBackground, Card, Heading, Text, Stack, Slider, Label, CollapsibleCodeBlock, ThemeToggle } from '@opencosmos/ui';
 import { useState } from 'react';
 
-const CONST_CODE = `import { OrbBackground } from '@thesage/ui';
+const CONST_CODE = `import { OrbBackground } from '@opencosmos/ui';
 
 export function MyHero() {
   return (

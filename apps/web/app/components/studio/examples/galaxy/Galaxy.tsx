@@ -1,6 +1,6 @@
 'use client';
 
-import { Renderer, Program, Mesh, Color, Triangle } from '@thesage/ui/webgl';
+import { Renderer, Program, Mesh, Color, Triangle } from '@opencosmos/ui/webgl';
 import { useEffect, useRef } from 'react';
 
 const vertexShader = `

@@ -157,13 +157,13 @@ ecosystem/
 ├── apps/                     ← Portfolio, Sage Stocks, Creative Powerup, SageOS
 │   └── web/   ← Documentation & playground
 ├── packages/
-│   ├── ui/                   ← @thesage/ui - Component library
+│   ├── ui/                   ← @opencosmos/ui - Component library
 │   │   └── src/
 │   │       ├── components/   ← Functionally organized (actions, forms, navigation, etc.)
 │   │       ├── lib/          ← Utilities, validation, animations
 │   │       ├── hooks/        ← useTheme, useMotionPreference, etc.
 │   │       └── providers/    ← ThemeProvider, etc.
-│   ├── tokens/               ← @thesage/tokens - Design system tokens
+│   ├── tokens/               ← @opencosmos/tokens - Design system tokens
 │   └── config/               ← Shared config (Tailwind, etc.)
 ```
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Breadcrumbs, TertiaryNav, CollapsibleCodeBlock, Card, PageTemplate, Footer, Brand, type BreadcrumbItemLegacy } from '@thesage/ui';
+import { Breadcrumbs, TertiaryNav, CollapsibleCodeBlock, Card, PageTemplate, Footer, Brand, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { ExternalLink, Layout, Ruler, Type, LayoutGrid, Scale, Sparkles, ArrowDown, Lightbulb } from 'lucide-react';
 import { TemplatesOverview } from './TemplatesOverview';
 
@@ -51,7 +51,7 @@ export function TemplatesSection({ breadcrumbs, activeItemId, onItemChange }: Te
 function PageTemplateContent() {
   const [activeSection, setActiveSection] = useState('overview');
 
-  const basicUsageCode = `import {PageTemplate, Brand, Footer} from '@thesage/ui';
+  const basicUsageCode = `import {PageTemplate, Brand, Footer} from '@opencosmos/ui';
 
       function MyPage() {
   return (

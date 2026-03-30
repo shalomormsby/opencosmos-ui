@@ -1899,7 +1899,7 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
     ],
     dependencies: [],
     props: {
-      title: { type: 'string', default: "'Sage Design Engine'", description: 'Main title text' },
+      title: { type: 'string', default: "'OpenCosmos UI'", description: 'Main title text' },
       description: { type: 'string', description: 'Subtitle text' },
       variant: { type: "'primary' | 'secondary' | 'accent' | 'sage' | 'emerald' | 'gradient'", default: "'sage'", description: 'Visual style variant' },
       icon: { type: 'ReactNode', description: 'Custom logo or icon element' },

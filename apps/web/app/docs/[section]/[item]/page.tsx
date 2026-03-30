@@ -41,7 +41,7 @@ export async function generateMetadata({
       const secLabel = sectionLabel(realSection);
       return {
         title: `${label} — ${secLabel}`,
-        description: `Documentation for the ${label} component in Sage Design Engine.`,
+        description: `Documentation for the ${label} component in OpenCosmos UI.`,
       };
     }
   }
@@ -50,7 +50,7 @@ export async function generateMetadata({
   const secLabel = sectionLabel(section);
   return {
     title: `${label} — ${secLabel}`,
-    description: `Documentation for the ${label} component in Sage Design Engine.`,
+    description: `Documentation for the ${label} component in OpenCosmos UI.`,
   };
 }
 
