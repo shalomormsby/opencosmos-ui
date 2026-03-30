@@ -35,18 +35,18 @@ importers:
       '@hookform/resolvers':
         specifier: ^3.10.0
         version: 3.10.0(react-hook-form@7.71.1(react@19.2.4))
+      '@opencosmos/mcp':
+        specifier: workspace:*
+        version: link:../../packages/mcp
+      '@opencosmos/tokens':
+        specifier: workspace:*
+        version: link:../../packages/tokens
+      '@opencosmos/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@tanstack/react-table':
         specifier: ^8.21.3
         version: 8.21.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@thesage/mcp':
-        specifier: workspace:*
-        version: link:../../packages/mcp
-      '@thesage/tokens':
-        specifier: workspace:*
-        version: link:../../packages/tokens
-      '@thesage/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       '@vercel/analytics':
         specifier: ^1.6.1
         version: 1.6.1(next@15.5.12(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)

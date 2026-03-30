@@ -1,16 +1,16 @@
 {
-    "name": "@thesage/tokens",
+    "name": "@opencosmos/tokens",
     "version": "1.0.1",
-    "description": "Design tokens for the Sage Design Engine — colors, typography, spacing, motion curves, and syntax highlighting across Studio, Terra, and Volt themes.",
+    "description": "Design tokens for OpenCosmos/UI — colors, typography, spacing, motion curves, and syntax highlighting across Studio, Terra, and Volt themes.",
     "license": "MIT",
     "author": "Shalom Ormsby",
     "repository": {
         "type": "git",
-        "url": "https://github.com/shalomormsby/sage-design-engine.git",
+        "url": "https://github.com/shalomormsby/opencosmos-ui.git",
         "directory": "packages/tokens"
     },
-    "homepage": "https://thesage.dev",
-    "bugs": "https://github.com/shalomormsby/sage-design-engine/issues",
+    "homepage": "https://opencosmos.ai/studio",
+    "bugs": "https://github.com/shalomormsby/opencosmos-ui/issues",
     "keywords": [
         "design-tokens",
         "design-system",
@@ -20,7 +20,7 @@
         "spacing",
         "css-variables",
         "tailwind",
-        "sage"
+        "opencosmos"
     ],
     "publishConfig": {
         "access": "public"

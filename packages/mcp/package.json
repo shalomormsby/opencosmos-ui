@@ -1,15 +1,15 @@
 {
-  "name": "@thesage/mcp",
+  "name": "@opencosmos/mcp",
   "version": "0.8.3",
-  "description": "Model Context Protocol server for Sage Design Engine - discover and integrate components with AI assistants",
+  "description": "Model Context Protocol server for OpenCosmos/UI - discover and integrate components with AI assistants",
   "author": "Shalom Ormsby",
   "repository": {
     "type": "git",
-    "url": "https://github.com/shalomormsby/sage-design-engine.git",
+    "url": "https://github.com/shalomormsby/opencosmos-ui.git",
     "directory": "packages/mcp"
   },
-  "homepage": "https://thesage.dev/#mcp-server",
-  "bugs": "https://github.com/shalomormsby/sage-design-engine/issues",
+  "homepage": "https://opencosmos.ai/studio",
+  "bugs": "https://github.com/shalomormsby/opencosmos-ui/issues",
   "publishConfig": {
     "access": "public"
   },
@@ -17,7 +17,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "bin": {
-    "sds-mcp": "dist/index.js"
+    "opencosmos-mcp": "dist/index.js"
   },
   "license": "MIT",
   "scripts": {
