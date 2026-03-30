@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  basePath: '/studio',
   reactStrictMode: true,
   transpilePackages: ['@opencosmos/ui', '@opencosmos/mcp'],
   async headers() {
