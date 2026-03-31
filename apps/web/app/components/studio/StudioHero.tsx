@@ -29,7 +29,7 @@ export function StudioHero() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-12 sm:pb-16">
         <div className="text-center max-w-4xl mx-auto">
           {/* Title: Primary hierarchy level */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-12 text-[var(--color-text-primary)] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 text-[var(--color-text-primary)] tracking-tight">
             OpenCosmos Studio
           </h1>
 
