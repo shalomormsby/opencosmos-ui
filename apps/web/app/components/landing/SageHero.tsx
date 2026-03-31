@@ -20,7 +20,7 @@ export function SageHero() {
             headline={
                 <span className="block">
                     <span className="block text-8xl md:text-[10rem] lg:text-[12rem] font-black tracking-tighter leading-none pb-2 text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] animate-gradient-x">
-                        Sage
+                        OpenCosmos UI
                     </span>
                     <span className="block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mt-3">
                         Make it Lovable
