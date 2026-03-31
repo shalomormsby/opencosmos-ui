@@ -32,11 +32,17 @@ function findComponent(name: string): { filePath: string; category: string } | n
   return null;
 }
 
+const SAFE_COMPONENT_NAME = /^[a-zA-Z0-9-]+$/;
+
 export async function GET(
   _request: Request,
   { params }: { params: Promise<{ component: string }> }
 ) {
   const { component: componentName } = await params;
+
+  if (!SAFE_COMPONENT_NAME.test(componentName)) {
+    return NextResponse.json({ error: 'Invalid component name' }, { status: 400 });
+  }
 
   const found = findComponent(componentName);
   if (!found) {

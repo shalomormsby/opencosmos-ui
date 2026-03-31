@@ -1,14 +1,24 @@
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@vercel/edge-config';
 
 const EDGE_CONFIG_ID = process.env.EDGE_CONFIG_ID;
 const VERCEL_API_TOKEN = process.env.VERCEL_API_TOKEN;
 const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
 const EDGE_CONFIG = process.env.EDGE_CONFIG;
+const ADMIN_API_KEY = process.env.ADMIN_API_KEY;
+
+function isAuthorized(request: NextRequest): boolean {
+  if (!ADMIN_API_KEY) return false;
+  const auth = request.headers.get('authorization') ?? '';
+  return auth === `Bearer ${ADMIN_API_KEY}`;
+}
 
 // GET endpoint to debug current Edge Config values
-export async function GET() {
+export async function GET(request: NextRequest) {
+  if (!isAuthorized(request)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
     try {
         if (!EDGE_CONFIG) {
             return NextResponse.json(
@@ -39,7 +49,10 @@ export async function GET() {
     }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
+  if (!isAuthorized(request)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
     // Validate environment variables
     if (!EDGE_CONFIG_ID || !VERCEL_API_TOKEN) {
         console.error('[Edge Config API] Missing environment variables:', {
