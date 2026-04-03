@@ -1,4 +1,4 @@
-# @thesage/tokens
+# @opencosmos/tokens
 
 ## 1.0.1 - 2026-02-22
 

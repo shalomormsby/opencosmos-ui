@@ -7,7 +7,7 @@ Design tokens for the OpenCosmos UI — the foundation layer that defines colors
 
 ## Why a separate package?
 
-Tokens are **design decisions as code**. They serve audiences beyond React components — CSS-only projects, native apps, Figma plugins, or anyone building their own component layer on top of Sage's design language. Install `@opencosmos/tokens` for just the values, or get them bundled with components via `@opencosmos/ui/tokens`.
+Tokens are **design decisions as code**. They serve audiences beyond React components — CSS-only projects, native apps, Figma plugins, or anyone building their own component layer on top of OpenCosmos' design language. Install `@opencosmos/tokens` for just the values, or get them bundled with components via `@opencosmos/ui/tokens`.
 
 ## Installation
 
