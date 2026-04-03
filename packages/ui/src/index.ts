@@ -81,6 +81,7 @@ export * from './components/data-display/CollapsibleCodeBlock';
 export * from './components/data-display/DataTable';
 export * from './components/data-display/DescriptionList';
 export * from './components/data-display/GitHubIcon';
+export * from './components/data-display/OpenCosmosIcon';
 export * from './components/data-display/Heading';
 export * from './components/data-display/Table';
 export * from './components/data-display/Text';
@@ -108,6 +109,7 @@ export * from './components/layout/Resizable';
 export * from './components/layout/ScrollArea';
 export * from './components/layout/Separator';
 export * from './components/layout/Sidebar';
+export * from './components/layout/AppSidebar';
 export * from './components/layout/Stack';
 export * from './components/layout/GlassSurface';
 

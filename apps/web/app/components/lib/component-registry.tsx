@@ -1,5 +1,5 @@
 import { Code, Link, Spinner, ProgressBar, Switch } from '@opencosmos/ui';
-import { Home, Search, Settings, User, LogOut, ChevronDown, ChevronUp, MoreHorizontal } from 'lucide-react';
+import { Home, Search, Settings, User, LogOut, ChevronDown, ChevronUp, MoreHorizontal, MessageSquare, BookOpen, ExternalLink } from 'lucide-react';
 import {
   // Phase 1 & 2 components
   Label, Input, Alert, AlertDescription, AlertTitle, Avatar, AvatarImage, AvatarFallback, Button, Card, Badge, Checkbox, Combobox, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, DataTable, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Popover, PopoverAnchor, PopoverContent, PopoverTrigger, RadioGroup, RadioGroupItem, Select, SelectContent, SelectItem, SelectTrigger, SelectValue, Separator, ScrollArea, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger, Skeleton, Table, TableBody, TableCell, TableHead, TableHeader, TableRow, Tabs, TabsContent, TabsList, TabsTrigger, Textarea, Toaster, ToastProvider, useToast,
@@ -30,6 +30,8 @@ import {
   InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator,
   ResizablePanelGroup, ResizablePanel, ResizableHandle,
   Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem,
+  AppSidebar, AppSidebarProvider, AppSidebarInset,
+  OpenCosmosIcon,
   OpenGraphCard,
   // Phase 16 - Missing Components
   StatCard, StatCardGroup,
@@ -791,101 +793,168 @@ console.log(greeting);\`)}
           </>
         ),
       },
-      {
-        label: 'Nested Navigation',
-        props: {
-          className: '!relative !top-auto !left-auto h-[400px] w-[260px] border rounded-lg overflow-hidden',
-        },
-        children: (
-          <SidebarContent>
-            <SidebarItem>Dashboard</SidebarItem>
-            <SidebarItem hasChildren isExpanded>
-              Projects
-            </SidebarItem>
-            <SidebarItem depth={1} isActive>Project A</SidebarItem>
-            <SidebarItem depth={1}>Project B</SidebarItem>
-            <SidebarItem>Team</SidebarItem>
-          </SidebarContent>
-        ),
-      },
-      {
-        label: 'With Icons',
-        props: {
-          className: '!relative !top-auto !left-auto h-[400px] w-[260px] border rounded-lg overflow-hidden',
-        },
-        children: (
-          <SidebarContent>
-            <SidebarItem icon={<Home className="w-4 h-4" />}>Home</SidebarItem>
-            <SidebarItem icon={<Search className="w-4 h-4" />}>Search</SidebarItem>
-            <SidebarItem icon={<Settings className="w-4 h-4" />}>Settings</SidebarItem>
-          </SidebarContent>
-        ),
-      },
-      {
-        label: 'Interactive Group',
-        props: {
-          className: '!relative !top-auto !left-auto h-[400px] w-[260px] border rounded-lg overflow-hidden',
-        },
-        children: (
-          /* note: this is a static example, real interactivity requires state */
-          <SidebarContent>
-            <SidebarItem>Dashboard</SidebarItem>
-            <SidebarItem hasChildren isExpanded>
-              Collections
-            </SidebarItem>
-            <SidebarItem depth={1} isActive>Favorites</SidebarItem>
-            <SidebarItem depth={1}>Recent</SidebarItem>
-
-            <SidebarItem hasChildren={true} isExpanded={false}>
-              Archives
-            </SidebarItem>
-          </SidebarContent>
-        ),
-      },
     ],
     codeExamples: [
       {
         title: 'Basic Structure',
         code: `import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem } from '@opencosmos/ui';
-import { Home, Settings, User } from 'lucide-react';
 
 export default function AppSidebar() {
   return (
-    <Sidebar className="fixed left-0 top-0 h-screen w-64 border-r">
-      <SidebarHeader>
-        <h2>App Name</h2>
-      </SidebarHeader>
-      
+    <Sidebar>
+      <SidebarHeader><h2>App Name</h2></SidebarHeader>
       <SidebarContent>
-        <SidebarItem icon={<Home className="w-4 h-4" />} isActive>Dashboard</SidebarItem>
-        <SidebarItem icon={<Settings className="w-4 h-4" />}>Settings</SidebarItem>
+        <SidebarItem isActive>Dashboard</SidebarItem>
+        <SidebarItem>Settings</SidebarItem>
       </SidebarContent>
-
       <SidebarFooter>
-        <SidebarItem icon={<User className="w-4 h-4" />}>Profile</SidebarItem>
+        <SidebarItem>Profile</SidebarItem>
       </SidebarFooter>
     </Sidebar>
   );
 }`,
         description: 'Standard layout with header, content area, and footer.',
       },
-      {
-        title: 'Nested Items',
-        code: `<SidebarContent>
-  <SidebarItem hasChildren isExpanded>
-    Collections
-  </SidebarItem>
-  <SidebarItem depth={1}>Nature</SidebarItem>
-  <SidebarItem depth={1}>Architecture</SidebarItem>
-</SidebarContent>`,
-        description: 'Using the depth prop to create visual hierarchy for nested navigation.',
-      },
     ],
     sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/layout/Sidebar.tsx',
     accessibilityNotes: [
       'Uses semantically correct <aside> element for the root container.',
       'Navigation items use <button> or Slot for keyboard interaction.',
-      'Supports explicit state management for expanded/collapsed sections.',
+    ],
+  },
+
+  AppSidebar: {
+    component: AppSidebar,
+    description: 'A ChatGPT-style collapsible app sidebar. Animates between full-width and icon rail. Logo click expands; collapse button only appears when open. Wrap the layout in AppSidebarProvider and use AppSidebarInset to shift main content.',
+    props: {
+      logo: {
+        type: 'text',
+        default: '',
+        description: 'Icon element always visible (32×32). Clicking it toggles open/closed.',
+      },
+      title: {
+        type: 'text',
+        default: 'OpenCosmos',
+        description: 'Wordmark shown to the right of the logo when expanded.',
+      },
+    },
+    examples: [
+      {
+        label: 'Collapsible Sidebar',
+        props: {},
+        children: (
+          <AppSidebarProvider defaultOpen={true}>
+            <div className="flex h-[460px] overflow-hidden rounded-xl border border-foreground/10 bg-background relative">
+              <AppSidebar
+                logo={<OpenCosmosIcon size={18} />}
+                title="OpenCosmos"
+                items={[
+                  { icon: <MessageSquare className="w-4 h-4" />, label: 'Dialog',    href: '#', active: true },
+                  { icon: <BookOpen     className="w-4 h-4" />, label: 'Knowledge', href: '#' },
+                  { icon: <ExternalLink className="w-4 h-4" />, label: 'Studio',    href: '#', external: true },
+                ]}
+                footer={
+                  <div className="flex items-center gap-3 px-1 py-1 rounded-lg hover:bg-foreground/5 transition-colors cursor-pointer">
+                    <div className="w-7 h-7 rounded-full bg-foreground/10 flex items-center justify-center text-xs font-semibold shrink-0">S</div>
+                    <div className="min-w-0">
+                      <p className="text-xs font-medium text-foreground truncate">Shalom</p>
+                      <p className="text-[10px] text-foreground/40 truncate">shalom@opencosmos.ai</p>
+                    </div>
+                  </div>
+                }
+                className="relative shrink-0"
+              />
+              <div className="flex-1 p-8 overflow-auto border-l border-foreground/8">
+                <p className="text-sm font-medium text-foreground mb-1">Main content</p>
+                <p className="text-xs text-foreground/40">Click the collapse icon or the logo to toggle.</p>
+              </div>
+            </div>
+          </AppSidebarProvider>
+        ),
+      },
+      {
+        label: 'Sign-in Prompt (signed-out)',
+        props: {},
+        children: (
+          <AppSidebarProvider defaultOpen={true}>
+            <div className="flex h-[460px] overflow-hidden rounded-xl border border-foreground/10 bg-background relative">
+              <AppSidebar
+                logo={<OpenCosmosIcon size={18} />}
+                title="OpenCosmos"
+                items={[
+                  { icon: <MessageSquare className="w-4 h-4" />, label: 'Dialog',    href: '#', active: true },
+                  { icon: <BookOpen     className="w-4 h-4" />, label: 'Knowledge', href: '#' },
+                  { icon: <ExternalLink className="w-4 h-4" />, label: 'Studio',    href: '#', external: true },
+                ]}
+                footer={
+                  <div className="space-y-2.5 px-1">
+                    <div>
+                      <p className="text-xs font-medium text-foreground">Sign in to OpenCosmos</p>
+                      <p className="text-[10px] text-foreground/40 mt-0.5 leading-relaxed">Save conversations and access your account.</p>
+                    </div>
+                    <button className="w-full text-xs font-medium px-3 py-2 rounded-lg bg-foreground/8 hover:bg-foreground/12 transition-colors text-foreground">
+                      Sign in
+                    </button>
+                  </div>
+                }
+                className="relative shrink-0"
+              />
+              <div className="flex-1 p-8 overflow-auto border-l border-foreground/8">
+                <p className="text-sm font-medium text-foreground mb-1">Signed-out footer</p>
+                <p className="text-xs text-foreground/40">Footer collapses to a sign-in icon in rail mode.</p>
+              </div>
+            </div>
+          </AppSidebarProvider>
+        ),
+      },
+    ],
+    codeExamples: [
+      {
+        title: 'Full Layout',
+        code: `import {
+  AppSidebarProvider, AppSidebar, AppSidebarInset, OpenCosmosIcon
+} from '@opencosmos/ui';
+import { MessageSquare, BookOpen } from 'lucide-react';
+
+export default function AppLayout({ children }) {
+  return (
+    <AppSidebarProvider defaultOpen={true}>
+      <AppSidebar
+        logo={<OpenCosmosIcon size={18} />}
+        title="OpenCosmos"
+        items={[
+          { icon: <MessageSquare className="w-4 h-4" />, label: 'Dialog',    href: '/dialog' },
+          { icon: <BookOpen     className="w-4 h-4" />, label: 'Knowledge', href: '/knowledge' },
+        ]}
+        footer={<AuthButton />}
+      />
+      <AppSidebarInset>
+        {children}
+      </AppSidebarInset>
+    </AppSidebarProvider>
+  );
+}`,
+        description: 'AppSidebarProvider manages open/close state (persisted in localStorage). AppSidebarInset shifts the main content in sync with the sidebar width.',
+      },
+      {
+        title: 'Accessing state in children',
+        code: `import { useAppSidebar } from '@opencosmos/ui';
+
+function MyHeader() {
+  const { isOpen, toggle } = useAppSidebar();
+  return <button onClick={toggle}>{isOpen ? 'Collapse' : 'Expand'}</button>;
+}`,
+        description: 'useAppSidebar() gives any descendant access to the sidebar state.',
+      },
+    ],
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/layout/AppSidebar.tsx',
+    accessibilityNotes: [
+      'Uses <aside> as the root element.',
+      'Collapse button has aria-label="Collapse sidebar".',
+      'Logo button aria-label describes the action (expand or app name).',
+      'Nav items in collapsed state use title + aria-label for tooltip and screen reader.',
+      'tabIndex={-1} on the collapse button when hidden prevents keyboard access to invisible controls.',
+      'All transitions are gated by useMotionPreference — intensity 0 gives instant transitions.',
     ],
   },
 

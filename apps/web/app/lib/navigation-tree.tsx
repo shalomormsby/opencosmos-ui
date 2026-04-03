@@ -198,6 +198,7 @@ export const navigationTree: NavigationItem[] = [
           { id: 'scroll-area', label: 'Scroll Area', section: 'layout' },
           { id: 'separator', label: 'Separator', section: 'layout' },
           { id: 'sidebar', label: 'Sidebar', section: 'layout' },
+          { id: 'app-sidebar', label: 'App Sidebar', section: 'layout' },
         ],
       },
     ],

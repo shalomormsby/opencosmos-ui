@@ -61,7 +61,7 @@ export const SECTION_ITEMS: Record<string, string[]> = {
   ],
   layout: [
     'accordion', 'aspect-ratio', 'carousel', 'collapsible', 'date-picker',
-    'glass-surface', 'resizable', 'scroll-area', 'separator', 'sidebar',
+    'glass-surface', 'resizable', 'scroll-area', 'separator', 'sidebar', 'app-sidebar',
   ],
   blocks: [
     'page-layout', 'primary-nav', 'secondary-nav', 'footer',
@@ -223,6 +223,7 @@ export const routeConfig: RouteConfig = {
       'scroll-area': { label: 'Scroll Area' },
       separator: { label: 'Separator' },
       sidebar: { label: 'Sidebar' },
+      'app-sidebar': { label: 'App Sidebar' },
     },
   },
   blocks: {
