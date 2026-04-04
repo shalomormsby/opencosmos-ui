@@ -1028,6 +1028,213 @@ ELIFECYCLE Command failed with exit code 1.`}
                 </div>
               </Card>
             )}
+
+            {/* ── LESSON 1: transpilePackages + React context ───────────── */}
+            <Card className="p-6 mb-6 border-l-4 border-l-orange-500">
+              <div className="flex items-start gap-3 mb-4">
+                <AlertTriangle className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
+                <h3 className="text-xl font-bold text-[var(--color-text-primary)]">
+                  500: "X must be used within an XProvider" — even though the Provider is in the tree
+                </h3>
+              </div>
+
+              <div className="space-y-6 w-full min-w-0">
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Symptom</h4>
+                  <p className="text-sm text-[var(--color-text-secondary)]">
+                    A component that uses <Code syntax="plain">createContext</Code> + <Code syntax="plain">useContext</Code> throws at runtime — e.g. <Code syntax="plain">"useAppSidebar must be used within an AppSidebarProvider"</Code> — even though the Provider is clearly wrapping it in the React tree.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Root Cause</h4>
+                  <p className="text-sm text-[var(--color-text-secondary)] mb-3">
+                    <Code syntax="plain">next.config.mjs</Code> sets <Code syntax="plain">transpilePackages: ['@opencosmos/ui']</Code>, which tells webpack to bundle the package from <strong>source</strong> instead of <Code syntax="plain">dist/</Code>. Webpack can then split the component file and its consumer into separate chunks. Each chunk gets its own JS execution scope, so <Code syntax="plain">createContext()</Code> runs <strong>twice</strong> — producing two distinct context objects. The Provider writes to instance A; the component reads from instance B. <Code syntax="plain">useContext</Code> returns <Code syntax="plain">null</Code> even with a Provider present.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">The Fix</h4>
+                  <p className="text-sm text-[var(--color-text-secondary)] mb-3">
+                    Any hook wrapping <Code syntax="plain">useContext</Code> in this library <strong>must never throw</strong> when ctx is null. Always return a safe default:
+                  </p>
+                  <div className="bg-[var(--color-error)]/10 p-4 rounded-md border border-[var(--color-error)]/30 mb-3">
+                    <p className="text-xs text-[var(--color-text-muted)] mb-2 flex items-center gap-1.5">
+                      <XCircle className="w-3.5 h-3.5 text-red-500" />
+                      Wrong — crashes under transpilePackages:
+                    </p>
+                    <CollapsibleCodeBlock
+                      id="troubleshoot-context-bad"
+                      code={`export function useAppSidebar() {
+  const ctx = useContext(AppSidebarContext);
+  if (!ctx) throw new Error('must be used within AppSidebarProvider');
+  return ctx;
+}`}
+                      defaultCollapsed={false}
+                      showCopy={false}
+                    />
+                  </div>
+                  <div className="bg-[var(--color-success)]/10 p-4 rounded-md border border-[var(--color-success)]/30">
+                    <p className="text-xs text-[var(--color-text-muted)] mb-2 flex items-center gap-1.5">
+                      <CheckCircle className="w-3.5 h-3.5 text-[var(--color-success)]" />
+                      Correct — safe default, degrades gracefully:
+                    </p>
+                    <CollapsibleCodeBlock
+                      id="troubleshoot-context-good"
+                      code={`const DEFAULT_CONTEXT: AppSidebarContextValue = {
+  isOpen: true,
+  toggle: () => {},
+  open: () => {},
+  close: () => {},
+};
+
+export function useAppSidebar(): AppSidebarContextValue {
+  return useContext(AppSidebarContext) ?? DEFAULT_CONTEXT;
+}`}
+                      defaultCollapsed={false}
+                      showCopy={true}
+                    />
+                  </div>
+                  <p className="text-xs text-[var(--color-text-muted)] mt-3">
+                    Consuming apps should still wrap with the Provider for state persistence — the component just no longer crashes without it.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            {/* ── LESSON 2: JSX in registry examples crashes the category ── */}
+            <Card className="p-6 mb-6 border-l-4 border-l-orange-500">
+              <div className="flex items-start gap-3 mb-4">
+                <AlertTriangle className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
+                <h3 className="text-xl font-bold text-[var(--color-text-primary)]">
+                  500 on every page in a category after adding one new component
+                </h3>
+              </div>
+
+              <div className="space-y-6 w-full min-w-0">
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Symptom</h4>
+                  <p className="text-sm text-[var(--color-text-secondary)]">
+                    After registering a new component, <em>all</em> pages in its category (e.g. every <Code syntax="plain">/docs/layout/*</Code> page) throw a 500. The error typically references a different component than the one you added.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Root Cause</h4>
+                  <p className="text-sm text-[var(--color-text-secondary)] mb-3">
+                    <Code syntax="plain">component-registry.tsx</Code> is a module-level object. JSX assigned to <Code syntax="plain">examples[n].children</Code> is <strong>not lazy</strong> — it calls <Code syntax="plain">React.createElement(Component, ...)</Code> when the module first imports. If any component referenced in that JSX is <Code syntax="plain">undefined</Code> (e.g. a stale Turbo remote cache restored a dist without the new export), the entire registry module crashes on import and takes down every page that loads it — the whole category, not just the new page.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">The Fix</h4>
+                  <p className="text-sm text-[var(--color-text-secondary)] mb-3">
+                    Components that require a Provider wrapper (anything using <Code syntax="plain">createContext</Code>) must <strong>not</strong> have JSX in <Code syntax="plain">examples[].children</Code>. Instead, use a plain metadata object and add a dedicated render branch in <Code syntax="plain">EnhancedComponentPlayground.tsx</Code>:
+                  </p>
+                  <div className="bg-[var(--color-error)]/10 p-4 rounded-md border border-[var(--color-error)]/30 mb-3">
+                    <p className="text-xs text-[var(--color-text-muted)] mb-2 flex items-center gap-1.5">
+                      <XCircle className="w-3.5 h-3.5 text-red-500" />
+                      Wrong — JSX evaluated at module load time:
+                    </p>
+                    <CollapsibleCodeBlock
+                      id="troubleshoot-registry-bad"
+                      code={`MyComponent: {
+  examples: [{
+    label: 'Demo',
+    props: {},
+    children: (
+      <MyProvider>       // ← React.createElement runs NOW, at import
+        <MyComponent />  // ← crashes if MyComponent is undefined
+      </MyProvider>
+    ),
+  }],
+}`}
+                      defaultCollapsed={false}
+                      showCopy={false}
+                    />
+                  </div>
+                  <div className="bg-[var(--color-success)]/10 p-4 rounded-md border border-[var(--color-success)]/30">
+                    <p className="text-xs text-[var(--color-text-muted)] mb-2 flex items-center gap-1.5">
+                      <CheckCircle className="w-3.5 h-3.5 text-[var(--color-success)]" />
+                      Correct — metadata only in registry, JSX in playground:
+                    </p>
+                    <CollapsibleCodeBlock
+                      id="troubleshoot-registry-good"
+                      code={`// component-registry.tsx — metadata only, no JSX
+MyComponent: {
+  examples: [{ label: 'Demo', props: {} }],
+}
+
+// EnhancedComponentPlayground.tsx — add a dedicated branch
+} : componentName === 'MyComponent' ? (
+  <MyProvider>
+    <Component {...props} />
+  </MyProvider>
+) : (`}
+                      defaultCollapsed={false}
+                      showCopy={true}
+                    />
+                  </div>
+                  <p className="text-xs text-[var(--color-text-muted)] mt-3">
+                    To find all existing violations: <Code syntax="plain">grep -n "children: (" apps/web/app/components/lib/component-registry.tsx</Code> — any result using a Provider-dependent component is a potential time bomb.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            {/* ── LESSON 3: vercel.json must be at repo root ────────────── */}
+            <Card className="p-6 mb-6 border-l-4 border-l-orange-500">
+              <div className="flex items-start gap-3 mb-4">
+                <AlertTriangle className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
+                <h3 className="text-xl font-bold text-[var(--color-text-primary)]">
+                  vercel.json build config silently ignored
+                </h3>
+              </div>
+
+              <div className="space-y-6 w-full min-w-0">
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Symptom</h4>
+                  <p className="text-sm text-[var(--color-text-secondary)]">
+                    Changes to <Code syntax="plain">buildCommand</Code>, <Code syntax="plain">outputDirectory</Code>, or other settings in <Code syntax="plain">vercel.json</Code> have no effect on Vercel deployments. Vercel continues using its defaults.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Root Cause</h4>
+                  <p className="text-sm text-[var(--color-text-secondary)]">
+                    Vercel reads <Code syntax="plain">vercel.json</Code> from its configured <Code syntax="plain">rootDirectory</Code>. When <Code syntax="plain">rootDirectory</Code> is <Code syntax="plain">null</Code> (the repo root), only a <Code syntax="plain">vercel.json</Code> at the <strong>repo root</strong> is honoured. A <Code syntax="plain">vercel.json</Code> nested inside a subdirectory (e.g. <Code syntax="plain">apps/web/vercel.json</Code>) is silently ignored.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">The Fix</h4>
+                  <p className="text-sm text-[var(--color-text-secondary)] mb-3">
+                    Keep <Code syntax="plain">vercel.json</Code> at the repo root. Check <Code syntax="plain">.vercel/project.json</Code> to confirm what Vercel considers the root:
+                  </p>
+                  <CollapsibleCodeBlock
+                    id="troubleshoot-vercel-root"
+                    code={`// .vercel/project.json
+// If rootDirectory is null → vercel.json must be at repo root
+{
+  "projectId": "...",
+  "settings": {
+    "rootDirectory": null   // ← means repo root
+  }
+}
+
+// repo root vercel.json (correct location)
+{
+  "buildCommand": "pnpm turbo run build --filter=web --force",
+  "outputDirectory": "apps/web/.next",
+  "installCommand": "pnpm install"
+}`}
+                    defaultCollapsed={false}
+                    showCopy={true}
+                  />
+                </div>
+              </div>
+            </Card>
+
           </section>
         )}
       </div>
