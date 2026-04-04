@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Card } from '@opencosmos/ui';
+import { Card, AppSidebarProvider, OpenCosmosIcon } from '@opencosmos/ui';
 import type { ComponentConfig } from '../../lib/component-registry';
 import { CodeSnippet } from './CodeSnippet';
 import { JsonLdMetadata } from '../../JsonLdMetadata';
@@ -260,6 +260,21 @@ console.log(result); // 55`}
               {...props}
               onCheckedChange={(checked: boolean) => updateProp('checked', checked)}
             />
+          ) : componentName === 'AppSidebar' ? (
+            <AppSidebarProvider defaultOpen={true}>
+              <div className="flex h-[400px] w-full overflow-hidden rounded-xl border border-foreground/10 bg-background relative">
+                <Component
+                  logo={<OpenCosmosIcon size={18} />}
+                  title="OpenCosmos"
+                  className="relative shrink-0"
+                  {...props}
+                />
+                <div className="flex-1 p-8 border-l border-foreground/8 overflow-auto">
+                  <p className="text-sm font-medium text-foreground mb-1">Main content</p>
+                  <p className="text-xs text-foreground/40">Click the collapse icon or the logo to toggle.</p>
+                </div>
+              </div>
+            </AppSidebarProvider>
           ) : ['Input', 'Textarea'].includes(componentName) ? (
             <Component {...props} />
           ) : (
