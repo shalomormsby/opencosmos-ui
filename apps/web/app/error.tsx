@@ -62,10 +62,10 @@ export default function Error({
                   WebkitTextStroke: '4px var(--color-error)'
                 }}
               >
-                404
+                500
               </h1>
               <h2 className="text-4xl font-bold text-[var(--color-text-primary)] mt-[-20px] mb-8">
-                Sorry, my bad.
+                Something broke.
               </h2>
             </div>
 
@@ -76,7 +76,7 @@ export default function Error({
                 style={{ fontFamily: 'var(--font-jetbrains-mono)' }}
               >
                 <Typewriter
-                  text="An unexpected error occurred while loading this page. Please try again.   ¯\\_(ツ)_/¯"
+                  text="An unexpected error occurred while loading this page. Check the technical details below or try again.   ¯\\_(ツ)_/¯"
                   speed={0.03}
                   loop={false}
                   cursor="_"

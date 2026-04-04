@@ -74,8 +74,12 @@ export default async function ItemPage({
     notFound();
   }
 
+  // Only 404 if the section itself has no items defined (truly unknown section type).
+  // Do NOT 404 on unknown items — SectionRenderer / ComponentsSection handle that
+  // gracefully by showing the category overview. This avoids false 404s when the
+  // deployed bundle's SECTION_ITEMS lags behind the source (e.g. stale remote cache).
   const validItems = SECTION_ITEMS[section];
-  if (!validItems || !validItems.includes(item)) {
+  if (!validItems) {
     notFound();
   }
 
