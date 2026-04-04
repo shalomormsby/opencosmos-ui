@@ -122,6 +122,8 @@ export interface AppSidebarProps {
     title?: string;
     /** Navigation items */
     items?: AppSidebarNavItem[];
+    /** Body slot — rendered in the scrollable mid-section (e.g. conversation history). Only visible when expanded. */
+    children?: React.ReactNode;
     /** Footer slot — auth section, user avatar, sign-in prompt, etc. */
     footer?: React.ReactNode;
     /** Additional className for the <aside> */
@@ -132,6 +134,7 @@ export function AppSidebar({
     logo,
     title,
     items = [],
+    children,
     footer,
     className,
 }: AppSidebarProps) {
@@ -250,8 +253,13 @@ export function AppSidebar({
                 </nav>
             )}
 
-            {/* ── Spacer ─────────────────────────────────────────────────────── */}
-            <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0" />
+            {/* ── Body (conversation history, etc.) ──────────────────────────── */}
+            <div
+                className="flex-1 overflow-y-auto overflow-x-hidden min-h-0"
+                style={{ opacity: isOpen ? 1 : 0, pointerEvents: isOpen ? 'auto' : 'none' }}
+            >
+                {children}
+            </div>
 
             {/* ── Footer ─────────────────────────────────────────────────────── */}
             {footer && (
