@@ -22,6 +22,21 @@ interface AppSidebarContextValue {
 
 const AppSidebarContext = createContext<AppSidebarContextValue | null>(null);
 
+// Safe default used when no provider is in scope.
+//
+// WHY this exists — do not change back to a throw:
+//
+// `next.config.mjs` sets `transpilePackages: ['@opencosmos/ui']`, which tells
+// Next.js/webpack to bundle this package from SOURCE instead of dist. Webpack can
+// then split this file and its consumer (e.g. the docs playground) into separate
+// chunks. Each chunk gets its own module execution scope, so `createContext()` can
+// run twice — producing two distinct AppSidebarContext objects. The Provider writes
+// to instance A; AppSidebar reads from instance B → useContext returns null even
+// though a Provider is present in the React tree.
+//
+// Throwing on null ctx (the common pattern) causes the entire page to 500.
+// Returning a safe default lets the component render correctly in isolation.
+// Consuming apps should still wrap with AppSidebarProvider for state persistence.
 const DEFAULT_CONTEXT: AppSidebarContextValue = {
     isOpen: true,
     toggle: () => {},

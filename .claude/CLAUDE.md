@@ -302,6 +302,82 @@ pnpm release                       # Build + publish
 
 ---
 
+### ⚠️ Hard-Won Lessons (Read Before Touching Components or the Registry)
+
+These cost significant debugging time. Do not repeat them.
+
+---
+
+#### LESSON 1 — `transpilePackages` breaks React context across webpack chunks
+
+**Symptom:** A component that uses `createContext` + `useContext` throws at runtime:
+`"X must be used within an XProvider"` — even though the Provider is clearly in the tree.
+
+**Root cause:** `next.config.mjs` has `transpilePackages: ['@opencosmos/ui']`. This tells
+Next.js/webpack to bundle the package **source** instead of `dist/`. Webpack can then split
+`AppSidebar.tsx` and the playground component into separate chunks. Each chunk gets its own
+execution context, so `createContext()` runs twice — two separate `AppSidebarContext` objects.
+The Provider writes to instance A; the component reads from instance B. `useContext` returns
+`null` regardless of whether the Provider is present.
+
+**The fix applied to AppSidebar:** `useAppSidebar()` returns a safe default instead of throwing:
+```ts
+const DEFAULT_CONTEXT: AppSidebarContextValue = {
+    isOpen: true,
+    toggle: () => {},
+    open: () => {},
+    close: () => {},
+};
+export function useAppSidebar(): AppSidebarContextValue {
+    return useContext(AppSidebarContext) ?? DEFAULT_CONTEXT;
+}
+```
+
+**Rule going forward:** Any component in this library that uses `createContext` + a hook
+**MUST NOT throw** when the context is null. Always return a safe default. The throw pattern
+(`if (!ctx) throw new Error(...)`) works in single-bundle apps but breaks under `transpilePackages`.
+
+---
+
+#### LESSON 2 — JSX in registry `examples[].children` crashes the entire page
+
+**Symptom:** Any docs page in a category (e.g. `/docs/layout/*`) throws a 500 error. The error
+is a React render error from a completely different component than the one you're looking at.
+
+**Root cause:** `component-registry.tsx` is a module-level object. JSX assigned to
+`examples[n].children` is **not lazy** — it calls `React.createElement(Component, ...)` when the
+module first loads. If any component referenced in that JSX is `undefined` (e.g. Turbo remote
+cache restored a stale dist without the new export), the entire module crashes on import.
+This takes down every page that imports the registry — the whole category, not just one page.
+
+**The rule:** Components that need a Provider wrapper (AppSidebar, anything with `createContext`)
+**must not have JSX in `examples[].children`**. Instead:
+- Put a plain metadata-only example: `{ label: 'My Example', props: {} }`
+- Add a dedicated render branch in `EnhancedComponentPlayground.tsx` (see `componentName === 'AppSidebar'` branch)
+- The playground branch controls the Provider wrapping and renders the live preview
+
+**How to spot violators before they ship:**
+```bash
+# Check for JSX (angle brackets) in the examples array of the registry
+grep -n "children: (" apps/web/app/components/lib/component-registry.tsx
+```
+Any result that uses a component needing a Provider is a time bomb.
+
+---
+
+#### LESSON 3 — Vercel `vercel.json` must live at the repo root
+
+**Symptom:** Build config in `apps/web/vercel.json` is silently ignored; Vercel uses defaults.
+
+**Root cause:** Vercel reads `vercel.json` from `rootDirectory`. When `rootDirectory` is `null`
+(repo root), only a root-level `vercel.json` is honoured. A `vercel.json` nested inside a
+subdirectory is **not** picked up automatically.
+
+**Fix:** Keep `vercel.json` at the repo root. The file at `apps/web/vercel.json` is vestigial
+and can be removed.
+
+---
+
 ## Eject System
 
 Three paths for users to eject component source:
