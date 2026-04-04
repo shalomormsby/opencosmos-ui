@@ -22,10 +22,15 @@ interface AppSidebarContextValue {
 
 const AppSidebarContext = createContext<AppSidebarContextValue | null>(null);
 
+const DEFAULT_CONTEXT: AppSidebarContextValue = {
+    isOpen: true,
+    toggle: () => {},
+    open: () => {},
+    close: () => {},
+};
+
 export function useAppSidebar(): AppSidebarContextValue {
-    const ctx = useContext(AppSidebarContext);
-    if (!ctx) throw new Error('useAppSidebar must be used within an AppSidebarProvider');
-    return ctx;
+    return useContext(AppSidebarContext) ?? DEFAULT_CONTEXT;
 }
 
 // ── AppSidebarProvider ────────────────────────────────────────────────────────
