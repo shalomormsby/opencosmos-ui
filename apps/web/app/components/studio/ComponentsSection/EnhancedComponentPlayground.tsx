@@ -34,6 +34,17 @@ export function EnhancedComponentPlayground({ componentName, config }: Component
 
   const Component = config.component;
 
+  // Guard: component may be undefined if @opencosmos/ui dist is stale (missing export).
+  // Return early rather than passing undefined to React.createElement.
+  if (!Component) {
+    return (
+      <div className="max-w-5xl mx-auto py-16 text-center text-[var(--color-text-secondary)]">
+        <p className="text-sm">Component <code className="font-mono">{componentName}</code> is not available in the current build.</p>
+        <p className="text-xs mt-2 text-[var(--color-text-muted)]">Try reloading, or check that <code className="font-mono">@opencosmos/ui</code> is up to date.</p>
+      </div>
+    );
+  }
+
   // Components from @ecosystem/design-system
   const designSystemComponents = ['Code', 'Link', 'Avatar', 'Spinner', 'ProgressBar', 'Switch'];
 

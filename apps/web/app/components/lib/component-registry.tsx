@@ -30,7 +30,7 @@ import {
   InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator,
   ResizablePanelGroup, ResizablePanel, ResizableHandle,
   Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarItem,
-  AppSidebar, AppSidebarProvider, AppSidebarInset,
+  AppSidebar,
   OpenCosmosIcon,
   OpenGraphCard,
   // Phase 16 - Missing Components
@@ -838,75 +838,13 @@ export default function AppSidebar() {
         description: 'Wordmark shown to the right of the logo when expanded.',
       },
     },
+    // NOTE: No JSX `children` here — AppSidebar requires AppSidebarProvider context,
+    // so its live preview is handled entirely in EnhancedComponentPlayground's
+    // special-case branch. Putting JSX here would eagerly call React.createElement
+    // at module load time and crash the registry if the component build is stale.
     examples: [
-      {
-        label: 'Collapsible Sidebar',
-        props: {},
-        children: (
-          <AppSidebarProvider defaultOpen={true}>
-            <div className="flex h-[460px] overflow-hidden rounded-xl border border-foreground/10 bg-background relative">
-              <AppSidebar
-                logo={<OpenCosmosIcon size={18} />}
-                title="OpenCosmos"
-                items={[
-                  { icon: <MessageSquare className="w-4 h-4" />, label: 'Dialog',    href: '#', active: true },
-                  { icon: <BookOpen     className="w-4 h-4" />, label: 'Knowledge', href: '#' },
-                  { icon: <ExternalLink className="w-4 h-4" />, label: 'Studio',    href: '#', external: true },
-                ]}
-                footer={
-                  <div className="flex items-center gap-3 px-1 py-1 rounded-lg hover:bg-foreground/5 transition-colors cursor-pointer">
-                    <div className="w-7 h-7 rounded-full bg-foreground/10 flex items-center justify-center text-xs font-semibold shrink-0">S</div>
-                    <div className="min-w-0">
-                      <p className="text-xs font-medium text-foreground truncate">Shalom</p>
-                      <p className="text-[10px] text-foreground/40 truncate">shalom@opencosmos.ai</p>
-                    </div>
-                  </div>
-                }
-                className="relative shrink-0"
-              />
-              <div className="flex-1 p-8 overflow-auto border-l border-foreground/8">
-                <p className="text-sm font-medium text-foreground mb-1">Main content</p>
-                <p className="text-xs text-foreground/40">Click the collapse icon or the logo to toggle.</p>
-              </div>
-            </div>
-          </AppSidebarProvider>
-        ),
-      },
-      {
-        label: 'Sign-in Prompt (signed-out)',
-        props: {},
-        children: (
-          <AppSidebarProvider defaultOpen={true}>
-            <div className="flex h-[460px] overflow-hidden rounded-xl border border-foreground/10 bg-background relative">
-              <AppSidebar
-                logo={<OpenCosmosIcon size={18} />}
-                title="OpenCosmos"
-                items={[
-                  { icon: <MessageSquare className="w-4 h-4" />, label: 'Dialog',    href: '#', active: true },
-                  { icon: <BookOpen     className="w-4 h-4" />, label: 'Knowledge', href: '#' },
-                  { icon: <ExternalLink className="w-4 h-4" />, label: 'Studio',    href: '#', external: true },
-                ]}
-                footer={
-                  <div className="space-y-2.5 px-1">
-                    <div>
-                      <p className="text-xs font-medium text-foreground">Sign in to OpenCosmos</p>
-                      <p className="text-[10px] text-foreground/40 mt-0.5 leading-relaxed">Save conversations and access your account.</p>
-                    </div>
-                    <button className="w-full text-xs font-medium px-3 py-2 rounded-lg bg-foreground/8 hover:bg-foreground/12 transition-colors text-foreground">
-                      Sign in
-                    </button>
-                  </div>
-                }
-                className="relative shrink-0"
-              />
-              <div className="flex-1 p-8 overflow-auto border-l border-foreground/8">
-                <p className="text-sm font-medium text-foreground mb-1">Signed-out footer</p>
-                <p className="text-xs text-foreground/40">Footer collapses to a sign-in icon in rail mode.</p>
-              </div>
-            </div>
-          </AppSidebarProvider>
-        ),
-      },
+      { label: 'Collapsible Sidebar', props: {} },
+      { label: 'Sign-in Prompt (signed-out)', props: {} },
     ],
     codeExamples: [
       {

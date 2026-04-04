@@ -1,0 +1,5 @@
+{
+  "buildCommand": "pnpm turbo run build --filter=web --force",
+  "outputDirectory": "apps/web/.next",
+  "installCommand": "pnpm install"
+}
