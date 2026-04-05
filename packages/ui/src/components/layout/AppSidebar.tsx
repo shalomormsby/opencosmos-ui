@@ -54,17 +54,19 @@ export interface AppSidebarProviderProps {
     children: React.ReactNode;
     /** Initial open state used on server and first render @default true */
     defaultOpen?: boolean;
+    /** localStorage key for persisting open state. Use unique keys per page to avoid cross-page state bleed. @default 'appsidebar:state' */
+    storageKey?: string;
 }
 
-export function AppSidebarProvider({ children, defaultOpen = true }: AppSidebarProviderProps) {
+export function AppSidebarProvider({ children, defaultOpen = true, storageKey = STORAGE_KEY }: AppSidebarProviderProps) {
     const [isOpen, setIsOpen] = useState(defaultOpen);
 
     useEffect(() => {
-        const stored = localStorage.getItem(STORAGE_KEY);
+        const stored = localStorage.getItem(storageKey);
         if (stored !== null) setIsOpen(stored === 'true');
-    }, []);
+    }, [storageKey]);
 
-    const persist = (value: boolean) => localStorage.setItem(STORAGE_KEY, String(value));
+    const persist = (value: boolean) => localStorage.setItem(storageKey, String(value));
 
     const toggle = () => setIsOpen(prev => { const next = !prev; persist(next); return next; });
     const open   = () => { setIsOpen(true);  persist(true);  };
@@ -120,9 +122,11 @@ export interface AppSidebarProps {
     logo?: React.ReactNode;
     /** Wordmark shown next to the logo when expanded */
     title?: string;
-    /** Navigation items */
+    /** Navigation items rendered at the top (below the header) */
     items?: AppSidebarNavItem[];
-    /** Body slot — rendered in the scrollable mid-section (e.g. conversation history). Only visible when expanded. */
+    /** Navigation items rendered at the bottom (above the footer) */
+    bottomItems?: AppSidebarNavItem[];
+    /** Body slot — rendered in the flex-1 mid-section (e.g. conversation history). Only visible when expanded. */
     children?: React.ReactNode;
     /** Footer slot — auth section, user avatar, sign-in prompt, etc. */
     footer?: React.ReactNode;
@@ -134,6 +138,7 @@ export function AppSidebar({
     logo,
     title,
     items = [],
+    bottomItems = [],
     children,
     footer,
     className,
@@ -211,7 +216,7 @@ export function AppSidebar({
 
             {/* ── Nav items ──────────────────────────────────────────────────── */}
             {items.length > 0 && (
-                <nav className="px-2 py-2 space-y-0.5 shrink-0" aria-label="Main navigation">
+                <nav className="px-2 py-2 space-y-1 shrink-0" aria-label="Main navigation">
                     {items.map((item) => (
                         <a
                             key={item.label}
@@ -224,7 +229,7 @@ export function AppSidebar({
                                 'flex items-center rounded-lg transition-colors duration-150',
                                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)]',
                                 isOpen
-                                    ? 'gap-3 px-3 py-2.5'
+                                    ? 'gap-3 px-3 py-3'
                                     : 'justify-center w-9 h-9 mx-auto',
                                 item.active
                                     ? 'bg-foreground/8 text-foreground font-medium'
@@ -261,12 +266,56 @@ export function AppSidebar({
                 {children}
             </div>
 
+            {/* ── Bottom nav items ───────────────────────────────────────────── */}
+            {bottomItems.length > 0 && (
+                <nav className="px-2 py-2 space-y-1 shrink-0 border-t border-foreground/8" aria-label="Bottom navigation">
+                    {bottomItems.map((item) => (
+                        <a
+                            key={item.label}
+                            href={item.href}
+                            target={item.external ? '_blank' : undefined}
+                            rel={item.external ? 'noopener noreferrer' : undefined}
+                            title={!isOpen ? item.label : undefined}
+                            aria-label={!isOpen ? item.label : undefined}
+                            className={cn(
+                                'flex items-center rounded-lg transition-colors duration-150',
+                                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-focus)]',
+                                isOpen
+                                    ? 'gap-3 px-3 py-3'
+                                    : 'justify-center w-9 h-9 mx-auto',
+                                item.active
+                                    ? 'bg-foreground/8 text-foreground font-medium'
+                                    : 'text-[var(--color-text-secondary)] hover:bg-foreground/5 hover:text-[var(--color-text-primary)]'
+                            )}
+                        >
+                            <span className="shrink-0 flex items-center justify-center w-4 h-4">
+                                {item.icon}
+                            </span>
+                            <span
+                                className="text-sm whitespace-nowrap"
+                                style={{
+                                    opacity: isOpen ? 1 : 0,
+                                    width: isOpen ? 'auto' : 0,
+                                    overflow: 'hidden',
+                                    pointerEvents: isOpen ? 'auto' : 'none',
+                                    transition: shouldAnimate
+                                        ? `opacity ${Math.round(duration * 0.55)}ms ease-out`
+                                        : 'none',
+                                }}
+                            >
+                                {item.label}
+                            </span>
+                        </a>
+                    ))}
+                </nav>
+            )}
+
             {/* ── Footer ─────────────────────────────────────────────────────── */}
             {footer && (
                 <div
                     className={cn(
                         'shrink-0 border-t border-foreground/8',
-                        isOpen ? 'p-3' : 'px-2 py-3 flex justify-center'
+                        isOpen ? 'px-4 py-4 space-y-3' : 'px-2 py-3 flex justify-center'
                     )}
                 >
                     {footer}
