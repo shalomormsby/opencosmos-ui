@@ -14,6 +14,7 @@ export default defineConfig([
       'src/dates.ts',
       'src/tables.ts',
       'src/dnd.ts',
+      'src/knowledge-graph.ts',
     ],
     format: ['esm', 'cjs'],
     dts: true,

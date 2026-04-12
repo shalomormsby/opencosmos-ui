@@ -90,6 +90,11 @@
       "import": "./dist/dnd.mjs",
       "require": "./dist/dnd.js"
     },
+    "./knowledge-graph": {
+      "types": "./dist/knowledge-graph.d.ts",
+      "import": "./dist/knowledge-graph.mjs",
+      "require": "./dist/knowledge-graph.js"
+    },
     "./globals.css": "./src/globals.css",
     "./theme.css": "./src/theme.css"
   },
@@ -153,6 +158,11 @@
       "name": "Utils",
       "path": "dist/utils.mjs",
       "limit": "25 KB"
+    },
+    {
+      "name": "KnowledgeGraph",
+      "path": "dist/knowledge-graph.mjs",
+      "limit": "100 KB"
     }
   ],
   "peerDependencies": {
@@ -160,12 +170,15 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@hookform/resolvers": "^3.10.0",
+    "@react-sigma/core": "^5.0.6",
     "@tanstack/react-table": "^8.21.3",
     "date-fns": "^4.1.0",
     "framer-motion": "*",
+    "graphology": "^0.26.0",
     "react": "*",
     "react-day-picker": "^9.13.0",
     "react-hook-form": "^7.70.0",
+    "sigma": "^3.0.2",
     "zod": "^3.24.1"
   },
   "peerDependenciesMeta": {
@@ -194,6 +207,15 @@
       "optional": true
     },
     "zod": {
+      "optional": true
+    },
+    "@react-sigma/core": {
+      "optional": true
+    },
+    "graphology": {
+      "optional": true
+    },
+    "sigma": {
       "optional": true
     }
   },
@@ -242,7 +264,9 @@
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
     "@hookform/resolvers": "^3.10.0",
+    "@react-sigma/core": "^5.0.6",
     "@size-limit/preset-small-lib": "^12.0.0",
+    "@tailwindcss/postcss": "^4.0.0",
     "@tanstack/react-table": "^8.21.3",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -252,12 +276,13 @@
     "eslint": "^9.39.2",
     "eslint-plugin-react-hooks": "^5.2.0",
     "framer-motion": "^12.26.2",
+    "graphology": "^0.26.0",
     "jsdom": "^28.0.0",
     "react-day-picker": "^9.13.0",
     "react-hook-form": "^7.70.0",
+    "sigma": "^3.0.2",
     "size-limit": "^12.0.0",
     "tailwindcss": "^4.0.0",
-    "@tailwindcss/postcss": "^4.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.54.0",
