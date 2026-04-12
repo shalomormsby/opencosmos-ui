@@ -563,12 +563,13 @@ export function KnowledgeGraph({
       <SigmaContainer
         style={{ width: '100%', height: '100%', background: 'var(--background)' }}
         settings={{
-          nodeProgramClasses: { circle: GlowNodeProgram },
-          renderEdgeLabels:   false,
-          labelSize:          11,
-          labelColor:         { color: 'rgba(255,255,255,0.7)' },
-          defaultEdgeColor:   'rgba(255,255,255,0.12)',
-          defaultEdgeType:    'line',
+          nodeProgramClasses:    { circle: GlowNodeProgram },
+          renderEdgeLabels:      false,
+          labelSize:             11,
+          labelColor:            { color: 'rgba(255,255,255,0.7)' },
+          defaultEdgeColor:      'rgba(255,255,255,0.12)',
+          defaultEdgeType:       'line',
+          allowInvalidContainer: true,
           // Do NOT use hideEdgesOnMove — kills the breathing effect
         }}
       >
