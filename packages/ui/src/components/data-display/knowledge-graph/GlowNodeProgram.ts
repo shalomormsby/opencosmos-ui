@@ -29,8 +29,8 @@ attribute float a_vibrancy;
 attribute float a_nodeIndex;
 
 uniform mat3  u_matrix;
-uniform float u_sqrtZoomRatio;
-uniform float u_correctionRatio;
+uniform float u_sizeRatio;
+uniform float u_pixelRatio;
 uniform float u_time;
 uniform float u_amplitude;
 
@@ -49,7 +49,9 @@ void main() {
   vec2 pos = a_position + vec2(ox, oy);
 
   gl_Position  = vec4((u_matrix * vec3(pos, 1.0)).xy, 0.0, 1.0);
-  gl_PointSize = (a_size + 2.0) * u_sqrtZoomRatio * u_correctionRatio;
+  // Match NodePointProgram's formula: size / sizeRatio * pixelRatio * 2
+  // u_correctionRatio (~1/viewportWidth) would produce near-zero point sizes
+  gl_PointSize = (a_size + 2.0) / u_sizeRatio * u_pixelRatio * 2.0;
 
   // Core brightness scales with vibrancy — foundational nodes stay visible,
   // archived nodes dim but never go dark
@@ -84,7 +86,7 @@ void main() {
 `
 
 const UNIFORMS = [
-  'u_matrix', 'u_sqrtZoomRatio', 'u_correctionRatio',
+  'u_matrix', 'u_sizeRatio', 'u_pixelRatio',
   'u_time', 'u_amplitude',
 ] as const
 
@@ -160,13 +162,15 @@ export function createGlowNodeProgram(control: GlowProgramControl): NodeProgramT
       params: RenderParams,
       { gl, uniformLocations }: ProgramInfo<GlowUniforms>,
     ) {
-      const { u_matrix, u_sqrtZoomRatio, u_correctionRatio, u_time, u_amplitude } =
+      const { u_matrix, u_sizeRatio, u_pixelRatio, u_time, u_amplitude } =
         uniformLocations
 
       gl.uniformMatrix3fv(u_matrix, false, params.matrix)
-      // RenderParams provides zoomRatio; the shader expects its square root
-      gl.uniform1f(u_sqrtZoomRatio, Math.sqrt(params.zoomRatio))
-      gl.uniform1f(u_correctionRatio, params.correctionRatio)
+      // Use sizeRatio + pixelRatio (same as sigma's NodePointProgram) so that
+      // gl_PointSize lands in screen-pixel units. correctionRatio ≈ 1/viewportWidth
+      // and would produce near-zero point sizes (~0.01px), making all nodes invisible.
+      gl.uniform1f(u_sizeRatio, params.sizeRatio)
+      gl.uniform1f(u_pixelRatio, params.pixelRatio)
       gl.uniform1f(u_time, performance.now() / 1000)
       gl.uniform1f(u_amplitude, control.reducedMotion ? 0 : control.amplitude)
     }
