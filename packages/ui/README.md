@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/npm/l/@opencosmos/ui?color=blue&style=flat-square)](https://github.com/shalomormsby/opencosmos-ui/blob/main/LICENSE)
 [![Downloads](https://img.shields.io/npm/dt/@opencosmos/ui?color=teal&style=flat-square)](https://www.npmjs.com/package/@opencosmos/ui)
 
-**Sage — Make it Lovable.**
+**OpenCosmos UI — Make it Lovable.**
 
 Components that feel alive. Themes with real personality. Motion your users control. Designed for humans. Fluent with AI.
 
@@ -33,7 +33,7 @@ Components that feel alive. Themes with real personality. Motion your users cont
 pnpm add @opencosmos/ui
 ```
 
-Sage requires **Tailwind CSS** as a styling engine:
+OpenCosmos UI requires **Tailwind CSS** as a styling engine:
 
 ```bash
 pnpm add -D tailwindcss@^3.4 postcss autoprefixer
@@ -84,7 +84,7 @@ export default function App() {
   return (
     <ThemeProvider theme="studio" defaultMode="system">
       <Card className="max-w-md p-6">
-        <h3 className="mb-2 text-lg font-semibold">Welcome to Sage</h3>
+        <h3 className="mb-2 text-lg font-semibold">Welcome to OpenCosmos</h3>
         <p className="mb-4 text-muted-foreground">
           Build beautifully with components that feel premium out of the box.
         </p>
@@ -135,7 +135,7 @@ npx @opencosmos/ui eject Dialog --dir components/sage
 npx @opencosmos/ui eject --list  # see all available components
 ```
 
-This copies the component source into your project with imports automatically rewritten. The ejected component still works with Sage themes and CSS variables — you just own the code now.
+This copies the component source into your project with imports automatically rewritten. The ejected component still works with OpenCosmos themes and CSS variables — you just own the code now.
 
 You can also eject from [opencosmos.ai/studio](https://opencosmos.ai/studio) — every component page has an **Eject** button that lets you copy or download the source directly.
 
