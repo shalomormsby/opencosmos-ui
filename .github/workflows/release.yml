@@ -40,4 +40,5 @@ jobs:
           version: pnpm run version-packages
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN_FOR_CI }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
