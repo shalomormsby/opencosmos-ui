@@ -7,15 +7,15 @@
  * - Per-node vibrancy attribute that scales amplitude and core brightness
  * - Two-circle approach: outer bloom (low alpha) + inner core (bright)
  *
- * Pattern after opencosmos-ui/lib/webgl/Program.ts — same GL abstraction
- * level, adapted for sigma's node program interface.
+ * Sigma v3 API: extend NodeProgram<Uniforms>, implement getDefinition(),
+ * processVisibleItem(), and setUniforms(). Additive blending is applied by
+ * overriding render() to wrap super.render() with gl.blendFunc calls.
  */
 
 import type { NodeDisplayData, RenderParams } from 'sigma/types'
-import { AbstractNodeProgram } from 'sigma/rendering'
-import type Sigma from 'sigma'
+import { NodeProgram } from 'sigma/rendering'
+import type { NodeProgramType, ProgramInfo } from 'sigma/rendering'
 
-// Attribute layout: x, y, size, color (packed float), vibrancy, nodeIndex
 const FLOAT = WebGLRenderingContext.FLOAT
 const UNSIGNED_BYTE = WebGLRenderingContext.UNSIGNED_BYTE
 
@@ -83,7 +83,14 @@ void main() {
 }
 `
 
-/** Control object — update `amplitude` and `time` from the React ShaderAnimator */
+const UNIFORMS = [
+  'u_matrix', 'u_sqrtZoomRatio', 'u_correctionRatio',
+  'u_time', 'u_amplitude',
+] as const
+
+type GlowUniforms = (typeof UNIFORMS)[number]
+
+/** Control object — update `amplitude` and `reducedMotion` from the React ShaderAnimator */
 export interface GlowProgramControl {
   amplitude: number
   reducedMotion: boolean
@@ -102,22 +109,15 @@ export interface GlowProgramControl {
  * <SigmaContainer settings={{ nodeProgramClasses: { circle: GlowNodeProgram } }} />
  * ```
  */
-export function createGlowNodeProgram(control: GlowProgramControl) {
-  return class GlowNodeProgram extends AbstractNodeProgram {
-    getDrawingMode() {
-      return WebGLRenderingContext.POINTS
-    }
-
-    constructor(
-      gl: WebGLRenderingContext,
-      pickingBuffer: WebGLFramebuffer | null,
-      renderer: Sigma,
-    ) {
-      super(gl, pickingBuffer, renderer, {
+export function createGlowNodeProgram(control: GlowProgramControl): NodeProgramType {
+  class GlowNodeProgram extends NodeProgram<GlowUniforms> {
+    getDefinition() {
+      return {
         VERTICES: 1,
         VERTEX_SHADER_SOURCE,
         FRAGMENT_SHADER_SOURCE,
         METHOD: WebGLRenderingContext.POINTS,
+        UNIFORMS,
         ATTRIBUTES: [
           { name: 'a_position',  size: 2, type: FLOAT },
           { name: 'a_size',      size: 1, type: FLOAT },
@@ -125,11 +125,7 @@ export function createGlowNodeProgram(control: GlowProgramControl) {
           { name: 'a_vibrancy',  size: 1, type: FLOAT },
           { name: 'a_nodeIndex', size: 1, type: FLOAT },
         ],
-        UNIFORMS: [
-          'u_matrix', 'u_sqrtZoomRatio', 'u_correctionRatio',
-          'u_time', 'u_amplitude',
-        ],
-      })
+      }
     }
 
     processVisibleItem(
@@ -139,7 +135,7 @@ export function createGlowNodeProgram(control: GlowProgramControl) {
     ) {
       const array = this.array
 
-      // Extract RGBA from sigma's packed color string
+      // Extract RGBA from sigma's color string
       let r = 128, g = 128, b = 128, a = 255
       const color = data.color ?? '#8b949e'
       if (color.startsWith('#') && color.length === 7) {
@@ -152,31 +148,37 @@ export function createGlowNodeProgram(control: GlowProgramControl) {
       array[startIndex++] = data.y
       array[startIndex++] = data.size ?? 8
       // Pack RGBA into a single float (sigma convention via DataView)
-      const buf   = new ArrayBuffer(4)
-      const view  = new DataView(buf)
+      const buf  = new ArrayBuffer(4)
+      const view = new DataView(buf)
       view.setUint8(0, r); view.setUint8(1, g); view.setUint8(2, b); view.setUint8(3, a)
       array[startIndex++] = view.getFloat32(0, true)
       array[startIndex++] = data.vibrancy ?? 1.0
       array[startIndex]   = nodeIndex
     }
 
-    draw(params: RenderParams) {
-      const gl = this.gl
+    setUniforms(
+      params: RenderParams,
+      { gl, uniformLocations }: ProgramInfo<GlowUniforms>,
+    ) {
       const { u_matrix, u_sqrtZoomRatio, u_correctionRatio, u_time, u_amplitude } =
-        this.uniformLocations
+        uniformLocations
 
       gl.uniformMatrix3fv(u_matrix, false, params.matrix)
-      gl.uniform1f(u_sqrtZoomRatio, params.sqrtZoomRatio)
+      // RenderParams provides zoomRatio; the shader expects its square root
+      gl.uniform1f(u_sqrtZoomRatio, Math.sqrt(params.zoomRatio))
       gl.uniform1f(u_correctionRatio, params.correctionRatio)
       gl.uniform1f(u_time, performance.now() / 1000)
       gl.uniform1f(u_amplitude, control.reducedMotion ? 0 : control.amplitude)
+    }
 
+    render(params: RenderParams) {
       // Additive blending — overlapping glows brighten each other,
-      // producing the constellation effect
+      // producing the constellation effect. Restore default after draw.
+      const { gl } = this.normalProgram
       gl.blendFunc(gl.SRC_ALPHA, gl.ONE)
-      gl.drawArrays(gl.POINTS, 0, this.verticesCount)
-      // Restore default blending for subsequent renders
+      super.render(params)
       gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
     }
   }
+  return GlowNodeProgram
 }
