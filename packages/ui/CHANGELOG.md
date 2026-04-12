@@ -1,5 +1,11 @@
 # @thesage/ui
 
+## 1.4.1 - 2026-04-12
+
+### Patch Changes
+
+- 7ce4e98: Fix KnowledgeGraph crash when sigma container has zero height on initial mount. Adds `allowInvalidContainer: true` to sigma settings so the graph initialises gracefully and renders once the container has dimensions, instead of throwing a hard error.
+
 ## 1.4.0 - 2026-04-12
 
 ### Minor Changes
