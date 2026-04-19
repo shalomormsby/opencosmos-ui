@@ -1,5 +1,13 @@
 # @thesage/ui
 
+## 1.5.0 - 2026-04-19
+
+### Minor Changes
+
+- 6f5cc0a: Add Line variant to Tabs with an animated, spring-driven underline that glides between the active tab. The variant is opt-in via `<TabsList variant="line">` and flows to the width of its container (drop it into a sidebar, card, or main column without resizing).
+
+  Internal: tidy `packages/ui/tsconfig.json` to `noEmit: true` and drop dead `outDir`/`declaration`/`sourceMap` options — `tsup` handles all emission, so tsc is typecheck-only.
+
 ## 1.4.2 - 2026-04-12
 
 ### Patch Changes
