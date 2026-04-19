@@ -479,15 +479,16 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
   tabs: {
     name: 'Tabs',
     category: 'navigation',
-    description: 'Tabbed interface for organizing content into switchable panels',
-    keywords: ['tabs', 'tabbed', 'navigation', 'panels', 'switching'],
+    description: 'Tabbed interface for organizing content into switchable panels. Supports pill (default) and line variants; the line variant animates an underline between active tabs and flows to the full width of its container.',
+    keywords: ['tabs', 'tabbed', 'navigation', 'panels', 'switching', 'line', 'underline'],
     useCases: [
       'Settings panels',
       'Content organization',
       'Multi-view interfaces',
       'Dashboard sections',
+      'Sidebar-constrained navigation (line variant)',
     ],
-    dependencies: ['@radix-ui/react-tabs'],
+    dependencies: ['@radix-ui/react-tabs', 'framer-motion'],
     radixPrimitive: '@radix-ui/react-tabs',
     props: {
       defaultValue: { type: 'string', description: 'Default active tab value' },
@@ -495,7 +496,7 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
       onValueChange: { type: '(value: string) => void', description: 'Callback on tab change' },
     },
     subComponents: ['TabsList', 'TabsTrigger', 'TabsContent'],
-    example: `<Tabs defaultValue="account">\n  <TabsList>\n    <TabsTrigger value="account">Account</TabsTrigger>\n    <TabsTrigger value="password">Password</TabsTrigger>\n  </TabsList>\n  <TabsContent value="account">Account settings here.</TabsContent>\n  <TabsContent value="password">Password settings here.</TabsContent>\n</Tabs>`,
+    example: `<Tabs defaultValue="overview" className="w-full">\n  <TabsList variant="line">\n    <TabsTrigger value="overview">Overview</TabsTrigger>\n    <TabsTrigger value="analytics">Analytics</TabsTrigger>\n    <TabsTrigger value="reports">Reports</TabsTrigger>\n  </TabsList>\n  <TabsContent value="overview">Summary lives here.</TabsContent>\n  <TabsContent value="analytics">Charts and trends.</TabsContent>\n  <TabsContent value="reports">Scheduled reports.</TabsContent>\n</Tabs>`,
   },
 
   // ============================================================================

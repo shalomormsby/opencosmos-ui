@@ -554,9 +554,26 @@ Props:
   - defaultValue: string
   - value: string
   - onValueChange: (value: string) => void
-Built on: @radix-ui/react-tabs
+TabsList variants:
+  - "default" (pill-style with muted background)
+  - "line" (full-width row with a 2px animated underline that glides to the active tab; fits to container width, ideal for sidebars)
+Built on: @radix-ui/react-tabs + framer-motion
 
-Example:
+Example (Line variant):
+```tsx
+<Tabs defaultValue="overview" className="w-full">
+  <TabsList variant="line">
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="analytics">Analytics</TabsTrigger>
+    <TabsTrigger value="reports">Reports</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">Summary lives here.</TabsContent>
+  <TabsContent value="analytics">Charts and trends.</TabsContent>
+  <TabsContent value="reports">Scheduled reports.</TabsContent>
+</Tabs>
+```
+
+Example (Default/Pill):
 ```tsx
 <Tabs defaultValue="account">
   <TabsList>
