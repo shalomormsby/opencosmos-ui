@@ -2205,17 +2205,53 @@ import { Button } from "@opencosmos/ui"
   },
   Tabs: {
     component: Tabs,
-    description: 'Tabbed interface for organizing content into multiple panels. Built on Radix UI Tabs primitive.',
+    description: 'Tabbed interface for organizing content into multiple panels. Built on Radix UI Tabs primitive. The Line variant renders an animated underline that glides between the active tab.',
     props: {
       defaultValue: {
         type: 'text',
-        default: 'tab1',
+        default: 'overview',
         description: 'Default active tab value',
       },
     },
     examples: [
       {
-        label: 'Default',
+        label: 'Line',
+        props: { defaultValue: 'overview' },
+        children: (
+          <div className="w-full max-w-xl">
+            <Tabs defaultValue="overview" className="w-full">
+              <TabsList variant="line">
+                <TabsTrigger value="overview">Overview</TabsTrigger>
+                <TabsTrigger value="analytics">Analytics</TabsTrigger>
+                <TabsTrigger value="reports">Reports</TabsTrigger>
+              </TabsList>
+              <TabsContent value="overview" className="w-full">
+                <Card className="min-h-[108px] w-full p-6">
+                  <p className="text-sm text-muted-foreground">
+                    A quick summary of activity across your workspace. The underline animates between tabs as you switch.
+                  </p>
+                </Card>
+              </TabsContent>
+              <TabsContent value="analytics" className="w-full">
+                <Card className="min-h-[108px] w-full p-6">
+                  <p className="text-sm text-muted-foreground">
+                    Interactive charts, trends, and breakdowns live here.
+                  </p>
+                </Card>
+              </TabsContent>
+              <TabsContent value="reports" className="w-full">
+                <Card className="min-h-[108px] w-full p-6">
+                  <p className="text-sm text-muted-foreground">
+                    Scheduled reports and exportable summaries live here.
+                  </p>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
+        ),
+      },
+      {
+        label: 'Pill',
         props: { defaultValue: 'account' },
         children: (
           <Tabs defaultValue="account" className="w-[400px]">
@@ -2223,15 +2259,15 @@ import { Button } from "@opencosmos/ui"
               <TabsTrigger value="account">Account</TabsTrigger>
               <TabsTrigger value="password">Password</TabsTrigger>
             </TabsList>
-            <TabsContent value="account">
-              <Card className="p-6">
+            <TabsContent value="account" className="w-full">
+              <Card className="min-h-[108px] w-full p-6">
                 <p className="text-sm text-muted-foreground">
                   Make changes to your account here.
                 </p>
               </Card>
             </TabsContent>
-            <TabsContent value="password">
-              <Card className="p-6">
+            <TabsContent value="password" className="w-full">
+              <Card className="min-h-[108px] w-full p-6">
                 <p className="text-sm text-muted-foreground">
                   Change your password here.
                 </p>
@@ -2240,10 +2276,54 @@ import { Button } from "@opencosmos/ui"
           </Tabs>
         ),
       },
+      {
+        label: 'Line in Sidebar',
+        props: { defaultValue: 'inbox' },
+        children: (
+          <div className="flex w-full max-w-3xl gap-4 rounded-lg border border-border p-4">
+            <aside className="w-60 shrink-0 rounded-md bg-muted/40 p-3">
+              <p className="mb-3 px-1 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                Mail
+              </p>
+              <Tabs defaultValue="inbox" className="w-full">
+                <TabsList variant="line">
+                  <TabsTrigger value="inbox">Inbox</TabsTrigger>
+                  <TabsTrigger value="archive">Archive</TabsTrigger>
+                </TabsList>
+                <TabsContent value="inbox" className="min-h-[40px] w-full">
+                  <p className="px-1 pt-2 text-xs text-muted-foreground">12 unread threads</p>
+                </TabsContent>
+                <TabsContent value="archive" className="min-h-[40px] w-full">
+                  <p className="px-1 pt-2 text-xs text-muted-foreground">128 archived</p>
+                </TabsContent>
+              </Tabs>
+            </aside>
+            <div className="flex-1 rounded-md border border-dashed border-border p-6 text-sm text-muted-foreground">
+              The tabs row flows to fit the container width — try dropping it into any sidebar.
+            </div>
+          </div>
+        ),
+      },
     ],
     codeExamples: [
       {
-        title: 'Basic Tabs',
+        title: 'Line Variant (Animated Underline)',
+        code: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@opencosmos/ui"
+
+<Tabs defaultValue="overview" className="w-full">
+  <TabsList variant="line">
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="analytics">Analytics</TabsTrigger>
+    <TabsTrigger value="reports">Reports</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">Summary lives here.</TabsContent>
+  <TabsContent value="analytics">Charts and trends.</TabsContent>
+  <TabsContent value="reports">Scheduled reports.</TabsContent>
+</Tabs>`,
+        description: 'The Line variant animates a 2px underline between the active triggers using a spring motion. The row is fluid — it takes the full width of whatever container it lives in.',
+      },
+      {
+        title: 'Pill Variant',
         code: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@opencosmos/ui"
 
 <Tabs defaultValue="account" className="w-[400px]">
@@ -2258,10 +2338,10 @@ import { Button } from "@opencosmos/ui"
     Change your password here.
   </TabsContent>
 </Tabs>`,
-        description: 'Basic tabbed interface',
+        description: 'Segmented pill-style tabs on a muted background — useful when tabs should feel like a contained control.',
       },
     ],
-    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/Tabs.tsx',
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/navigation/Tabs.tsx',
   },
   Toaster: {
     component: Toaster,
