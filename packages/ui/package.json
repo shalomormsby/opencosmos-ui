@@ -1,6 +1,6 @@
 {
   "name": "@opencosmos/ui",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "OpenCosmos UI — Make it Lovable. 100 accessible React components, three themes, user-controlled motion.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
