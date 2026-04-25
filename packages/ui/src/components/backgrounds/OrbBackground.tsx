@@ -302,8 +302,12 @@ export function OrbBackground({
       gl.canvas.style.height = height + 'px';
       program.uniforms.iResolution.value.set(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height);
     }
+    // Observe the container so layout shifts that don't fire window.resize
+    // (e.g. a sidebar collapsing/expanding, parent flex changes, late font reflow)
+    // still keep the canvas centered on its container.
+    const ro = new ResizeObserver(resize);
+    ro.observe(container);
     window.addEventListener('resize', resize);
-    resize();
 
     let targetHover = 0;
     let lastTime = 0;
@@ -360,6 +364,7 @@ export function OrbBackground({
 
     return () => {
       cancelAnimationFrame(rafId);
+      ro.disconnect();
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
