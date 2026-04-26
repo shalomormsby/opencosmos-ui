@@ -164,6 +164,7 @@ export const navigationTree: NavigationItem[] = [
           { id: 'progress', label: 'Progress', section: 'feedback' },
           { id: 'skeleton', label: 'Skeleton', section: 'feedback' },
           { id: 'sonner', label: 'Sonner', section: 'feedback' },
+          { id: 'thinking-indicator', label: 'Thinking Indicator', section: 'feedback' },
           { id: 'toaster', label: 'Toaster', section: 'feedback' },
         ],
       },
@@ -288,6 +289,7 @@ export const navigationTree: NavigationItem[] = [
         label: 'Backgrounds',
         section: 'motion',
         children: [
+          { id: 'infinity', label: 'Infinity', section: 'motion' },
           { id: 'warp-speed', label: 'Warp Speed', section: 'motion' },
           { id: 'faulty-terminal', label: 'Faulty Terminal', section: 'motion' },
         ],

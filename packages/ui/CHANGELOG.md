@@ -1,4 +1,22 @@
-# @thesage/ui
+# @opencosmos/ui
+
+## 1.6.0 - 2026-04-26
+
+### Minor Changes
+
+- Add `InfinityAnim` brand-mark component and refresh `ThinkingIndicator`.
+
+  **New: `InfinityAnim`** — the OpenCosmos brand mark. A glowing two-stream animation sweeping a lemniscate (∞) path. Five pre-tuned sizes from a 16 px inline glyph (`xs`) to a 256 px hero moment (`xl`); two render techniques (`stripes` for rich detail at large sizes, `dashes` for elegance at every size). Customisable via `colorTail` / `colorBody` / `colorHead` / `colorTrack` and a `duration` prop that supports any orbit speed. Lives in the `backgrounds` category.
+
+  **Updated: `ThinkingIndicator`**
+
+  - Replaced the rotating sparkle with an embedded xs `InfinityAnim` (dashes technique). Renamed the `sparkle` prop to `mark`.
+  - New `introPhrases` prop and `LANDING_INTRO` export — phrases that play once in order before the rotating pool starts cycling. `pool="landing"` auto-uses `LANDING_INTRO`.
+  - `LANDING_PHRASES` and `CHAT_PHRASES` refreshed with the production phrase set for OpenCosmos.
+  - The trailing ellipsis is now auto-suppressed when a phrase already ends with terminal punctuation (`.`, `…`, `?`, `!`), so you can mix punctuation styles freely.
+  - Width is locked to the longest phrase in the active pool — no more horizontal jitter as phrases change.
+
+  **MCP registry** — added `infinity` entry; updated `thinking-indicator` props (`mark`, `introPhrases`).
 
 ## 1.5.1 - 2026-04-25
 

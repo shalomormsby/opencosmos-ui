@@ -38,6 +38,7 @@ import {
   EmptyState,
   Timeline, TimelineItem,
   Stepper, StepperStep,
+  ThinkingIndicator,
   FileUpload,
   TreeView,
   NotificationCenter,
@@ -3973,6 +3974,84 @@ import { Plus } from 'lucide-react'
       'aria-current="step" on active step',
       'Keyboard navigable when clickable',
       'Step numbers announced by screen readers',
+    ],
+  },
+
+  ThinkingIndicator: {
+    component: ThinkingIndicator,
+    description: 'A write-on / bloom text animation for AI thinking states and hero surfaces. Cycles a phrase pool with per-character stagger, a leading orbiting brand mark (xs InfinityAnim), and a trailing ellipsis. Supports an optional intro sequence that plays once before the rotating pool starts cycling.',
+    props: {
+      pool: {
+        type: 'select',
+        options: ['landing', 'chat'] as const,
+        default: 'chat',
+        description: 'Which built-in phrase pool to cycle through',
+      },
+      size: {
+        type: 'select',
+        options: ['sm', 'md', 'lg'] as const,
+        default: 'md',
+        description: 'Visual size',
+      },
+      cycleMs: {
+        type: 'text',
+        default: '2800',
+        description: 'Milliseconds per phrase before transitioning',
+      },
+      shuffle: {
+        type: 'boolean',
+        default: false,
+        description: 'Shuffle the rotating pool on mount (intro is never shuffled)',
+      },
+      mark: {
+        type: 'boolean',
+        default: true,
+        description: 'Show the leading brand mark (xs InfinityAnim)',
+      },
+      showEllipsis: {
+        type: 'boolean',
+        default: true,
+        description: 'Show the trailing ellipsis (blooms in with the text)',
+      },
+    },
+    examples: [
+      { label: 'Chat (default)', props: { pool: 'chat', size: 'md' }, children: null },
+      { label: 'Landing', props: { pool: 'landing', size: 'lg' }, children: null },
+      { label: 'Small', props: { pool: 'chat', size: 'sm' }, children: null },
+      { label: 'No mark', props: { pool: 'chat', size: 'md', mark: false }, children: null },
+    ],
+    codeExamples: [
+      {
+        title: 'Cosmo chat thinking state',
+        code: `import { ThinkingIndicator } from '@opencosmos/ui';
+
+<ThinkingIndicator pool="chat" />`,
+        description: 'Drop into any chat surface while waiting for an AI response.',
+      },
+      {
+        title: 'Landing-page hero',
+        code: `import { ThinkingIndicator } from '@opencosmos/ui';
+
+<ThinkingIndicator pool="landing" size="lg" cycleMs={3500} />`,
+        description: 'Larger size with a slower cycle for hero copy that writes itself in.',
+      },
+      {
+        title: 'Custom phrase pool',
+        code: `import { ThinkingIndicator } from '@opencosmos/ui';
+
+<ThinkingIndicator
+  phrases={['Searching the index', 'Ranking results', 'Almost there']}
+  cycleMs={2200}
+/>`,
+        description: 'Provide your own phrases to override the built-in pools.',
+      },
+    ],
+    sourceUrl: 'https://github.com/shalomormsby/opencosmos-ui/blob/main/packages/ui/src/components/feedback/ThinkingIndicator.tsx',
+    accessibilityNotes: [
+      'role="status" with aria-live="polite" announces phrase changes to screen readers',
+      'Visible label override via the `label` prop',
+      'All animation gated by useMotionPreference — at intensity 0 phrases swap with no motion',
+      'Sparkle is aria-hidden; ellipsis is decorative',
     ],
   },
 

@@ -68,6 +68,7 @@ export * from './components/feedback/Spinner';
 export * from './components/feedback/Toast';
 export * from './components/feedback/EmptyState';
 export * from './components/feedback/Stepper';
+export * from './components/feedback/ThinkingIndicator';
 
 // Data Display
 export * from './components/data-display/AspectImage';
@@ -116,6 +117,7 @@ export * from './components/layout/GlassSurface';
 // Backgrounds
 export * from './components/backgrounds/WarpBackground';
 export * from './components/backgrounds/FaultyTerminal';
+export * from './components/backgrounds/InfinityAnim';
 
 // Motion
 export * from "./components/motion/AnimatedBeam";

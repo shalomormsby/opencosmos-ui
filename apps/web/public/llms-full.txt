@@ -854,7 +854,7 @@ Example:
 
 ---
 
-## FEEDBACK (9 components)
+## FEEDBACK (10 components)
 Communicating system state and user action results.
 
 ### Alert
@@ -966,6 +966,32 @@ Example:
   <StepperStep label="Profile" />
   <StepperStep label="Complete" />
 </Stepper>
+```
+
+### ThinkingIndicator
+Import: `import { ThinkingIndicator, LANDING_INTRO, LANDING_PHRASES, CHAT_PHRASES } from '@opencosmos/ui'`
+Write-on / bloom text animation for AI thinking states and hero surfaces. Cycles a phrase pool with per-character stagger, a leading orbiting brand mark (xs InfinityAnim), and a trailing ellipsis. Fully gated by `useMotionPreference`. Supports an intro sequence that plays once before the rotating pool starts.
+Props:
+  - pool: 'landing' | 'chat' (default: 'chat') — built-in phrase pool. `landing` auto-includes LANDING_INTRO.
+  - phrases: readonly string[] — custom rotating phrases, overrides `pool`
+  - introPhrases: readonly string[] — phrases that play once in order before the rotating pool starts
+  - cycleMs: number (default: 2800) — ms per phrase
+  - shuffle: boolean (default: false) — shuffle the rotating pool (intro is never shuffled)
+  - mark: boolean (default: true) — show the leading brand mark (xs InfinityAnim)
+  - showEllipsis: boolean (default: true) — append a trailing ellipsis (auto-suppressed when phrase ends with terminal punctuation)
+  - size: 'sm' | 'md' | 'lg' (default: 'md')
+  - label: string (default: 'Thinking') — accessible status label
+
+Example:
+```tsx
+{/* Cosmo chat thinking */}
+<ThinkingIndicator pool="chat" />
+
+{/* Landing-page hero with intro then shuffled rotating pool */}
+<ThinkingIndicator pool="landing" shuffle size="lg" cycleMs={3500} />
+
+{/* Custom phrases */}
+<ThinkingIndicator phrases={['Searching', 'Ranking', 'Almost there']} />
 ```
 
 ---
@@ -1308,8 +1334,27 @@ Opinionated page template with Swiss Grid design and customizer.
 
 ---
 
-## BACKGROUNDS (3 components)
+## BACKGROUNDS (4 components)
 Animated background effects and decorative elements.
+
+### InfinityAnim
+Import: `import { InfinityAnim } from '@opencosmos/ui'`
+The OpenCosmos brand mark — two streams sweeping a lemniscate (∞) path. Five pre-tuned sizes from inline glyph to hero moment; two render techniques. Note: the export is named `InfinityAnim` (not `Infinity`) to avoid shadowing the JS global `Infinity`.
+Props:
+  - size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' (default: 'md') — 'xs' is 16px (inline glyph), 'xl' is 256px (hero)
+  - technique: 'stripes' | 'dashes' (default: 'stripes') — dashes is more elegant at xs / sm
+  - duration: number (default: 3) — animation duration in seconds
+  - paused: boolean (default: false) — render a static still
+  - label: string — optional accessible label; omit for decorative use
+
+Example:
+```tsx
+{/* Hero moment with the dashes technique */}
+<InfinityAnim size="xl" technique="dashes" />
+
+{/* Inline glyph in a thinking-state row */}
+<InfinityAnim size="xs" technique="dashes" />
+```
 
 ### WarpBackground
 Import: `import { WarpBackground } from '@opencosmos/ui'`

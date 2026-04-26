@@ -20,11 +20,12 @@ import { VariableWeightPage } from './pages/motion/VariableWeightPage';
 import { TypewriterPage } from './pages/motion/TypewriterPage';
 import { MagneticPage } from './pages/motion/MagneticPage';
 import { OrbBackgroundPage } from './pages/motion/OrbBackgroundPage';
+import { InfinityAnimPage } from './pages/motion/InfinityAnimPage';
 
 type MotionTab =
   | 'overview' | 'primitives' | 'duration' | 'easing'
   | 'text-effects' | 'variable-weight' | 'typewriter'
-  | 'backgrounds' | 'warp-speed' | 'faulty-terminal' | 'orb-background'
+  | 'backgrounds' | 'warp-speed' | 'faulty-terminal' | 'orb-background' | 'infinity'
   | 'cursors' | 'target-cursor' | 'splash-cursor'
   | 'micro-interactions' | 'magnetic';
 
@@ -82,6 +83,7 @@ export function MotionSections({ activeItemId, breadcrumbs, onItemChange }: Moti
         {activeTab === 'warp-speed' && <WarpSpeedPage />}
         {activeTab === 'faulty-terminal' && <FaultyTerminalPage />}
         {activeTab === 'orb-background' && <OrbBackgroundPage />}
+        {activeTab === 'infinity' && <InfinityAnimPage />}
 
         {/* Cursors */}
         {activeTab === 'cursors' && <CursorsSection />}

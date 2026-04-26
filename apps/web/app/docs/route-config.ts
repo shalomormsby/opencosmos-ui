@@ -54,7 +54,7 @@ export const SECTION_ITEMS: Record<string, string[]> = {
     'alert-dialog', 'context-menu', 'dialog', 'drawer', 'dropdown-menu',
     'hover-card', 'notification-center', 'popover', 'sheet', 'tooltip',
   ],
-  feedback: ['alert', 'empty-state', 'stepper', 'progress', 'skeleton', 'sonner', 'toaster'],
+  feedback: ['alert', 'empty-state', 'stepper', 'progress', 'skeleton', 'sonner', 'thinking-indicator', 'toaster'],
   'data-display': [
     'avatar', 'badge', 'calendar', 'card', 'data-table',
     'stat-card', 'timeline', 'tree-view', 'table',
@@ -69,7 +69,7 @@ export const SECTION_ITEMS: Record<string, string[]> = {
   ],
   templates: ['page-template'],
   charts: ['overview', 'area-chart', 'bar-chart', 'line-chart', 'pie-chart'],
-  motion: ['text-effects', 'scroll', 'loading', 'interactive', 'transitions', 'cursor-effects'],
+  motion: ['text-effects', 'scroll', 'loading', 'interactive', 'transitions', 'cursor-effects', 'infinity'],
   tools: ['brand-builder', 'open-graph-card', 'charts'],
 };
 
@@ -193,6 +193,7 @@ export const routeConfig: RouteConfig = {
       progress: { label: 'Progress' },
       skeleton: { label: 'Skeleton' },
       sonner: { label: 'Sonner' },
+      'thinking-indicator': { label: 'Thinking Indicator' },
       toaster: { label: 'Toaster' },
     },
   },
@@ -263,6 +264,7 @@ export const routeConfig: RouteConfig = {
       interactive: { label: 'Interactive Effects' },
       transitions: { label: 'Transitions' },
       'cursor-effects': { label: 'Cursor Effects' },
+      infinity: { label: 'Infinity' },
     },
   },
   tools: {

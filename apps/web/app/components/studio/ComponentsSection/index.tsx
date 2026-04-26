@@ -38,7 +38,7 @@ const COMPONENT_CATEGORIES = {
   feedback: {
     label: 'Feedback',
     description: 'Status and system communication',
-    components: ['Alert', 'EmptyState', 'Stepper', 'Progress', 'Skeleton', 'Toaster'],
+    components: ['Alert', 'EmptyState', 'Stepper', 'Progress', 'Skeleton', 'ThinkingIndicator', 'Toaster'],
   },
   'data-display': {
     label: 'Data Display',

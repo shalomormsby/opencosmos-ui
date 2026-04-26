@@ -77,6 +77,15 @@ export const searchIndex: SearchResult[] = [
     keywords: ['animation', 'transition', 'duration', 'easing', 'motion'],
   },
   {
+    id: 'infinity',
+    title: 'Infinity',
+    description: 'OpenCosmos brand mark — two streams sweeping a lemniscate (∞) path. Five pre-tuned sizes from inline glyph to hero.',
+    type: 'component',
+    category: 'Motion',
+    path: '/docs/motion/infinity',
+    keywords: ['infinity', 'lemniscate', 'brand', 'mark', 'logo', 'cosmos', 'opencosmos', 'comet', 'thinking', 'loading', 'hero', 'animation', 'infinityanim'],
+  },
+  {
     id: 'warp-speed',
     title: 'Warp Speed',
     description: 'Immersive 3D starfield warp effect using WebGL',
@@ -499,6 +508,15 @@ export const searchIndex: SearchResult[] = [
     category: 'Feedback',
     path: '/docs/feedback/stepper',
     keywords: ['stepper', 'wizard', 'steps', 'progress', 'multi-step', 'form', 'workflow'],
+  },
+  {
+    id: 'thinking-indicator',
+    title: 'Thinking Indicator',
+    description: 'Write-on text animation for AI thinking states and hero surfaces',
+    type: 'component',
+    category: 'Feedback',
+    path: '/docs/feedback/thinking-indicator',
+    keywords: ['thinking', 'loading', 'ai', 'cosmo', 'chat', 'write-on', 'bloom', 'sparkle', 'hero', 'landing'],
   },
 
   // Functional Categories - Data Display

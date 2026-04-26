@@ -2,7 +2,7 @@
 
 import { Card, Backgrounds } from '@opencosmos/ui';
 import { useRouter } from 'next/navigation';
-const { WarpBackground, FaultyTerminal, OrbBackground } = Backgrounds;
+const { WarpBackground, FaultyTerminal, OrbBackground, InfinityAnim } = Backgrounds;
 
 export function BackgroundsSection() {
     const router = useRouter();
@@ -20,6 +20,24 @@ export function BackgroundsSection() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Infinity Card — OpenCosmos brand mark */}
+                <Card
+                    className="p-6 cursor-pointer group"
+                    hoverEffect={true}
+                    onClick={() => {
+                        router.push('/docs/motion/infinity');
+                    }}
+                >
+                    <div className="flex items-center justify-between mb-2">
+                        <h2 className="text-xl font-bold group-hover:text-[var(--color-primary)] transition-colors">Infinity</h2>
+                        <span className="text-xs font-mono px-2 py-1 bg-[var(--color-surface)] rounded text-[var(--color-text-secondary)]">Brand</span>
+                    </div>
+                    <p className="text-[var(--color-text-secondary)] mb-4">The OpenCosmos brand mark — five pre-tuned sizes.</p>
+                    <div className="aspect-video bg-black rounded-lg mb-4 overflow-hidden relative pointer-events-none flex items-center justify-center">
+                        <InfinityAnim size="lg" technique="dashes" />
+                    </div>
+                </Card>
+
                 {/* Warp Speed Card */}
                 <Card
                     className="p-6 cursor-pointer group"

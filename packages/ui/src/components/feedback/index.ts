@@ -7,3 +7,4 @@ export * from './Spinner';
 export * from './Toast';
 export * from './EmptyState';
 export * from './Stepper';
+export * from './ThinkingIndicator';
