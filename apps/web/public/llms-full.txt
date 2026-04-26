@@ -1343,17 +1343,19 @@ The OpenCosmos brand mark — two streams sweeping a lemniscate (∞) path. Five
 Props:
   - size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' (default: 'md') — 'xs' is 16px (inline glyph), 'xl' is 256px (hero)
   - technique: 'stripes' | 'dashes' (default: 'stripes') — dashes is more elegant at xs / sm
+  - palette: 'pink-blue' | 'pink-pink' | 'blue-blue' | 'pink-white' | 'blue-white' | 'white-white' (default: 'pink-blue') — color combination for the dashes technique
+  - runWhile: boolean — smart pause/resume for dashes. When `false`, the orbit eases to a stop (~600ms); when `true`, eases back up to full speed. When undefined (default), runs continuously
   - duration: number (default: 3) — animation duration in seconds
   - paused: boolean (default: false) — render a static still
   - label: string — optional accessible label; omit for decorative use
 
 Example:
 ```tsx
-{/* Hero moment with the dashes technique */}
-<InfinityAnim size="xl" technique="dashes" />
+{/* Hero moment, white-on-dark */}
+<InfinityAnim size="xl" technique="dashes" palette="white-white" />
 
-{/* Inline glyph in a thinking-state row */}
-<InfinityAnim size="xs" technique="dashes" />
+{/* Inline glyph that orbits only while text is writing on */}
+<InfinityAnim size="xs" technique="dashes" runWhile={isTyping} />
 ```
 
 ### WarpBackground

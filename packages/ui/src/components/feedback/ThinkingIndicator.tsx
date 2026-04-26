@@ -4,7 +4,7 @@ import * as React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useMotionPreference } from '../../hooks/useMotionPreference';
 import { cn } from '../../lib/utils';
-import { InfinityAnim } from '../backgrounds/InfinityAnim';
+import { InfinityAnim, type InfinityAnimPalette } from '../backgrounds/InfinityAnim';
 
 /* ── Phrase pools ─────────────────────────────────────────────────────── */
 
@@ -118,6 +118,11 @@ export interface ThinkingIndicatorProps {
    * @default true
    */
   mark?: boolean;
+  /**
+   * Color palette for the leading mark. Pass any preset from
+   * `InfinityAnimPalette`. @default 'pink-blue'
+   */
+  markPalette?: InfinityAnimPalette;
   /** Append a trailing ellipsis that blooms in with the text. @default true */
   showEllipsis?: boolean;
   /** Visual size. @default 'md' */
@@ -219,6 +224,7 @@ export function ThinkingIndicator({
   cycleMs = 2800,
   shuffle = false,
   mark = true,
+  markPalette = 'pink-blue',
   showEllipsis = true,
   size = 'md',
   label = 'Thinking',
@@ -267,6 +273,22 @@ export function ThinkingIndicator({
   const phraseEndsTerminal = TERMINAL_PUNCT_RE.test(currentPhrase);
   const effectiveShowEllipsis = showEllipsis && !phraseEndsTerminal;
 
+  // Drive the InfinityAnim mark in sympathy with the bloom write-on:
+  // it orbits while characters are appearing, then eases to a stop while
+  // the phrase is settled, then resumes when the next phrase writes on.
+  // Mirrors the previous sparkle's "spin once per phrase change" feel but
+  // with continuous orbital motion instead of a single spin.
+  const [isWriting, setIsWriting] = React.useState(true);
+  React.useEffect(() => {
+    const totalLen = currentPhrase.length + (effectiveShowEllipsis ? ELLIPSIS.length : 0);
+    const stagger = Math.max(8, Math.floor(600 / Math.max(totalLen, 1))) / 1000;
+    // Per-character bloom = duration 0.28 + delay i * stagger; total = stagger*totalLen + 0.28.
+    const bloomMs = (totalLen * stagger + 0.28) * 1000;
+    setIsWriting(true);
+    const t = setTimeout(() => setIsWriting(false), bloomMs);
+    return () => clearTimeout(t);
+  }, [index, currentPhrase, effectiveShowEllipsis]);
+
   return (
     <div
       role="status"
@@ -281,7 +303,12 @@ export function ThinkingIndicator({
     >
       {mark && (
         <span className="shrink-0 inline-flex items-center">
-          <InfinityAnim size="xs" technique="dashes" />
+          <InfinityAnim
+            size="xs"
+            technique="dashes"
+            palette={markPalette}
+            runWhile={isWriting}
+          />
         </span>
       )}
       {/* Width-locked, left-aligned text area: an invisible ghost sized to the
