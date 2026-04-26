@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.21 - 2026-04-26
+
+### Patch Changes
+
+- Updated dependencies [0dea2c2]
+  - @opencosmos/ui@1.7.0
+  - @opencosmos/mcp@0.8.6
+
 ## 0.1.20 - 2026-04-26
 
 ### Patch Changes
