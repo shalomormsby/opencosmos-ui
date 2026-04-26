@@ -103,7 +103,7 @@ export function InfinityAnimPage() {
             </div>
           </div>
 
-          <CollapsibleCodeBlock code={INFINITY_CODE} language="tsx" />
+          <CollapsibleCodeBlock id="infinity-anim-usage" code={INFINITY_CODE} language="tsx" />
         </div>
 
         {/* Controls */}
