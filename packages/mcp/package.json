@@ -1,6 +1,6 @@
 {
   "name": "@opencosmos/mcp",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "Model Context Protocol server for OpenCosmos/UI - discover and integrate components with AI assistants",
   "author": "Shalom Ormsby",
   "repository": {
