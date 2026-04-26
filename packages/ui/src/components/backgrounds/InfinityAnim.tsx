@@ -151,33 +151,45 @@ interface DashLayer {
   blur: number;
 }
 
-/** Pink accent for the dashes technique. Pairs with DASH_BLUE. */
+/**
+ * Preset color combinations for the dashes technique. The two strokes —
+ * which sit on opposite lobes of the lemniscate — read as equally-weighted
+ * sibling streams, so picking matching colors gives a uniform mark and
+ * picking different colors gives the brand "pink + blue" double-stream feel.
+ */
+export type InfinityAnimPalette =
+  | 'pink-blue'
+  | 'pink-pink'
+  | 'blue-blue'
+  | 'pink-white'
+  | 'blue-white'
+  | 'white-white';
+
 const DASH_PINK = '#ec4899';
-
-/**
- * Bright blue accent for the dashes technique. Chosen to read clearly on
- * black backgrounds and to match DASH_PINK in luminance, so the two streams
- * read as equal-weight siblings rather than one dominant + one recessive.
- */
 const DASH_BLUE = '#3b82f6';
+const DASH_WHITE = '#FFFFFF';
+
+const PALETTE_COLORS: Record<InfinityAnimPalette, [string, string]> = {
+  'pink-blue':   [DASH_PINK,  DASH_BLUE],
+  'pink-pink':   [DASH_PINK,  DASH_PINK],
+  'blue-blue':   [DASH_BLUE,  DASH_BLUE],
+  'pink-white':  [DASH_PINK,  DASH_WHITE],
+  'blue-white':  [DASH_BLUE,  DASH_WHITE],
+  'white-white': [DASH_WHITE, DASH_WHITE],
+};
 
 /**
- * Two equal-length, equal-character dashes sharing the lemniscate. The pink
- * sits at one head position; the blue sits half a path-length away — i.e.,
- * on the opposite lobe of the infinity. They sweep in sync so the two
- * streams are always 180° apart, twin sibling comets chasing each other.
+ * Two equal-length, equal-character dashes sharing the lemniscate. Each
+ * stream sits on an opposite lobe of the infinity (`startOffset` shifted by
+ * HALF_PATH). They sweep in sync — twin sibling comets chasing each other.
  */
-function generateDashLayers(
-  cfg: SizeConfig,
-  palette: { tail: RGB; body: RGB; head: RGB },
-): DashLayer[] {
+function generateDashLayers(cfg: SizeConfig, palette: InfinityAnimPalette): DashLayer[] {
   const TAIL_LEN = TAIL_FRACTION * PATH_LENGTH;
   const HEAD_POS = TAIL_LEN;
   const DASH_LEN = TAIL_LEN * 0.61875;
   const HALF_PATH = PATH_LENGTH / 2;
 
-  const pink = hexToRgb(DASH_PINK);
-  const blue = hexToRgb(DASH_BLUE);
+  const [colorA, colorB] = PALETTE_COLORS[palette];
   const baseStroke = {
     width: cfg.headStroke * 0.7,
     opacity: 1.0,
@@ -185,20 +197,15 @@ function generateDashLayers(
     dashLen: DASH_LEN,
   };
 
-  // Both layers share the same width / opacity / blur so neither dominates.
-  // The blue's startOffset is shifted by HALF_PATH so it sits on the
-  // opposite lobe of the lemniscate.
   return [
     {
-      // Bright blue — opposite lobe
       ...baseStroke,
-      color: rgbStr(blue),
+      color: colorA,
       startOffset: HEAD_POS - baseStroke.dashLen + HALF_PATH,
     },
     {
-      // Pink — primary head position
       ...baseStroke,
-      color: rgbStr(pink),
+      color: colorB,
       startOffset: HEAD_POS - baseStroke.dashLen,
     },
   ];
@@ -227,14 +234,29 @@ export interface InfinityAnimProps extends Omit<React.SVGAttributes<SVGSVGElemen
   paused?: boolean;
   /** Optional accessible label. Omit to mark as decorative. */
   label?: string;
-  /** Tail-end color (hex). Default: deep blue from the Orb palette. */
+  /** Tail-end color (hex), `stripes` technique only. Default: deep blue from the Orb palette. */
   colorTail?: string;
-  /** Body / mid-comet color (hex). Default: brand purple from the Orb palette. */
+  /** Body / mid-comet color (hex), `stripes` technique only. Default: brand purple. */
   colorBody?: string;
-  /** Head color (hex). Default: cyan from the Orb palette. Bloom uses this. */
+  /** Head color (hex), `stripes` technique only. Default: cyan. Bloom uses this. */
   colorHead?: string;
   /** Override the infinity track tint. Defaults to body color at low opacity. */
   colorTrack?: string;
+  /**
+   * Color combination for the `dashes` technique. Two strokes sit on opposite
+   * lobes of the lemniscate; this picks both at once. Ignored by `stripes`.
+   * @default 'pink-blue'
+   */
+  palette?: InfinityAnimPalette;
+  /**
+   * Smart pause/resume control for the `dashes` technique. When set to `false`,
+   * the orbit eases to a stop (~600ms time constant); when `true`, it eases
+   * back up to full speed. When undefined, the orbit runs continuously
+   * (backward-compatible behavior). Useful for sympathetic motion — e.g.,
+   * pairing the mark with a typewriter effect that animates only while text
+   * is writing on. Ignored by `stripes`.
+   */
+  runWhile?: boolean;
 }
 
 /**
@@ -254,6 +276,8 @@ export function InfinityAnim({
   colorBody = DEFAULT_PALETTE.body,
   colorHead = DEFAULT_PALETTE.head,
   colorTrack,
+  palette = 'pink-blue',
+  runWhile,
   className,
   style,
   ...rest
@@ -265,7 +289,7 @@ export function InfinityAnim({
     return durationOverride !== undefined ? { ...base, duration: durationOverride } : base;
   }, [size, durationOverride]);
 
-  const palette = React.useMemo(
+  const stripePalette = React.useMemo(
     () => ({ tail: hexToRgb(colorTail), body: hexToRgb(colorBody), head: hexToRgb(colorHead) }),
     [colorTail, colorBody, colorHead],
   );
@@ -307,9 +331,15 @@ export function InfinityAnim({
       />
 
       {technique === 'stripes' ? (
-        <StripesLayer cfg={cfg} palette={palette} uid={uid} isAnimating={isAnimating} />
+        <StripesLayer cfg={cfg} palette={stripePalette} uid={uid} isAnimating={isAnimating} />
       ) : (
-        <DashesLayer cfg={cfg} palette={palette} uid={uid} isAnimating={isAnimating} />
+        <DashesLayer
+          cfg={cfg}
+          palette={palette}
+          uid={uid}
+          isAnimating={isAnimating}
+          runWhile={runWhile}
+        />
       )}
     </svg>
   );
@@ -317,14 +347,14 @@ export function InfinityAnim({
 
 /* ── Render: Stripes ─────────────────────────────────────────────────── */
 
-interface LayerProps {
+interface StripesLayerProps {
   cfg: SizeConfig;
   palette: { tail: RGB; body: RGB; head: RGB };
   uid: string;
   isAnimating: boolean;
 }
 
-function StripesLayer({ cfg, palette, uid, isAnimating }: LayerProps) {
+function StripesLayer({ cfg, palette, uid, isAnimating }: StripesLayerProps) {
   const animName = `infinityAnimOrbit_${uid}`;
   const stripeClass = `infinityAnimStripe_${uid}`;
   const bloomFilterId = `infinityAnimBloom_${uid}`;
@@ -421,41 +451,85 @@ function StripesLayer({ cfg, palette, uid, isAnimating }: LayerProps) {
 
 /* ── Render: Dashes ──────────────────────────────────────────────────── */
 
-function DashesLayer({ cfg, palette, uid, isAnimating }: LayerProps) {
-  const layers = React.useMemo(() => generateDashLayers(cfg, palette), [cfg, palette]);
+interface DashesLayerProps {
+  cfg: SizeConfig;
+  palette: InfinityAnimPalette;
+  uid: string;
+  isAnimating: boolean;
+  runWhile?: boolean;
+}
 
-  const animPrefix = `infinityAnimDash_${uid}`;
-  const layerClassPrefix = `infinityAnimDashLayer_${uid}`;
+/**
+ * The dashes technique runs on a JS rAF loop instead of CSS keyframes so we
+ * can pause/resume mid-animation without teleporting and ease velocity in
+ * and out smoothly. A single shared `progress` counter (units along the
+ * normalised path) drives both layers' `stroke-dashoffset` via direct DOM
+ * mutation — no React re-renders per frame.
+ *
+ * When `runWhile` is undefined (default) the orbit runs continuously. When
+ * set, velocity is exponentially eased toward target_speed (full speed when
+ * `runWhile === true`, zero when `runWhile === false`).
+ */
+function DashesLayer({ cfg, palette, uid, isAnimating, runWhile }: DashesLayerProps) {
+  const layers = React.useMemo(() => generateDashLayers(cfg, palette), [cfg, palette]);
   const filterPrefix = `infinityAnimDashBloom_${uid}`;
 
-  // Per-layer keyframes: each layer animates from its own startOffset to
-  // (startOffset - PATH_LENGTH), so the heads stay perfectly aligned as the
-  // comet sweeps the path.
-  const cssBlock = layers
-    .map((l, i) => {
-      const animName = `${animPrefix}_${i}`;
-      const className = `${layerClassPrefix}_${i}`;
-      const keyframes = isAnimating
-        ? `@keyframes ${animName} {
-             from { stroke-dashoffset: ${l.startOffset}; }
-             to   { stroke-dashoffset: ${l.startOffset - PATH_LENGTH}; }
-           }`
-        : '';
-      const animation = isAnimating
-        ? `animation: ${animName} ${cfg.duration}s linear infinite;`
-        : '';
-      return `
-        ${keyframes}
-        .${className} {
-          ${animation}
-        }
-      `;
-    })
-    .join('\n') + `
-    @media (prefers-reduced-motion: reduce) {
-      ${layers.map((_, i) => `.${layerClassPrefix}_${i}`).join(', ')} { animation: none !important; }
-    }
-  `;
+  const pathRefs = React.useRef<Array<SVGPathElement | null>>([]);
+
+  // Refs so we don't restart the rAF effect on every prop change. The loop
+  // reads the latest values without needing to be re-subscribed.
+  const runWhileRef = React.useRef(runWhile);
+  const targetSpeedRef = React.useRef(0);
+  React.useEffect(() => {
+    runWhileRef.current = runWhile;
+  }, [runWhile]);
+  React.useEffect(() => {
+    // When runWhile is undefined, treat as always-on (back-compat). When
+    // explicitly false, target zero. Otherwise full speed.
+    const fullSpeed = PATH_LENGTH / cfg.duration;
+    targetSpeedRef.current = runWhile === false ? 0 : fullSpeed;
+  }, [runWhile, cfg.duration]);
+
+  React.useEffect(() => {
+    if (!isAnimating) return;
+
+    let raf = 0;
+    let last = performance.now();
+    // Start at full speed when initial mount is in run state, otherwise 0.
+    let velocity = runWhileRef.current === false ? 0 : PATH_LENGTH / cfg.duration;
+    let progress = 0;
+
+    // Exponential ease toward target velocity. 0.06 per 60fps frame ≈ 600ms
+    // time constant — feels natural for a meditative orbit.
+    const EASE_PER_FRAME = 0.06;
+    const FRAME_RATE = 1 / 60;
+
+    const tick = (now: number) => {
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+
+      const target = targetSpeedRef.current;
+      // Scale easing by dt so behaviour is consistent across refresh rates.
+      const ease = 1 - Math.pow(1 - EASE_PER_FRAME, dt / FRAME_RATE);
+      velocity += (target - velocity) * ease;
+      // Snap to zero once we're close enough to avoid jittering at low speeds.
+      if (target === 0 && Math.abs(velocity) < 0.5) velocity = 0;
+
+      progress = (progress + velocity * dt) % PATH_LENGTH;
+      if (progress < 0) progress += PATH_LENGTH;
+
+      // Mutate DOM directly — single source of truth, no React renders.
+      for (let i = 0; i < layers.length; i++) {
+        const path = pathRefs.current[i];
+        if (path) path.setAttribute('stroke-dashoffset', String(layers[i].startOffset - progress));
+      }
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [isAnimating, layers, cfg.duration]);
 
   return (
     <>
@@ -480,12 +554,14 @@ function DashesLayer({ cfg, palette, uid, isAnimating }: LayerProps) {
             </filter>
           ) : null,
         )}
-        <style>{cssBlock}</style>
       </defs>
 
       {layers.map((l, i) => (
         <path
           key={`d-${i}`}
+          ref={(el) => {
+            pathRefs.current[i] = el;
+          }}
           d={COMET_PATH}
           pathLength={PATH_LENGTH}
           fill="none"
@@ -495,9 +571,8 @@ function DashesLayer({ cfg, palette, uid, isAnimating }: LayerProps) {
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeDasharray={`${l.dashLen} ${PATH_LENGTH - l.dashLen}`}
-          className={`${layerClassPrefix}_${i}`}
+          strokeDashoffset={l.startOffset}
           filter={l.blur > 0 ? `url(#${filterPrefix}_${i})` : undefined}
-          style={isAnimating ? undefined : { strokeDashoffset: l.startOffset }}
         />
       ))}
     </>

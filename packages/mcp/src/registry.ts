@@ -1795,11 +1795,13 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
     props: {
       size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Pre-tuned size variant — each tier optimises stripe count, bloom, and halo for legibility and weight at that scale' },
       technique: { type: "'stripes' | 'dashes'", default: "'stripes'", description: 'Render technique. dashes is more elegant at xs / sm; stripes has richer detail at md+' },
+      palette: { type: "'pink-blue' | 'pink-pink' | 'blue-blue' | 'pink-white' | 'blue-white' | 'white-white'", default: "'pink-blue'", description: 'Color combination for the dashes technique. Two stream colors at once.' },
+      runWhile: { type: 'boolean', description: 'Smart pause/resume for dashes. When false, the orbit eases to a stop (~600ms); when true, eases back up to full speed. When undefined, runs continuously.' },
       duration: { type: 'number', default: '3', description: 'Animation duration in seconds' },
       paused: { type: 'boolean', default: 'false', description: 'Pause the orbit and render a static still' },
       label: { type: 'string', description: 'Optional accessible label. Omit for decorative use.' },
     },
-    example: `<InfinityAnim size="xl" technique="dashes" />\n<InfinityAnim size="xs" /> {/* inline glyph next to text */}\n<InfinityAnim size="lg" paused />`,
+    example: `<InfinityAnim size="xl" technique="dashes" palette="white-white" />\n<InfinityAnim size="xs" runWhile={isTyping} /> {/* sympathetic motion with text */}\n<InfinityAnim size="lg" paused />`,
   },
   'warp-background': {
     name: 'WarpBackground',

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Card, CollapsibleCodeBlock, Label, Switch, Slider, Backgrounds, type InfinityAnimSize, type InfinityAnimTechnique } from '@opencosmos/ui';
+import { Card, CollapsibleCodeBlock, Label, Switch, Slider, Backgrounds, type InfinityAnimSize, type InfinityAnimTechnique, type InfinityAnimPalette } from '@opencosmos/ui';
 
 const { InfinityAnim } = Backgrounds;
 
@@ -31,12 +31,22 @@ const SIZES: { id: InfinityAnimSize; label: string; note: string }[] = [
 
 const TECHNIQUES: { id: InfinityAnimTechnique; label: string; description: string }[] = [
   { id: 'stripes', label: 'Stripes', description: 'Perpendicular line stripes traveling on offset-path. Rich detail at md+, visibly discrete at xs / sm.' },
-  { id: 'dashes',  label: 'Dashes',  description: 'Three stacked stroke-dasharray paths sharing one head position. Continuous at every size, more elegant inline.' },
+  { id: 'dashes',  label: 'Dashes',  description: 'Two stacked stroke-dasharray streams on opposite lobes. Continuous at every size, more elegant inline.' },
+];
+
+const PALETTES: InfinityAnimPalette[] = [
+  'pink-blue',
+  'pink-pink',
+  'blue-blue',
+  'pink-white',
+  'blue-white',
+  'white-white',
 ];
 
 export function InfinityAnimPage() {
   const [size, setSize] = useState<InfinityAnimSize>('lg');
   const [technique, setTechnique] = useState<InfinityAnimTechnique>('dashes');
+  const [palette, setPalette] = useState<InfinityAnimPalette>('pink-blue');
   const [paused, setPaused] = useState(false);
   const [duration, setDuration] = useState(3);
 
@@ -58,7 +68,7 @@ export function InfinityAnimPage() {
         {/* Main preview */}
         <div className="lg:col-span-2 space-y-4">
           <Card className="bg-black p-8 flex items-center justify-center min-h-[360px] border-[var(--color-border)]">
-            <InfinityAnim size={size} technique={technique} paused={paused} duration={duration} />
+            <InfinityAnim size={size} technique={technique} palette={palette} paused={paused} duration={duration} />
           </Card>
 
           {/* Comparison: every size, both techniques stacked vertically */}
@@ -154,6 +164,27 @@ export function InfinityAnimPage() {
               <p className="text-xs text-[var(--color-text-secondary)]">
                 {TECHNIQUES.find((t) => t.id === technique)?.description}
               </p>
+            </div>
+
+            <div className="space-y-2">
+              <Label>Palette (dashes only)</Label>
+              <div className="flex gap-2 flex-wrap">
+                {PALETTES.map((p) => (
+                  <button
+                    key={p}
+                    type="button"
+                    onClick={() => setPalette(p)}
+                    disabled={technique !== 'dashes'}
+                    className={`px-3 py-1.5 rounded-md text-sm transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                      palette === p
+                        ? 'bg-[var(--color-primary)] text-[var(--color-primary-foreground)]'
+                        : 'bg-[var(--color-surface)] text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
+                    }`}
+                  >
+                    {p}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div className="space-y-2">
