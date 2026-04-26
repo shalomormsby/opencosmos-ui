@@ -64,7 +64,7 @@ export const COMPONENT_CATEGORIES = {
   feedback: {
     label: 'Feedback',
     description: 'Communicating system state and user action results',
-    count: 9,
+    count: 10,
   },
   'data-display': {
     label: 'Data Display',
@@ -79,7 +79,7 @@ export const COMPONENT_CATEGORIES = {
   backgrounds: {
     label: 'Backgrounds',
     description: 'Animated background effects and decorative elements',
-    count: 3,
+    count: 4,
   },
   cursor: {
     label: 'Cursor',
@@ -1629,6 +1629,31 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
     },
     example: `<Spinner size="md" />\n<Button disabled><Spinner size="xs" variant="inherit" /> Loading...</Button>`,
   },
+  'thinking-indicator': {
+    name: 'ThinkingIndicator',
+    category: 'feedback',
+    description: 'Write-on / bloom text animation for AI thinking states and hero surfaces. Cycles a phrase pool with per-character stagger, a leading orbiting brand mark (xs InfinityAnim), and a trailing ellipsis.',
+    keywords: ['thinking', 'loading', 'ai', 'cosmo', 'chat', 'write-on', 'bloom', 'infinity', 'hero', 'landing'],
+    useCases: [
+      'AI / LLM thinking state in chat dialogs',
+      'Hero copy that writes itself in on landing pages',
+      'Loading states that need warmth and personality',
+      'Cycling through status messages during long-running operations',
+    ],
+    dependencies: ['framer-motion'],
+    props: {
+      pool: { type: "'landing' | 'chat'", default: "'chat'", description: 'Which built-in phrase pool to cycle through' },
+      phrases: { type: 'readonly string[]', description: 'Custom rotating phrase array — overrides `pool`' },
+      introPhrases: { type: 'readonly string[]', description: 'Phrases that play once in order before the rotating pool starts. `pool="landing"` defaults to LANDING_INTRO.' },
+      cycleMs: { type: 'number', default: '2800', description: 'Milliseconds each phrase remains before transitioning' },
+      shuffle: { type: 'boolean', default: 'false', description: 'Shuffle the rotating pool on mount (intro is never shuffled)' },
+      mark: { type: 'boolean', default: 'true', description: 'Show the leading brand mark (xs InfinityAnim)' },
+      showEllipsis: { type: 'boolean', default: 'true', description: 'Append a trailing ellipsis (auto-suppressed when phrase ends with terminal punctuation)' },
+      size: { type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Visual size' },
+      label: { type: 'string', default: "'Thinking'", description: 'Accessible label for screen readers' },
+    },
+    example: `<ThinkingIndicator pool="chat" />\n<ThinkingIndicator pool="landing" shuffle />\n<ThinkingIndicator phrases={['Searching', 'Ranking', 'Almost there']} />`,
+  },
   'progress-bar': {
     name: 'ProgressBar',
     category: 'feedback',
@@ -1752,8 +1777,30 @@ export const COMPONENT_REGISTRY: Record<string, ComponentMetadata> = {
   },
 
   // ============================================================================
-  // SPECIALTY - Backgrounds (3)
+  // SPECIALTY - Backgrounds (4)
   // ============================================================================
+  infinity: {
+    name: 'InfinityAnim',
+    category: 'backgrounds',
+    description: 'OpenCosmos brand mark — two streams sweeping a lemniscate (∞) path. Five pre-tuned size variants from inline glyph (xs, 16px) to hero moment (xl, 256px); two render techniques (stripes for rich detail at large sizes, dashes for elegance at every size). Exported as `InfinityAnim` to avoid shadowing the JS global `Infinity`.',
+    keywords: ['infinity', 'lemniscate', 'brand', 'mark', 'logo', 'cosmos', 'opencosmos', 'comet', 'thinking', 'loading', 'hero', 'animation'],
+    useCases: [
+      'Landing-page hero animation',
+      'AI thinking-state glyph (paired with ThinkingIndicator)',
+      'Loading state with brand presence',
+      'Section accent / decorative element',
+      'Brand presence across product surfaces at any scale',
+    ],
+    dependencies: [],
+    props: {
+      size: { type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'md'", description: 'Pre-tuned size variant — each tier optimises stripe count, bloom, and halo for legibility and weight at that scale' },
+      technique: { type: "'stripes' | 'dashes'", default: "'stripes'", description: 'Render technique. dashes is more elegant at xs / sm; stripes has richer detail at md+' },
+      duration: { type: 'number', default: '3', description: 'Animation duration in seconds' },
+      paused: { type: 'boolean', default: 'false', description: 'Pause the orbit and render a static still' },
+      label: { type: 'string', description: 'Optional accessible label. Omit for decorative use.' },
+    },
+    example: `<InfinityAnim size="xl" technique="dashes" />\n<InfinityAnim size="xs" /> {/* inline glyph next to text */}\n<InfinityAnim size="lg" paused />`,
+  },
   'warp-background': {
     name: 'WarpBackground',
     category: 'backgrounds',

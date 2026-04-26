@@ -37,7 +37,7 @@ export const COMPONENT_REGISTRY = {
   /**
    * Total count of all exported UI components from @opencosmos/ui
    */
-  totalCount: 100,
+  totalCount: 102,
 
   /**
    * Core categories following functional organization pattern
@@ -65,9 +65,9 @@ export const COMPONENT_REGISTRY = {
       examples: ['Dialog', 'Tooltip', 'Popover', 'Drawer', 'Modal', 'Sheet', 'NotificationCenter'],
     },
     feedback: {
-      count: 9,
+      count: 10,
       description: 'Components that communicate system state',
-      examples: ['Alert', 'Toast', 'Progress', 'Spinner', 'Skeleton', 'EmptyState', 'Stepper'],
+      examples: ['Alert', 'Toast', 'Progress', 'Spinner', 'Skeleton', 'EmptyState', 'Stepper', 'ThinkingIndicator'],
     },
     'data-display': {
       count: 19,
@@ -86,9 +86,9 @@ export const COMPONENT_REGISTRY = {
    */
   specialtyCategories: {
     backgrounds: {
-      count: 2,
-      description: 'Animated background effects',
-      examples: ['WarpBackground', 'FaultyTerminal'],
+      count: 4,
+      description: 'Animated background effects and brand marks',
+      examples: ['InfinityAnim', 'WarpBackground', 'FaultyTerminal', 'OrbBackground'],
     },
     cursor: {
       count: 2,
