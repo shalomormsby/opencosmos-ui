@@ -249,12 +249,16 @@ export interface InfinityAnimProps extends Omit<React.SVGAttributes<SVGSVGElemen
    */
   palette?: InfinityAnimPalette;
   /**
-   * Smart pause/resume control for the `dashes` technique. When set to `false`,
-   * the orbit eases to a stop (~600ms time constant); when `true`, it eases
-   * back up to full speed. When undefined, the orbit runs continuously
-   * (backward-compatible behavior). Useful for sympathetic motion — e.g.,
-   * pairing the mark with a typewriter effect that animates only while text
-   * is writing on. Ignored by `stripes`.
+   * Smart speed control for the `dashes` technique. Three velocity tiers
+   * with smooth exponential easing (~600ms time constant) between them:
+   *
+   * - `false` — idle drift at 25% of full speed (never fully stops)
+   * - `true`  — boosted to 133% of full speed (energised during activity)
+   * - `undefined` — full speed, runs continuously (backward-compatible)
+   *
+   * Useful for sympathetic motion — e.g., pairing the mark with a typewriter
+   * effect so the orbit surges while text writes on and settles to a gentle
+   * ambient drift between phrases. Ignored by `stripes`.
    */
   runWhile?: boolean;
 }
@@ -484,10 +488,18 @@ function DashesLayer({ cfg, palette, uid, isAnimating, runWhile }: DashesLayerPr
     runWhileRef.current = runWhile;
   }, [runWhile]);
   React.useEffect(() => {
-    // When runWhile is undefined, treat as always-on (back-compat). When
-    // explicitly false, target zero. Otherwise full speed.
+    // Three velocity tiers with smooth exponential easing between them.
+    // undefined = always-on at full speed (back-compat).
+    // true      = boosted (+33%) — visible energy during active phases.
+    // false     = idle drift (25%) — ambient, never fully stops.
     const fullSpeed = PATH_LENGTH / cfg.duration;
-    targetSpeedRef.current = runWhile === false ? 0 : fullSpeed;
+    if (runWhile === undefined) {
+      targetSpeedRef.current = fullSpeed;
+    } else if (runWhile) {
+      targetSpeedRef.current = fullSpeed * 1.33;
+    } else {
+      targetSpeedRef.current = fullSpeed * 0.25;
+    }
   }, [runWhile, cfg.duration]);
 
   React.useEffect(() => {
@@ -495,8 +507,14 @@ function DashesLayer({ cfg, palette, uid, isAnimating, runWhile }: DashesLayerPr
 
     let raf = 0;
     let last = performance.now();
-    // Start at full speed when initial mount is in run state, otherwise 0.
-    let velocity = runWhileRef.current === false ? 0 : PATH_LENGTH / cfg.duration;
+    // Start at the correct tier so the first frame isn't a jarring jump.
+    const fullSpeed = PATH_LENGTH / cfg.duration;
+    let velocity =
+      runWhileRef.current === false
+        ? fullSpeed * 0.25
+        : runWhileRef.current === true
+          ? fullSpeed * 1.33
+          : fullSpeed;
     let progress = 0;
 
     // Exponential ease toward target velocity. 0.06 per 60fps frame ≈ 600ms
@@ -512,8 +530,6 @@ function DashesLayer({ cfg, palette, uid, isAnimating, runWhile }: DashesLayerPr
       // Scale easing by dt so behaviour is consistent across refresh rates.
       const ease = 1 - Math.pow(1 - EASE_PER_FRAME, dt / FRAME_RATE);
       velocity += (target - velocity) * ease;
-      // Snap to zero once we're close enough to avoid jittering at low speeds.
-      if (target === 0 && Math.abs(velocity) < 0.5) velocity = 0;
 
       progress = (progress + velocity * dt) % PATH_LENGTH;
       if (progress < 0) progress += PATH_LENGTH;
