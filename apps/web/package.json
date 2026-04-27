@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "The official documentation and studio for OpenCosmos UI.",
   "private": true,
   "scripts": {
