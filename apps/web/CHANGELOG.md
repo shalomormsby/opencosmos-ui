@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.23 - 2026-05-09
+
+### Patch Changes
+
+- Updated dependencies [d6ced84]
+  - @opencosmos/constellation@0.1.0
+
 ## 0.1.22 - 2026-04-27
 
 ### Patch Changes
