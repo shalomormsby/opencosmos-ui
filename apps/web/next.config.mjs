@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@opencosmos/ui', '@opencosmos/mcp'],
+  transpilePackages: ['@opencosmos/ui', '@opencosmos/mcp', '@opencosmos/constellation'],
   async redirects() {
     return [
       {

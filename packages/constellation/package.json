@@ -1,0 +1,62 @@
+{
+    "name": "@opencosmos/constellation",
+    "version": "0.1.0-alpha.0",
+    "description": "Living knowledge-graph visualizer for OpenCosmos. A React wrapper around @cosmos.gl/graph (MIT) that renders tradition · work · section · quote tiers as a navigable starfield.",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "sideEffects": false,
+    "license": "MIT",
+    "author": "Shalom Ormsby",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/shalomormsby/opencosmos-ui.git",
+        "directory": "packages/constellation"
+    },
+    "homepage": "https://opencosmos.ai/studio",
+    "bugs": "https://github.com/shalomormsby/opencosmos-ui/issues",
+    "keywords": [
+        "react",
+        "knowledge-graph",
+        "graph",
+        "visualization",
+        "webgl",
+        "force-directed",
+        "cosmograph",
+        "opencosmos"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist",
+        "src",
+        "README.md"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js"
+        }
+    },
+    "scripts": {
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "typecheck": "tsc --noEmit"
+    },
+    "peerDependencies": {
+        "react": "^18 || ^19",
+        "react-dom": "^18 || ^19"
+    },
+    "dependencies": {
+        "@cosmos.gl/graph": "3.0.0-beta.9"
+    },
+    "devDependencies": {
+        "@types/react": "^19",
+        "react": "^19.2.1",
+        "react-dom": "^19.2.1",
+        "tsup": "^8.0.0",
+        "typescript": "^5.0.0"
+    }
+}
