@@ -427,8 +427,8 @@ Route config, navigation tree, and registry files are large and easy to break wi
 ### Prop Hallucination
 Don't assume components accept props like `className` without reading the source. Check the component file or its types.
 
-### Tailwind Not Processing
-If styles don't apply, verify `content` paths in the Tailwind config match actual file locations.
+### Tailwind class names must be static literals
+Never build a class name by interpolation (`` `gap-${n}` ``, `` `md:${cls}` ``) — Tailwind can't see it, so the utility is silently never generated. Index into the static maps in `packages/ui/src/lib/responsive-classes.ts` instead. The `no-dynamic-classes` test enforces this in CI. Full rationale + the shipped-`styles.css` distribution model: [.claude/CLAUDE.md → LESSON 4](.claude/CLAUDE.md). Consumer setup: [packages/ui/README.md](packages/ui/README.md).
 
 ### TypeScript Errors After Pulling
 Rebuild the library to regenerate type definitions:

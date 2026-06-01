@@ -33,10 +33,10 @@ Components that feel alive. Themes with real personality. Motion your users cont
 pnpm add @opencosmos/ui
 ```
 
-OpenCosmos UI requires **Tailwind CSS** as a styling engine:
+OpenCosmos UI requires **Tailwind CSS v4** as a styling engine:
 
 ```bash
-pnpm add -D tailwindcss@^3.4 postcss autoprefixer
+pnpm add -D tailwindcss@^4 @tailwindcss/postcss
 ```
 
 ### Optional subpath exports
@@ -57,23 +57,34 @@ pnpm add @tanstack/react-table
 pnpm add @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
 ```
 
-### Configure Tailwind
+### Configure styles (one CSS entry — no content globs, no safelist)
 
-```js
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{ts,tsx}",
-    "./node_modules/@opencosmos/ui/dist/**/*.{js,ts,jsx,tsx}"
-  ],
-}
+Tailwind v4 is CSS-first; there is no `tailwind.config.js` `content` array. In your
+app's single CSS entry (e.g. `app/globals.css`), import these in order:
+
+```css
+@import "tailwindcss";                 /* your app's own utilities */
+@import "@opencosmos/ui/theme.css";    /* design tokens + custom utilities */
+@import "@opencosmos/ui/globals.css";  /* default token values (:root) */
+@import "@opencosmos/ui/styles.css";   /* precompiled component styles */
 ```
 
-### Import styles
+Then import that one file in your root layout:
 
 ```tsx
-import '@opencosmos/ui/globals.css';
+// app/layout.tsx
+import './globals.css';
 ```
+
+> **Why `styles.css`?** It is a precompiled stylesheet shipped with the package
+> containing every Tailwind class the components use (including responsive
+> variants). This means you **do not** need to add `@opencosmos/ui` to a Tailwind
+> `content`/`@source` glob, and you **do not** need a safelist — both of which are
+> fragile (Tailwind v4 + Turbopack silently ignores `node_modules` symlink scans).
+> Import `styles.css` and component styling just works.
+
+> **Order matters:** keep `styles.css` after `globals.css` so token values resolve.
+> `styles.css` intentionally emits no `:root` token vars, so it never clobbers them.
 
 ## Usage
 

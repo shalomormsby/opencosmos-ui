@@ -378,6 +378,33 @@ and can be removed.
 
 ---
 
+#### LESSON 4 — Never build Tailwind class names by interpolation
+
+**Symptom:** A component looks correct in source but renders unstyled in a consuming app —
+specifically, gaps/columns/spacing are missing with no error. Classic case: `Grid` columns
+collapse to one full-width column with no gap.
+
+**Root cause:** Tailwind only emits CSS for class names it can see as **complete static string
+literals** when scanning source. A class assembled at runtime — `` `gap-${n}` ``, or a responsive
+prefix added dynamically like `` `md:${cls}` `` — appears literally nowhere, so the utility is
+**silently never generated**. `Grid`/`Stack`/`GridItem` did exactly this and shipped broken.
+
+**The rule:**
+- Never interpolate a Tailwind utility. Index into the exhaustive static-literal maps in
+  [`packages/ui/src/lib/responsive-classes.ts`](../packages/ui/src/lib/responsive-classes.ts)
+  (regenerate via `pnpm --filter @opencosmos/ui gen:responsive-classes`).
+- The guardrail test `packages/ui/src/test/no-dynamic-classes.test.ts` fails CI if the pattern
+  returns. Fix the class; never disable the test.
+
+**Distribution side of the same problem:** the package ships a precompiled
+`@opencosmos/ui/styles.css` (built by `build:styles` from `styles.src.css`) so consuming apps get
+every component class from one import — no `content`/`@source` glob over `node_modules`, no
+per-app safelist (Tailwind v4 + Turbopack silently ignores symlinked `node_modules`). When adding
+components, just rebuild; `styles.css` regenerates from `@source "./src"`. `styles.css` references
+theme tokens but emits no `:root` vars, so it never clobbers token values.
+
+---
+
 ## Eject System
 
 Three paths for users to eject component source:

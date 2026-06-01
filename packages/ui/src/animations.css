@@ -1,0 +1,66 @@
+/**
+ * Custom keyframes + @utility definitions used by components.
+ *
+ * Split out from theme.css so the library's compiled stylesheet build can EMIT
+ * these (when used by components) independently of the @theme token block, which
+ * is referenced-only. Imported by: theme.css (public entry) and the styles.css
+ * compile input.
+ */
+
+/* ── Keyframes ──────────────────────────────────────────────────────── */
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@keyframes collapsible-down {
+  from { height: 0; }
+  to { height: var(--radix-collapsible-content-height); }
+}
+
+@keyframes collapsible-up {
+  from { height: var(--radix-collapsible-content-height); }
+  to { height: 0; }
+}
+
+/* ── Animation Utilities (motion-preference-aware durations) ────────── */
+
+@utility animate-accordion-down {
+  animation: accordion-down var(--duration-default, 0.2s) var(--ease-default, ease-out);
+}
+
+@utility animate-accordion-up {
+  animation: accordion-up var(--duration-default, 0.2s) var(--ease-default, ease-out);
+}
+
+@utility animate-collapsible-down {
+  animation: collapsible-down var(--duration-default, 0.2s) var(--ease-default, ease-out);
+}
+
+@utility animate-collapsible-up {
+  animation: collapsible-up var(--duration-default, 0.2s) var(--ease-default, ease-out);
+}
+
+/* ── Font Utilities ─────────────────────────────────────────────────── */
+
+@utility font-heading {
+  font-family: var(--font-heading);
+}
+
+@utility font-body {
+  font-family: var(--font-body);
+}
+
+@utility font-mono {
+  font-family: var(--font-mono);
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
