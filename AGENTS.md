@@ -427,14 +427,8 @@ Route config, navigation tree, and registry files are large and easy to break wi
 ### Prop Hallucination
 Don't assume components accept props like `className` without reading the source. Check the component file or its types.
 
-### Never build Tailwind class names dynamically (hard rule)
-Tailwind only emits CSS for class names it can see as **complete static string literals**. A class built by interpolation — `` `gap-${n}` `` or `` `md:${cls}` `` — appears literally nowhere, so the utility is **silently never generated** and the component renders unstyled in consuming apps. This caused a real production bug in `Grid`/`Stack`/`GridItem`.
-
-- Build responsive/scaled classes by indexing into the static maps in `packages/ui/src/lib/responsive-classes.ts` (regenerate with `pnpm --filter @opencosmos/ui gen:responsive-classes`).
-- The guardrail test `packages/ui/src/test/no-dynamic-classes.test.ts` fails CI if a `` `<utility>-${…}` `` pattern reappears. Don't disable it — fix the class.
-
-### Tailwind styling in consuming apps
-The package ships a **precompiled `@opencosmos/ui/styles.css`** containing every class the components use. Consuming apps import it (see `packages/ui/README.md`) — they must **not** rely on a Tailwind `content`/`@source` glob over `node_modules/@opencosmos/ui` (Tailwind v4 + Turbopack silently ignores symlinked `node_modules`), and no per-app safelist is needed. If component styles are missing in an app, confirm it imports `@opencosmos/ui/styles.css` after `globals.css`, and that the library was rebuilt (`pnpm --filter @opencosmos/ui build`) so `dist/styles.css` is current.
+### Tailwind class names must be static literals
+Never build a class name by interpolation (`` `gap-${n}` ``, `` `md:${cls}` ``) — Tailwind can't see it, so the utility is silently never generated. Index into the static maps in `packages/ui/src/lib/responsive-classes.ts` instead. The `no-dynamic-classes` test enforces this in CI. Full rationale + the shipped-`styles.css` distribution model: [.claude/CLAUDE.md → LESSON 4](.claude/CLAUDE.md). Consumer setup: [packages/ui/README.md](packages/ui/README.md).
 
 ### TypeScript Errors After Pulling
 Rebuild the library to regenerate type definitions:
