@@ -5,6 +5,7 @@ export type {
   ConstellationNode,
   ConstellationLink,
   ConstellationData,
+  KnowledgeGraphApi,
   KnowledgeGraphProps,
 } from './types'
 export {

@@ -50,11 +50,16 @@ const EDGE_STYLE: Record<EdgeType, { color: [number, number, number, number]; wi
  * (hierarchy / synthesizes / cites) sit visually above the soft semantic
  * underlayer. Override at call site by mutating `EDGE_STYLE` (TODO: expose
  * as a prop if downstream consumers want themed overrides).
+ *
+ * `pointSizeByDegree > 0` enables a hub/leaf differentiator on top of the
+ * tier baseline: nodes with many incoming/outgoing links grow visibly larger
+ * than orphans. Formula: `tierSize * (1 + log10(1 + degree) * factor)`.
  */
 export function prepareGraph(
-  data:       ConstellationData,
-  tierColors: Partial<Record<Tier, string>> = {},
-  tierSizes:  Partial<Record<Tier, number>> = {},
+  data:              ConstellationData,
+  tierColors:        Partial<Record<Tier, string>> = {},
+  tierSizes:         Partial<Record<Tier, number>> = {},
+  pointSizeByDegree: number = 0,
 ): PreparedGraph {
   const nodes = data.nodes
   const n = nodes.length
@@ -94,7 +99,14 @@ export function prepareGraph(
     colors[i * 4 + 2] = rgba[2]
     colors[i * 4 + 3] = rgba[3]
 
-    sizes[i] = sizeByTier[node.tier]
+    const baseSize = sizeByTier[node.tier]
+    if (pointSizeByDegree > 0 && node.degree && node.degree > 0) {
+      // log10 keeps the curve gentle: degree 9 → +1 step, degree 99 → +2 steps.
+      // Multiplying by `pointSizeByDegree` lets the consumer tune amplitude.
+      sizes[i] = baseSize * (1 + Math.log10(1 + node.degree) * pointSizeByDegree)
+    } else {
+      sizes[i] = baseSize
+    }
 
     indexToId[i] = node.id
     idToIndex.set(node.id, i)

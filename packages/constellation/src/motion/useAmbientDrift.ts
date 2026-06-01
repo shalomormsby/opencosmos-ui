@@ -44,7 +44,7 @@ export function useAmbientDrift({
   speed     = 0.4,
 }: AmbientDriftOptions) {
   useEffect(() => {
-    if (!graph || !ready || !enabled || amplitude <= 0) return
+    if (!graph || !ready || !enabled || amplitude <= 0 || speed <= 0) return
 
     const positions = graph.getPointPositions()
     const n = positions.length / 2
