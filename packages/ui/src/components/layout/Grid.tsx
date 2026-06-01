@@ -1,6 +1,12 @@
 import React from 'react';
-
-type ResponsiveValue<T> = T | { base?: T; sm?: T; md?: T; lg?: T; xl?: T };
+import {
+    type ResponsiveValue,
+    gridColsClasses,
+    gapClasses,
+    colSpanClasses,
+    rowSpanClasses,
+    colStartClasses,
+} from '../../lib/responsive-classes';
 
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
@@ -20,19 +26,6 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
     as?: any;
 }
 
-const mapResponsive = (prop: ResponsiveValue<number>, prefix: string, mapFunc: (v: number) => string) => {
-    if (typeof prop === 'number') {
-        return mapFunc(prop);
-    }
-    const classes = [];
-    if (prop.base) classes.push(mapFunc(prop.base));
-    if (prop.sm) classes.push(`sm:${mapFunc(prop.sm)}`);
-    if (prop.md) classes.push(`md:${mapFunc(prop.md)}`);
-    if (prop.lg) classes.push(`lg:${mapFunc(prop.lg)}`);
-    if (prop.xl) classes.push(`xl:${mapFunc(prop.xl)}`);
-    return classes.join(' ');
-};
-
 export const Grid = (
     {
         ref,
@@ -46,26 +39,16 @@ export const Grid = (
         ref?: React.Ref<HTMLDivElement>;
     }
 ) => {
-
-    // Safe mapping for Tailwind scanner
-    const getColClass = (n: number) => {
-        const map: Record<number, string> = {
-            1: 'grid-cols-1', 2: 'grid-cols-2', 3: 'grid-cols-3', 4: 'grid-cols-4',
-            5: 'grid-cols-5', 6: 'grid-cols-6', 7: 'grid-cols-7', 8: 'grid-cols-8',
-            9: 'grid-cols-9', 10: 'grid-cols-10', 11: 'grid-cols-11', 12: 'grid-cols-12'
-        };
-        return map[n] || 'grid-cols-1';
-    };
-
-    const getGapClass = (n: number) => `gap-${n}`;
-
-    const colClasses = mapResponsive(columns, 'grid-cols', getColClass);
-    const gapClasses = mapResponsive(gap, 'gap', getGapClass);
+    // Class names come from static literal maps (see ../../lib/responsive-classes).
+    // NEVER interpolate Tailwind classes here — the scanner can't see runtime-built
+    // utility names, so they would silently never be generated.
+    const colClasses = gridColsClasses(columns);
+    const gapCls = gapClasses(gap);
 
     return (
         <Component
             ref={ref}
-            className={`grid ${colClasses} ${gapClasses} ${className}`}
+            className={`grid ${colClasses} ${gapCls} ${className}`}
             {...props}
         >
             {children}
@@ -95,31 +78,11 @@ export const GridItem = (
         ref?: React.Ref<HTMLDivElement>;
     }
 ) => {
-
-    const getSpanClass = (n: number) => {
-        const map: Record<number, string> = {
-            1: 'col-span-1', 2: 'col-span-2', 3: 'col-span-3', 4: 'col-span-4',
-            5: 'col-span-5', 6: 'col-span-6', 7: 'col-span-7', 8: 'col-span-8',
-            9: 'col-span-9', 10: 'col-span-10', 11: 'col-span-11', 12: 'col-span-12'
-        };
-        return map[n] || '';
-    };
-
-    const getRowSpanClass = (n: number) => {
-        const map: Record<number, string> = {
-            1: 'row-span-1', 2: 'row-span-2', 3: 'row-span-3', 4: 'row-span-4',
-            5: 'row-span-5', 6: 'row-span-6'
-        };
-        return map[n] || '';
-    };
-
-    const getColStartClass = (n: number) => `col-start-${n}`;
-
     const classes = [
-        colSpan ? mapResponsive(colSpan, 'col-span', getSpanClass) : '',
-        rowSpan ? mapResponsive(rowSpan, 'row-span', getRowSpanClass) : '',
-        colStart ? mapResponsive(colStart, 'col-start', getColStartClass) : '',
-        className
+        colSpan ? colSpanClasses(colSpan) : '',
+        rowSpan ? rowSpanClasses(rowSpan) : '',
+        colStart ? colStartClasses(colStart) : '',
+        className,
     ].filter(Boolean).join(' ');
 
     return (

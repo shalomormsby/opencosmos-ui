@@ -1,4 +1,5 @@
 import React from 'react';
+import { gapClasses } from '../../lib/responsive-classes';
 
 export interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
     /**
@@ -76,11 +77,15 @@ export const Stack = (
         }
     };
 
+    // Gap class comes from a static literal map (see ../../lib/responsive-classes).
+    // NEVER interpolate Tailwind classes — the scanner can't see runtime-built
+    // utility names, so they would silently never be generated.
+    const gapCls = gapClasses(gap);
+
     return (
         <Component
             ref={ref}
-            className={`flex ${styles.direction[direction]} ${styles.align[align]} ${styles.justify[justify]} ${wrap ? 'flex-wrap' : 'flex-nowrap'
-                } gap-${gap} ${className}`}
+            className={`flex ${styles.direction[direction]} ${styles.align[align]} ${styles.justify[justify]} ${wrap ? 'flex-wrap' : 'flex-nowrap'} ${gapCls} ${className}`}
             {...props}
         >
             {children}

@@ -1,0 +1,29 @@
+/**
+ * Build input for dist/styles.css — the library's precompiled component
+ * utilities. NOT shipped; this file is the source the Tailwind CLI compiles.
+ *
+ * Goal: emit every Tailwind utility class the components use (including
+ * responsive variants and custom animation utilities) so consuming apps get
+ * correct styling from a single `@import "@opencosmos/ui/styles.css"` — without
+ * relying on Tailwind scanning node_modules, and without re-emitting the theme
+ * token :root vars (which are referenced-only here).
+ */
+
+/* Default Tailwind theme — referenced for generation, emits nothing. */
+@reference "tailwindcss";
+
+/* Design-system tokens — referenced so bg-primary/text-foreground/etc. resolve,
+   without emitting the self-referential :root vars. */
+@reference "./src/theme.tokens.css";
+
+/* The `dark:` variant components rely on. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Emit the custom @utility animations + keyframes when components use them. */
+@import "./src/animations.css";
+
+/* Emit the standard utilities layer, generated from the classes found in src. */
+@import "tailwindcss/utilities.css";
+
+/* Scan all component source for class names. */
+@source "./src";
