@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.25 - 2026-06-22
+
+### Patch Changes
+
+- Updated dependencies [742ef26]
+  - @opencosmos/ui@1.9.1
+
 ## 0.1.24 - 2026-06-01
 
 ### Patch Changes
