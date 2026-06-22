@@ -29,6 +29,11 @@
   to { height: 0; }
 }
 
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* ── Animation Utilities (motion-preference-aware durations) ────────── */
 
 @utility animate-accordion-down {
@@ -45,6 +50,21 @@
 
 @utility animate-collapsible-up {
   animation: collapsible-up var(--duration-default, 0.2s) var(--ease-default, ease-out);
+}
+
+@utility animate-fade-in {
+  animation: fade-in var(--duration-default, 0.2s) var(--ease-default, ease-out);
+}
+
+/* ── Layout Utilities ───────────────────────────────────────────────── */
+
+/* Hide scrollbars while keeping scroll behaviour (Breadcrumbs, SecondaryNav). */
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* ── Font Utilities ─────────────────────────────────────────────────── */
