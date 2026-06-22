@@ -22,6 +22,13 @@
 /* Emit the custom @utility animations + keyframes when components use them. */
 @import "./src/animations.css";
 
+/* Register the tailwindcss-animate utility family (animate-in/out, fade-*, zoom-*,
+   slide-from/to-*) that overlay components (Dialog, Popover, Select, Dropdown,
+   Tooltip, …) use via `data-[state=open/closed]:`. Without this the precompiled
+   stylesheet never emits them and overlay enter/exit animations don't run in
+   consuming apps. @utility-based, so only the classes found by @source emit. */
+@import "tw-animate-css";
+
 /* Emit the standard utilities layer, generated from the classes found in src. */
 @import "tailwindcss/utilities.css";
 
