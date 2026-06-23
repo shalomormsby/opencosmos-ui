@@ -138,7 +138,8 @@ export function createGlowNodeProgram(control: GlowProgramControl): NodeProgramT
       const array = this.array
 
       // Extract RGBA from sigma's color string
-      let r = 128, g = 128, b = 128, a = 255
+      let r = 128, g = 128, b = 128
+      const a = 255
       const color = data.color ?? '#8b949e'
       if (color.startsWith('#') && color.length === 7) {
         r = parseInt(color.slice(1, 3), 16)

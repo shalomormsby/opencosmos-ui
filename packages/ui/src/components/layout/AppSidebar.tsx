@@ -10,6 +10,44 @@ import { PanelLeftClose } from 'lucide-react';
 const STORAGE_KEY = 'appsidebar:state';
 export const APP_SIDEBAR_WIDTH = 280;
 export const APP_SIDEBAR_WIDTH_COLLAPSED = 60;
+/**
+ * Below this viewport width the sidebar switches from a "push" layout (content
+ * offset by the sidebar width) to an "overlay" layout (sidebar floats above
+ * content over a scrim). Pushing a 280px sidebar on a ~360px phone squeezes the
+ * content into an unusable sliver — the overlay keeps the full viewport for
+ * content and lets the sidebar slide over it instead. Exported so consumers that
+ * position chrome relative to the sidebar (e.g. a fixed bottom bar) can match.
+ */
+export const APP_SIDEBAR_MOBILE_BREAKPOINT = 768;
+/**
+ * Width of the open sidebar in overlay (mobile) mode. Leaves a strip of scrim
+ * visible so the user can always tap outside to dismiss, and never exceeds a
+ * comfortable reading width.
+ */
+export const APP_SIDEBAR_WIDTH_MOBILE = 'min(85vw, 320px)';
+
+// ── useIsMobile ─────────────────────────────────────────────────────────────────
+
+/**
+ * True when the viewport is narrower than {@link APP_SIDEBAR_MOBILE_BREAKPOINT}.
+ *
+ * SSR-safe: defaults to `false` (desktop/push layout) so server and first client
+ * render agree, then corrects after mount. Exported so consumers can mirror the
+ * sidebar's responsive switch for their own fixed chrome.
+ */
+export function useIsMobile(breakpoint: number = APP_SIDEBAR_MOBILE_BREAKPOINT): boolean {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+        const update = () => setIsMobile(mql.matches);
+        update();
+        mql.addEventListener('change', update);
+        return () => mql.removeEventListener('change', update);
+    }, [breakpoint]);
+
+    return isMobile;
+}
 
 // ── Context ───────────────────────────────────────────────────────────────────
 
@@ -89,14 +127,24 @@ export function AppSidebarInset({
     className?: string;
 }) {
     const { isOpen } = useAppSidebar();
+    const isMobile = useIsMobile();
     const { shouldAnimate, scale } = useMotionPreference();
     const duration = shouldAnimate ? Math.round(300 * (5 / Math.max(scale, 0.1))) : 0;
+
+    // On mobile the open sidebar overlays the content (see AppSidebar), so the
+    // inset is never pushed beyond the collapsed rail — this is what prevents the
+    // content from being squeezed into a sliver on narrow viewports.
+    const marginLeft = isMobile
+        ? APP_SIDEBAR_WIDTH_COLLAPSED
+        : isOpen
+          ? APP_SIDEBAR_WIDTH
+          : APP_SIDEBAR_WIDTH_COLLAPSED;
 
     return (
         <div
             className={cn('min-h-screen', className)}
             style={{
-                marginLeft: isOpen ? APP_SIDEBAR_WIDTH : APP_SIDEBAR_WIDTH_COLLAPSED,
+                marginLeft,
                 transition: shouldAnimate ? `margin-left ${duration}ms ease-out` : 'none',
             }}
         >
@@ -143,22 +191,59 @@ export function AppSidebar({
     footer,
     className,
 }: AppSidebarProps) {
-    const { isOpen, toggle } = useAppSidebar();
+    const { isOpen, toggle, close } = useAppSidebar();
+    const isMobile = useIsMobile();
     const { shouldAnimate, scale } = useMotionPreference();
     const duration = shouldAnimate ? Math.round(300 * (5 / Math.max(scale, 0.1))) : 0;
 
+    // In overlay mode the sidebar floats above content; closing it on Escape and
+    // on backdrop tap matches the standard mobile-drawer affordance.
+    const overlayOpen = isMobile && isOpen;
+    useEffect(() => {
+        if (!overlayOpen) return;
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') close();
+        };
+        document.addEventListener('keydown', onKeyDown);
+        return () => document.removeEventListener('keydown', onKeyDown);
+    }, [overlayOpen, close]);
+
+    // Overlay open → cap to a comfortable reading width with a scrim strip
+    // visible. Otherwise the desktop push widths (full / rail) are unchanged.
+    const width = isMobile
+        ? isOpen
+            ? APP_SIDEBAR_WIDTH_MOBILE
+            : APP_SIDEBAR_WIDTH_COLLAPSED
+        : isOpen
+          ? APP_SIDEBAR_WIDTH
+          : APP_SIDEBAR_WIDTH_COLLAPSED;
+
     return (
-        <aside
-            className={cn(
-                'fixed left-0 top-0 bottom-0 z-40 flex flex-col',
-                'bg-background border-r border-foreground/8 overflow-hidden',
-                className
+        <>
+            {/* Backdrop scrim — only present in overlay mode while open. Tap to
+                dismiss. Sits below the sidebar (z-40) but above page content. */}
+            {overlayOpen && (
+                <div
+                    aria-hidden="true"
+                    onClick={toggle}
+                    className="fixed inset-0 z-40 bg-black/50"
+                    style={{ transition: shouldAnimate ? `opacity ${duration}ms ease-out` : 'none' }}
+                />
             )}
-            style={{
-                width: isOpen ? APP_SIDEBAR_WIDTH : APP_SIDEBAR_WIDTH_COLLAPSED,
-                transition: shouldAnimate ? `width ${duration}ms ease-out` : 'none',
-            }}
-        >
+            <aside
+                className={cn(
+                    'fixed left-0 top-0 bottom-0 flex flex-col',
+                    'bg-background border-r border-foreground/8 overflow-hidden',
+                    // Raise above the scrim (and any sticky page header) when
+                    // overlaying; otherwise keep the original stacking level.
+                    overlayOpen ? 'z-50' : 'z-40',
+                    className
+                )}
+                style={{
+                    width,
+                    transition: shouldAnimate ? `width ${duration}ms ease-out` : 'none',
+                }}
+            >
             {/* ── Header ─────────────────────────────────────────────────────── */}
             <div className="flex items-center h-16 px-[10px] shrink-0">
                 {/* Logo + wordmark — clicking toggles in both states */}
@@ -321,6 +406,7 @@ export function AppSidebar({
                     {footer}
                 </div>
             )}
-        </aside>
+            </aside>
+        </>
     );
 }
