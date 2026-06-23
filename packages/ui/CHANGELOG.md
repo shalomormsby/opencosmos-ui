@@ -1,5 +1,20 @@
 # @opencosmos/ui
 
+## 1.10.0 - 2026-06-23
+
+### Minor Changes
+
+- **AppSidebar: overlay on mobile instead of squeezing content.** Below `768px` the
+  sidebar now floats above content over a tap-to-dismiss scrim rather than pushing
+  it with `margin-left`. Previously, opening the 280px sidebar on a narrow viewport
+  offset the content by the full sidebar width, squeezing it into an unusable
+  sliver. `AppSidebarInset` no longer pushes past the collapsed rail on mobile, and
+  the open sidebar is capped to a comfortable overlay width.
+
+  Adds `useIsMobile()`, `APP_SIDEBAR_MOBILE_BREAKPOINT`, and `APP_SIDEBAR_WIDTH_MOBILE`
+  exports so consumers can mirror the responsive switch for their own fixed chrome.
+  Desktop push behavior is unchanged.
+
 ## 1.9.1 - 2026-06-22
 
 ### Patch Changes

@@ -1,6 +1,16 @@
 # Changelog
 
 
+## 2026-06-23
+
+**AppSidebar: overlay on mobile instead of squeezing content** (`@opencosmos/ui` 1.9.1 → 1.10.0)
+
+- Below `768px` the sidebar now floats above content over a tap/Escape-dismiss scrim rather than offsetting it with `margin-left`. Previously, opening the 280px sidebar on a narrow viewport pushed content by the full sidebar width, squeezing it into an unusable sliver.
+- `AppSidebarInset` no longer pushes past the collapsed rail on mobile; the open sidebar caps to an overlay width (`min(85vw, 320px)`) and raises above the scrim.
+- Added exports: `useIsMobile()`, `APP_SIDEBAR_MOBILE_BREAKPOINT`, `APP_SIDEBAR_WIDTH_MOBILE` — so consumers can mirror the responsive switch for their own fixed chrome.
+- Desktop push/resize behavior unchanged. 157/157 tests pass.
+- Drive-by: fixed a pre-existing `prefer-const` lint error in `GlowNodeProgram.ts` that was failing the CI lint gate.
+
 ## 2026-02-28
 
 **Added GlassSurface to Layout**
