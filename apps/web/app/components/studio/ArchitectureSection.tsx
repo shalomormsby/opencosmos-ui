@@ -45,7 +45,7 @@ export function ArchitectureSection({ breadcrumbs }: ArchitectureSectionProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <Card className="p-4 bg-[var(--color-surface)]">
-                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Actions (3)</h4>
+                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Actions (5)</h4>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
                   Interactive elements that trigger behaviors
                 </p>
@@ -55,7 +55,7 @@ export function ArchitectureSection({ breadcrumbs }: ArchitectureSectionProps) {
               </Card>
 
               <Card className="p-4 bg-[var(--color-surface)]">
-                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Forms (11)</h4>
+                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Forms (19)</h4>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
                   Input controls for data collection with validation
                 </p>
@@ -65,7 +65,7 @@ export function ArchitectureSection({ breadcrumbs }: ArchitectureSectionProps) {
               </Card>
 
               <Card className="p-4 bg-[var(--color-surface)]">
-                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Navigation (6)</h4>
+                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Navigation (10)</h4>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
                   Moving through content hierarchy and app structure
                 </p>
@@ -75,7 +75,7 @@ export function ArchitectureSection({ breadcrumbs }: ArchitectureSectionProps) {
               </Card>
 
               <Card className="p-4 bg-[var(--color-surface)]">
-                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Overlays (9)</h4>
+                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Overlays (12)</h4>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
                   Contextual content that appears above main UI
                 </p>
@@ -85,7 +85,7 @@ export function ArchitectureSection({ breadcrumbs }: ArchitectureSectionProps) {
               </Card>
 
               <Card className="p-4 bg-[var(--color-surface)]">
-                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Feedback (5)</h4>
+                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Feedback (9)</h4>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
                   Communicating system state and user action results
                 </p>
@@ -95,7 +95,7 @@ export function ArchitectureSection({ breadcrumbs }: ArchitectureSectionProps) {
               </Card>
 
               <Card className="p-4 bg-[var(--color-surface)]">
-                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Data Display (6)</h4>
+                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Data Display (19)</h4>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
                   Presenting information in structured formats
                 </p>
@@ -105,7 +105,7 @@ export function ArchitectureSection({ breadcrumbs }: ArchitectureSectionProps) {
               </Card>
 
               <Card className="p-4 bg-[var(--color-surface)]">
-                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Layout (8)</h4>
+                <h4 className="font-semibold mb-2 text-[var(--color-text-primary)]">Layout (17)</h4>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
                   Spatial organization and structural elements
                 </p>

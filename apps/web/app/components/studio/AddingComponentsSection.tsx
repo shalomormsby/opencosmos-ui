@@ -736,9 +736,9 @@ const Form: typeof FormProvider = FormProvider;`}
                   </p>
                   <CollapsibleCodeBlock
                     id="troubleshoot-1"
-                    code={`> @ecosystem/web@0.1.0 build
-> next build --filter=@ecosystem/web
-error: unknown option '--filter=@ecosystem/web'
+                    code={`> web@0.1.0 build
+> next build --filter=web
+error: unknown option '--filter=web'
 ELIFECYCLE Command failed with exit code 1.`}
                     defaultCollapsed={false}
                     showCopy={false}
@@ -761,7 +761,7 @@ ELIFECYCLE Command failed with exit code 1.`}
                     <CollapsibleCodeBlock
                       id="troubleshoot-2"
                       code={`{
-  "buildCommand": "pnpm build --filter=@ecosystem/web"
+  "buildCommand": "pnpm build --filter=web"
 }`}
                       defaultCollapsed={false}
                       showCopy={false}
@@ -784,7 +784,7 @@ ELIFECYCLE Command failed with exit code 1.`}
                     <CollapsibleCodeBlock
                       id="troubleshoot-3"
                       code={`{
-  "buildCommand": "turbo build --filter=@ecosystem/web",
+  "buildCommand": "turbo build --filter=web",
   "installCommand": "pnpm install --frozen-lockfile"
 }`}
                       defaultCollapsed={false}
@@ -811,7 +811,7 @@ ELIFECYCLE Command failed with exit code 1.`}
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-[var(--color-primary)] font-bold">4.</span>
-                      <span>Then builds <Code syntax="plain">@ecosystem/web</Code> (runs next build)</span>
+                      <span>Then builds <Code syntax="plain">web</Code> (runs next build)</span>
                     </li>
                   </ol>
                 </div>
@@ -877,7 +877,7 @@ ELIFECYCLE Command failed with exit code 1.`}
                     </p>
                     <CollapsibleCodeBlock
                       id="troubleshoot-turbo-filter"
-                      code="pnpm turbo build --filter=creative-powerup..."
+                      code="pnpm turbo build --filter=web..."
                       defaultCollapsed={false}
                       showCopy={true}
                     />
@@ -957,7 +957,7 @@ ELIFECYCLE Command failed with exit code 1.`}
                           <CollapsibleCodeBlock
                             id="troubleshoot-vercel-config"
                             code={`{
-  "buildCommand": "turbo build --filter=@ecosystem/web",
+  "buildCommand": "turbo build --filter=web",
   "installCommand": "pnpm install --frozen-lockfile"
 }`}
                             defaultCollapsed={false}

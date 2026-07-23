@@ -185,28 +185,7 @@
     "zod": "^3.24.1"
   },
   "peerDependenciesMeta": {
-    "@dnd-kit/core": {
-      "optional": true
-    },
-    "@dnd-kit/sortable": {
-      "optional": true
-    },
-    "@dnd-kit/utilities": {
-      "optional": true
-    },
     "@hookform/resolvers": {
-      "optional": true
-    },
-    "@tanstack/react-table": {
-      "optional": true
-    },
-    "date-fns": {
-      "optional": true
-    },
-    "react-day-picker": {
-      "optional": true
-    },
-    "react-hook-form": {
       "optional": true
     },
     "zod": {
@@ -223,6 +202,7 @@
     }
   },
   "dependencies": {
+    "@opencosmos/tokens": "workspace:*",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.8",

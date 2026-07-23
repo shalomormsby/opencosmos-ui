@@ -9,6 +9,8 @@
  * See: packages/tokens/src/studio.ts, terra.ts, volt.ts, speedboat.ts
  */
 
+@import './components/layout/glass-surface.css';
+
 @layer base {
   :root {
     /* ── Color Palette (Studio Light) ────────────────────────────── */
@@ -183,5 +185,3 @@
     border-color: var(--color-border);
   }
 }
-
-@import './components/layout/glass-surface.css';

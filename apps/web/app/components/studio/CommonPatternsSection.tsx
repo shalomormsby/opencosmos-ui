@@ -307,18 +307,16 @@ export function SearchBar({ placeholder, onSearch }: SearchBarProps) {
           <h3 className="font-semibold mb-3 text-[var(--color-text-primary)]">
             Using the useForm hook for form validation
           </h3>
-          <CollapsibleCodeBlock id="pattern-6" code={`import { useForm, TextField, Button } from '@opencosmos/ui';
+          <CollapsibleCodeBlock id="pattern-6" code={`import { useForm, TextField, Button, patterns } from '@opencosmos/ui';
 
 export function LoginForm() {
-  const { values, errors, handleChange, handleSubmit } = useForm({
+  const { values, errors, handleChange, handleBlur, handleSubmit, isSubmitting } = useForm({
     initialValues: { email: '', password: '' },
-    validate: (values) => {
-      const errors: Record<string, string> = {};
-      if (!values.email) errors.email = 'Email is required';
-      if (!values.password) errors.password = 'Password is required';
-      return errors;
+    validations: {
+      email: { required: true, pattern: patterns.email },
+      password: { required: true, minLength: { value: 8, message: 'Min 8 chars' } },
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log('Form submitted:', values);
     },
   });
@@ -331,7 +329,9 @@ export function LoginForm() {
         type="email"
         value={values.email}
         onChange={handleChange}
-        error={errors.email}
+        onBlur={handleBlur}
+        error={!!errors.email}
+        helperText={errors.email}
       />
       <TextField
         label="Password"
@@ -339,9 +339,11 @@ export function LoginForm() {
         type="password"
         value={values.password}
         onChange={handleChange}
-        error={errors.password}
+        onBlur={handleBlur}
+        error={!!errors.password}
+        helperText={errors.password}
       />
-      <Button type="submit" variant="default">
+      <Button type="submit" variant="default" disabled={isSubmitting}>
         Log In
       </Button>
     </form>

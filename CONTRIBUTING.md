@@ -1,4 +1,4 @@
-# Contributing to Shalom's Creative Ecosystem
+# Contributing to OpenCosmos UI
 
 Thank you for your interest in contributing! This project is built on the belief that human-centered design can be proven through architecture, not just claimed — and contributions that share that vision are welcome.
 
@@ -18,7 +18,7 @@ pnpm build
 ### Prerequisites
 
 - Node.js 24+ (see `.nvmrc`)
-- pnpm 8.15.0+
+- pnpm 10.26.1+
 
 ## How to Contribute
 
@@ -47,7 +47,7 @@ pnpm build
 
 ### Adding Components
 
-If you're adding a new component to `@opencosmos/ui`, follow the [register-new-component workflow](.agent/workflows/register-new-component.md) exactly. Incomplete registration means the component won't be discoverable.
+If you're adding a new component to `@opencosmos/ui`, follow the [Adding a Component workflow](.claude/CLAUDE.md#adding-a-component-complete-workflow) exactly. Incomplete registration means the component won't be discoverable.
 
 ## Code Standards
 
