@@ -1043,7 +1043,7 @@ import { Button, Text } from '@opencosmos/ui';
                 <li>Node.js 18.0.0 or later</li>
                 <li>Package Manager: pnpm 8.15.0+ (or npm 9+, yarn 3+)</li>
                 <li>React 18+ or React 19+ (React 19 recommended)</li>
-                <li>Tailwind CSS 3.0.0 or later</li>
+                <li>Tailwind CSS v4 — optional, only needed if your app also writes its own Tailwind utility classes. Component styles ship precompiled in <Code className="text-xs">@opencosmos/ui/styles.css</Code>, so no Tailwind content/safelist config is required.</li>
               </ul>
             </div>
             <div>
@@ -1053,8 +1053,8 @@ import { Button, Text } from '@opencosmos/ui';
                 <li>Next.js 15+ (App Router or Pages Router)</li>
                 <li>Vite 5+</li>
                 <li>Remix 2+</li>
-                <li>Create React App (with Tailwind)</li>
-                <li>Any React framework with Tailwind CSS support</li>
+                <li>Create React App</li>
+                <li>Any React framework</li>
               </ul>
             </div>
             <div>
@@ -1076,15 +1076,13 @@ import { Button, Text } from '@opencosmos/ui';
                   Install dependencies
                 </h3>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
-                  OpenCosmos UI requires React and Framer Motion as peer dependencies:
+                  The root <Code className="text-xs">@opencosmos/ui</Code> export re-exports every component — including <Code className="text-xs">Form</Code>, <Code className="text-xs">DatePicker</Code>, <Code className="text-xs">DataTable</Code>, and <Code className="text-xs">DragDrop</Code> — so install their peer dependencies too, even if you don&apos;t use those components directly:
                 </p>
                 <CollapsibleCodeBlock
                   id="installation"
-                  code={`pnpm add react framer-motion @opencosmos/ui
+                  code={`npm install @opencosmos/ui react framer-motion date-fns react-day-picker react-hook-form @tanstack/react-table @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
 # or
-npm install react framer-motion @opencosmos/ui
-# or
-yarn add react framer-motion @opencosmos/ui`}
+pnpm add @opencosmos/ui react framer-motion date-fns react-day-picker react-hook-form @tanstack/react-table @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities`}
                   defaultCollapsed={false}
                   showCopy={true}
                 />
@@ -1100,30 +1098,23 @@ yarn add react framer-motion @opencosmos/ui`}
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-2">
-                  Configure Tailwind CSS
+                  Add the CSS imports
                 </h3>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
-                  Add OpenCosmos UI to your Tailwind content paths:
+                  In your app&apos;s global stylesheet, add these four imports in order:
                 </p>
                 <CollapsibleCodeBlock
-                  id="tailwind-config"
-                  code={`// tailwind.config.ts
-import type { Config } from 'tailwindcss';
-
-export default {
-  content: [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/@opencosmos/ui/**/*.{js,ts,jsx,tsx}', // Add this line
-  ],
-  // ... rest of your config
-} satisfies Config;`}
+                  id="css-imports"
+                  code={`/* app/globals.css */
+@import "tailwindcss";                 /* your app's own utilities (optional) */
+@import "@opencosmos/ui/theme.css";    /* design tokens + custom utilities */
+@import "@opencosmos/ui/globals.css";  /* default token VALUES (:root) */
+@import "@opencosmos/ui/styles.css";   /* precompiled component styles */`}
                   defaultCollapsed={false}
                   showCopy={true}
                 />
                 <p className="text-xs text-[var(--color-text-muted)] mt-3">
-                  <strong>Note:</strong> OpenCosmos UI uses CSS custom properties for theming. No additional Tailwind configuration required—themes are injected at runtime by the ThemeProvider.
+                  <strong>Note:</strong> <Code className="text-xs">@opencosmos/ui/styles.css</Code> is a precompiled stylesheet containing every Tailwind class the components use. Do <strong>not</strong> add <Code className="text-xs">@opencosmos/ui</Code> to a Tailwind <Code className="text-xs">content</Code>/<Code className="text-xs">@source</Code> glob or maintain a safelist — order matters, and <Code className="text-xs">styles.css</Code> must come last so it never clobbers the token values from <Code className="text-xs">globals.css</Code>.
                 </p>
               </div>
             </div>
@@ -1169,16 +1160,19 @@ export function MyComponent() {
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-2">
-                  Wrap your app with ThemeProvider
+                  Wrap your app with the required providers
                 </h3>
                 <CollapsibleCodeBlock
                   id="theme-provider-example"
-                  code={`import { ThemeProvider } from '@opencosmos/ui/providers';
+                  code={`import { ThemeProvider, TooltipProvider, Toaster } from '@opencosmos/ui';
 
 export default function App({ children }) {
   return (
     <ThemeProvider>
-      {children}
+      <TooltipProvider>
+        {children}
+        <Toaster />
+      </TooltipProvider>
     </ThemeProvider>
   );
 }`}
@@ -1783,12 +1777,12 @@ export function Dashboard() {
                   <strong>Common Causes:</strong>
                 </p>
                 <ul className="text-xs text-[var(--color-text-secondary)] list-disc list-inside space-y-1 ml-2 mb-2">
-                  <li>Tailwind CSS not configured to include OpenCosmos UI paths</li>
+                  <li>The four CSS imports missing, or imported out of order</li>
                   <li>ThemeProvider not wrapping your app</li>
                   <li>CSS not loaded in your bundler</li>
                 </ul>
                 <p className="text-xs text-[var(--color-text-secondary)]">
-                  <strong>Solutions:</strong> Add <Code className="text-xs">./node_modules/@opencosmos/ui/**/*.{`{js,ts,jsx,tsx}`}</Code> to Tailwind content, wrap app with <Code className="text-xs">{`<ThemeProvider>`}</Code>, and ensure Tailwind CSS is imported in your root file.
+                  <strong>Solutions:</strong> Confirm your global stylesheet imports <Code className="text-xs">@opencosmos/ui/theme.css</Code>, <Code className="text-xs">@opencosmos/ui/globals.css</Code>, then <Code className="text-xs">@opencosmos/ui/styles.css</Code> in that order (styles.css last), and wrap your app with <Code className="text-xs">{`<ThemeProvider>`}</Code>. Do not add <Code className="text-xs">@opencosmos/ui</Code> to a Tailwind content glob — component styles are precompiled.
                 </p>
               </div>
 

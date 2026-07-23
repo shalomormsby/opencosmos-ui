@@ -29,19 +29,29 @@ The OpenCosmos UI is a production-ready design system that proves human-centered
 ### Installation
 
 ```bash
-npm install @opencosmos/ui
-# or
-pnpm add @opencosmos/ui
+npm install @opencosmos/ui react framer-motion date-fns react-day-picker react-hook-form @tanstack/react-table @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
 ```
+
+The root `@opencosmos/ui` export re-exports every component — including `Form`, `DatePicker`, `Calendar`, `DataTable`, and `DragDrop` — so the peers those components need (`react-hook-form`, `date-fns`, `react-day-picker`, `@tanstack/react-table`, `@dnd-kit/*`) are required, not optional, even if your app doesn't use those components directly. `@hookform/resolvers` and `zod` stay optional (unused by the library itself); `graphology`, `sigma`, and `@react-sigma/core` stay optional and are only needed for `@opencosmos/ui/knowledge-graph`.
 
 ### Basic Setup
 
-Wrap your app root with the required providers:
+Add the CSS imports to your app's global stylesheet, in order:
+
+```css
+/* app/globals.css */
+@import "tailwindcss";                 /* your app's own utilities */
+@import "@opencosmos/ui/theme.css";    /* design tokens + custom utilities */
+@import "@opencosmos/ui/globals.css";  /* default token VALUES (:root) */
+@import "@opencosmos/ui/styles.css";   /* precompiled component styles */
+```
+
+Then wrap your app root with the required providers:
 
 ```tsx
-import { ThemeProvider, TooltipProvider } from '@opencosmos/ui/providers'
+import { ThemeProvider, TooltipProvider } from '@opencosmos/ui'
 import { Toaster } from '@opencosmos/ui'
-import '@opencosmos/ui/globals.css'
+import './globals.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
