@@ -93,7 +93,7 @@ import { Button, Card, ThemeProvider } from '@opencosmos/ui';
 
 export default function App() {
   return (
-    <ThemeProvider theme="studio" defaultMode="system">
+    <ThemeProvider defaultTheme="studio" defaultMode="dark">
       <Card className="max-w-md p-6">
         <h3 className="mb-2 text-lg font-semibold">Welcome to OpenCosmos</h3>
         <p className="mb-4 text-muted-foreground">
@@ -120,21 +120,23 @@ import { cn } from '@opencosmos/ui/utils'
 import { Form, FormField } from '@opencosmos/ui/forms'
 import { DatePicker } from '@opencosmos/ui/dates'
 import { DataTable } from '@opencosmos/ui/tables'
-import { SortableList } from '@opencosmos/ui/dnd'
+import { DragDropList, DragDropTable } from '@opencosmos/ui/dnd'
 ```
 
 ## Component categories
 
 | Category | Examples |
 |----------|----------|
-| **Actions** | Button, Toggle, ToggleGroup |
-| **Forms** | Input, Select, Checkbox, Switch, Slider, SearchBar |
-| **Navigation** | Tabs, Menubar, Breadcrumb, Pagination, NavigationMenu |
-| **Overlays** | Dialog, Sheet, Popover, Tooltip, ContextMenu, HoverCard |
-| **Data Display** | Card, Avatar, Badge, Table, ScrollArea, Carousel |
-| **Feedback** | Alert, Progress, Skeleton, Toast (Sonner) |
-| **Layout** | Accordion, Separator, ResizablePanels, Collapsible |
-| **Features** | Customizer, ThemeSwitcher |
+| **Actions** | Button, Toggle, ToggleGroup, Link, Magnetic |
+| **Forms** | Input, Select, Checkbox, Switch, Slider, SearchBar, DatePicker, ColorPicker, FileUpload, InputOTP, Combobox |
+| **Navigation** | Tabs, Menubar, Breadcrumb, Pagination, NavigationMenu, Command |
+| **Overlays** | Dialog, Sheet, Popover, Tooltip, ContextMenu, HoverCard, AlertDialog, NotificationCenter |
+| **Data Display** | Card, Avatar, Badge, Table, DataTable, ScrollArea, Carousel, TreeView, Timeline, StatCard |
+| **Feedback** | Alert, Progress, Skeleton, Toast (Sonner), Spinner, Stepper, ThinkingIndicator |
+| **Layout** | Accordion, Separator, ResizablePanels, Collapsible, Grid, Stack, Sidebar |
+| **Features** | Customizer, ThemeSwitcher, GlassSurface, Hero |
+
+This table isn't exhaustive — the package ships 100 components across 11 categories. For the complete, always-current list, run `npx @opencosmos/ui eject --list` or check `src/component-registry.ts`.
 
 ## Eject — full customization
 

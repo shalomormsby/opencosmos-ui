@@ -22,10 +22,10 @@ opencosmos-ui/
 │   │       ├── hooks/       # useTheme, useMotionPreference, etc.
 │   │       └── providers/   # ThemeProvider, etc.
 │   ├── tokens/              # @opencosmos/tokens — Design tokens (colors, typography, spacing, motion, syntax)
-│   └── mcp/                 # @opencosmos/mcp — MCP server for AI assistants (8 tools)
+│   ├── mcp/                 # @opencosmos/mcp — MCP server for AI assistants (8 tools)
+│   └── constellation/       # @opencosmos/constellation — Knowledge-graph visualizer
 ├── apps/
 │   └── web/                 # OpenCosmos Studio — Interactive docs at opencosmos.ai/studio
-├── .agent/                  # Agent workflows (archived)
 ├── .github/workflows/       # CI: build, lint, typecheck, test, size-check
 ├── docs/                    # Planning docs, audits, guides
 ├── DESIGN-PHILOSOPHY.md     # The North Star
@@ -63,13 +63,14 @@ opencosmos-ui/
 
 ## Repository Architecture
 
-### Three Published Packages
+### Four Published Packages
 
 | Package | Version | Purpose |
 |---------|---------|---------|
-| **@opencosmos/ui** | 1.3.1 | 100 accessible React components, 3 themes, motion system, eject CLI |
+| **@opencosmos/ui** | 1.10.0 | 100 accessible React components, 3 themes, motion system, eject CLI |
 | **@opencosmos/tokens** | 1.0.1 | Design tokens (colors, typography, spacing, motion, syntax highlighting) |
-| **@opencosmos/mcp** | 0.8.3 | MCP server with 8 tools for AI assistants to discover and use components |
+| **@opencosmos/mcp** | 0.8.6 | MCP server with 8 tools for AI assistants to discover and use components |
+| **@opencosmos/constellation** | 0.1.0 | Knowledge-graph visualizer — a React wrapper around `@cosmos.gl/graph` |
 
 ### One Application
 
@@ -77,21 +78,22 @@ opencosmos-ui/
 |-----|---------|-----|
 | **OpenCosmos Studio** (`apps/web`) | Interactive docs, component playground, eject UI | [opencosmos.ai/studio](https://opencosmos.ai/studio) |
 
-### Relationship to Ecosystem
+### Relationship to Consumer Repos
 
 ```
-opencosmos-ui (this repo)          ecosystem (separate repo)
+opencosmos-ui (this repo)          opencosmos (separate repo)
 ┌─────────────────────┐                 ┌────────────────────────┐
 │ packages/ui         │──npm publish──▶ │ apps/portfolio         │
 │ packages/tokens     │                 │ apps/creative-powerup  │
-│ packages/mcp        │                 │ apps/sage-stocks       │
-│ apps/web (Studio)   │                 │ packages/sage-ai (WIP) │
-└─────────────────────┘                 └────────────────────────┘
+│ packages/mcp        │                 │ apps/stocks            │
+│ packages/constellation│               │ apps/cosmos            │
+│ apps/web (Studio)   │                 └────────────────────────┘
+└─────────────────────┘
 ```
 
-- SDE packages are published to npm. Consumer apps install from npm (`@opencosmos/ui: ^1.3.1`), not workspace references.
+- Packages are published to npm. Consumer apps install from npm (`@opencosmos/ui: ^1.10.0`), not workspace references.
 - OpenCosmos Studio (`apps/web`) uses `workspace:*` references to the local packages for live development.
-- The ecosystem repo has its own AGENTS.md, CLAUDE.md, and workflows.
+- The `opencosmos` repo has its own AGENTS.md, CLAUDE.md, and workflows.
 
 ---
 

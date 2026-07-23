@@ -1,6 +1,6 @@
 # OpenCosmos UI
 
-> **Lovable by Design** — 92 accessible React components, 3 runtime-switchable themes, user-controlled motion system, and a philosophy-driven design system built for modern product teams.
+> **Lovable by Design** — 100 accessible React components, 3 runtime-switchable themes, user-controlled motion system, and a philosophy-driven design system built for modern product teams.
 
 [![npm version](https://img.shields.io/npm/v/@opencosmos/ui.svg?style=flat-square)](https://www.npmjs.com/package/@opencosmos/ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -13,7 +13,7 @@ The OpenCosmos UI is a production-ready design system that proves human-centered
 
 **What's included:**
 
-- **92 Components** across 11 functional categories (actions, forms, navigation, overlays, feedback, data-display, layout, features, backgrounds, cursor, motion)
+- **100 Components** across 11 functional categories (actions, forms, navigation, overlays, feedback, data-display, layout, features, backgrounds, cursor, motion)
 - **3 Runtime Themes** — Studio (professional), Terra (organic), Volt (electric) — each with light and dark modes
 - **User-Controlled Motion** — Intensity slider (0-10 scale) with automatic system preference sync
 - **Customizer Feature** — User control made tangible, with theme switching, motion tuning, and localStorage persistence
@@ -32,7 +32,7 @@ The OpenCosmos UI is a production-ready design system that proves human-centered
 npm install @opencosmos/ui react framer-motion date-fns react-day-picker react-hook-form @tanstack/react-table @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
 ```
 
-The root `@opencosmos/ui` export re-exports every component — including `Form`, `DatePicker`, `Calendar`, `DataTable`, and `DragDrop` — so the peers those components need (`react-hook-form`, `date-fns`, `react-day-picker`, `@tanstack/react-table`, `@dnd-kit/*`) are required, not optional, even if your app doesn't use those components directly. `@hookform/resolvers` and `zod` stay optional (unused by the library itself); `graphology`, `sigma`, and `@react-sigma/core` stay optional and are only needed for `@opencosmos/ui/knowledge-graph`.
+The root `@opencosmos/ui` export re-exports every component — including `Form`, `DatePicker`, `Calendar`, `DataTable`, and `DragDropList`/`DragDropTable` — so the peers those components need (`react-hook-form`, `date-fns`, `react-day-picker`, `@tanstack/react-table`, `@dnd-kit/*`) are required, not optional, even if your app doesn't use those components directly. `@hookform/resolvers` and `zod` stay optional (unused by the library itself); `graphology`, `sigma`, and `@react-sigma/core` stay optional and are only needed for `@opencosmos/ui/knowledge-graph`.
 
 ### Basic Setup
 
@@ -55,7 +55,7 @@ import './globals.css'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ThemeProvider defaultTheme="studio" defaultMode="system">
+    <ThemeProvider defaultTheme="studio" defaultMode="dark">
       <TooltipProvider>
         {children}
         <Toaster />
@@ -93,6 +93,7 @@ export function MyComponent() {
 | [`@opencosmos/ui`](https://www.npmjs.com/package/@opencosmos/ui) | 100 components, providers, hooks, theme system |
 | [`@opencosmos/tokens`](https://www.npmjs.com/package/@opencosmos/tokens) | Design tokens (colors, typography, spacing, motion) |
 | [`@opencosmos/mcp`](https://www.npmjs.com/package/@opencosmos/mcp) | MCP server for AI-assisted component discovery |
+| [`@opencosmos/constellation`](https://www.npmjs.com/package/@opencosmos/constellation) | Living knowledge-graph visualizer — a React wrapper around `@cosmos.gl/graph` |
 
 ### Subpath Exports
 
@@ -102,7 +103,7 @@ Include only what you need:
 import { Form, FormField, FormItem } from '@opencosmos/ui/forms'
 import { DatePicker, Calendar } from '@opencosmos/ui/dates'
 import { DataTable } from '@opencosmos/ui/tables'
-import { DragDrop } from '@opencosmos/ui/dnd'
+import { DragDropList, DragDropTable } from '@opencosmos/ui/dnd'
 import { WarpBackground, OrbBackground } from '@opencosmos/ui/webgl'
 import { useMotionPreference, useTheme } from '@opencosmos/ui/hooks'
 import { ThemeProvider } from '@opencosmos/ui/providers'
@@ -206,7 +207,7 @@ Interactive documentation at [opencosmos.ai/studio](https://opencosmos.ai/studio
 ### Prerequisites
 
 - Node.js 24+ (see `.nvmrc`)
-- pnpm 8.15.0+
+- pnpm 10.26.1+
 
 ### Setup
 

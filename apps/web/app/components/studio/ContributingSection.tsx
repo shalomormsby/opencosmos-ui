@@ -41,7 +41,7 @@ export function ContributingSection({ breadcrumbs }: ContributingSectionProps) {
               <h3 className="font-semibold mb-2 text-[var(--color-text-primary)]">Clone the repository</h3>
               <pre className="bg-[var(--color-surface)] p-4 rounded-md text-sm overflow-x-auto border border-[var(--color-border)]">
                 <code className="text-[var(--color-text-primary)]">git clone https://github.com/shalomormsby/opencosmos-ui.git
-                  cd ecosystem</code>
+                  cd opencosmos-ui</code>
               </pre>
             </div>
 
@@ -109,7 +109,7 @@ export function ContributingSection({ breadcrumbs }: ContributingSectionProps) {
                     pnpm --filter web dev</code>
                 </pre>
                 <p className="text-sm text-[var(--color-text-muted)] mt-2">
-                  Verify your changes work across all three themes (Studio, Sage, Volt)
+                  Verify your changes work across all three themes (Studio, Terra, Volt)
                 </p>
               </div>
             </li>
@@ -152,7 +152,7 @@ export function ContributingSection({ breadcrumbs }: ContributingSectionProps) {
               <div>
                 <span className="font-medium text-[var(--color-text-primary)]">Component works in all three themes</span>
                 <p className="text-sm text-[var(--color-text-secondary)] mt-1">
-                  Test Studio, Sage, and Volt themes in the studio app
+                  Test Studio, Terra, and Volt themes in the studio app
                 </p>
               </div>
             </label>
@@ -236,7 +236,7 @@ export function ContributingSection({ breadcrumbs }: ContributingSectionProps) {
 This component embodies [principle from DESIGN-PHILOSOPHY.md]
 
 ## Screenshots
-[Add screenshots showing the component in Studio, Sage, and Volt themes]
+[Add screenshots showing the component in Studio, Terra, and Volt themes]
 
 ## Checklist
 - [x] Build succeeds

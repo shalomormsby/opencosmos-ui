@@ -108,18 +108,17 @@ This isn't a collection of separate projects. It's an **ecosystem** expressing a
 
 ### The Expressions (Current)
 
+These consumer apps live in the separate `opencosmos` repo and install `@opencosmos/ui` from npm:
+
 **Portfolio** (`apps/portfolio/`)
 The proof of philosophy. An interactive experience that embodies human-centered design through the experience itself.
 
 **Creative Powerup** (`apps/creative-powerup/`)
 Community platform and experiment gallery for purpose-driven creators.
 
-**SageOS** (`apps/sageos/`)
-Personal operating system. Future home for the productivity philosophy and tools that power everything else.
-
 ### The Shared Foundation
 
-**Design System** (`packages/ui/` + `packages/tokens/`)
+**Design System** (`packages/ui/` + `packages/tokens/`, this repo)
 The heart of the ecosystem. Functionally-organized components, design tokens, and flagship features that embody the philosophy:
 
 1. **Customizer** — User control made tangible (motion slider, theme toggle, typography)
@@ -153,9 +152,9 @@ What would delight the human, create joy, or expand their degrees of freedom?
 ### Monorepo Structure
 
 ```
-ecosystem/
-├── apps/                     ← Portfolio, Sage Stocks, Creative Powerup, SageOS
-│   └── web/   ← Documentation & playground
+opencosmos-ui/
+├── apps/
+│   └── web/                  ← OpenCosmos Studio - Documentation & playground
 ├── packages/
 │   ├── ui/                   ← @opencosmos/ui - Component library
 │   │   └── src/
@@ -163,9 +162,12 @@ ecosystem/
 │   │       ├── lib/          ← Utilities, validation, animations
 │   │       ├── hooks/        ← useTheme, useMotionPreference, etc.
 │   │       └── providers/    ← ThemeProvider, etc.
-│   ├── tokens/               ← @opencosmos/tokens - Design system tokens
-│   └── config/               ← Shared config (Tailwind, etc.)
+│   ├── tokens/                ← @opencosmos/tokens - Design system tokens
+│   ├── mcp/                   ← @opencosmos/mcp - MCP server for AI assistants
+│   └── constellation/         ← @opencosmos/constellation - Knowledge-graph visualizer
 ```
+
+Consumer apps (Portfolio, Creative Powerup, etc.) live in the separate `opencosmos` repo and install these packages from npm.
 
 **Why monorepo?**
 - Single source of truth for design philosophy and tokens

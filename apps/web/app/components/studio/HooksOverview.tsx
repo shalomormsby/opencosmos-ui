@@ -1,7 +1,7 @@
 'use client';
 
 import { Heading, Text, Card, Badge } from '@opencosmos/ui';
-import { ArrowRight, Webhook, FormInput, Palette, Bell, Zap, Clipboard } from 'lucide-react';
+import { ArrowRight, Webhook, FormInput, Palette, Bell, Zap } from 'lucide-react';
 
 interface HooksOverviewProps {
     onNavigate: (itemId: string) => void;
@@ -31,12 +31,6 @@ const HOOKS = [
         label: 'useMotionPreference',
         description: 'Detect prefers-reduced-motion settings.',
         icon: <Zap className="w-6 h-6" />
-    },
-    {
-        id: 'use-clipboard',
-        label: 'useClipboard',
-        description: 'Copy text to system clipboard.',
-        icon: <Clipboard className="w-6 h-6" />
     }
 ];
 

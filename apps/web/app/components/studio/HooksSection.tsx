@@ -5,17 +5,6 @@ import { Card, Button, Badge, Code, CollapsibleCodeBlock } from '@opencosmos/ui'
 import { TextField, Breadcrumbs, type BreadcrumbItemLegacy } from '@opencosmos/ui';
 import { useForm, useTheme, useToast } from '@opencosmos/ui';
 import { HooksOverview } from './HooksOverview';
-// useClipboard is mocked locally below — the hook is available via @opencosmos/ui/hooks if needed
-
-// Mocking useClipboard for now until the package linking is fully propagated
-const useClipboard = () => {
-  return {
-    copy: (text: string) => {
-      navigator.clipboard.writeText(text);
-      return true;
-    }
-  };
-};
 
 interface HooksSectionProps {
   activeItemId?: string;
@@ -66,48 +55,12 @@ export function HooksSection({ activeItemId, breadcrumbs, onItemChange }: HooksS
         {activeHook === 'useTheme' && <UseThemeSection />}
         {activeHook === 'useToast' && <UseToastSection />}
         {activeHook === 'useMotionPreference' && <UseMotionPreferenceSection />}
-        {activeHook === 'useClipboard' && <UseClipboardSection />}
       </div>
     </div>
   );
 }
 
 // --- SECTIONS ---
-
-function UseClipboardSection() {
-  const { copy } = useClipboard();
-  const { toast } = useToast();
-
-  const handleCopy = () => {
-    copy('Hello from OpenCosmos UI!');
-    toast('Copied to clipboard!', 'success');
-  }
-
-  return (
-    <section className="space-y-6">
-      <div>
-        <h3 className="text-2xl font-semibold mb-2 text-[var(--color-text-primary)]">useClipboard</h3>
-        <Card className="p-6">
-          <p className="text-[var(--color-text-primary)] mb-4">
-            Copy text to the clipboard with ease. Available as a utility hook via <Code syntax="plain">@opencosmos/ui/hooks</Code>.
-          </p>
-
-          <div className="flex flex-col gap-4">
-            <div className="text-sm text-[var(--color-text-secondary)]">
-              <strong>Import:</strong>
-              <Code syntax="plain" className="mt-2">import {'{ useClipboard }'} from '@opencosmos/ui/hooks';</Code>
-            </div>
-
-            <div>
-              <h5 className="font-medium text-[var(--color-text-primary)] mb-2">Live Demo</h5>
-              <Button onClick={handleCopy}>Copy "Hello from OpenCosmos UI!"</Button>
-            </div>
-          </div>
-        </Card>
-      </div>
-    </section>
-  )
-}
 
 function UseFormSection() {
   const form = useForm({

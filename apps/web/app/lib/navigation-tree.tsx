@@ -329,13 +329,6 @@ export const navigationTree: NavigationItem[] = [
           { id: 'use-motion-preference', label: 'useMotionPreference', section: 'hooks' },
         ]
       },
-      {
-        id: 'utilities',
-        label: 'Utilities',
-        children: [
-          { id: 'use-clipboard', label: 'useClipboard', section: 'hooks' },
-        ]
-      }
     ],
   },
   {

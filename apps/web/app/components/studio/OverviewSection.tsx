@@ -997,27 +997,27 @@ import { Button, Text } from '@opencosmos/ui';
           </p>
           <CollapsibleCodeBlock
             id="file-structure"
-            code={`ecosystem/
+            code={`opencosmos-ui/
 ├── packages/
 │   ├── ui/                      # @opencosmos/ui - Component library
 │   │   └── src/
 │   │       ├── components/
-│   │       │   ├── actions/     # Button, Toggle, ToggleGroup
-│   │       │   ├── forms/       # Input, Select, Checkbox, etc. (11 components)
-│   │       │   ├── navigation/  # Breadcrumb, Tabs, Pagination, etc. (6 components)
-│   │       │   ├── overlays/    # Dialog, Sheet, Popover, etc. (9 components)
-│   │       │   ├── feedback/    # Alert, Toast, Progress, etc. (5 components)
-│   │       │   ├── data-display/ # Card, Table, Avatar, etc. (6 components)
-│   │       │   └── layout/      # Accordion, Carousel, Separator, etc. (8 components)
+│   │       │   ├── actions/     # Button, Toggle, ToggleGroup, etc. (5 components)
+│   │       │   ├── forms/       # Input, Select, Checkbox, etc. (19 components)
+│   │       │   ├── navigation/  # Breadcrumb, Tabs, Pagination, etc. (10 components)
+│   │       │   ├── overlays/    # Dialog, Sheet, Popover, etc. (12 components)
+│   │       │   ├── feedback/    # Alert, Toast, Progress, etc. (9 components)
+│   │       │   ├── data-display/ # Card, Table, Avatar, etc. (19 components)
+│   │       │   └── layout/      # Accordion, Carousel, Separator, etc. (17 components)
 │   │       ├── lib/             # Utilities, validation, animations, stores
 │   │       ├── hooks/           # useTheme, useMotionPreference, useForm
 │   │       └── providers/       # ThemeProvider
-│   └── tokens/                  # @opencosmos/tokens - Design system tokens
+│   ├── tokens/                  # @opencosmos/tokens - Design system tokens
+│   ├── mcp/                     # @opencosmos/mcp - MCP server for AI-assisted discovery
+│   └── constellation/           # @opencosmos/constellation - Force-directed graph rendering
 │
 └── apps/
-    ├── web/      # This documentation site
-    ├── portfolio/               # Example consumer app
-    └── creative-powerup/        # Example consumer app`}
+    └── web/      # This documentation site`}
             defaultCollapsed={false}
             showCopy={true}
           />
@@ -1041,7 +1041,7 @@ import { Button, Text } from '@opencosmos/ui';
               <h4 className="font-semibold text-[var(--color-text-primary)] mb-2">System Requirements</h4>
               <ul className="list-disc list-inside space-y-1 ml-2">
                 <li>Node.js 18.0.0 or later</li>
-                <li>Package Manager: pnpm 8.15.0+ (or npm 9+, yarn 3+)</li>
+                <li>Package Manager: pnpm 10.26.1+ (or npm 9+, yarn 3+)</li>
                 <li>React 18+ or React 19+ (React 19 recommended)</li>
                 <li>Tailwind CSS v4 — optional, only needed if your app also writes its own Tailwind utility classes. Component styles ship precompiled in <Code className="text-xs">@opencosmos/ui/styles.css</Code>, so no Tailwind content/safelist config is required.</li>
               </ul>
@@ -1076,7 +1076,7 @@ import { Button, Text } from '@opencosmos/ui';
                   Install dependencies
                 </h3>
                 <p className="text-sm text-[var(--color-text-secondary)] mb-3">
-                  The root <Code className="text-xs">@opencosmos/ui</Code> export re-exports every component — including <Code className="text-xs">Form</Code>, <Code className="text-xs">DatePicker</Code>, <Code className="text-xs">DataTable</Code>, and <Code className="text-xs">DragDrop</Code> — so install their peer dependencies too, even if you don&apos;t use those components directly:
+                  The root <Code className="text-xs">@opencosmos/ui</Code> export re-exports every component — including <Code className="text-xs">Form</Code>, <Code className="text-xs">DatePicker</Code>, <Code className="text-xs">DataTable</Code>, and <Code className="text-xs">DragDropList</Code>/<Code className="text-xs">DragDropTable</Code> — so install their peer dependencies too, even if you don&apos;t use those components directly:
                 </p>
                 <CollapsibleCodeBlock
                   id="installation"
