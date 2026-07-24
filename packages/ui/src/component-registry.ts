@@ -37,7 +37,7 @@ export const COMPONENT_REGISTRY = {
   /**
    * Total count of all exported UI components from @opencosmos/ui
    */
-  totalCount: 102,
+  totalCount: 103,
 
   /**
    * Core categories following functional organization pattern
@@ -96,9 +96,9 @@ export const COMPONENT_REGISTRY = {
       examples: ['SplashCursor', 'TargetCursor'],
     },
     blocks: {
-      count: 1,
+      count: 2,
       description: 'Composed page blocks',
-      examples: ['Hero', 'OpenGraphCard'],
+      examples: ['Hero', 'OpenGraphCard', 'TerminalWindow'],
     },
   },
 
