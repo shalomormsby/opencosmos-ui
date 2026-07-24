@@ -67,6 +67,18 @@ app's single CSS entry (e.g. `app/globals.css`), import these in order:
 @import "@opencosmos/ui/theme.css";    /* design tokens + custom utilities */
 @import "@opencosmos/ui/globals.css";  /* default token values (:root) */
 @import "@opencosmos/ui/styles.css";   /* precompiled component styles */
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
 ```
 
 Then import that one file in your root layout:
@@ -85,6 +97,22 @@ import './globals.css';
 
 > **Order matters:** keep `styles.css` after `globals.css` so token values resolve.
 > `styles.css` intentionally emits no `:root` token vars, so it never clobbers them.
+
+> **The `font-family` lines are not optional.** `ThemeProvider` sets `--font-heading`/
+> `--font-body`/`--font-mono` as CSS variables, but nothing in the package applies
+> them anywhere — skip this and every theme renders its correct colors but the
+> exact same typeface, silently. You also need to load each theme's fonts yourself
+> (Studio: Outfit + Manrope, Terra: Lora + Instrument Sans, Volt: Space Grotesk) via
+> `next/font/google` and expose them as `--font-studio-heading`, `--font-studio-body`,
+> etc. — see `apps/web/lib/fonts.ts` in the opencosmos-ui repo for a working example.
+
+> **Never hardcode a `dark`/`light` class on a layout wrapper.** `globals.css`
+> defines dark-mode tokens under a bare `.dark { ... }` selector, not `:root.dark`,
+> so any element carrying that literal class re-pins tokens for its whole subtree —
+> permanently, regardless of what `ThemeProvider`/`CustomizerPanel` set on `<html>`.
+> Copying a "force this section dark" pattern onto a top-level wrapper makes the
+> Customizer look broken: its own UI updates, the page underneath doesn't. Only use
+> it on a section that should deliberately ignore the user's theme choice.
 
 ## Usage
 

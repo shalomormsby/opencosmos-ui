@@ -44,9 +44,24 @@ Add the CSS imports to your app's global stylesheet, in order:
 @import "@opencosmos/ui/theme.css";    /* design tokens + custom utilities */
 @import "@opencosmos/ui/globals.css";  /* default token VALUES (:root) */
 @import "@opencosmos/ui/styles.css";   /* precompiled component styles */
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body); /* not automatic — see packages/ui/README.md */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
 ```
 
-Then wrap your app root with the required providers:
+Then wrap your app root with the required providers. Never put a hardcoded `dark`/`light`
+class on a layout wrapper — `.dark`/`.light` in `globals.css` are bare class selectors, so
+that permanently overrides the active theme for everything inside it (see
+`packages/ui/README.md` for the full explanation):
 
 ```tsx
 import { ThemeProvider, TooltipProvider } from '@opencosmos/ui'
