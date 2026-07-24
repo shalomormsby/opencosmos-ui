@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Copy, Check } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useMotionPreference } from '../../hooks/useMotionPreference';
@@ -13,7 +13,7 @@ export interface TerminalWindowProps {
    */
   title?: string;
   /**
-   * Lines to reveal sequentially, one at a time.
+   * Lines to type out sequentially, one character at a time.
    */
   lines: string[];
   /**
@@ -21,6 +21,11 @@ export interface TerminalWindowProps {
    * @default false
    */
   loop?: boolean;
+  /**
+   * Seconds per character while typing.
+   * @default 0.025
+   */
+  speed?: number;
   /**
    * Text copied to the clipboard by the Copy button.
    * @default lines.join('\n')
@@ -32,10 +37,11 @@ export interface TerminalWindowProps {
 /**
  * TerminalWindow
  *
- * A mac-style terminal window (traffic-light dots + title bar) that reveals
- * `lines` one at a time, with a working copy-to-clipboard button. Respects
- * `useMotionPreference` — when animation is disabled, all lines render
- * immediately with no reveal or loop.
+ * A mac-style terminal window (traffic-light dots + title bar) that types
+ * `lines` out one character at a time, like a real terminal session, with a
+ * working copy-to-clipboard button. Respects `useMotionPreference` — when
+ * animation is disabled, all lines render immediately with no type-on or
+ * loop.
  *
  * @example
  * ```tsx
@@ -50,49 +56,64 @@ export function TerminalWindow({
   title = 'Terminal',
   lines,
   loop = false,
+  speed = 0.025,
   copyText,
   className,
 }: TerminalWindowProps) {
   const { shouldAnimate, scale } = useMotionPreference();
-  const [visibleCount, setVisibleCount] = useState(shouldAnimate ? 0 : lines.length);
+  const [completedCount, setCompletedCount] = useState(shouldAnimate ? 0 : lines.length);
+  const [typedText, setTypedText] = useState('');
   const [copied, setCopied] = useState(false);
 
-  const lineDelayMs = shouldAnimate ? 600 / Math.max(scale, 1) : 0;
+  const charDelayMs = speed * (scale > 0 ? 5 / scale : 1) * 1000;
+  const lineDelayMs = charDelayMs * 12;
   const pauseMs = 2200;
 
   useEffect(() => {
     if (!shouldAnimate) {
-      setVisibleCount(lines.length);
+      setCompletedCount(lines.length);
+      setTypedText('');
       return;
     }
 
-    setVisibleCount(0);
     let cancelled = false;
     let timeoutId: ReturnType<typeof setTimeout>;
 
-    const revealNext = (index: number) => {
-      timeoutId = setTimeout(() => {
-        if (cancelled) return;
-        setVisibleCount(index + 1);
-        if (index + 1 < lines.length) {
-          revealNext(index + 1);
-        } else if (loop) {
+    const typeLine = (lineIndex: number, charIndex: number) => {
+      if (cancelled) return;
+
+      if (lineIndex >= lines.length) {
+        if (loop) {
           timeoutId = setTimeout(() => {
             if (cancelled) return;
-            setVisibleCount(0);
-            revealNext(0);
+            setCompletedCount(0);
+            setTypedText('');
+            typeLine(0, 0);
           }, pauseMs);
         }
-      }, lineDelayMs);
+        return;
+      }
+
+      const line = lines[lineIndex];
+      if (charIndex <= line.length) {
+        setTypedText(line.slice(0, charIndex));
+        timeoutId = setTimeout(() => typeLine(lineIndex, charIndex + 1), charDelayMs);
+      } else {
+        setCompletedCount(lineIndex + 1);
+        setTypedText('');
+        timeoutId = setTimeout(() => typeLine(lineIndex + 1, 0), lineDelayMs);
+      }
     };
 
-    revealNext(0);
+    setCompletedCount(0);
+    setTypedText('');
+    typeLine(0, 0);
 
     return () => {
       cancelled = true;
       clearTimeout(timeoutId);
     };
-  }, [lines, loop, shouldAnimate, lineDelayMs]);
+  }, [lines, loop, shouldAnimate, charDelayMs, lineDelayMs]);
 
   const handleCopy = async () => {
     try {
@@ -103,6 +124,8 @@ export function TerminalWindow({
       console.error('Failed to copy:', err);
     }
   };
+
+  const isTyping = shouldAnimate && completedCount < lines.length;
 
   return (
     <div
@@ -140,20 +163,25 @@ export function TerminalWindow({
       </div>
 
       <div className="p-4 font-mono text-sm min-h-[8rem]">
-        <AnimatePresence mode="popLayout">
-          {lines.slice(0, visibleCount).map((line, index) => (
-            <motion.div
-              key={`${index}-${line}`}
-              initial={shouldAnimate ? { opacity: 0, y: 6 } : { opacity: 1, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={shouldAnimate ? { opacity: 0 } : { opacity: 0 }}
-              transition={{ duration: shouldAnimate ? 0.2 : 0 }}
-              className="flex items-start gap-2 text-[var(--color-text-primary)] whitespace-pre-wrap break-words"
-            >
-              {line}
-            </motion.div>
-          ))}
-        </AnimatePresence>
+        {lines.slice(0, completedCount).map((line, index) => (
+          <div
+            key={`${index}-${line}`}
+            className="flex items-start gap-2 text-[var(--color-text-primary)] whitespace-pre-wrap break-words"
+          >
+            {line}
+          </div>
+        ))}
+        {isTyping && (
+          <div className="flex items-start gap-2 text-[var(--color-text-primary)] whitespace-pre-wrap break-words">
+            {typedText}
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse' }}
+              className="w-2 h-4 -mb-0.5 bg-[var(--color-primary)] inline-block"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

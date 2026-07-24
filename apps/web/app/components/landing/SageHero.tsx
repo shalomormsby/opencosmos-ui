@@ -52,21 +52,23 @@ export function SageHero() {
                 />
             }
         >
-            <div className="mt-8 h-8 flex items-center justify-center text-[var(--color-text-secondary)] font-medium">
-                <span className="mr-2">Build beautifully with {BRAND.productName}</span>
-                <span className="text-[var(--color-primary)]">
-                    <Typewriter
-                        text={['Tokens.', 'Components.', 'Blocks.', 'Templates.']}
-                        speed={0.1}
-                        loop={true}
-                        delay={2}
-                        cursor="|"
-                    />
-                </span>
-            </div>
+            <div className="w-full flex flex-col items-center">
+                <div className="mt-8 h-8 flex items-center justify-center text-[var(--color-text-secondary)] font-medium">
+                    <span className="mr-2">Build beautifully with {BRAND.productName}</span>
+                    <span className="text-[var(--color-primary)]">
+                        <Typewriter
+                            text={['Tokens.', 'Components.', 'Blocks.', 'Templates.']}
+                            speed={0.1}
+                            loop={true}
+                            delay={2}
+                            cursor="|"
+                        />
+                    </span>
+                </div>
 
-            <div className="mt-10 w-full flex justify-center">
-                <GetStartedPicker />
+                <div className="mt-10 w-full flex justify-center">
+                    <GetStartedPicker />
+                </div>
             </div>
 
             {/* Color Controls - Toggle with Cmd/Ctrl + K */}
