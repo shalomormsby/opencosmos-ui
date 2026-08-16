@@ -10,6 +10,8 @@ interface LabelLayerProps {
   nodes:        ConstellationNode[]
   zoomLevel:    number
   lodRules:     LodVisibilityRules
+  /** Minimum clear space between labels; see `DEFAULT_LABEL_MIN_GAP_PX`. */
+  labelMinGapPx?: number
 }
 
 /** Pixel margin around the viewport for the on-screen culling check. Lets a
@@ -22,6 +24,37 @@ const VIEWPORT_MARGIN = 50
  *  ones are dropped. Naturally biases toward traditions, synthesis nodes, and
  *  highly-cited works — the corpus's most semantically central items. */
 const MAX_VISIBLE_LABELS = 100
+
+/**
+ * Minimum clear space, in pixels, between two rendered labels. Labels closer
+ * than this are treated as colliding and the less important one is dropped.
+ * Exported so a consumer can loosen it for a sparse corpus or tighten it for a
+ * dense one.
+ */
+export const DEFAULT_LABEL_MIN_GAP_PX = 4
+
+/**
+ * Which label wins when two overlap. Structural anchors outrank the things they
+ * contain, so a dense cluster resolves to "Elizabethan" rather than to whichever
+ * of thirty play titles happened to sort first.
+ */
+const TIER_RANK: Record<Tier, number> = {
+  domain:    0,
+  tradition: 1,
+  synthesis: 2,
+  work:      3,
+  section:   4,
+  quote:     5,
+}
+
+/** Rough on-screen font metrics per tier, mirroring `applyTierStyle`. */
+const TIER_FONT_PX: Record<Tier, number> = {
+  domain: 15, tradition: 13, synthesis: 12, work: 11, section: 10, quote: 9,
+}
+
+/** Cell size of the collision grid, in pixels. Comfortably larger than a short
+ *  label so most boxes touch only one or two cells. */
+const GRID_PX = 64
 
 /**
  * HTML overlay that renders text labels for currently-visible nodes whose
@@ -44,13 +77,21 @@ const MAX_VISIBLE_LABELS = 100
  *
  * The wrapper has `pointer-events: none`; clicks pass through to the canvas.
  */
-export function LabelLayer({ graph, nodes, zoomLevel, lodRules }: LabelLayerProps) {
+export function LabelLayer({
+  graph,
+  nodes,
+  zoomLevel,
+  lodRules,
+  labelMinGapPx = DEFAULT_LABEL_MIN_GAP_PX,
+}: LabelLayerProps) {
   const containerRef = useRef<HTMLDivElement | null>(null)
 
   const zoomLevelRef = useRef(zoomLevel)
   zoomLevelRef.current = zoomLevel
   const lodRulesRef = useRef(lodRules)
   lodRulesRef.current = lodRules
+  const minGapRef = useRef(labelMinGapPx)
+  minGapRef.current = labelMinGapPx
 
   useEffect(() => {
     const container = containerRef.current
@@ -75,6 +116,10 @@ export function LabelLayer({ graph, nodes, zoomLevel, lodRules }: LabelLayerProp
     // Reusable candidate buffer — populated each frame, sorted by degree to
     // apply the density cap. Reused across ticks to avoid per-frame allocation.
     const candidates: Array<{ node: ConstellationNode; screenX: number; screenY: number; degree: number }> = []
+    /** Survivors of the collision pass, in importance order. */
+    const accepted: typeof candidates = []
+    /** Uniform grid of accepted label boxes, keyed by (col, row). */
+    const occupied = new Map<number, Array<{ cx: number; cy: number; halfW: number; halfH: number }>>()
 
     const tick = () => {
       const currentZoom = zoomLevelRef.current
@@ -112,17 +157,67 @@ export function LabelLayer({ graph, nodes, zoomLevel, lodRules }: LabelLayerProp
         }
       }
 
-      // Phase 2: apply the density cap. When too many candidates pass the
-      // viewport filter, keep the highest-degree ones — these are the corpus's
-      // most-connected nodes (traditions, popular works, key wiki bridges).
-      if (candidates.length > MAX_VISIBLE_LABELS) {
-        candidates.sort((a, b) => b.degree - a.degree)
-        candidates.length = MAX_VISIBLE_LABELS
+      // Phase 2: rank by structural importance, then connectivity. Everything
+      // downstream (collision, density cap) consumes this order, so the most
+      // meaningful labels are the ones that survive.
+      candidates.sort((a, b) => {
+        const rank = TIER_RANK[a.node.tier] - TIER_RANK[b.node.tier]
+        return rank !== 0 ? rank : b.degree - a.degree
+      })
+
+      // Phase 2.5: drop labels that would overlap one already accepted. Without
+      // this, a dense cluster (all of Shakespeare, say) renders as an unreadable
+      // pile of superimposed titles. Greedy in importance order, with a uniform
+      // grid so the check stays linear rather than quadratic.
+      accepted.length = 0
+      occupied.clear()
+      const LABEL_MIN_GAP_PX = minGapRef.current
+      for (const c of candidates) {
+        if (accepted.length >= MAX_VISIBLE_LABELS) break
+
+        const font = TIER_FONT_PX[c.node.tier]
+        // Estimated box: ~0.55em average glyph advance, anchored per the
+        // transform below (centered horizontally, sitting 8px above the point).
+        const halfW = Math.min(c.node.label.length * font * 0.55, 180) / 2 + LABEL_MIN_GAP_PX
+        const halfH = (font + 4) / 2 + LABEL_MIN_GAP_PX
+        const cx = c.screenX
+        const cy = c.screenY - 8 - halfH
+
+        const col0 = Math.floor((cx - halfW) / GRID_PX)
+        const col1 = Math.floor((cx + halfW) / GRID_PX)
+        const row0 = Math.floor((cy - halfH) / GRID_PX)
+        const row1 = Math.floor((cy + halfH) / GRID_PX)
+
+        let collides = false
+        for (let col = col0; col <= col1 && !collides; col++) {
+          for (let row = row0; row <= row1 && !collides; row++) {
+            const bucket = occupied.get(col * 100003 + row)
+            if (!bucket) continue
+            for (const b of bucket) {
+              if (
+                Math.abs(cx - b.cx) < halfW + b.halfW &&
+                Math.abs(cy - b.cy) < halfH + b.halfH
+              ) { collides = true; break }
+            }
+          }
+        }
+        if (collides) continue
+
+        const box = { cx, cy, halfW, halfH }
+        for (let col = col0; col <= col1; col++) {
+          for (let row = row0; row <= row1; row++) {
+            const key = col * 100003 + row
+            const bucket = occupied.get(key)
+            if (bucket) bucket.push(box)
+            else occupied.set(key, [box])
+          }
+        }
+        accepted.push(c)
       }
 
       // Phase 3: paint surviving candidates; track which ids are wanted this frame.
       const wantedIds = new Set<string>()
-      for (const c of candidates) {
+      for (const c of accepted) {
         wantedIds.add(c.node.id)
 
         let el = labelEls.get(c.node.id)

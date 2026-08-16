@@ -16,3 +16,4 @@ export {
   type LodVisibilityRules,
 } from './lod/defaults'
 export { usePrefersReducedMotion } from './motion/usePrefersReducedMotion'
+export { DEFAULT_LABEL_MIN_GAP_PX } from './labels/LabelLayer'
