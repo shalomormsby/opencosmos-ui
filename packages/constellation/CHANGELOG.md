@@ -1,5 +1,15 @@
 # @opencosmos/constellation
 
+## 0.2.1 - 2026-08-16
+
+### Patch Changes
+
+- Fix `highlightedNodeIds` having no visible effect when `ambientDrift` is also on.
+
+  Both features write point data and call `render()` every frame, and cosmos.gl commits only the most recent write — so the drift loop's per-frame position write consistently won, and the highlight never reached the canvas. Measured against a 700-node corpus: lighting two nodes dropped mean canvas luminance 8.9% with drift off, and 0.0% with it on.
+
+  Drift now suspends while a highlight is active and resumes when it clears. The highlight is the feature carrying meaning — it should not be silently cancelled by ambience.
+
 ## 0.2.0 - 2026-08-16
 
 ### Minor Changes

@@ -68,7 +68,13 @@ export function KnowledgeGraph({
   const [graphInstance, setGraphInstance] = useState<Graph | null>(null)
 
   const prefersReducedMotion = usePrefersReducedMotion()
-  const driftEnabled = ambientDrift && !prefersReducedMotion
+  const isHighlighting = (highlightedNodeIds?.length ?? 0) > 0
+  // Drift and highlight both write point data and call `render()` every frame,
+  // and cosmos.gl only commits the most recent write — so with both running the
+  // drift loop's position write wins and the highlight never reaches the canvas
+  // (measured: 8.9% mean-luminance drop with drift off, 0.0% with it on).
+  // The highlight is the one carrying meaning, so drift yields while it's up.
+  const driftEnabled = ambientDrift && !prefersReducedMotion && !isHighlighting
 
   useEffect(() => {
     const container = containerRef.current

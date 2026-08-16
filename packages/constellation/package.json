@@ -1,6 +1,6 @@
 {
     "name": "@opencosmos/constellation",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "Living knowledge-graph visualizer for OpenCosmos. A React wrapper around @cosmos.gl/graph (MIT) that renders tradition · work · section · quote tiers as a navigable starfield.",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
