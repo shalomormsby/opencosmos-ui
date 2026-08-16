@@ -101,4 +101,18 @@ export interface KnowledgeGraphProps {
   focusRadius?: number
   /** Camera tween duration in ms when `focus` changes. Default 800. */
   focusDuration?: number
+  /**
+   * Node ids to bring forward: these brighten and swell while everything else
+   * recedes. Pass an empty array (or omit) to restore the base styling.
+   *
+   * Independent of `focus` — highlighting says *what matters right now*, focus
+   * says *where the camera looks*. A chat surface typically highlights every
+   * citation in a response but only moves the camera to the first.
+   */
+  highlightedNodeIds?: string[]
+  /**
+   * Breathe the highlighted nodes instead of holding them at a fixed size.
+   * Default `true`. Auto-disables when the user prefers reduced motion.
+   */
+  highlightPulse?: boolean
 }

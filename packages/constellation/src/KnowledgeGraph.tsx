@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { Graph } from '@cosmos.gl/graph'
 import type { KnowledgeGraphProps } from './types'
-import { prepareGraph } from './data/toFloat32'
+import { prepareGraph, type PreparedGraph } from './data/toFloat32'
 import { LabelLayer } from './labels/LabelLayer'
 import { DEFAULT_LOD_VISIBILITY } from './lod/defaults'
 import { useAmbientDrift } from './motion/useAmbientDrift'
 import { useFocus } from './motion/useFocus'
+import { useHighlight } from './motion/useHighlight'
 import { usePrefersReducedMotion } from './motion/usePrefersReducedMotion'
 
 /**
@@ -44,11 +45,16 @@ export function KnowledgeGraph({
   focus,
   focusRadius   = 1,
   focusDuration = 800,
+  highlightedNodeIds,
+  highlightPulse = true,
 }: KnowledgeGraphProps) {
   const wrapperRef   = useRef<HTMLDivElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
   const graphRef     = useRef<Graph | null>(null)
   const indexToIdRef = useRef<string[]>([])
+  // The authored color/size arrays. `useHighlight` reads these as its baseline
+  // so it can restore exactly what `prepareGraph` produced.
+  const preparedRef  = useRef<PreparedGraph | null>(null)
 
   // Latest callback closures held in refs so the Graph instance picks up new
   // closures without being torn down and rebuilt on every render.
@@ -70,6 +76,7 @@ export function KnowledgeGraph({
 
     const prepared = prepareGraph(data, tierColors, tierSizes)
     indexToIdRef.current = prepared.indexToId
+    preparedRef.current  = prepared
 
     const graph = new Graph(container, {
       backgroundColor,
@@ -128,6 +135,16 @@ export function KnowledgeGraph({
     focus,
     focusRadius,
     focusDuration,
+  })
+
+  useHighlight({
+    graph:      graphInstance,
+    ready:      graphReady,
+    baseColors: preparedRef.current?.colors    ?? null,
+    baseSizes:  preparedRef.current?.sizes     ?? null,
+    idToIndex:  preparedRef.current?.idToIndex ?? null,
+    ids:        highlightedNodeIds,
+    pulse:      highlightPulse && !prefersReducedMotion,
   })
 
   const lodRules = lodVisibility ?? DEFAULT_LOD_VISIBILITY

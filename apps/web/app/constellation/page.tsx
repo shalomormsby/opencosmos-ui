@@ -27,6 +27,13 @@ export default function ConstellationDemoPage() {
   const [zoom, setZoom] = useState(1)
   const [drift, setDrift] = useState(true)
   const [focus, setFocus] = useState<string | null>(null)
+  // Seedable from `?highlight=id1,id2` so a particular lit state is shareable
+  // (and testable) without hunting for the dots by hand.
+  const [highlighted, setHighlighted] = useState<string[]>([])
+  useEffect(() => {
+    const raw = new URLSearchParams(window.location.search).get('highlight')
+    if (raw) setHighlighted(raw.split(',').map((s) => s.trim()).filter(Boolean))
+  }, [])
 
   useEffect(() => {
     fetch('/constellation-sample.json')
@@ -138,6 +145,27 @@ export default function ConstellationDemoPage() {
               </button>
             )}
           </div>
+
+          {/* Highlighting is what a chat surface drives: as a response cites
+              passages, those nodes brighten and swell while the rest recedes.
+              Here, a click stands in for a citation. */}
+          <div className="flex items-center gap-2">
+            <span className="w-20 shrink-0">Highlight</span>
+            <span className="flex-1 opacity-60">
+              {highlighted.length
+                ? `${highlighted.length} lit — click more, or clear`
+                : 'click any node to light it up'}
+            </span>
+            {highlighted.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setHighlighted([])}
+                className="rounded bg-white/10 px-2 py-1 text-xs hover:bg-white/20"
+              >
+                clear
+              </button>
+            )}
+          </div>
         </div>
 
         {clickedNode && (
@@ -155,11 +183,15 @@ export default function ConstellationDemoPage() {
       {data && (
         <KnowledgeGraph
           data={data}
-          onNodeClick={setClickedNode}
+          onNodeClick={(id) => {
+            setClickedNode(id)
+            setHighlighted((prev) => (prev.includes(id) ? prev : [...prev, id]))
+          }}
           onZoomChange={setZoom}
           ambientDrift={drift}
           focus={focus}
           focusRadius={1}
+          highlightedNodeIds={highlighted}
           backgroundColor="#0b0d12"
           className="absolute inset-0 h-full w-full"
         />
