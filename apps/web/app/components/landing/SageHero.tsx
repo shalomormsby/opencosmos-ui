@@ -3,6 +3,7 @@
 import { HeroBlock, OrbBackground, Typewriter, useTheme, BRAND } from '@opencosmos/ui';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { GetStartedPicker } from './GetStartedPicker';
 
 export function SageHero() {
     const router = useRouter();
@@ -30,9 +31,13 @@ export function SageHero() {
             description="Components that feel alive. Themes with real personality. Motion your users control. Designed for humans. Fluent with AI."
             badge="Lovable by Design"
             primaryCta={{
-                label: "Get Started",
-                onClick: () => router.push('/docs/getting-started'),
+                label: "Browse Components",
+                onClick: () => router.push('/docs/components'),
                 variant: 'secondary'
+            }}
+            secondaryCta={{
+                label: "Read the Docs",
+                onClick: () => router.push('/docs/getting-started'),
             }}
             background={
                 <OrbBackground
@@ -47,17 +52,23 @@ export function SageHero() {
                 />
             }
         >
-            <div className="mt-8 h-8 flex items-center justify-center text-[var(--color-text-secondary)] font-medium">
-                <span className="mr-2">Build beautifully with {BRAND.productName}</span>
-                <span className="text-[var(--color-primary)]">
-                    <Typewriter
-                        text={['Tokens.', 'Components.', 'Blocks.', 'Templates.']}
-                        speed={0.1}
-                        loop={true}
-                        delay={2}
-                        cursor="|"
-                    />
-                </span>
+            <div className="w-full flex flex-col items-center">
+                <div className="mt-8 h-8 flex items-center justify-center text-[var(--color-text-secondary)] font-medium">
+                    <span className="mr-2">Build beautifully with {BRAND.productName}</span>
+                    <span className="text-[var(--color-primary)]">
+                        <Typewriter
+                            text={['Tokens.', 'Components.', 'Blocks.', 'Templates.']}
+                            speed={0.1}
+                            loop={true}
+                            delay={2}
+                            cursor="|"
+                        />
+                    </span>
+                </div>
+
+                <div className="mt-10 w-full flex justify-center">
+                    <GetStartedPicker />
+                </div>
             </div>
 
             {/* Color Controls - Toggle with Cmd/Ctrl + K */}

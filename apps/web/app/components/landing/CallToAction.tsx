@@ -34,7 +34,7 @@ export function CallToAction() {
 
                     <div className="flex items-center gap-2 px-4 py-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md font-mono text-sm text-[var(--color-text-secondary)]">
                         <Terminal className="w-4 h-4" />
-                        <span>npx create-sage-app@latest</span>
+                        <span>npm install @opencosmos/ui</span>
                     </div>
                 </div>
             </div>

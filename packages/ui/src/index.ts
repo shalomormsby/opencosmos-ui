@@ -123,6 +123,7 @@ export * from './components/backgrounds/InfinityAnim';
 export * from "./components/motion/AnimatedBeam";
 export * from "./components/backgrounds/OrbBackground";
 export * from "./components/blocks/Hero";
+export * from "./components/blocks/TerminalWindow";
 export * from './components/cursor/SplashCursor';
 export * from './components/cursor/TargetCursor';
 
