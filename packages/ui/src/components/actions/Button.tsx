@@ -13,7 +13,16 @@ const buttonVariants = cva(
                 destructive: 'bg-destructive text-destructive-foreground shadow-xs',
                 outline: 'border border-input bg-transparent shadow-xs hover:bg-primary hover:text-primary-foreground hover:border-primary',
                 secondary: 'bg-black/5 dark:bg-white/10 backdrop-blur-md border border-black/5 dark:border-white/10 text-secondary-foreground shadow-xs hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary dark:hover:text-primary-foreground',
-                ghost: 'hover:text-accent-foreground',
+                // `hover:text-accent-foreground` alone was a hover text colour with no
+                // hover surface under it. accent-foreground is the colour meant to sit ON
+                // an accent background, so in any theme where it approaches the page
+                // background — Volt Dark has both at #000000 — a ghost button turned
+                // invisible under the cursor. It now resolves to a primary outline and
+                // primary text, which mirrors `outline` (bordered, fills primary on hover)
+                // one step quieter: bare at rest, outlined on hover. The transparent border
+                // is carried at rest so hovering never changes the box; with border-box
+                // sizing the fixed heights above are unaffected.
+                ghost: 'border border-transparent hover:border-primary hover:text-primary',
                 link: 'text-primary underline-offset-4 hover:underline',
             },
             size: {

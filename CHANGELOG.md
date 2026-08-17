@@ -1,6 +1,15 @@
 # Changelog
 
 
+## 2026-08-16
+
+**Button: ghost no longer turns invisible on hover** (`@opencosmos/ui` patch)
+
+- The `ghost` variant was `hover:text-accent-foreground` with no hover surface under it. `accent-foreground` is the colour meant to sit *on* an accent background, so wherever it approaches the page background — Volt Dark has both at `#000000` — a ghost button rendered its label in the background colour and vanished under the cursor. Found on a live page where "Sign in" disappeared on hover.
+- `ghost` now hovers to a primary outline and primary text, mirroring `outline` one step quieter: `outline` is bordered at rest and fills primary on hover; `ghost` is bare at rest and outlines primary on hover.
+- The transparent border is carried at rest so gaining one on hover never shifts the box; with border-box sizing the fixed variant heights are unchanged.
+- Regression test added asserting ghost carries its own visible hover affordance and never re-acquires the unpainted-surface pattern. 158/158 tests pass.
+
 ## 2026-06-23
 
 **AppSidebar: overlay on mobile instead of squeezing content** (`@opencosmos/ui` 1.9.1 → 1.10.0)
