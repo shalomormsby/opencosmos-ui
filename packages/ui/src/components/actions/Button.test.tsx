@@ -20,10 +20,26 @@ describe('Button', () => {
     expect(screen.getByRole('button')).toHaveClass('border')
 
     rerender(<Button variant="ghost">Ghost</Button>)
-    expect(screen.getByRole('button')).toHaveClass('hover:text-accent-foreground')
+    expect(screen.getByRole('button')).toHaveClass('hover:text-primary')
 
     rerender(<Button variant="link">Link</Button>)
     expect(screen.getByRole('button')).toHaveClass('underline-offset-4')
+  })
+
+  it('gives ghost a visible hover that does not depend on an unpainted surface', () => {
+    // Regression: ghost was `hover:text-accent-foreground` with no hover background.
+    // accent-foreground is meant to sit on an accent surface, so wherever it nears the
+    // page background (Volt Dark has both at #000000) the button vanished under the
+    // cursor. Any future hover treatment must carry its own visible affordance.
+    render(<Button variant="ghost">Ghost</Button>)
+    const button = screen.getByRole('button')
+
+    expect(button).toHaveClass('hover:border-primary')
+    expect(button).toHaveClass('hover:text-primary')
+    // A hover text colour that only reads against a surface the variant never paints.
+    expect(button).not.toHaveClass('hover:text-accent-foreground')
+    // Reserved at rest so gaining the hover border never shifts the box.
+    expect(button).toHaveClass('border', 'border-transparent')
   })
 
   it('handles click events', async () => {
